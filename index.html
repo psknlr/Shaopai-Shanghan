@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>绍派伤寒 · 学术知识图谱 | 沈钦荣名中医 × 医哲未来人工智能研究院</title>
+<meta name="description" content="绍派伤寒学术知识图谱：2098 个知识节点、1674 条学术关系，梳理自明代张景岳发端、清代俞根初形成、何廉臣光大的越中外感病学派谱系。由沈钦荣名中医联合医哲未来人工智能研究院联合研发。">
+<meta name="theme-color" content="#f3ede1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#12141a" media="(prefers-color-scheme: dark)">
+<meta property="og:title" content="绍派伤寒 · 学术知识图谱">
+<meta property="og:description" content="沈钦荣名中医 × 医哲未来人工智能研究院 联合研发">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23b4382c'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='%23fdf6e8' font-family='serif'%3E绍%3C/text%3E%3C/svg%3E">
+<style>
+/* ============================================================
+   绍派伤寒 · 知识图谱主页
+   设计语汇：宣纸 · 松烟墨 · 越窑青瓷 · 绍兴黄酒 · 朱砂印
+   ============================================================ */
+
+/* ---------- 色彩：宣纸（浅） ---------- */
+:root{
+  --paper:      #f3ede1;
+  --paper-2:    #faf6ec;
+  --paper-3:    #e7dcc7;
+  --ink:        #1f1d19;
+  --ink-2:      #3b362e;
+  --dim:        #756d5e;
+  --line:       #dbcfb7;
+  --line-2:     #c9b998;
+  --tile:       #3b4551;   /* 黛瓦 */
+  --cinnabar:   #b4382c;   /* 朱砂 */
+  --cinnabar-2: #c9503a;
+  --celadon:    #4f7d6b;   /* 越窑青瓷 */
+  --celadon-2:  #8fb3a2;
+  --amber:      #a5771f;   /* 绍兴黄酒 */
+  --water:      #6b93aa;   /* 鉴湖 */
+  --sky-1:      #ece3d3;
+  --sky-2:      #f6f0e4;
+  --mount-far:  #c3c8c6;
+  --mount-mid:  #a4b0ad;
+  --wall:       #f7f3ea;
+  --shadow:     0 1px 2px rgba(60,45,25,.05), 0 8px 28px -12px rgba(60,45,25,.22);
+  --shadow-lg:  0 2px 6px rgba(60,45,25,.06), 0 26px 60px -26px rgba(60,45,25,.36);
+  --grain-op:   .055;
+  --grain-blend: multiply;
+  --serif: "Songti SC","Noto Serif CJK SC","Source Han Serif SC","Source Han Serif CN","STSong",SimSun,"Times New Roman",serif;
+  --kai:   "Kaiti SC","STKaiti",KaiTi,"Kaiti TC","LiSong Pro","Noto Serif CJK SC",var(--serif);
+  --sans:  "PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",system-ui,-apple-system,sans-serif;
+  --maxw: 1180px;
+}
+
+/* ---------- 色彩：墨夜（深） ---------- */
+html[data-theme="ink"]{
+  --paper:      #101319;
+  --paper-2:    #171b23;
+  --paper-3:    #1e242e;
+  --ink:        #e9e3d5;
+  --ink-2:      #c8c2b4;
+  --dim:        #8e8877;
+  --line:       #2b323d;
+  --line-2:     #3c4552;
+  --tile:       #0b0e13;
+  --cinnabar:   #e0715c;
+  --cinnabar-2: #ea8a72;
+  --celadon:    #7fbfa4;
+  --celadon-2:  #4f7d6b;
+  --amber:      #d6a95a;
+  --water:      #7fb0cc;
+  --sky-1:      #151a22;
+  --sky-2:      #0d1015;
+  --mount-far:  #212932;
+  --mount-mid:  #2c3641;
+  --wall:       #232a34;
+  --shadow:     0 1px 2px rgba(0,0,0,.4), 0 8px 28px -12px rgba(0,0,0,.7);
+  --shadow-lg:  0 2px 6px rgba(0,0,0,.5), 0 26px 60px -26px rgba(0,0,0,.85);
+  --grain-op:   .04;
+  --grain-blend: overlay;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font:16px/1.85 var(--serif);
+  letter-spacing:.012em;
+  overflow-x:hidden;
+  transition:background .45s ease,color .45s ease;
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+}
+
+/* 宣纸纹理 */
+.grain{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:60;
+  opacity:var(--grain-op);mix-blend-mode:var(--grain-blend)}
+
+.wrap{width:min(100% - 2.6rem, var(--maxw));margin-inline:auto}
+img,svg{max-width:100%}
+a{color:inherit;text-decoration:none}
+
+/* ============ 顶栏 ============ */
+header#nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  backdrop-filter:blur(14px) saturate(1.3);
+  -webkit-backdrop-filter:blur(14px) saturate(1.3);
+  background:color-mix(in srgb, var(--paper) 82%, transparent);
+  border-bottom:1px solid transparent;
+  transition:border-color .3s ease, background .3s ease, box-shadow .3s ease;
+}
+header#nav.stuck{border-bottom-color:var(--line);box-shadow:0 6px 24px -18px rgba(0,0,0,.5)}
+.navin{display:flex;align-items:center;gap:1.1rem;height:64px}
+.brand{display:flex;align-items:center;gap:.62rem;font-weight:600;letter-spacing:.06em;white-space:nowrap}
+.brand .seal-mini{width:30px;height:30px;border-radius:5px;background:var(--cinnabar);color:#fdf6e8;
+  display:grid;place-items:center;font-family:var(--kai);font-size:18px;line-height:1;
+  box-shadow:0 2px 8px -2px color-mix(in srgb,var(--cinnabar) 60%,transparent)}
+.brand b{font-size:17px;font-weight:600}
+.brand .en{font-family:var(--sans);font-size:10px;letter-spacing:.14em;color:var(--dim);
+  text-transform:uppercase;display:block;margin-top:-3px}
+nav.links{display:flex;gap:1.45rem;margin-left:auto;font-size:14px;color:var(--ink-2)}
+nav.links a{position:relative;padding:.2rem 0;transition:color .2s}
+nav.links a::after{content:'';position:absolute;left:0;right:100%;bottom:0;height:1px;
+  background:var(--cinnabar);transition:right .28s ease}
+nav.links a:hover{color:var(--cinnabar)}
+nav.links a:hover::after{right:0}
+.navbtns{display:flex;align-items:center;gap:.55rem;margin-left:1rem}
+.iconbtn{width:36px;height:36px;display:grid;place-items:center;border-radius:9px;cursor:pointer;
+  border:1px solid var(--line);background:color-mix(in srgb,var(--paper-2) 70%,transparent);
+  color:var(--ink-2);transition:.2s}
+.iconbtn:hover{border-color:var(--cinnabar);color:var(--cinnabar)}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.58rem 1.15rem;border-radius:999px;
+  font-size:14px;letter-spacing:.05em;cursor:pointer;border:1px solid transparent;transition:.24s ease;
+  font-family:var(--serif)}
+.btn-solid{background:var(--cinnabar);color:#fdf6e8;box-shadow:0 6px 18px -8px color-mix(in srgb,var(--cinnabar) 75%,transparent)}
+.btn-solid:hover{background:var(--cinnabar-2);transform:translateY(-1px);
+  box-shadow:0 12px 26px -10px color-mix(in srgb,var(--cinnabar) 75%,transparent)}
+.btn-ghost{border-color:var(--line-2);color:var(--ink-2);background:color-mix(in srgb,var(--paper-2) 60%,transparent)}
+.btn-ghost:hover{border-color:var(--celadon);color:var(--celadon)}
+@media(max-width:880px){nav.links{display:none}}
+.cta-short{display:none}
+@media(max-width:560px){
+  .navin{height:58px;gap:.5rem}
+  .brand .en{display:none}
+  .brand b{font-size:15.5px}
+  .brand .seal-mini{width:28px;height:28px;font-size:16px}
+  .navbtns{margin-left:auto;gap:.4rem}
+  .navbtns .btn{padding:.5rem .85rem;font-size:13px;gap:.35rem}
+  .iconbtn{width:33px;height:33px}
+  .cta-long{display:none}
+  .cta-short{display:inline}
+}
+
+/* ============ 首屏 ============ */
+#hero{position:relative;min-height:100svh;display:flex;align-items:center;
+  padding:104px 0 clamp(180px,27vh,320px);overflow:hidden}
+.scene{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.scene svg{position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+  width:max(1600px,105vw);height:auto;display:block}
+.scene .sky{position:absolute;inset:0;
+  background:linear-gradient(180deg,var(--sky-2) 0%,var(--sky-1) 46%,var(--paper) 92%)}
+/* 罩染：远景淡入宣纸，保证正文可读 */
+.scene::after{content:'';position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,
+    var(--paper) 0%,
+    color-mix(in srgb,var(--paper) 74%,transparent) 26%,
+    color-mix(in srgb,var(--paper) 26%,transparent) 52%,
+    transparent 70%)}
+/* 远山、屋舍、桥、水的分层 */
+.lyr{transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+
+.heroin{position:relative;z-index:2}
+.eyebrow{display:inline-flex;align-items:center;gap:.7rem;font-family:var(--sans);font-size:12px;
+  letter-spacing:.3em;color:var(--dim);text-transform:uppercase;margin-bottom:1.5rem}
+.eyebrow::before{content:'';width:38px;height:1px;background:var(--line-2)}
+h1.title{margin:0;font-size:clamp(3.2rem,10.5vw,7.4rem);line-height:1.02;font-weight:400;
+  letter-spacing:.1em;font-family:var(--kai);
+  background:linear-gradient(168deg,var(--ink) 30%,var(--tile) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+html[data-theme="ink"] h1.title{background:linear-gradient(168deg,var(--ink) 25%,var(--amber) 130%);
+  -webkit-background-clip:text;background-clip:text}
+.subtitle{margin:.85rem 0 0;font-size:clamp(1rem,2.5vw,1.32rem);color:var(--ink-2);letter-spacing:.24em}
+.subtitle .sep{color:var(--line-2);margin:0 .55rem}
+.lede{margin:1.9rem 0 0;max-width:33em;font-size:clamp(.95rem,1.5vw,1.06rem);color:var(--dim);line-height:2.1}
+.lede em{font-style:normal;color:var(--celadon)}
+.couplet{position:absolute;right:2.8rem;top:50%;transform:translateY(-50%);z-index:3;
+  display:flex;flex-direction:row-reverse;align-items:flex-start;
+  font-family:var(--kai);font-size:clamp(1.05rem,1.4vw,1.32rem);color:var(--dim);opacity:.95}
+.couplet span{display:block;width:1em;line-height:1.62;text-align:center;
+  word-break:break-all;padding:0 1.15rem}
+.couplet span:first-child{border-left:1px solid var(--line)}
+@media(max-width:1240px){.couplet{display:none}}
+.cta{display:flex;flex-wrap:wrap;gap:.85rem;margin-top:2.6rem;align-items:center}
+.byline{margin-top:2.6rem;padding:1.05rem 1.2rem;border:1px solid var(--line);border-radius:12px;
+  display:inline-flex;flex-wrap:wrap;align-items:center;gap:.55rem .9rem;
+  font-size:13.5px;color:var(--dim);max-width:40em;
+  background:color-mix(in srgb,var(--paper-2) 80%,transparent);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.byline .x{color:var(--cinnabar);font-family:var(--sans);font-size:12px}
+.byline strong{color:var(--ink-2);font-weight:600}
+.scrollhint{position:absolute;left:50%;bottom:2.2rem;transform:translateX(-50%);z-index:2;
+  font-family:var(--sans);font-size:10.5px;letter-spacing:.28em;color:var(--dim);
+  display:flex;flex-direction:column;align-items:center;gap:.6rem;text-transform:uppercase}
+.scrollhint i{width:1px;height:44px;background:linear-gradient(var(--line-2),transparent);
+  animation:drop 2.6s ease-in-out infinite}
+@keyframes drop{0%,100%{opacity:.25;transform:scaleY(.55);transform-origin:top}50%{opacity:1;transform:scaleY(1)}}
+
+/* 乌篷船漂移 */
+@keyframes sail{0%{transform:translateX(0)}100%{transform:translateX(150px)}}
+.boat{animation:sail 34s ease-in-out infinite alternate}
+@keyframes shimmer{0%,100%{opacity:.34}50%{opacity:.72}}
+.ripple{animation:shimmer 7s ease-in-out infinite}
+.ripple:nth-of-type(2n){animation-duration:9s;animation-delay:-2s}
+.ripple:nth-of-type(3n){animation-duration:11s;animation-delay:-4s}
+
+/* ============ 通用区块 ============ */
+section{position:relative;z-index:2;padding:clamp(4.5rem,9vw,7.5rem) 0}
+.sect-head{margin-bottom:3.1rem;max-width:44em}
+.sect-tag{display:inline-flex;align-items:center;gap:.65rem;font-family:var(--sans);font-size:11px;
+  letter-spacing:.26em;color:var(--cinnabar);text-transform:uppercase;margin-bottom:1rem}
+.sect-tag::before{content:'';width:22px;height:1px;background:var(--cinnabar);opacity:.55}
+h2{margin:0;font-size:clamp(1.75rem,4vw,2.65rem);font-weight:400;letter-spacing:.13em;
+  font-family:var(--kai);line-height:1.35}
+.sect-head p{margin:1.1rem 0 0;color:var(--dim);font-size:15.5px;line-height:2.05}
+
+/* 云雷纹分隔 */
+.rule{height:22px;width:100%;opacity:.5;color:var(--line-2)}
+
+/* ============ 数据概览 ============ */
+#stats{padding-top:0}
+.statgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--paper-2);
+  box-shadow:var(--shadow)}
+.stat{padding:1.9rem 1.5rem;border-right:1px solid var(--line);text-align:center;position:relative}
+.stat:last-child{border-right:0}
+.stat .num{font-size:clamp(2rem,4.4vw,2.9rem);line-height:1;font-family:var(--kai);
+  letter-spacing:.02em;color:var(--ink);font-variant-numeric:tabular-nums}
+.stat .lab{margin-top:.6rem;font-size:12.5px;letter-spacing:.2em;color:var(--dim)}
+.stat .bar{position:absolute;left:0;bottom:0;height:2px;width:0;transition:width 1.2s cubic-bezier(.2,.7,.2,1)}
+.stat.in .bar{width:100%}
+@media(max-width:720px){
+  .stat{border-right:0;border-bottom:1px solid var(--line)}
+  .stat:last-child{border-bottom:0}
+}
+
+/* ============ 源流 ============ */
+.timeline{position:relative;margin-top:1rem;padding-left:2.4rem}
+.timeline::before{content:'';position:absolute;left:9px;top:12px;bottom:12px;width:2px;
+  background:linear-gradient(var(--celadon-2),var(--water),var(--amber));opacity:.5;border-radius:2px}
+.tl{position:relative;padding:0 0 2.7rem;opacity:0;transform:translateY(18px);
+  transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.tl.in{opacity:1;transform:none}
+.tl:last-child{padding-bottom:0}
+.tl::before{content:'';position:absolute;left:-2.4rem;top:.55rem;width:20px;height:20px;border-radius:50%;
+  background:var(--paper);border:2px solid var(--celadon);
+  box-shadow:0 0 0 4px color-mix(in srgb,var(--paper) 85%,transparent)}
+.tl.mark::before{border-color:var(--cinnabar);background:var(--cinnabar);
+  box-shadow:0 0 0 4px color-mix(in srgb,var(--cinnabar) 16%,transparent)}
+.tl .era{font-family:var(--sans);font-size:11.5px;letter-spacing:.22em;color:var(--amber);text-transform:uppercase}
+.tl h3{margin:.4rem 0 .45rem;font-size:1.28rem;font-weight:400;font-family:var(--kai);letter-spacing:.08em}
+.tl h3 small{font-size:.8rem;color:var(--dim);letter-spacing:.1em;margin-left:.6rem;font-family:var(--serif)}
+.tl p{margin:0;color:var(--dim);font-size:14.6px;line-height:2.05;max-width:46em}
+.tl q{color:var(--celadon);font-style:normal;quotes:'「' '」'}
+
+/* ============ 学术特色 ============ */
+.cards{display:grid;gap:1.15rem;grid-template-columns:repeat(auto-fit,minmax(288px,1fr))}
+.card{position:relative;padding:1.85rem 1.7rem 1.7rem;border:1px solid var(--line);border-radius:14px;
+  background:var(--paper-2);overflow:hidden;box-shadow:var(--shadow);
+  opacity:0;transform:translateY(20px);
+  transition:opacity .65s ease,transform .65s cubic-bezier(.2,.7,.2,1),border-color .3s,box-shadow .3s}
+.card.in{opacity:1;transform:none}
+.card:hover{border-color:var(--line-2);box-shadow:var(--shadow-lg);transform:translateY(-3px)}
+.card .idx{position:absolute;right:1.15rem;top:.55rem;font-family:var(--kai);font-size:3.2rem;
+  color:var(--line);opacity:.55;line-height:1;user-select:none}
+.card h3{margin:0 0 .9rem;font-size:1.25rem;font-weight:400;font-family:var(--kai);letter-spacing:.14em}
+.card .quote{margin:0 0 .95rem;padding-left:.9rem;border-left:2px solid var(--celadon-2);
+  color:var(--ink-2);font-size:14.8px;line-height:2}
+.card .who{font-family:var(--sans);font-size:11.5px;letter-spacing:.16em;color:var(--dim)}
+.card p.exp{margin:.9rem 0 0;color:var(--dim);font-size:14px;line-height:2}
+
+/* ============ 医家 ============ */
+.docs{display:grid;gap:1.05rem;grid-template-columns:repeat(auto-fill,minmax(238px,1fr))}
+.doc{position:relative;display:block;padding:1.5rem 1.4rem;border:1px solid var(--line);border-radius:13px;
+  background:var(--paper-2);transition:.28s ease;overflow:hidden;
+  opacity:0;transform:translateY(16px)}
+.doc.in{opacity:1;transform:none}
+.doc::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--cinnabar);
+  transform:scaleY(0);transform-origin:top;transition:transform .32s ease}
+.doc:hover{transform:translateY(-3px);border-color:var(--line-2);box-shadow:var(--shadow-lg)}
+.doc:hover::after{transform:scaleY(1)}
+.doc .era{font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;color:var(--amber)}
+.doc .nm{margin:.45rem 0 .2rem;font-size:1.42rem;font-family:var(--kai);letter-spacing:.12em}
+.doc .rl{font-size:12.5px;color:var(--celadon);letter-spacing:.1em}
+.doc .wk{margin:.85rem 0 0;font-size:13.2px;color:var(--dim);line-height:1.95;min-height:3.6em}
+.doc .mt{margin-top:.95rem;padding-top:.75rem;border-top:1px dashed var(--line);
+  display:flex;gap:1.1rem;font-family:var(--sans);font-size:11px;letter-spacing:.08em;color:var(--dim)}
+.doc .mt b{color:var(--ink-2);font-weight:600;font-size:12.5px;font-variant-numeric:tabular-nums}
+
+/* ============ 图谱入口 ============ */
+#graph{padding-bottom:clamp(5rem,9vw,8rem)}
+.gwrap{position:relative;border:1px solid var(--line);border-radius:18px;overflow:hidden;
+  background:linear-gradient(160deg,var(--paper-2),var(--paper-3));box-shadow:var(--shadow-lg)}
+#mini{display:block;width:100%;height:clamp(360px,52vh,520px);cursor:pointer}
+.goverlay{position:absolute;inset:auto 0 0 0;padding:clamp(1.6rem,4vw,2.8rem);
+  background:linear-gradient(0deg,color-mix(in srgb,var(--paper-2) 96%,transparent) 12%,transparent);
+  display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:1.4rem;
+  pointer-events:none}
+.goverlay > *{pointer-events:auto}
+.goverlay h3{margin:0 0 .5rem;font-size:1.42rem;font-weight:400;font-family:var(--kai);letter-spacing:.12em}
+.goverlay p{margin:0;color:var(--dim);font-size:13.8px;max-width:38em;line-height:1.95}
+.glegend{position:absolute;left:clamp(1.1rem,3vw,1.9rem);top:clamp(1.1rem,3vw,1.9rem);
+  display:flex;flex-wrap:wrap;gap:.5rem}
+.lg{display:inline-flex;align-items:center;gap:.45rem;padding:.34rem .78rem;border-radius:999px;
+  border:1px solid var(--line);background:color-mix(in srgb,var(--paper-2) 78%,transparent);
+  font-family:var(--sans);font-size:11.5px;letter-spacing:.08em;color:var(--ink-2);
+  backdrop-filter:blur(6px)}
+.lg i{width:8px;height:8px;border-radius:50%;display:block}
+
+/* ============ 关于 / 联合研发 ============ */
+#about{background:var(--paper-2);border-block:1px solid var(--line)}
+.duo{display:grid;gap:1.15rem;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));margin-top:.6rem}
+.org{position:relative;padding:2.1rem 1.9rem;border:1px solid var(--line);border-radius:15px;
+  background:var(--paper);box-shadow:var(--shadow)}
+.org .seal{position:absolute;right:1.5rem;top:1.5rem;width:62px;height:62px;border-radius:7px;
+  display:grid;grid-template-columns:1fr 1fr;place-items:center;
+  font-family:var(--kai);font-size:19px;line-height:1;color:#fdf6e8;background:var(--cinnabar);
+  transform:rotate(-4.5deg);box-shadow:0 6px 18px -8px color-mix(in srgb,var(--cinnabar) 80%,transparent);
+  letter-spacing:0;padding:5px}
+.org .seal span:nth-child(1){grid-area:1/2}
+.org .seal span:nth-child(2){grid-area:2/2}
+.org .seal span:nth-child(3){grid-area:1/1}
+.org .seal span:nth-child(4){grid-area:2/1}
+.org .role{font-family:var(--sans);font-size:11px;letter-spacing:.24em;color:var(--amber);text-transform:uppercase}
+.org h3{margin:.7rem 0 .2rem;font-size:1.52rem;font-weight:400;font-family:var(--kai);letter-spacing:.1em;
+  padding-right:74px}
+.org .sub{font-size:13px;color:var(--celadon);letter-spacing:.1em}
+.org p{margin:1.25rem 0 0;color:var(--dim);font-size:14.4px;line-height:2.08}
+.org ul{margin:1.15rem 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:.45rem}
+.org li{font-family:var(--sans);font-size:11.5px;letter-spacing:.08em;color:var(--ink-2);
+  border:1px solid var(--line);border-radius:999px;padding:.3rem .75rem;background:var(--paper-2)}
+.jointbar{margin-top:1.4rem;padding:1.5rem 1.9rem;border:1px dashed var(--line-2);border-radius:15px;
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.75rem 1.3rem;
+  text-align:center;background:var(--paper);font-size:15px;letter-spacing:.1em;color:var(--ink-2)}
+.jointbar b{font-weight:600;font-family:var(--kai);font-size:1.14rem;letter-spacing:.12em;color:var(--ink)}
+.jointbar .amp{color:var(--cinnabar);font-family:var(--sans);font-size:14px}
+.jointbar .tail{width:100%;font-size:12.5px;color:var(--dim);letter-spacing:.16em;font-family:var(--sans)}
+
+.srcbox{margin-top:1.15rem;padding:1.35rem 1.6rem;border-left:3px solid var(--amber);
+  background:var(--paper);border-radius:0 12px 12px 0;color:var(--dim);font-size:13.8px;line-height:2.05}
+.srcbox b{color:var(--ink-2);font-weight:600}
+
+/* ============ 页脚 ============ */
+footer{padding:3.4rem 0 4rem;color:var(--dim);font-size:13px}
+.finn{display:flex;flex-wrap:wrap;gap:1.6rem;align-items:center;justify-content:space-between}
+.fseals{display:flex;gap:.6rem}
+.fs{width:42px;height:42px;border-radius:5px;display:grid;grid-template-columns:1fr 1fr;place-items:center;
+  font-family:var(--kai);font-size:13px;color:var(--cinnabar);border:1.5px solid var(--cinnabar);
+  padding:3px;opacity:.82;transform:rotate(-3deg)}
+.fs span:nth-child(1){grid-area:1/2}.fs span:nth-child(2){grid-area:2/2}
+.fs span:nth-child(3){grid-area:1/1}.fs span:nth-child(4){grid-area:2/1}
+.fs.solid{background:var(--cinnabar);color:#fdf6e8;transform:rotate(3deg)}
+footer a{color:var(--ink-2);border-bottom:1px solid var(--line);transition:.2s}
+footer a:hover{color:var(--cinnabar);border-color:var(--cinnabar)}
+.fnote{max-width:46em;line-height:2}
+
+/* 回到顶部 */
+#top{position:fixed;right:1.5rem;bottom:1.5rem;z-index:40;width:44px;height:44px;border-radius:50%;
+  display:grid;place-items:center;border:1px solid var(--line);background:var(--paper-2);color:var(--ink-2);
+  cursor:pointer;opacity:0;pointer-events:none;transition:.3s;box-shadow:var(--shadow)}
+#top.show{opacity:1;pointer-events:auto}
+#top:hover{border-color:var(--cinnabar);color:var(--cinnabar)}
+</style>
+</head>
+<body>
+
+<svg class="grain" aria-hidden="true"><filter id="grainf"><feTurbulence type="fractalNoise" baseFrequency=".82" numOctaves="4" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#grainf)"/></svg>
+
+<!-- ============ 顶栏 ============ -->
+<header id="nav">
+  <div class="wrap navin">
+    <a class="brand" href="#hero">
+      <span class="seal-mini">绍</span>
+      <span><b>绍派伤寒</b><span class="en">Shaoxing Cold-Damage School</span></span>
+    </a>
+    <nav class="links">
+      <a href="#origin">源流</a>
+      <a href="#feature">学术特色</a>
+      <a href="#doctors">代表医家</a>
+      <a href="#graph">知识图谱</a>
+      <a href="#about">联合研发</a>
+    </nav>
+    <div class="navbtns">
+      <button class="iconbtn" id="theme" title="切换 宣纸 / 墨夜" aria-label="切换主题">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path class="ic-sun" d="M12 4v1.5M12 18.5V20M4 12h1.5M18.5 12H20M6.3 6.3l1.1 1.1M16.6 16.6l1.1 1.1M17.7 6.3l-1.1 1.1M7.4 16.6l-1.1 1.1"/><circle class="ic-sun" cx="12" cy="12" r="3.9"/><path class="ic-moon" d="M19 14.5A7.5 7.5 0 1 1 9.5 5a6 6 0 0 0 9.5 9.5Z" style="display:none"/></svg>
+      </button>
+      <a class="btn btn-solid" href="explorer.html">
+        <span class="cta-long">进入图谱</span><span class="cta-short">图谱</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 首屏 ============ -->
+<div id="hero">
+  <div class="scene" aria-hidden="true">
+    <div class="sky"></div>
+    <svg viewBox="0 0 1600 700" preserveAspectRatio="xMidYMax meet">
+      <defs>
+        <linearGradient id="gWater" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="var(--water)" stop-opacity=".30"/>
+          <stop offset="100%" stop-color="var(--water)" stop-opacity=".04"/>
+        </linearGradient>
+        <linearGradient id="gFar" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="var(--mount-far)" stop-opacity=".95"/>
+          <stop offset="100%" stop-color="var(--mount-far)" stop-opacity=".35"/>
+        </linearGradient>
+        <linearGradient id="gMid" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="var(--mount-mid)" stop-opacity=".95"/>
+          <stop offset="100%" stop-color="var(--mount-mid)" stop-opacity=".5"/>
+        </linearGradient>
+      </defs>
+
+      <!-- 会稽远山 -->
+      <g class="lyr" data-depth="6">
+        <path fill="url(#gFar)" d="M0,392 C90,352 165,368 232,336 C300,304 352,320 415,352 C470,380 520,342 585,318 C650,294 705,330 762,352 C820,374 872,352 930,326 C995,297 1050,320 1112,348 C1175,376 1230,352 1292,326 C1352,300 1420,322 1478,350 C1520,370 1560,362 1600,344 L1600,700 L0,700 Z"/>
+      </g>
+      <!-- 近山 -->
+      <g class="lyr" data-depth="12">
+        <path fill="url(#gMid)" d="M0,452 C70,428 128,440 190,418 C250,396 300,412 356,436 C410,459 458,432 512,414 C570,395 618,416 672,438 C728,461 778,442 832,420 C890,397 940,414 996,436 C1052,458 1104,440 1160,418 C1218,395 1272,414 1328,436 C1384,458 1440,444 1496,424 C1540,408 1572,414 1600,424 L1600,700 L0,700 Z"/>
+      </g>
+
+      <!-- 白墙黛瓦（沿河人家） -->
+      <g class="lyr" data-depth="20" opacity=".96">
+        <!-- 一排屋舍 -->
+        <g>
+          <rect x="96"  y="452" width="118" height="72" fill="var(--wall)"/>
+          <path d="M84,454 L155,424 L226,454 Z" fill="var(--tile)"/>
+          <rect x="128" y="482" width="20" height="26" fill="var(--tile)" opacity=".55"/>
+          <rect x="166" y="482" width="20" height="26" fill="var(--tile)" opacity=".38"/>
+
+          <rect x="228" y="468" width="92" height="56" fill="var(--wall)"/>
+          <path d="M218,470 L274,446 L330,470 Z" fill="var(--tile)"/>
+          <rect x="252" y="490" width="17" height="22" fill="var(--tile)" opacity=".45"/>
+
+          <rect x="336" y="444" width="132" height="80" fill="var(--wall)"/>
+          <path d="M324,446 L402,412 L480,446 Z" fill="var(--tile)"/>
+          <rect x="360" y="474" width="22" height="28" fill="var(--tile)" opacity=".5"/>
+          <rect x="404" y="474" width="22" height="28" fill="var(--tile)" opacity=".33"/>
+          <rect x="444" y="474" width="14" height="28" fill="var(--tile)" opacity=".42"/>
+        </g>
+        <g>
+          <rect x="1088" y="456" width="126" height="68" fill="var(--wall)"/>
+          <path d="M1076,458 L1151,428 L1226,458 Z" fill="var(--tile)"/>
+          <rect x="1120" y="484" width="21" height="26" fill="var(--tile)" opacity=".5"/>
+          <rect x="1162" y="484" width="21" height="26" fill="var(--tile)" opacity=".34"/>
+
+          <rect x="1230" y="470" width="98" height="54" fill="var(--wall)"/>
+          <path d="M1220,472 L1279,448 L1338,472 Z" fill="var(--tile)"/>
+          <rect x="1256" y="492" width="18" height="22" fill="var(--tile)" opacity=".44"/>
+
+          <rect x="1344" y="448" width="140" height="76" fill="var(--wall)"/>
+          <path d="M1332,450 L1414,416 L1496,450 Z" fill="var(--tile)"/>
+          <rect x="1372" y="478" width="22" height="28" fill="var(--tile)" opacity=".48"/>
+          <rect x="1416" y="478" width="22" height="28" fill="var(--tile)" opacity=".32"/>
+        </g>
+      </g>
+
+      <!-- 石拱桥 -->
+      <g class="lyr" data-depth="30">
+        <path d="M596,524 C640,524 668,470 800,470 C932,470 960,524 1004,524 L1004,536 L968,536 C930,536 906,486 800,486 C694,486 670,536 632,536 L596,536 Z" fill="var(--tile)" opacity=".92"/>
+        <path d="M660,502 C700,472 740,462 800,462 C860,462 900,472 940,502" fill="none" stroke="var(--tile)" stroke-width="4.5" opacity=".55" stroke-linecap="round"/>
+        <g stroke="var(--tile)" stroke-width="3" opacity=".5" stroke-linecap="round">
+          <path d="M690,486 L690,466"/><path d="M726,474 L726,454"/><path d="M764,468 L764,448"/>
+          <path d="M836,468 L836,448"/><path d="M874,474 L874,454"/><path d="M910,486 L910,466"/>
+        </g>
+      </g>
+
+      <!-- 鉴湖水面 -->
+      <g class="lyr" data-depth="42">
+        <rect x="0" y="524" width="1600" height="176" fill="url(#gWater)"/>
+        <g stroke="var(--water)" fill="none" stroke-linecap="round" stroke-width="1.5">
+          <path class="ripple" d="M120,556 q26,-7 52,0 t52,0"   opacity=".5"/>
+          <path class="ripple" d="M300,578 q30,-8 60,0 t60,0"   opacity=".42"/>
+          <path class="ripple" d="M560,600 q28,-7 56,0 t56,0"   opacity=".46"/>
+          <path class="ripple" d="M880,566 q26,-7 52,0 t52,0"   opacity=".4"/>
+          <path class="ripple" d="M1080,596 q30,-8 60,0 t60,0"  opacity=".45"/>
+          <path class="ripple" d="M1320,562 q26,-7 52,0 t52,0"  opacity=".38"/>
+          <path class="ripple" d="M420,634 q34,-9 68,0 t68,0"   opacity=".3"/>
+          <path class="ripple" d="M940,648 q34,-9 68,0 t68,0"   opacity=".28"/>
+        </g>
+        <!-- 桥影 -->
+        <path d="M632,528 C670,540 694,566 800,566 C906,566 930,540 968,528 Z" fill="var(--tile)" opacity=".12"/>
+      </g>
+
+      <!-- 乌篷船 -->
+      <g transform="translate(430,584)"><g class="boat">
+        <ellipse cx="0" cy="26" rx="88" ry="6" fill="var(--tile)" opacity=".13"/>
+        <path d="M-84,6 C-74,20 -56,25 -34,25 L40,25 C62,25 78,19 88,6 C60,12 -56,12 -84,6 Z" fill="var(--tile)"/>
+        <path d="M-40,6 C-40,-16 -20,-25 -4,-25 C12,-25 30,-16 30,6 Z" fill="var(--tile)"/>
+        <path d="M-34,4 C-34,-13 -18,-20 -5,-20 C8,-20 24,-13 24,4 Z" fill="none" stroke="var(--paper)" stroke-width="1.1" opacity=".28"/>
+        <circle cx="56" cy="-4" r="5.5" fill="var(--tile)"/>
+        <path d="M56,2 L56,16" stroke="var(--tile)" stroke-width="5" stroke-linecap="round"/>
+        <path d="M52,6 L84,-16" stroke="var(--tile)" stroke-width="2.4" stroke-linecap="round"/>
+      </g></g>
+      <g transform="translate(1180,556) scale(.6)" opacity=".5">
+        <g class="boat" style="animation-duration:46s;animation-direction:alternate-reverse">
+          <path d="M-84,6 C-74,20 -56,25 -34,25 L40,25 C62,25 78,19 88,6 C60,12 -56,12 -84,6 Z" fill="var(--tile)"/>
+          <path d="M-40,6 C-40,-16 -20,-25 -4,-25 C12,-25 30,-16 30,6 Z" fill="var(--tile)"/>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+  <div class="couplet" aria-hidden="true">
+    <span>六經鈐百病</span><span>三焦賅疫證</span>
+  </div>
+
+  <div class="wrap heroin">
+    <div class="eyebrow">浙派中医 · 越中医家学术谱系</div>
+    <h1 class="title">绍派伤寒</h1>
+    <div class="subtitle">学术知识图谱<span class="sep">·</span>Knowledge&nbsp;Graph</div>
+    <p class="lede">
+      发端于明代<em>张景岳</em>，形成于清代<em>俞根初</em>《通俗伤寒论》，光大于<em>何廉臣</em>。
+      因浙绍卑湿之地气，寒温统一、六经三焦并参，重观目腹诊、擅开郁透达、用药轻灵——
+      自成一格的越中外感病学派，今以图谱之形重现其人、其书、其说。
+    </p>
+    <div class="cta">
+      <a class="btn btn-solid" href="explorer.html">
+        进入知识图谱
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="btn btn-ghost" href="#origin">溯其源流</a>
+    </div>
+    <div class="byline">
+      <strong>沈钦荣名中医</strong>
+      <span class="x">×</span>
+      <strong>医哲未来人工智能研究院</strong>
+      <span>联合研发</span>
+    </div>
+  </div>
+
+  <div class="scrollhint" aria-hidden="true"><span>Scroll</span><i></i></div>
+</div>
+
+<!-- ============ 数据概览 ============ -->
+<section id="stats">
+  <div class="wrap">
+    <div class="statgrid">
+      <div class="stat"><div class="num" data-to="2098">0</div><div class="lab">知识节点</div><div class="bar" style="background:var(--tile)"></div></div>
+      <div class="stat"><div class="num" data-to="1674">0</div><div class="lab">学术关系</div><div class="bar" style="background:var(--water)"></div></div>
+      <div class="stat"><div class="num" data-to="218">0</div><div class="lab">医家</div><div class="bar" style="background:var(--cinnabar)"></div></div>
+      <div class="stat"><div class="num" data-to="356">0</div><div class="lab">著作</div><div class="bar" style="background:var(--water)"></div></div>
+      <div class="stat"><div class="num" data-to="1524">0</div><div class="lab">学术观点</div><div class="bar" style="background:var(--celadon)"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 源流 ============ -->
+<section id="origin">
+  <div class="wrap">
+    <div class="sect-head">
+      <div class="sect-tag">Lineage · 源流</div>
+      <h2>一水贯之：绍派伤寒的传承脉络</h2>
+      <p>越中一脉，自明迄今五百年。下列谱系节点均取自《浙派中医丛书·绍派伤寒》原文，
+         图谱中每一条师承、私淑、撰著关系皆可回溯至书页原句。</p>
+    </div>
+
+    <div class="timeline">
+      <div class="tl mark">
+        <div class="era">明代 · 发端</div>
+        <h3>张景岳<small>《景岳全书·伤寒典》《类经》</small></h3>
+        <p>越中山阴人。谓 <q>治伤寒之法，惟汗为主</q>，于仲景辛温解表之外别开生面，
+           重阳气、辨形层，为绍派伤寒立下第一块基石。</p>
+      </div>
+      <div class="tl mark">
+        <div class="era">清代 · 形成</div>
+        <h3>俞根初<small>《通俗伤寒论》</small></h3>
+        <p>学派奠基者。提出 <q>以六经钤百病，为确定之总诀；以三焦赅疫证，为变通之捷诀</q>，
+           寒温兼收并蓄，被视为「寒温统一论」的先行者；又以观目、腹诊、六经辨舌丰富外感病诊断学。</p>
+      </div>
+      <div class="tl">
+        <div class="era">清代 · 阐扬</div>
+        <h3>何秀山 · 章虚谷 · 赵晴初<small>按语 ·《医门棒喝》·《存存斋医话稿》</small></h3>
+        <p>何秀山为《通俗伤寒论》作按，谓 <q>六经为感证传变之路径，三焦为感证传变之归宿也</q>；
+           章虚谷辨析寒温，是明确提出「辨证论治」一词的第一人；赵晴初医话精微，门下弟子繁盛。</p>
+      </div>
+      <div class="tl">
+        <div class="era">清代 · 并峙</div>
+        <h3>张畹香 · 周伯度 · 邵兰荪<small>《张氏温暑医旨》·《六气感证要义》·《邵兰荪医案》</small></h3>
+        <p>温暑证治、六气感证、临证医案，三家各擅胜场，共同织成越中外感病学的临床经纬。</p>
+      </div>
+      <div class="tl mark">
+        <div class="era">清末民初 · 光大</div>
+        <h3>何廉臣<small>《重订通俗伤寒论》《重订广温热论》《感证宝筏》</small></h3>
+        <p>私淑俞根初与叶天士，勘定重订，使学派体系大备。主张 <q>六经三焦，辨证并重</q>、
+           <q>用药组方，轻灵平稳</q>；门下曹炳章、毛凤岗、严绍琪、俞修源、郑惠中并称一时。</p>
+      </div>
+      <div class="tl">
+        <div class="era">民国 · 承续</div>
+        <h3>曹炳章 · 胡宝书<small>《瘟痧证治要略》《暑病证治要略》·《伤寒十八方》</small></h3>
+        <p>曹炳章续编增订、考镜源流；胡宝书家学三世，临证以简驭繁，绍兴同善局施方济众。</p>
+      </div>
+      <div class="tl">
+        <div class="era">现代 · 集成</div>
+        <h3>徐荣斋<small>《重订通俗伤寒论》</small></h3>
+        <p>师从杨质安、问道曹炳章。探源析流、重订典籍、开启研究之风气，
+           以「形层说」重解六经，为绍派伤寒贡献颇多。</p>
+      </div>
+      <div class="tl mark">
+        <div class="era">当代 · 传承与智能化</div>
+        <h3>沈钦荣名中医 × 医哲未来人工智能研究院<small>《浙派中医丛书·绍派伤寒》，2021</small></h3>
+        <p>沈钦荣名中医主编专著，系统整理越中一脉的医家、著作与学说；
+           医哲未来人工智能研究院据此构建本体与知识图谱，使 2,098 个节点、1,674 条关系皆可检索、可回溯、可视化。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 学术特色 ============ -->
+<section id="feature">
+  <div class="wrap">
+    <div class="sect-head">
+      <div class="sect-tag">Doctrine · 学术特色</div>
+      <h2>越地卑湿，自成一格</h2>
+      <p>绍派伤寒之所以为「派」，在于它以一方水土为立论之基。以下六端，皆录自原书文句。</p>
+    </div>
+    <div class="cards">
+      <article class="card">
+        <div class="idx">壹</div>
+        <h3>寒温统一</h3>
+        <p class="quote">以六经钤百病，为确定之总诀；以三焦赅疫证，为变通之捷诀。</p>
+        <div class="who">俞根初 ·《通俗伤寒论》</div>
+        <p class="exp">不立寒温门户，以六经统摄三焦、气血辨证，从表里寒热论治外感，补温病学派之未备。</p>
+      </article>
+      <article class="card">
+        <div class="idx">贰</div>
+        <h3>因地制宜</h3>
+        <p class="quote">浙绍卑湿，凡伤寒恒多夹湿。</p>
+        <div class="who">俞根初 ·《通俗伤寒论》</div>
+        <p class="exp">立足江南水乡地气，辨兼寒湿、湿热两端，分际极清，治法方药自与北地迥异。</p>
+      </article>
+      <article class="card">
+        <div class="idx">叁</div>
+        <h3>开郁透达</h3>
+        <p class="quote">凡伤寒病，均以开郁为先。</p>
+        <div class="who">俞根初 ·《通俗伤寒论》</div>
+        <p class="exp">为邪留出路，分步逐邪，以通为补——这是绍派治外感病最鲜明的一条治则。</p>
+      </article>
+      <article class="card">
+        <div class="idx">肆</div>
+        <h3>观目腹诊</h3>
+        <p class="quote">故观目为诊法之首要。</p>
+        <div class="who">俞根初 ·《通俗伤寒论》</div>
+        <p class="exp">观目法、按胸腹、分六经辨舌苔，于纷繁症候中提纲挈领，重危病人尤见其功。</p>
+      </article>
+      <article class="card">
+        <div class="idx">伍</div>
+        <h3>用药轻灵</h3>
+        <p class="quote">用药组方，轻灵平稳。</p>
+        <div class="who">何廉臣 · 徐荣斋述</div>
+        <p class="exp">寒温并用而以轻见长，不尚峻猛，重在因势利导，是越中医风的共同底色。</p>
+      </article>
+      <article class="card">
+        <div class="idx">陆</div>
+        <h3>瘥后调理</h3>
+        <p class="quote">大邪退后，余热未尽，元气已虚，胃虚少纳，脾弱不运。</p>
+        <div class="who">俞根初 ·《通俗伤寒论》</div>
+        <p class="exp">病后调理别立专法，收功于疾病之末，亦是绍派体系完备之处。</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 代表医家 ============ -->
+<section id="doctors">
+  <div class="wrap">
+    <div class="sect-head">
+      <div class="sect-tag">Physicians · 代表医家</div>
+      <h2>越中十二家</h2>
+      <p>下列数据由图谱统计得出：<b>观点</b>为该医家在书中提出的学术主张条目数，<b>关联</b>为其在图谱中的关系总度数。点击可直达图谱中的对应节点。</p>
+    </div>
+    <div class="docs" id="docgrid"></div>
+  </div>
+</section>
+
+<!-- ============ 知识图谱 ============ -->
+<section id="graph">
+  <div class="wrap">
+    <div class="sect-head">
+      <div class="sect-tag">Knowledge Graph · 知识图谱</div>
+      <h2>一图见其全</h2>
+      <p>下方为图谱核心区的实时预览，取真实布局坐标绘制。完整图谱含 2,098 个节点，
+         支持搜索、筛选、关系追溯与原文出处核验。</p>
+    </div>
+    <div class="gwrap">
+      <canvas id="mini"></canvas>
+      <div class="glegend">
+        <span class="lg"><i style="background:var(--cinnabar)"></i>医家</span>
+        <span class="lg"><i style="background:var(--water)"></i>著作</span>
+        <span class="lg"><i style="background:var(--celadon)"></i>学术观点</span>
+      </div>
+      <div class="goverlay">
+        <div>
+          <h3>绍派伤寒知识图谱 · 全景浏览</h3>
+          <p>支持中文检索医家 / 著作 / 观点，按关系类型筛选，点选节点可查看师承、私淑、撰著、主张等关系，并逐条核对原书出处与页码。</p>
+        </div>
+        <a class="btn btn-solid" href="explorer.html">
+          打开完整图谱
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 联合研发 ============ -->
+<section id="about">
+  <div class="wrap">
+    <div class="sect-head">
+      <div class="sect-tag">Collaboration · 联合研发</div>
+      <h2>名医传承 × 人工智能</h2>
+      <p>本项目由沈钦荣名中医与医哲未来人工智能研究院联合研发：前者提供学术底本与专业审订，后者负责本体设计、知识抽取与可视化实现。</p>
+    </div>
+
+    <div class="duo">
+      <div class="org">
+        <div class="seal" aria-hidden="true"><span>沈</span><span>钦</span><span>荣</span><span>印</span></div>
+        <div class="role">学术主持 · Academic Lead</div>
+        <h3>沈钦荣名中医</h3>
+        <div class="sub">《浙派中医丛书》专题系列·绍派伤寒 主编</div>
+        <p>长期致力于绍派伤寒的文献整理与临床传承，系统梳理越中一脉自张景岳、俞根初以降的医家谱系、
+           代表著作与学术主张，为本图谱提供权威学术底本与内容审订。</p>
+        <ul><li>文献整理</li><li>学术审订</li><li>临床传承</li><li>流派研究</li></ul>
+      </div>
+      <div class="org">
+        <div class="seal" aria-hidden="true"><span>医</span><span>哲</span><span>未</span><span>来</span></div>
+        <div class="role">技术研发 · Technology</div>
+        <h3>医哲未来人工智能研究院</h3>
+        <div class="sub">IMPFAI · Institute of Medical Philosophy &amp; Future AI</div>
+        <p>面向中医药知识工程，设计本体结构与关系模式，以人工智能从原著中抽取实体与关系，
+           并保留逐条原文证据与页码索引，实现「可回溯、可核验」的中医学术知识图谱。</p>
+        <ul><li>本体设计</li><li>知识抽取</li><li>证据溯源</li><li>可视化</li></ul>
+      </div>
+    </div>
+
+    <div class="jointbar">
+      <b>沈钦荣名中医</b><span class="amp">×</span><b>医哲未来人工智能研究院</b><span>联合研发</span>
+      <span class="tail">Jointly developed by Dr. Shen Qinrong &amp; IMPFAI</span>
+    </div>
+
+    <div class="srcbox">
+      <b>学术底本</b>：《浙派中医丛书》专题系列·绍派伤寒，沈钦荣 主编，2021 年。<br>
+      <b>图谱构建</b>：医哲未来人工智能研究院（IMPFAI）· 本体版本 1.0.0 · 已抽取层：谱系层（lineage）· 待抽取层：证候、诊法、本草。<br>
+      <b>使用说明</b>：图谱内容由人工智能自原著抽取，每条关系均附原文证据与页码；标注「非逐字」者为归纳性表述。
+      本站仅供学术研究与文献检索之用，不作为临床诊疗依据。
+    </div>
+  </div>
+</section>
+
+<!-- ============ 页脚 ============ -->
+<footer>
+  <div class="wrap finn">
+    <div class="fseals" aria-hidden="true">
+      <div class="fs solid"><span>绍</span><span>派</span><span>伤</span><span>寒</span></div>
+      <div class="fs"><span>医</span><span>哲</span><span>未</span><span>来</span></div>
+    </div>
+    <div class="fnote">
+      <div><b style="color:var(--ink-2)">绍派伤寒 · 学术知识图谱</b></div>
+      <div>沈钦荣名中医 × 医哲未来人工智能研究院 联合研发 ·
+        学术底本《浙派中医丛书·绍派伤寒》（2021）</div>
+      <div style="margin-top:.4rem">
+        <a href="explorer.html">知识图谱</a> ·
+        <a href="https://impfai.github.io/" target="_blank" rel="noopener">医哲未来人工智能研究院</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<button id="top" title="回到顶部" aria-label="回到顶部">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V6M6 12l6-6 6 6"/></svg>
+</button>
+
+<script id="preview" type="application/json">{"n":[["何廉臣",0,-0.3078,0.1596,206],["俞根初",0,0.0058,0.3964,201],["章虚谷",0,0.0935,-0.5592,140],["曹炳章",0,-0.5099,0.1818,123],["赵晴初",0,0.3659,0.2561,100],["张景岳",0,-0.4078,-0.2369,81],["徐荣斋",0,-0.3488,0.4405,81],["张畹香",0,0.4867,-0.1875,70],["胡宝书",0,0.3368,-0.0792,62],["周伯度",0,0.7521,-0.5029,52],["章氏",0,0.3283,-0.4273,42],["叶天士",0,0.0936,-0.1636,34],["俞氏",0,-0.0212,0.199,30],["何氏",0,-0.0898,-0.1179,21],["邵兰荪",0,-0.4124,-0.0584,20],["仲景",0,0.2262,-0.1384,20],["何秀山",0,-0.1398,0.4911,18],["通俗伤寒论",1,-0.2316,0.3394,18],["吴鞠通",0,-0.067,0.1834,16],["吴又可",0,-0.3119,0.3626,11],["雷少逸",0,0.4378,-0.031,11],["内经",1,-0.1839,-0.4894,10],["俞根初的葱豉桔梗汤、七味葱白汤及《温病条辨》中的桑菊饮等属此凉散法之类方",2,-0.1502,0.5,10],["叶氏",0,0.2275,-0.3142,10],["重订通俗伤寒论",1,-0.226,0.4236,9],["伤寒论",1,0.2525,-0.1882,9],["景岳",0,-0.549,-0.4704,9],["张仲景",0,0.339,0.0668,8],["俞东扶",0,1.2496,-0.0,8],["徐灵胎",0,0.469,0.3399,8],["存存斋医话续集",1,0.4501,0.372,8],["重订广温热论",1,-0.2402,0.0731,7],["三订通俗伤寒论",1,-0.1268,0.4219,7],["东垣",0,-0.4814,-0.3439,7],["石芾南",0,-0.439,0.2539,7],["六经总诀",1,-0.0966,0.5058,6],["王孟英",0,-0.0577,0.0823,6],["尤在泾",0,0.1597,0.2129,6],["周氏",0,0.4666,-0.3117,6],["徐氏",0,-0.9305,0.8524,6],["景岳全书·杂证谟瘟疫篇",1,-0.4611,-0.3434,5],["医门棒喝",1,0.0843,-0.6762,5],["《通俗伤寒论》中许多所谓何秀山按的文字，实系何氏所作",2,-0.3456,0.3493,5],["增订通俗伤寒论",1,-0.2808,0.3221,4],["统论四时外感病的诊治，将《内经》、《伤寒论》及后世诸家伤寒病新知融会一起，颇有新义，为绍派伤寒之理论薮渊",2,-0.2441,0.4582,4],["景岳全书·传忠录神气存亡论",1,-0.4073,-0.2885,4],["观两目法",1,-0.1002,0.4907,4],["伤寒",1,-0.1555,0.4267,4],["本草思辨录",1,0.6356,-0.4222,4],["邵兰荪医案",1,-0.481,0.0834,4],["何廉臣先生谓即系“肺痈”",2,-0.1655,0.437,4],["徐荣斋于绍派伤寒贡献颇多，一来探源析流，二来重订《通俗伤寒论》，三来开启研究绍派之风气",2,-0.0967,0.5814,4],["温热论",1,0.1625,-0.2741,3],["湿温时疫治疗法",1,-0.415,0.0686,3],["伤寒百证歌注",1,-0.4004,0.2763,3],["从此一切感证，通称伤寒，从古亦从俗，俞氏亦从俗，故是书名曰《通俗伤寒论》",2,-0.149,0.6747,3],["六经治法",1,-0.1206,0.4736,3],["按胸腹",1,0.3572,0.4722,3],["凡伤寒病，均以开郁为先",2,-0.1049,0.4671,3],["浙绍卑湿，凡伤寒恒多夹湿",2,-0.1509,0.4137,3],["灵素节注类编",1,0.2234,-0.5201,3],["初集",1,0.3709,-0.4462,3],["明确提出“辨证论治”一词的第一人则是章虚谷",2,0.1216,-0.6721,3],["广温热论",1,-0.0876,-0.1917,3],["张氏温暑医旨",1,0.5053,-0.2006,3],["存存斋医话稿",1,0.4059,0.2625,3],["医医病书",1,-0.3884,0.1203,3],["医案选按",1,0.3737,0.0853,3],["周辑邵氏医案评议",1,-0.3371,1.2539,3],["医原",1,-0.4989,0.2706,3],["道产阴阳，原同一气。火为水之主，水即火之源，水火原不相离也",2,-0.4994,-0.2999,2],["火水得其正则为精与气，水火失其和则为寒为热",2,-0.5077,-0.2814,2],["善治精者，能使精中生气；善治气者，能使气中生精",2,-0.4757,-0.3317,2],["治伤寒之法，惟汗为主",2,-0.4473,-0.3217,2],["最可恨者，有曰‘伤寒无补法’，惑乱人心，莫此为甚",2,-0.4257,-0.2562,2],["凡患伤寒有阴阳大虚、元气将败而邪不能解者非六味回阳饮不可",2,-0.4533,-0.3029,2],["力者，元气也",2,-0.3829,-0.3265,2],["有力者，非强健之谓，谓中和之力也",2,-0.4143,-0.3116,2],["大抵有力中不失和缓，柔软中不失有力，此方是脉中之神",2,-0.4018,-0.3067,2],["若其不及，即微弱脱绝之无力也",2,-0.4244,-0.2745,2],["水为天一之精，凉能解热，甘可助阴，非若苦寒伤气者之比",2,-0.4558,-0.2348,2],["慎毋相对斯须，便处方药",2,0.2176,0.3581,2],["专设瘥后调理法一节，示病家以调理方法，亦为医家治伤寒多一条思格",2,-0.1289,0.3945,2],["水积胸者，按之疼痛，推之漉漉",2,0.2408,0.4579,2],["伤寒证治，全藉阳明",2,-0.1237,0.4366,2],["阳明之为病，实证多属火",2,-0.0705,0.5114,2],["六经实热，总清阳明",2,-0.0562,0.5221,2],["俞氏善用凉泻，故能善治阳明，而名医之名亦由此得",2,-0.0872,0.543,2],["伤寒温热，大邪退后，余热未尽，元气已虚，胃虚少纳，脾弱不运",2,-0.0828,0.4083,2],["阳常有余，阴常不足",2,0.0661,-0.7076,2],["阳常不足，阴常有余",2,-0.4866,-0.3805,2],["理有一定而法无定；法有定而方无定；方有定而病无定也",2,0.3698,-0.4716,2],["治病制方固难，而辨证尤难也",2,0.3638,-0.4347,2],["方书日富，则圣道日晦",2,0.3526,-0.4508,2],["东垣言相火元气之贼，景岳言相火元气之本，东垣乃论其变，景岳道其常，两说皆各有理，不可偏废",2,-0.5202,-0.4224,2],["温病不废附姜",2,0.3864,-0.4926,2],["六气皆从火化，以寒凉药主治",2,0.0919,-0.7267,2],["温热伏气病也……病之作往往因新感而发，所谓新感引动伏邪也",2,-0.2591,0.0835,2],["医者必识得伏气，方不致见病治病，能握机于病象之先",2,-0.2796,0.0536,2],["温热虚症，少阴心肾病居多",2,-0.2602,0.0457,2],["自订疏风止嗽汤增强了疏风解表之功，对于重伤风发热咳嗽者较止嗽散更适宜",2,-0.2048,0.3451,2],["湿热未净，伤及气分",2,0.514,-0.2183,2],["绍兴谓之瘩子，苏州谓之沙子，其实皆风，感肺分",2,0.5893,-0.192,2],["斑出血分，疹与瘄出于气分",2,0.5411,-0.1513,2],["暑湿入肝脾，则为痢疾",2,0.5186,-0.1984,2],["五味子的功能在降入，凡病情涉于宜升宜出者，决不可用",2,0.4384,0.2121,2],["于治湿证特设透湿达邪法，分清透、凉透、宣窍透邪，俾湿由内达外而去，可补宣、运、导三法之未备",2,0.3634,-0.1204,2],["绍派伤寒发端于明代张景岳《景岳全书·伤寒典》，形成于清代俞根初《通俗伤寒论》",2,-0.5103,-0.3177,2],["俞根初伤寒温病兼收并蓄，是“寒温统一论”的先行者",2,0.2164,0.2237,2]],"e":[[1,17],[42,17],[23,52],[16,17],[0,31],[0,17],[0,53],[0,54],[3,43],[6,24],[0,11],[5,21],[5,70],[5,71],[5,72],[27,25],[5,73],[73,40],[5,74],[5,40],[5,75],[75,40],[15,25],[5,15],[5,45],[77,45],[78,45],[79,45],[5,76],[5,77],[5,78],[5,79],[5,80],[12,15],[1,81],[6,24],[50,17],[0,17],[1,32],[1,108],[1,27],[12,17],[1,56],[1,35],[1,15],[1,46],[50,46],[1,83],[83,57],[1,58],[58,56],[1,59],[22,56],[22,35],[1,84],[1,85],[85,35],[1,86],[86,35],[16,87],[87,35],[1,19],[22,47],[42,47],[50,47],[16,1],[0,1],[1,47],[1,88],[84,32],[58,32],[2,41],[62,41],[10,60],[10,61],[5,90],[10,15],[23,15],[10,91],[10,92],[10,93],[91,61],[26,90],[2,11],[11,15],[33,94],[26,94],[2,21],[2,62],[10,95],[5,33],[96,41],[2,23],[2,60],[3,0],[6,0],[0,53],[13,63],[3,42],[6,42],[13,17],[0,5],[0,36],[0,15],[0,24],[0,97],[97,31],[0,98],[98,31],[13,23],[0,18],[0,34],[13,63],[13,31],[0,37],[0,12],[0,99],[99,31],[0,100],[100,32],[7,27],[7,64],[7,102],[7,103],[104,64],[7,104],[7,15],[7,23],[7,101],[101,64],[38,48],[38,15],[9,48],[37,25],[4,15],[4,65],[4,37],[4,29],[4,11],[4,105],[18,66],[4,30],[4,67],[8,15],[8,11],[8,18],[8,36],[8,20],[8,108],[18,11],[8,23],[8,106],[8,67],[8,67],[3,49],[3,14],[59,17],[14,49],[3,17],[3,5],[3,19],[11,52],[34,69],[3,69],[0,43],[6,3],[50,24],[1,11],[1,18],[51,24],[1,24],[16,17],[44,17],[6,17],[22,17],[1,82],[82,17],[0,31],[14,11],[3,66],[1,43],[0,43]]}</script>
+<script>
+(function(){
+'use strict';
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- 主题：宣纸 / 墨夜（与图谱页共享） ---------- */
+const root = document.documentElement;
+function applyTheme(t){
+  root.dataset.theme = t;
+  document.querySelectorAll('.ic-sun').forEach(e=>e.style.display = t==='ink' ? 'none' : '');
+  document.querySelectorAll('.ic-moon').forEach(e=>e.style.display = t==='ink' ? '' : 'none');
+  try{ localStorage.setItem('sp-theme', t); }catch(e){}
+  if(mini) drawMini();
+}
+let saved = null;
+try{ saved = localStorage.getItem('sp-theme'); }catch(e){}
+if(!saved) saved = matchMedia('(prefers-color-scheme: dark)').matches ? 'ink' : 'paper';
+document.getElementById('theme').onclick = ()=> applyTheme(root.dataset.theme==='ink' ? 'paper' : 'ink');
+
+/* ---------- 顶栏 / 回顶 ---------- */
+const nav = document.getElementById('nav'), topBtn = document.getElementById('top');
+addEventListener('scroll', ()=>{
+  const y = scrollY;
+  nav.classList.toggle('stuck', y > 24);
+  topBtn.classList.toggle('show', y > 700);
+}, {passive:true});
+topBtn.onclick = ()=> scrollTo({top:0, behavior: RM ? 'auto' : 'smooth'});
+
+/* ---------- 首屏视差 ---------- */
+if(!RM){
+  const layers = [...document.querySelectorAll('.lyr')];
+  let raf = 0;
+  addEventListener('mousemove', e=>{
+    if(raf) return;
+    raf = requestAnimationFrame(()=>{
+      raf = 0;
+      const dx = (e.clientX / innerWidth - .5), dy = (e.clientY / innerHeight - .5);
+      layers.forEach(l=>{
+        const d = +l.dataset.depth || 10;
+        l.style.transform = `translate(${dx * d * .5}px, ${dy * d * .22}px)`;
+      });
+    });
+  }, {passive:true});
+}
+
+/* ---------- 滚动显现 ---------- */
+const io = new IntersectionObserver(es=>{
+  es.forEach(en=>{
+    if(!en.isIntersecting) return;
+    const el = en.target;
+    el.classList.add('in');
+    if(el.classList.contains('stat')) countUp(el.querySelector('.num'));
+    io.unobserve(el);
+  });
+}, {threshold:.18, rootMargin:'0px 0px -8% 0px'});
+
+function stagger(sel, step){
+  document.querySelectorAll(sel).forEach((el,i)=>{
+    el.style.transitionDelay = (i * step) + 'ms';
+    io.observe(el);
+  });
+}
+
+function countUp(el){
+  if(!el) return;
+  const to = +el.dataset.to;
+  if(RM){ el.textContent = to.toLocaleString(); return; }
+  const t0 = performance.now(), dur = 1400;
+  (function tick(t){
+    const p = Math.min(1, (t - t0) / dur);
+    const e = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(to * e).toLocaleString();
+    if(p < 1) requestAnimationFrame(tick);
+  })(t0);
+}
+
+/* ---------- 代表医家 ---------- */
+const DOCS = [
+  {n:'俞根初', era:'清代', role:'学派奠基', w:'《通俗伤寒论》', p:180, d:201},
+  {n:'何廉臣', era:'清末民初', role:'集成光大', w:'《重订通俗伤寒论》《重订广温热论》《感证宝筏》', p:125, d:206},
+  {n:'章虚谷', era:'清代', role:'寒温辨析', w:'《医门棒喝》《伤寒论本旨》', p:122, d:140},
+  {n:'曹炳章', era:'民国', role:'续编考镜', w:'《瘟痧证治要略》《暑病证治要略》', p:85, d:123},
+  {n:'赵晴初', era:'清代', role:'医话精微', w:'《存存斋医话稿》《存存斋医案留底》', p:70, d:100},
+  {n:'张景岳', era:'明代', role:'学派发端', w:'《景岳全书·伤寒典》《类经》', p:62, d:81},
+  {n:'徐荣斋', era:'现代', role:'探源析流', w:'《重订通俗伤寒论》《读书教学与临证》', p:67, d:81},
+  {n:'张畹香', era:'清代', role:'温暑证治', w:'《张氏温暑医旨》《张畹香医案》', p:59, d:70},
+  {n:'周伯度', era:'清代', role:'六气感证', w:'《六气感证要义》《本草思辨录》', p:48, d:52},
+  {n:'胡宝书', era:'民国', role:'家学三世', w:'《伤寒十八方》《绍兴同善局医方汇选》', p:43, d:62},
+  {n:'何秀山', era:'清代', role:'按语发明', w:'《通俗伤寒论》按语', p:13, d:0},
+  {n:'邵兰荪', era:'清代', role:'临证医案', w:'《邵兰荪医案》《重订邵兰荪医案》', p:14, d:0}
+];
+document.getElementById('docgrid').innerHTML = DOCS.map(d=>`
+  <a class="doc" href="explorer.html?q=${encodeURIComponent(d.n)}">
+    <div class="era">${d.era}</div>
+    <div class="nm">${d.n}</div>
+    <div class="rl">${d.role}</div>
+    <div class="wk">${d.w}</div>
+    <div class="mt"><span>观点 <b>${d.p}</b></span>${d.d ? `<span>关联 <b>${d.d}</b></span>` : ''}</div>
+  </a>`).join('');
+
+/* ---------- 图谱预览 ---------- */
+const mini = document.getElementById('mini');
+const PV = JSON.parse(document.getElementById('preview').textContent);
+const ctx = mini.getContext('2d');
+let MW = 0, MH = 0, DPR = 1;
+
+function css(v){ return getComputedStyle(root).getPropertyValue(v).trim(); }
+
+function sizeMini(){
+  DPR = Math.min(2, devicePixelRatio || 1);
+  const r = mini.getBoundingClientRect();
+  MW = mini.width  = Math.round(r.width  * DPR);
+  MH = mini.height = Math.round(r.height * DPR);
+  drawMini();
+}
+
+function drawMini(){
+  if(!MW) return;
+  const COL = [css('--cinnabar'), css('--water'), css('--celadon')];
+  const lineC = css('--line-2'), dark = root.dataset.theme === 'ink';
+  ctx.setTransform(1,0,0,1,0,0);
+  ctx.clearRect(0,0,MW,MH);
+
+  /* 依包围盒适配：底部为说明文字留白 */
+  const narrow = MW / DPR < 720;
+  const box = narrow
+    ? {l: MW*.07, r: MW*.93, t: MH*.05, b: MH*.58}
+    : {l: MW*.33, r: MW*.97, t: MH*.05, b: MH*.86};
+  const pct = (a,p) => { const v = a.slice().sort((m,n)=>m-n);
+                         return v[Math.min(v.length-1, Math.round((v.length-1)*p))]; };
+  const xs = PV.n.map(n=>n[2]), ys = PV.n.map(n=>n[3]);
+  const x0 = pct(xs,.04), x1 = pct(xs,.96);
+  const y0 = pct(ys,.04), y1 = pct(ys,.96);
+  const s  = Math.min((box.r-box.l)/(x1-x0), (box.b-box.t)/(y1-y0));
+  const ox = (box.l+box.r)/2 - (x0+x1)/2*s;
+  const oy = (box.t+box.b)/2 - (y0+y1)/2*s;
+  const P = PV.n.map(n=>({
+    x: ox + n[2] * s, y: oy + n[3] * s,
+    c: n[1], deg: n[4], name: n[0]
+  }));
+
+  // 关系线
+  ctx.lineCap = 'round';
+  ctx.strokeStyle = lineC;
+  ctx.globalAlpha = dark ? .34 : .5;
+  ctx.lineWidth = 1 * DPR;
+  ctx.beginPath();
+  const inFrame = n => n.x > box.l - 40 && n.x < box.r + 40 && n.y > box.t - 40 && n.y < box.b + 40;
+  PV.e.forEach(([a,b])=>{ if(!inFrame(P[a]) || !inFrame(P[b])) return;
+                          ctx.moveTo(P[a].x, P[a].y); ctx.lineTo(P[b].x, P[b].y); });
+  ctx.stroke();
+  ctx.globalAlpha = 1;
+
+  // 节点
+  P.forEach(n=>{
+    if(!inFrame(n)) return;
+    const r = (2.4 + Math.sqrt(n.deg) * 0.85) * DPR;
+    const col = COL[n.c];
+    if(n.deg > 20){
+      const g = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, r * 4);
+      g.addColorStop(0, col + (dark ? '55' : '33'));
+      g.addColorStop(1, col + '00');
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(n.x, n.y, r * 4, 0, 6.2832); ctx.fill();
+    }
+    ctx.fillStyle = col;
+    ctx.beginPath(); ctx.arc(n.x, n.y, r, 0, 6.2832); ctx.fill();
+  });
+
+  // 主要医家标注（自动避让）
+  ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
+  const fs = 12.5 * DPR;
+  ctx.font = `${fs}px "Kaiti SC","STKaiti","Songti SC",serif`;
+  const placed = [];
+  P.slice().sort((a,b)=>b.deg-a.deg).forEach(n=>{
+    if(n.c !== 0 || n.deg < 40) return;
+    const r = (2.4 + Math.sqrt(n.deg) * 0.85) * DPR;
+    const w = ctx.measureText(n.name).width, pad = 4*DPR;
+    const bx = n.x - w/2 - pad, by = n.y + r + 3*DPR, bw = w + pad*2, bh = fs*1.35;
+    if(placed.some(p => bx < p[0]+p[2] && bx+bw > p[0] && by < p[1]+p[3] && by+bh > p[1])) return;
+    placed.push([bx,by,bw,bh]);
+    ctx.globalAlpha = dark ? .62 : .8;
+    ctx.fillStyle = css('--paper-2');
+    ctx.beginPath();
+    if(ctx.roundRect) ctx.roundRect(bx,by,bw,bh,4*DPR); else ctx.rect(bx,by,bw,bh);
+    ctx.fill();
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = css('--ink');
+    ctx.fillText(n.name, n.x, by + fs);
+  });
+}
+
+addEventListener('resize', sizeMini);
+mini.addEventListener('click', ()=>{ location.href = 'explorer.html'; });
+
+/* ---------- 启动 ---------- */
+applyTheme(saved);
+stagger('.tl', 70);
+stagger('.card', 55);
+stagger('.doc', 40);
+document.querySelectorAll('.stat').forEach(el=>io.observe(el));
+sizeMini();
+if(document.fonts && document.fonts.ready) document.fonts.ready.then(drawMini);
+})();
+</script>
+</body>
+</html>
