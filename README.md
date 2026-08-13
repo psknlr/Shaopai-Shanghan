@@ -9,10 +9,13 @@
 
 ## 在线访问
 
-启用 GitHub Pages 后，站点地址为：
-
 - 主页：<https://psknlr.github.io/Shaopai-Shanghan/>
 - 知识图谱：<https://psknlr.github.io/Shaopai-Shanghan/explorer.html>
+
+> **网址区分大小写**：仓库名为 `Shaopai-Shanghan`，两个 `S` 必须大写。
+> 输入 `shaopai-shanghan`（全小写）会返回 404。
+>
+> `psknlr.github.io` 根地址已被另一站点占用，本项目发布在 `/Shaopai-Shanghan/` 子路径下。
 
 ## 站点结构
 
@@ -21,7 +24,9 @@
 | `index.html` | 主页。学派源流、学术特色、代表医家、图谱预览与联合研发说明 |
 | `explorer.html` | 知识图谱浏览器。2,098 节点 / 1,674 关系，含全部数据（自包含单文件） |
 | `shaopai_explorer.html` | 旧文件名，自动跳转至 `explorer.html` |
-| `.nojekyll` | 关闭 Jekyll 处理，静态文件按原样发布 |
+| `404.html` | 自定义 404 页，样式与站点一致 |
+| `.nojekyll` | 仅在「从分支发布」模式下生效；当前用 Actions 发布，保留以备切换 |
+| `.github/workflows/jekyll-gh-pages.yml` | Pages 部署流水线 |
 
 两个页面均为**零依赖单文件**：不加载任何外部 CDN、字体或脚本，
 可直接双击在本地浏览器打开，也可整体拷贝离线使用。
@@ -56,15 +61,19 @@
 配以白墙黛瓦、石拱桥、乌篷船与鉴湖水波。中文标题用楷体，正文用宋体，
 数字与标签用无衬线体，字体全部取自系统，无外链。
 
-## 启用 GitHub Pages
+## 部署
 
-仓库 **Settings → Pages**：
+站点通过 GitHub Actions 发布，配置见 `.github/workflows/jekyll-gh-pages.yml`：
 
-1. **Source** 选择 `Deploy from a branch`
-2. **Branch** 选择 `main`，目录选择 `/ (root)`
-3. 保存后等待约 1 分钟，站点即发布至上述地址
+- **Settings → Pages → Source** 为 `GitHub Actions`
+- 每次推送到 `main` 自动触发构建与部署，也可在 **Actions** 页手动运行
+- 从推送到线上可见约需 1–2 分钟；期间访问会短暂出现 404，属正常现象
 
-> 若希望从当前开发分支预览，可将 Branch 改为对应分支；正式发布建议合并到 `main` 后再切回。
+两个页面均无 YAML front matter，Jekyll 将其作为静态文件原样拷贝，不做 Liquid 解析，
+因此页面内的 `{` `}` 等字符不会被改写。
+
+> 若日后新增页面，避免在文件开头写 `---` 分隔的 front matter，也避免使用以
+> `_` 开头的文件名或目录——两者都会被 Jekyll 特殊处理。
 
 ## 数据来源与说明
 
