@@ -1,0 +1,178 @@
+{
+ "generated_from": {
+  "book": "《浙派中医丛书》专题系列·绍派伤寒",
+  "editor": "沈钦荣",
+  "year": 2021,
+  "chars": 205712,
+  "passages": 1243,
+  "char_count_note": "205712 chars = retained extractable passages (audited figure). 213357 = all non-empty paragraphs incl. TOC/front matter; 209201 = body after hard-wrap repair, before heading/fragment removal."
+ },
+ "scope": {
+  "layers_completed": [
+   "lineage",
+   "diagnostic"
+  ],
+  "layers_not_run": [
+   "pattern",
+   "materia"
+  ],
+  "reason_not_run": "frame LLM token ceiling (2.0M) reached again after the diagnostic layer; MiniMax cross-validation still unavailable because the control-plane kernel cannot start (/usr/bin/python3 is a broken Xcode CLT stub), so no credential access.",
+  "passages_pending": {
+   "pattern": 786,
+   "materia": 555
+  }
+ },
+ "cross_validation": {
+  "status": "not_run",
+  "planned_engines": [
+   "builtin-sonnet",
+   "MiniMax-M3"
+  ],
+  "engines_used": [
+   "builtin-sonnet"
+  ],
+  "reason": "MiniMax credential could not be read: control-plane kernel down. Key supplied in chat was deliberately not used and should be rotated.",
+  "consequence": "all edges carry agreement=\"single_engine\"; no inter-engine disagreement signal exists in this build"
+ },
+ "graph": {
+  "nodes": 3951,
+  "edges": 2645,
+  "nodes_by_class": {
+   "Physician": 218,
+   "Work": 356,
+   "Doctrine": 1524,
+   "DiagnosticSign": 1311,
+   "Pattern": 542
+  },
+  "edges_by_type": {
+   "authored": 223,
+   "statedIn": 135,
+   "editedRevised": 75,
+   "proposes": 1142,
+   "influencedBy": 81,
+   "studiedUnder": 18,
+   "signIndicates": 605,
+   "signExcludes": 35,
+   "belongsToChannel": 59,
+   "subPatternOf": 272
+  },
+  "connectivity": 0.6828650974436852
+ },
+ "coverage": {
+  "core_physicians": "11/11",
+  "key_works": "15/15",
+  "book_title_inventory": "304/426 (71.4%)",
+  "passages_processed": "407/1243",
+  "note": "passage coverage is 32.7% because cue-routing sent only lineage-relevant passages to this layer; the remaining passages carry pattern/diagnostic/materia content that the un-run layers would consume"
+ },
+ "integrity": {
+  "ontology_violations": 0,
+  "self_loops": 3,
+  "dangling_endpoints": 0,
+  "edges_with_provenance": "2645/2645",
+  "verbatim_evidence": "2552/2645 (96.5%)",
+  "single_mention_edges": "2549/2645 (96.4%)"
+ },
+ "known_issues": [
+  {
+   "issue": "Journal article titles from 参考文献 sections extracted as Work nodes",
+   "count": 11,
+   "severity": "medium",
+   "examples": [
+    "二集（一名《伤寒论本旨》或《活人新书",
+    "章虚谷遗著《灵素节注类编》钩沉",
+    "何廉臣《重订广温热论》伏气温病学说探讨",
+    "伤寒论》：从经典转向通俗",
+    "通俗伤寒论》承气汤衍化方探释"
+   ],
+   "fix": "filter passages whose chapter_path ends in 参考文献 before Work extraction"
+  },
+  {
+   "issue": "Native-place values recorded at differing granularity for the same physician",
+   "count": 7,
+   "severity": "low",
+   "detail": "mostly 山阴/绍兴 modern-vs-historical naming; 张畹香 \"江南\" is an outlier that needs review",
+   "examples": [
+    "邵兰荪",
+    "胡宝书",
+    "俞根初",
+    "何廉臣",
+    "张畹香",
+    "赵晴初",
+    "曹炳章"
+   ]
+  },
+  {
+   "issue": "38 edges whose evidence span is not verbatim in the source passage",
+   "count": 38,
+   "severity": "medium",
+   "fix": "these are flagged evidence_verbatim=false in every export; review before clinical use"
+  },
+  {
+   "issue": "94.3% of edges rest on a single mention with no second-engine confirmation",
+   "count": 1578,
+   "severity": "high",
+   "fix": "run the MiniMax pass and populate the agreement column"
+  }
+ ],
+ "requires_expert_review": [
+  "张畹香 native place recorded as 江南 in one passage — verify against the source",
+  "11 Work nodes that are article titles rather than books",
+  "Doctrine statements are free text and were deduplicated by exact string; near-duplicate phrasings of the same doctrine may remain as separate nodes",
+  "All 1,674 edges are single-engine; treat as provisional until cross-validated"
+ ],
+ "built_by": {
+  "organization": "医哲未来人工智能研究院 (IMPFAI)",
+  "url": "https://impfai.github.io/"
+ },
+ "diagnostic_layer": {
+  "passages_processed": "281/284",
+  "signs": 1311,
+  "patterns": 542,
+  "signs_by_modality": {
+   "目诊": 75,
+   "舌诊": 265,
+   "腹诊": 110,
+   "脉诊": 168,
+   "望诊": 260,
+   "问诊": 412,
+   "闻诊": 21
+  },
+  "vocabulary_axis_nodes": 18,
+  "patterns_on_canonical_axis": "296/542",
+  "signs_with_no_relation": 796,
+  "single_mention_signs": 1149
+ },
+ "rdf": {
+  "ontology_triples": 314,
+  "instance_triples": 49966,
+  "combined": 50277
+ },
+ "pilot_validation": {
+  "passage": "p02121",
+  "gold_ingredients": [
+   "青蒿脑",
+   "淡竹茹",
+   "仙半夏",
+   "赤茯苓",
+   "青子芩",
+   "生枳壳",
+   "陈广皮",
+   "碧玉散"
+  ],
+  "verified": {
+   "model": "claude-haiku-4-5-20251001",
+   "ingredient_recall": "8/8",
+   "attribution": "俞根初 / 《通俗伤寒论》",
+   "non_verbatim_evidence": 0,
+   "output_tokens": 2047,
+   "stop_reason": "end_turn"
+  },
+  "not_measured": {
+   "model": "claude-sonnet-5",
+   "outcome": "response truncated at the 3000-token cap and did not parse; no valid recall score",
+   "note": "the 0/8 printed for this arm is a truncation artifact, not a measured recall. A re-run at a larger cap was attempted but the frame token ceiling was exhausted, so no reasoning-model score exists for this session."
+  },
+  "decision": "haiku-class model selected for all three clinical layers on the strength of its own verified pilot score, not on a comparison against the reasoning model."
+ }
+}

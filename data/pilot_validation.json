@@ -1,0 +1,27 @@
+{
+ "passage": "p02121",
+ "gold_ingredients": [
+  "青蒿脑",
+  "淡竹茹",
+  "仙半夏",
+  "赤茯苓",
+  "青子芩",
+  "生枳壳",
+  "陈广皮",
+  "碧玉散"
+ ],
+ "verified": {
+  "model": "claude-haiku-4-5-20251001",
+  "ingredient_recall": "8/8",
+  "attribution": "俞根初 / 《通俗伤寒论》",
+  "non_verbatim_evidence": 0,
+  "output_tokens": 2047,
+  "stop_reason": "end_turn"
+ },
+ "not_measured": {
+  "model": "claude-sonnet-5",
+  "outcome": "response truncated at the 3000-token cap and did not parse; no valid recall score",
+  "note": "the 0/8 printed for this arm is a truncation artifact, not a measured recall. A re-run at a larger cap was attempted but the frame token ceiling was exhausted, so no reasoning-model score exists for this session."
+ },
+ "decision": "haiku-class model selected for all three clinical layers on the strength of its own verified pilot score, not on a comparison against the reasoning model."
+}
