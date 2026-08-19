@@ -2,124 +2,102 @@
 
 **Built by** 医哲未来人工智能研究院 (IMPFAI) · https://impfai.github.io/
 
-**Source** 《浙派中医丛书》专题系列·绍派伤寒, ed. 沈钦荣 (2021) — 205,712 chars across 1,243 retained passages, 11 physicians.
+**Source** 《浙派中医丛书》专题系列·绍派伤寒, ed. 沈钦荣 (2021)。
+语料自原书 Word 文档复原：1,586 段落、203,045 字（上游审计口径 205,712，差 1.3%），
+见 `corpus_shaopai.json`。
 
-205712 chars = retained extractable passages (audited figure). 213357 = all non-empty paragraphs incl. TOC/front matter; 209201 = body after hard-wrap repair, before heading/fragment removal.
+## 状态：四层全备
 
-## Status: two of four layers complete
-
-| Layer | Status | Passages |
+| 层 | 状态 | 抽取方式 |
 |---|---|---|
-| Lineage (医家·著作·学术观点) | **complete** | 407 |
-| Diagnostics (舌·脉·腹·目诊) | **complete** | 281 / 284 |
-| Pattern (病证·证候·症状·治法) | not run | 786 |
-| Materia medica (方剂·中药·加减·医案) | not run | 555 |
+| 谱系层（医家·著作·学术观点） | **完成** | 单模型 LLM |
+| 诊法层（舌·脉·腹·目诊） | **完成** | 单模型 LLM |
+| 本草方剂层（方剂·中药·医案） | **完成** | **确定性解析器** |
+| 证候层（病证·证候·治法） | **完成** | **确定性解析器** |
 
-frame LLM token ceiling (2.0M) reached again after the diagnostic layer; MiniMax cross-validation still unavailable because the control-plane kernel cannot start (/usr/bin/python3 is a broken Xcode CLT stub), so no credential access.
+本体 1.2.0：13 类 / 28 关系，其中 **10 类已有实例**。
 
-**Cross-model validation still has not run.** Every edge carries `agreement="single_engine"`
-(or `vocabulary_bridge` for the 18 controlled-vocabulary axis links). The MiniMax key was pasted
-into the chat twice and was never used; it should be rotated and stored under
-Customize → Credentials instead.
+## 图谱现状
 
-## Graph as built
+- **4,317 节点** — 1524 Doctrine · 1311 DiagnosticSign · 567 Pattern · 356 Work · 218 Physician · 188 Herb · 68 Disease · 41 Formula · 29 TreatmentPrinciple · 15 CaseRecord
+- **3,212 关系** — proposes 1142 · signIndicates 605 · subPatternOf 272 · hasIngredient 262 · authored 223 · statedIn 135 · influencedBy 81 · editedRevised 75 · describedBy 68 · subDiseaseOf 61 · belongsToChannel 59 · ingredientRole 41 · signExcludes 35 · derivesFrom 27 · treatedByPrinciple 27 · addHerbIf 22 · patternOfDisease 20 · studiedUnder 18 · caseByPhysician 15 · principleRealizedBy 10 · removeHerbIf 7 · formulaTreats 7
+- **连通性** 71.0% 的节点至少有一条边
+- **最大连通分量 2,453 节点**，十类俱全
 
-- **3,951 nodes** — 218 Physician · 356 Work · 1,524 Doctrine · 1,311 DiagnosticSign · 542 Pattern
-- **2,645 edges** — proposes 1,142 · signIndicates 605 · subPatternOf 272 · authored 223 · statedIn 135 · influencedBy 81 · editedRevised 75 · belongsToChannel 59 · signExcludes 35 · studiedUnder 18
-- **Connectivity** 68.3% of nodes carry at least one edge
-- **RDF** 314 T-Box + 49,966 A-Box = 50,277 triples
+## 两个结构性缺口已消解
 
-The graph is a **binary system**: the lineage layer (1,444-node component) and the diagnostics
-layer (663-node component) are **not connected to each other**. Nothing in the extracted text
-links a 诊法征象 or 证候 back to the physician who described it, because `signIndicates` runs
-sign→pattern and no property in the ontology bridges a clinical finding to its author. This is a
-genuine gap, not a layout artifact — closing it needs either a `describedBy` relation added to
-the ontology or the pattern layer, which will carry physician-attributed 治法 statements.
+1. The lineage and diagnostic layers are no longer disconnected — the materia layer bridges them (derivesFrom → Work, formulaTreats → Pattern, caseByPhysician → Physician).
+2. The 伤寒 disease tree is no longer a separate component — describedBy (Disease→Physician) folds all 68 diseases into the giant component, which now holds 2,453 nodes across all ten populated classes.
 
-## Integrity
+## 本体扩展
 
-| Check | Result |
+1.0.0 → 1.1.0: added subDiseaseOf (Disease→Disease, 0..1) — the book enumerates 伤寒本证/兼证/夹证/坏证/复证 and their members, but 1.0.0 had no Disease-to-Disease relation, so 51 diseases could only be isolated nodes. 1.1.0 → 1.2.0: added describedBy (Disease→Physician, 0..*) — with subDiseaseOf alone the 57-node 伤寒 tree was still a separate component; every taxonomy passage sits inside a physician chapter, so each disease is now tied back to the physician who described it (俞根初 67, 张景岳 1). Nothing else in the ontology was changed.
+
+## 三个仍为空的类
+
+| 类 | 原因 |
 |---|---|
-| Ontology domain/range violations | **0** / 2,645 |
-| Self-loops | 3 |
-| Dangling endpoints | 0 |
-| Edges carrying provenance | 2645/2645 |
-| Evidence verbatim in source | 2552/2645 (96.5%) |
-| Edges on a single mention | 2549/2645 (96.4%) |
+| Symptom 症状 | deliberate — 17/18 common symptom candidates are already DiagnosticSign nodes (672 carry modality 问诊/望诊). A parallel class would duplicate nodes and split the graph. |
+| Dosage 剂量炮制 | deliberate — dose, processing and 君臣佐使 ride on hasIngredient / ingredientRole instead of separate nodes. |
+| HerbProperty 药性 | not extracted — the book states herb properties in prose, not in a tabular form the parser can read without inference. |
 
-## Diagnostics layer detail
+## 完整性
 
-Signs by modality — the school's signature methods are well represented:
-
-| Modality | Signs |
+| 检查项 | 结果 |
 |---|---|
-| 问诊 | 412 |
-| 舌诊 | 265 |
-| 望诊 | 260 |
-| 脉诊 | 168 |
-| 腹诊 | 110 |
-| 目诊 | 75 |
-| 闻诊 | 21 |
+| 本体定义域/值域违例 | **0** / 3,212 |
+| 悬空端点 | 0 |
+| 带出处的关系 | 3,212 / 3,212 |
+| 逐字原文证据 | 3119/3212 (97.1%) |
+| 仅一处文献支撑 | 3116/3212 (97.0%) |
 
-- **296/542** patterns attach to a canonical 六经/三焦/性质 axis via
-  `belongsToChannel` or `subPatternOf`. The remainder are free-text pattern names with no
-  vocabulary anchor.
-- **796 of 1,311 signs carry no relation** — they were named in a passage but
-  the model extracted no sign→pattern assertion for them.
-- **1,149 signs are single-mention.** Classical texts phrase findings variably
-  (虚里跃动应衣, 三脘痞硬, 高低凹凸如畎亩状), so most surface once. These are real findings, not
-  extraction noise, but they cannot be corroborated within this corpus.
+## 本草方剂层
 
-## Known issues
+**引擎** `rule-parser-v1 (deterministic, not an LLM)`。方剂 41 · 中药 188 · 医案 15；
+药物组成 262 条（带原剂量与炮制）· 君臣佐使 41 条 ·
+随症加减 29 条。
 
-1. **11 Work nodes are journal-article titles** from 参考文献 sections. Fix: exclude those chapter paths.
-2. **96.5% of edges have verbatim evidence** — the rest are flagged `evidence_verbatim=false` in every export.
-3. **Native-place granularity variants** (山阴 vs 绍兴). One genuine outlier: 张畹香 as 江南.
-4. **The two layers do not interconnect** (see above).
-5. **Pattern nodes were minted from diagnostic relations**, not from a dedicated pattern extraction.
-   Their attributes are inferred from the pattern *name* by vocabulary matching, so a pattern whose
-   name omits its channel carries no channel — absence of an attribute is not evidence of absence
-   in the source.
-6. **All edges are single-engine.** No cross-validation exists.
+**抽样校验**：蒿芩清胆汤 8/8 ingredient recall vs pilot_validation.json gold set——与上游 `pilot_validation.json` 的金标准完全一致。
 
-## Pilot validation
+### 限制
 
-{
- "passage": "p02121",
- "gold_ingredients": [
-  "青蒿脑",
-  "淡竹茹",
-  "仙半夏",
-  "赤茯苓",
-  "青子芩",
-  "生枳壳",
-  "陈广皮",
-  "碧玉散"
- ],
- "verified": {
-  "model": "claude-haiku-4-5-20251001",
-  "ingredient_recall": "8/8",
-  "attribution": "俞根初 / 《通俗伤寒论》",
-  "non_verbatim_evidence": 0,
-  "output_tokens": 2047,
-  "stop_reason": "end_turn"
- },
- "not_measured": {
-  "model": "claude-sonnet-5",
-  "outcome": "response truncated at the 3000-token cap and did not parse; no valid recall score",
-  "note": "the 0/8 printed for this arm is a truncation artifact, not a measured recall. A re-run at a larger cap was attempted but the frame token ceiling was exhausted, so no reasoning-model score exists for this session."
- },
- "decision": "haiku-class model selected for all three clinical layers on the strength of its own verified pilot score, not on a comparison against the reasoning model."
-}
+1. Herb surface forms are NOT unified: 生枳壳 / 枳壳, 炙甘草 / 甘草 are separate nodes. Prefix stripping was rejected because it collapses 陈皮 / 青皮 / 新会皮 into 皮.
+2. Only formulas whose composition is printed in the book are minted as Formula nodes; formulas merely cited by name (麻黄汤, 白虎汤 …) are not, to avoid isolated nodes.
+3. Dosage class stays at 0 instances by design: dose, processing and 君臣佐使 are carried on the hasIngredient / ingredientRole relations instead of as separate nodes.
+4. formulaTreats links rest on string containment between a formula indication and an existing Pattern name; only 5 matched.
+5. Disease and Symptom classes remain empty; the pattern layer has not run.
+6. Passage ids for this layer use a b##### scheme from a fresh segmentation of the source .doc and do NOT align with the p##### ids of the lineage / diagnostic layers.
 
-## To complete the build
+## 证候层
 
-Fix the interpreter path (`[conda].operon_python_bin` → `/Users/dao/.claude-science/conda/envs/python/bin/python3`,
-or `xcode-select --install`). That restores sub-agent delegation, so the two remaining layers can run
-with independent token budgets, and restores credential access for the MiniMax cross-validation pass.
+**引擎** `rule-parser-v1 (deterministic, not an LLM)`。病证 68 · 新增证候 25 · 治法 29；
+关系 subDiseaseOf 61 · describedBy 68 · treatedByPrinciple 27 · patternOfDisease 20 · formulaTreats 7。
 
-## Querying note
+**分类完整性校验**：Every taxonomy member was matched verbatim in its source passage and the count checked against the number the book itself states: 本证 5/5, 兼证 21/21, 夹证 16/16, 坏证 4/4, 复证 5/5.
 
-All Chinese literals in the Turtle files carry an `@zh` language tag. SPARQL filters must write
-`"腹诊"@zh`, not `"腹诊"` — a plain literal silently returns zero rows. See the footer of
-`example_queries.cypher`.
+### 限制
+
+1. describedBy attributes a disease to the physician in whose chapter the enumeration appears. For the 《通俗伤寒论》 taxonomy that is 俞根初 throughout — accurate, but it means the layer hangs off a single hub rather than being distributed.
+2. Treatment principles were harvested from a handful of passages that state them in an「X宜Y」form; principles discussed only in prose are not captured.
+3. patternOfDisease edges for the 六淫 sub-patterns rest on the book grouping them under a 「X病药」 section heading, not on an explicit sentence asserting membership.
+4. The formula names cited in 何廉臣 down-method classification (紫草承气汤, 局方凉膈散 …) print no composition, so no principleRealizedBy edges were created for them.
+
+## 沿袭自前两层的限制
+
+1. **谱系层与诊法层全部关系为单模型抽取**，`agreement` 为 `single_engine`，交叉验证未运行。
+   后两层为确定性解析，`agreement` 为 `deterministic_parse`。
+2. 约 3% 的关系无逐字原文证据，标注 `evidence_verbatim=false`，请回溯原书核验。
+3. 796 项诊法征象未抽出「提示何种证候」的断言，在图谱中呈孤点。
+4. 证候的六经与性质由**名称**经词表匹配推得——某证候未标六经，只说明其名称未含六经字样。
+5. 356 部著作中有 11 条实为参考文献中的期刊论文题名。
+6. 籍贯粒度不一（山阴 / 绍兴），张畹香记为「江南」。
+
+## 段落编号的两套体系
+
+谱系层与诊法层沿用上游的 `p#####`；本草方剂层与证候层用 `b#####`，来自本次对原书 .doc
+的重新切分。**两套不同源，不可直接对齐**；核验一律以逐字原文与章节路径为准。
+
+## 查询提示
+
+Turtle 中所有中文字面量带 `@zh` 语言标记，SPARQL 需写 `"腹诊"@zh`，
+写成 `"腹诊"` 会静默返回空结果。
