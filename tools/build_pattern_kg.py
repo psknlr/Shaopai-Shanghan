@@ -26,6 +26,12 @@ if 'subDiseaseOf' not in onto['object_properties']:
     onto['object_properties']['subDiseaseOf'] = {
         'zh': '子病证', 'domain': 'Disease', 'range': 'Disease', 'card': '0..1'}
     onto['version'] = '1.1.0'
+# 1.1.0 → 1.2.0：病证与图谱其余部分之间原本没有任何通路，
+# 57 个伤寒病证只能自成孤岛。补一条「病证论者」，把病证系回论述它的医家。
+if 'describedBy' not in onto['object_properties']:
+    onto['object_properties']['describedBy'] = {
+        'zh': '病证论者', 'domain': 'Disease', 'range': 'Physician', 'card': '0..*'}
+    onto['version'] = '1.2.0'
 
 by_cls = collections.defaultdict(dict)
 for n in kg['nodes']:
@@ -41,6 +47,16 @@ def prov(pid, sent, verbatim=True):
     return {'passage_id': pid, 'chapter_path': p.get('chapter_path', ''),
             'source_sentence': sent[:400], 'evidence_verbatim': bool(verbatim),
             'engine': ENGINE, 'agreement': AGREE}
+
+def physician_of(chapter_path):
+    parts = chapter_path.split(' / ')
+    if len(parts) > 1:
+        nm = parts[1].replace(' ', '')
+        nm = {'章楠': '章虚谷'}.get(nm, nm)
+        if nm in by_cls['Physician']:
+            return by_cls['Physician'][nm]['id'], nm
+    return None
+
 
 def node(cls, name, attrs, pv):
     if name in by_cls[cls]:
@@ -91,7 +107,10 @@ TAXONOMY = [
 ]
 tax_report = []
 ROOT_SENT = '伤寒为外感百病之总名'
-root_pid = next((i for i, p in P.items() if ROOT_SENT in p['text']), 'b00436')
+# 「伤寒为外感百病之总名」多处出现，优先取落在某位医家章节内的那处，
+# 这样根节点也能系到论者（张景岳）
+_cands = [i for i, p in P.items() if ROOT_SENT in p['text']]
+root_pid = next((i for i in _cands if physician_of(P[i]['chapter_path'])), _cands[0] if _cands else 'b00436')
 rid = node('Disease', '伤寒', {'category': '总名', 'note': ROOT_SENT},
            prov(root_pid, P[root_pid]['text'], ROOT_SENT in P[root_pid]['text']))
 for pid, cat, gloss, members, stated in TAXONOMY:
@@ -215,6 +234,15 @@ for dis, pats in BELONG.items():
         if pn in by_cls['Pattern'] or key in new_nodes:
             sid = by_cls['Pattern'][pn]['id'] if pn in by_cls['Pattern'] else new_nodes[key]['id']
             edge('patternOfDisease', sid, did, pn, dis, pv)
+
+# ============ 四、病证 → 论述它的医家 ============
+for (cls, nm), n in list(new_nodes.items()):
+    if cls != 'Disease':
+        continue
+    pv0 = n['provenance'][0]
+    ph = physician_of(pv0.get('chapter_path', ''))
+    if ph:
+        edge('describedBy', n['id'], ph[0], nm, ph[1], pv0)
 
 # ============ 校验 ============
 allnodes = {n['id']: n for n in kg['nodes']}

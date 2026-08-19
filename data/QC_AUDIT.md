@@ -15,13 +15,25 @@
 | 本草方剂层（方剂·中药·医案） | **完成** | **确定性解析器** |
 | 证候层（病证·证候·治法） | **完成** | **确定性解析器** |
 
-本体 1.1.0：13 类 / 27 关系，其中 **10 类已有实例**。
+本体 1.2.0：13 类 / 28 关系，其中 **10 类已有实例**。
 
-### 本体扩展
+## 图谱现状
 
-1.0.0 → 1.1.0: added subDiseaseOf (Disease→Disease, 0..1). The book enumerates 伤寒本证/兼证/夹证/坏证/复证 and their members, but 1.0.0 had no Disease-to-Disease relation, so 51 diseases could only be isolated nodes. Nothing else was changed.
+- **4,317 节点** — 1524 Doctrine · 1311 DiagnosticSign · 567 Pattern · 356 Work · 218 Physician · 188 Herb · 68 Disease · 41 Formula · 29 TreatmentPrinciple · 15 CaseRecord
+- **3,212 关系** — proposes 1142 · signIndicates 605 · subPatternOf 272 · hasIngredient 262 · authored 223 · statedIn 135 · influencedBy 81 · editedRevised 75 · describedBy 68 · subDiseaseOf 61 · belongsToChannel 59 · ingredientRole 41 · signExcludes 35 · derivesFrom 27 · treatedByPrinciple 27 · addHerbIf 22 · patternOfDisease 20 · studiedUnder 18 · caseByPhysician 15 · principleRealizedBy 10 · removeHerbIf 7 · formulaTreats 7
+- **连通性** 71.0% 的节点至少有一条边
+- **最大连通分量 2,453 节点**，十类俱全
 
-### 三个仍为空的类
+## 两个结构性缺口已消解
+
+1. The lineage and diagnostic layers are no longer disconnected — the materia layer bridges them (derivesFrom → Work, formulaTreats → Pattern, caseByPhysician → Physician).
+2. The 伤寒 disease tree is no longer a separate component — describedBy (Disease→Physician) folds all 68 diseases into the giant component, which now holds 2,453 nodes across all ten populated classes.
+
+## 本体扩展
+
+1.0.0 → 1.1.0: added subDiseaseOf (Disease→Disease, 0..1) — the book enumerates 伤寒本证/兼证/夹证/坏证/复证 and their members, but 1.0.0 had no Disease-to-Disease relation, so 51 diseases could only be isolated nodes. 1.1.0 → 1.2.0: added describedBy (Disease→Physician, 0..*) — with subDiseaseOf alone the 57-node 伤寒 tree was still a separate component; every taxonomy passage sits inside a physician chapter, so each disease is now tied back to the physician who described it (俞根初 67, 张景岳 1). Nothing else in the ontology was changed.
+
+## 三个仍为空的类
 
 | 类 | 原因 |
 |---|---|
@@ -29,22 +41,15 @@
 | Dosage 剂量炮制 | deliberate — dose, processing and 君臣佐使 ride on hasIngredient / ingredientRole instead of separate nodes. |
 | HerbProperty 药性 | not extracted — the book states herb properties in prose, not in a tabular form the parser can read without inference. |
 
-## 图谱现状
-
-- **4,317 节点** — 1524 Doctrine · 1311 DiagnosticSign · 567 Pattern · 356 Work · 218 Physician · 188 Herb · 68 Disease · 41 Formula · 29 TreatmentPrinciple · 15 CaseRecord
-- **3,144 关系** — proposes 1142 · signIndicates 605 · subPatternOf 272 · hasIngredient 262 · authored 223 · statedIn 135 · influencedBy 81 · editedRevised 75 · subDiseaseOf 61 · belongsToChannel 59 · ingredientRole 41 · signExcludes 35 · derivesFrom 27 · treatedByPrinciple 27 · addHerbIf 22 · patternOfDisease 20 · studiedUnder 18 · caseByPhysician 15 · principleRealizedBy 10 · removeHerbIf 7 · formulaTreats 7
-- **连通性** 71.0% 的节点至少有一条边
-- **最大连通分量 2,391 节点**（十类俱全），另有一株 57 节点的伤寒病证树独立成群
-
 ## 完整性
 
 | 检查项 | 结果 |
 |---|---|
-| 本体定义域/值域违例 | **0** / 3,144 |
+| 本体定义域/值域违例 | **0** / 3,212 |
 | 悬空端点 | 0 |
-| 带出处的关系 | 3,144 / 3,144 |
-| 逐字原文证据 | 3051/3144 (97.0%) |
-| 仅一处文献支撑 | 3048/3144 (96.9%) |
+| 带出处的关系 | 3,212 / 3,212 |
+| 逐字原文证据 | 3119/3212 (97.1%) |
+| 仅一处文献支撑 | 3116/3212 (97.0%) |
 
 ## 本草方剂层
 
@@ -66,13 +71,13 @@
 ## 证候层
 
 **引擎** `rule-parser-v1 (deterministic, not an LLM)`。病证 68 · 新增证候 25 · 治法 29；
-关系 subDiseaseOf 61 · treatedByPrinciple 27 · patternOfDisease 20 · formulaTreats 7。
+关系 subDiseaseOf 61 · describedBy 68 · treatedByPrinciple 27 · patternOfDisease 20 · formulaTreats 7。
 
 **分类完整性校验**：Every taxonomy member was matched verbatim in its source passage and the count checked against the number the book itself states: 本证 5/5, 兼证 21/21, 夹证 16/16, 坏证 4/4, 复证 5/5.
 
 ### 限制
 
-1. The 57-node 伤寒 disease subtree is a separate component. No ontology property links a disease to the physician who described it or to a formula that treats it, so it cannot join the giant component.
+1. describedBy attributes a disease to the physician in whose chapter the enumeration appears. For the 《通俗伤寒论》 taxonomy that is 俞根初 throughout — accurate, but it means the layer hangs off a single hub rather than being distributed.
 2. Treatment principles were harvested from a handful of passages that state them in an「X宜Y」form; principles discussed only in prose are not captured.
 3. patternOfDisease edges for the 六淫 sub-patterns rest on the book grouping them under a 「X病药」 section heading, not on an explicit sentence asserting membership.
 4. The formula names cited in 何廉臣 down-method classification (紫草承气汤, 局方凉膈散 …) print no composition, so no principleRealizedBy edges were created for them.

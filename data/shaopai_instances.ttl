@@ -8601,48 +8601,56 @@ res:DiagnosticSign_ffc048521f a sp:DiagnosticSign ;
 
 res:Disease_02657f37cb a sp:Disease ;
     rdfs:label "赤隔伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_b955ebe899 ;
     sp:category "伤寒兼证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_0918cc8233 a sp:Disease ;
     rdfs:label "妊娠伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_5ecd1da421 ;
     sp:category "伤寒夹证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_0a236cc509 a sp:Disease ;
     rdfs:label "发狂伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_b955ebe899 ;
     sp:category "伤寒兼证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_0f0f3103a9 a sp:Disease ;
     rdfs:label "夹饮伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_5ecd1da421 ;
     sp:category "伤寒夹证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_0fe03f0bd9 a sp:Disease ;
     rdfs:label "伏气伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_a0d6132854 ;
     sp:category "伤寒本证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_1bf7f6caed a sp:Disease ;
     rdfs:label "暑秽"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_487ff3196e ;
     sp:category "暑病"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_1c7b6748bd a sp:Disease ;
     rdfs:label "伤寒兼风"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_b955ebe899 ;
     sp:category "伤寒兼证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_1edc8d56b2 a sp:Disease ;
     rdfs:label "伤寒复证"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_225e35561d ;
     sp:category "《通俗伤寒论》病证分类"@zh ;
     sp:note "五大难证"@zh ;
@@ -8650,122 +8658,143 @@ res:Disease_1edc8d56b2 a sp:Disease ;
 
 res:Disease_225e35561d a sp:Disease ;
     rdfs:label "伤寒"@zh ;
+    sp:describedBy res:Physician_dd9265a598 ;
     sp:category "总名"@zh ;
     sp:note "伤寒为外感百病之总名"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_24b35c2087 a sp:Disease ;
     rdfs:label "漏底伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_b955ebe899 ;
     sp:category "伤寒兼证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_26c770dcb8 a sp:Disease ;
     rdfs:label "脱脚伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_b955ebe899 ;
     sp:category "伤寒兼证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_27d0391dc3 a sp:Disease ;
     rdfs:label "转痉"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_e4b2d4cbe3 ;
     sp:category "伤寒坏证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_2a33fd1cd8 a sp:Disease ;
     rdfs:label "暑瘵"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_487ff3196e ;
     sp:category "暑病"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_2f9b7f9a24 a sp:Disease ;
     rdfs:label "伤寒兼疫"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_b955ebe899 ;
     sp:category "伤寒兼证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_32e3ca35f4 a sp:Disease ;
     rdfs:label "转闭"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_e4b2d4cbe3 ;
     sp:category "伤寒坏证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_352b788be8 a sp:Disease ;
     rdfs:label "黄耳伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_b955ebe899 ;
     sp:category "伤寒兼证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_39e4af7127 a sp:Disease ;
     rdfs:label "风病"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:category "六淫正病"@zh ;
     sp:n_mentions 2 .
 
 res:Disease_3c71719217 a sp:Disease ;
     rdfs:label "夹阴伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_5ecd1da421 ;
     sp:category "伤寒夹证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_3ce3cabc36 a sp:Disease ;
     rdfs:label "燥病"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:category "六淫正病"@zh ;
     sp:n_mentions 7 .
 
 res:Disease_428b3fc2c2 a sp:Disease ;
     rdfs:label "伤寒兼湿"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_b955ebe899 ;
     sp:category "伤寒兼证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_465907e2b2 a sp:Disease ;
     rdfs:label "小伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_a0d6132854 ;
     sp:category "伤寒本证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_487ff3196e a sp:Disease ;
     rdfs:label "暑病"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:category "六淫正病"@zh ;
     sp:n_mentions 3 .
 
 res:Disease_4b66f12540 a sp:Disease ;
     rdfs:label "夹血伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_5ecd1da421 ;
     sp:category "伤寒夹证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_5105cc3989 a sp:Disease ;
     rdfs:label "风湿伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_b955ebe899 ;
     sp:category "伤寒兼证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_521a3916bc a sp:Disease ;
     rdfs:label "发斑伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_b955ebe899 ;
     sp:category "伤寒兼证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_5631943a77 a sp:Disease ;
     rdfs:label "产后伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_5ecd1da421 ;
     sp:category "伤寒夹证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_5c8f7f459d a sp:Disease ;
     rdfs:label "湿病"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:category "六淫正病"@zh ;
     sp:n_mentions 2 .
 
 res:Disease_5e04c3a8cf a sp:Disease ;
     rdfs:label "春温伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_b955ebe899 ;
     sp:category "伤寒兼证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_5ecd1da421 a sp:Disease ;
     rdfs:label "伤寒夹证"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_225e35561d ;
     sp:category "《通俗伤寒论》病证分类"@zh ;
     sp:note "其病内外夹发，较兼证尤为难治"@zh ;
@@ -8773,102 +8802,119 @@ res:Disease_5ecd1da421 a sp:Disease ;
 
 res:Disease_689d1706cf a sp:Disease ;
     rdfs:label "怒复"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_1edc8d56b2 ;
     sp:category "伤寒复证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_6981cead04 a sp:Disease ;
     rdfs:label "夹泻伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_5ecd1da421 ;
     sp:category "伤寒夹证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_6e32853b97 a sp:Disease ;
     rdfs:label "伤寒兼痧"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_b955ebe899 ;
     sp:category "伤寒兼证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_74a042ddfb a sp:Disease ;
     rdfs:label "暑风"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_487ff3196e ;
     sp:category "暑病"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_789999a8f1 a sp:Disease ;
     rdfs:label "劳复"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_1edc8d56b2 ;
     sp:category "伤寒复证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_7a4623e618 a sp:Disease ;
     rdfs:label "夹痰伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_5ecd1da421 ;
     sp:category "伤寒夹证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_7be9a90814 a sp:Disease ;
     rdfs:label "两感伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_a0d6132854 ;
     sp:category "伤寒本证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_831831a3aa a sp:Disease ;
     rdfs:label "伤寒兼疟"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_b955ebe899 ;
     sp:category "伤寒兼证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_8569394587 a sp:Disease ;
     rdfs:label "临经伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_5ecd1da421 ;
     sp:category "伤寒夹证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_8b52d449a3 a sp:Disease ;
     rdfs:label "夹痛伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_5ecd1da421 ;
     sp:category "伤寒夹证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_8d42501f8d a sp:Disease ;
     rdfs:label "转脱"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_e4b2d4cbe3 ;
     sp:category "伤寒坏证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_918e07a298 a sp:Disease ;
     rdfs:label "转厥"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_e4b2d4cbe3 ;
     sp:category "伤寒坏证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_9563a11f8d a sp:Disease ;
     rdfs:label "大伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_a0d6132854 ;
     sp:category "伤寒本证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_98dbadcba8 a sp:Disease ;
     rdfs:label "伏暑伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_b955ebe899 ;
     sp:category "伤寒兼证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_99bdd797d4 a sp:Disease ;
     rdfs:label "秋燥伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_b955ebe899 ;
     sp:category "伤寒兼证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_9ed8eedb22 a sp:Disease ;
     rdfs:label "夹疝伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_5ecd1da421 ;
     sp:category "伤寒夹证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_a0d6132854 a sp:Disease ;
     rdfs:label "伤寒本证"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_225e35561d ;
     sp:category "《通俗伤寒论》病证分类"@zh ;
     sp:note "受寒而致病者也"@zh ;
@@ -8876,41 +8922,48 @@ res:Disease_a0d6132854 a sp:Disease ;
 
 res:Disease_a2cd729964 a sp:Disease ;
     rdfs:label "暑厥"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_487ff3196e ;
     sp:category "暑病"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_a6eba830d6 a sp:Disease ;
     rdfs:label "寒病"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:category "六淫正病"@zh ;
     sp:n_mentions 2 .
 
 res:Disease_b12fc0ed14 a sp:Disease ;
     rdfs:label "夹食伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_5ecd1da421 ;
     sp:category "伤寒夹证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_b6e4eae510 a sp:Disease ;
     rdfs:label "风温伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_b955ebe899 ;
     sp:category "伤寒兼证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_b789d9c57e a sp:Disease ;
     rdfs:label "湿温伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_b955ebe899 ;
     sp:category "伤寒兼证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_b7dd804c3e a sp:Disease ;
     rdfs:label "阴证伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_a0d6132854 ;
     sp:category "伤寒本证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_b955ebe899 a sp:Disease ;
     rdfs:label "伤寒兼证"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_225e35561d ;
     sp:category "《通俗伤寒论》病证分类"@zh ;
     sp:note "或寒邪兼他邪，或他邪兼寒邪，二邪兼发者也"@zh ;
@@ -8918,65 +8971,76 @@ res:Disease_b955ebe899 a sp:Disease ;
 
 res:Disease_bc52c9e6c3 a sp:Disease ;
     rdfs:label "火病"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:category "六淫正病"@zh ;
     sp:n_mentions 2 .
 
 res:Disease_bd42463676 a sp:Disease ;
     rdfs:label "夹痢伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_5ecd1da421 ;
     sp:category "伤寒夹证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_bdb5748218 a sp:Disease ;
     rdfs:label "大头伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_b955ebe899 ;
     sp:category "伤寒兼证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_bf8ebec295 a sp:Disease ;
     rdfs:label "热证伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_b955ebe899 ;
     sp:category "伤寒兼证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_c0750dc6e1 a sp:Disease ;
     rdfs:label "暑湿伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_b955ebe899 ;
     sp:category "伤寒兼证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_c1141f6faf a sp:Disease ;
     rdfs:label "暑湿"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_487ff3196e ;
     sp:category "暑病"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_c15a8d834d a sp:Disease ;
     rdfs:label "感复"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_1edc8d56b2 ;
     sp:category "伤寒复证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_c56ff7f0ac a sp:Disease ;
     rdfs:label "夹痞伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_5ecd1da421 ;
     sp:category "伤寒夹证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_cd83033d3b a sp:Disease ;
     rdfs:label "夹痨伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_5ecd1da421 ;
     sp:category "伤寒夹证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_de35ef0991 a sp:Disease ;
     rdfs:label "夹哮伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_5ecd1da421 ;
     sp:category "伤寒夹证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_e4b2d4cbe3 a sp:Disease ;
     rdfs:label "伤寒坏证"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_225e35561d ;
     sp:category "《通俗伤寒论》病证分类"@zh ;
     sp:note "四大重证"@zh ;
@@ -8984,24 +9048,28 @@ res:Disease_e4b2d4cbe3 a sp:Disease ;
 
 res:Disease_e9d344341c a sp:Disease ;
     rdfs:label "房复"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_1edc8d56b2 ;
     sp:category "伤寒复证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_f0233b0051 a sp:Disease ;
     rdfs:label "食复"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_1edc8d56b2 ;
     sp:category "伤寒复证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_f3ef7aba4c a sp:Disease ;
     rdfs:label "夹胀伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_5ecd1da421 ;
     sp:category "伤寒夹证"@zh ;
     sp:n_mentions 1 .
 
 res:Disease_f583149e9a a sp:Disease ;
     rdfs:label "冬温伤寒"@zh ;
+    sp:describedBy res:Physician_b5cb5b9c75 ;
     sp:subDiseaseOf res:Disease_b955ebe899 ;
     sp:category "伤寒兼证"@zh ;
     sp:n_mentions 1 .
@@ -32422,6 +32490,822 @@ res:Work_fff329e953 a sp:Work ;
     sp:nSupport 1 ;
     sp:passageId "b00351"@zh ;
     sp:sourceSentence "柴胡一、二、三钱 当归二、三钱 熟地三、五钱 白术二、三钱 芍药钱半，炒用 炙甘草一钱 陈皮酌用，或不必用"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_02657f37cb ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00437"@zh ;
+    sp:sourceSentence "第八章“伤寒兼证”。所谓兼证者，或寒邪兼他邪，或他邪兼寒邪，二邪兼发者也。有伤寒兼风、伤寒兼湿、伤寒兼痧、伤寒兼疟、伤寒兼疫、风温伤寒、风湿伤寒、湿温伤寒、春温伤寒、热证伤寒、暑湿伤寒、伏暑伤寒、秋燥伤寒、冬温伤寒、大头伤寒、黄耳伤寒、赤隔伤寒、发斑伤寒、发狂伤寒、漏底伤寒、脱脚伤寒21证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_0918cc8233 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00438"@zh ;
+    sp:sourceSentence "第九章“伤寒夹证”。俞氏谓伤寒最多夹证，其病内外夹发，较兼证尤为难治，分夹食伤寒、夹痰伤寒、夹饮伤寒、夹血伤寒、夹阴伤寒、夹哮伤寒、夹痞伤寒、夹痛伤寒、夹胀伤寒、夹泻伤寒、夹痢伤寒、夹疝伤寒、夹痨伤寒、临经伤寒、妊娠伤寒、产后伤寒16证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_0a236cc509 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00437"@zh ;
+    sp:sourceSentence "第八章“伤寒兼证”。所谓兼证者，或寒邪兼他邪，或他邪兼寒邪，二邪兼发者也。有伤寒兼风、伤寒兼湿、伤寒兼痧、伤寒兼疟、伤寒兼疫、风温伤寒、风湿伤寒、湿温伤寒、春温伤寒、热证伤寒、暑湿伤寒、伏暑伤寒、秋燥伤寒、冬温伤寒、大头伤寒、黄耳伤寒、赤隔伤寒、发斑伤寒、发狂伤寒、漏底伤寒、脱脚伤寒21证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_0f0f3103a9 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00438"@zh ;
+    sp:sourceSentence "第九章“伤寒夹证”。俞氏谓伤寒最多夹证，其病内外夹发，较兼证尤为难治，分夹食伤寒、夹痰伤寒、夹饮伤寒、夹血伤寒、夹阴伤寒、夹哮伤寒、夹痞伤寒、夹痛伤寒、夹胀伤寒、夹泻伤寒、夹痢伤寒、夹疝伤寒、夹痨伤寒、临经伤寒、妊娠伤寒、产后伤寒16证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_0fe03f0bd9 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00436"@zh ;
+    sp:sourceSentence "第七章“伤寒本证”。所谓本证者，谓受寒而致病者也。分小伤寒、大伤寒、两感伤寒、伏气伤寒、阴证伤寒5端。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_1bf7f6caed ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 三、原文选释 / （六）六淫病用药法"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00634"@zh ;
+    sp:sourceSentence "亦多夹秽，名曰暑秽，俗曰热痧"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_1c7b6748bd ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00437"@zh ;
+    sp:sourceSentence "第八章“伤寒兼证”。所谓兼证者，或寒邪兼他邪，或他邪兼寒邪，二邪兼发者也。有伤寒兼风、伤寒兼湿、伤寒兼痧、伤寒兼疟、伤寒兼疫、风温伤寒、风湿伤寒、湿温伤寒、春温伤寒、热证伤寒、暑湿伤寒、伏暑伤寒、秋燥伤寒、冬温伤寒、大头伤寒、黄耳伤寒、赤隔伤寒、发斑伤寒、发狂伤寒、漏底伤寒、脱脚伤寒21证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_1edc8d56b2 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00440"@zh ;
+    sp:sourceSentence "第十一章“伤寒复证”，论述伤寒劳复、食复、房复、感复、怒复五大难证的证治。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_dd9265a598 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_225e35561d ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 张景岳 / 二、学术观点及诊治经验 / （二）伤寒散表分温凉"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00278"@zh ;
+    sp:sourceSentence "伤寒为外感百病之总名，所感者自有寒、热之分，治也迥然不同，经有“寒者热之，热者寒之”之义。而仲景治伤寒表证，惟麻黄、桂枝而已，不足以应付外感热病中之属温者。有鉴于此，张景岳提出了伤寒表证之治应针对病因，以温散、凉散法分治。他说：“凡治伤寒，如时寒火衰，内无热邪而表不解者，宜辛温热剂散之;时热火盛而表不解者，宜辛温热剂散之，时热火盛而表不解者，宜以辛甘凉剂散之”（《景岳全书·伤寒典》），温散类方如麻黄汤、桂枝汤、麻桂饮、葛根汤、五积散等，凉散类方如柴胡饮、九味羌活汤、归葛饮等，分别载入新方八阵与古方八阵中，为“绍派伤寒”治感症创立了“见热宜寒，见寒宜热”的治病总则，并首开伤寒之辛凉解表（凉散法）、辛温解表（温散法）的先河。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_24b35c2087 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00437"@zh ;
+    sp:sourceSentence "第八章“伤寒兼证”。所谓兼证者，或寒邪兼他邪，或他邪兼寒邪，二邪兼发者也。有伤寒兼风、伤寒兼湿、伤寒兼痧、伤寒兼疟、伤寒兼疫、风温伤寒、风湿伤寒、湿温伤寒、春温伤寒、热证伤寒、暑湿伤寒、伏暑伤寒、秋燥伤寒、冬温伤寒、大头伤寒、黄耳伤寒、赤隔伤寒、发斑伤寒、发狂伤寒、漏底伤寒、脱脚伤寒21证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_26c770dcb8 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00437"@zh ;
+    sp:sourceSentence "第八章“伤寒兼证”。所谓兼证者，或寒邪兼他邪，或他邪兼寒邪，二邪兼发者也。有伤寒兼风、伤寒兼湿、伤寒兼痧、伤寒兼疟、伤寒兼疫、风温伤寒、风湿伤寒、湿温伤寒、春温伤寒、热证伤寒、暑湿伤寒、伏暑伤寒、秋燥伤寒、冬温伤寒、大头伤寒、黄耳伤寒、赤隔伤寒、发斑伤寒、发狂伤寒、漏底伤寒、脱脚伤寒21证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_27d0391dc3 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00439"@zh ;
+    sp:sourceSentence "第十章“伤寒坏证”，论述伤寒转痉、转厥、转闭、转脱四大重证的证治。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_2a33fd1cd8 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 三、原文选释 / （六）六淫病用药法"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00634"@zh ;
+    sp:sourceSentence "亦多咳血，名曰暑瘵"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_2f9b7f9a24 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00437"@zh ;
+    sp:sourceSentence "第八章“伤寒兼证”。所谓兼证者，或寒邪兼他邪，或他邪兼寒邪，二邪兼发者也。有伤寒兼风、伤寒兼湿、伤寒兼痧、伤寒兼疟、伤寒兼疫、风温伤寒、风湿伤寒、湿温伤寒、春温伤寒、热证伤寒、暑湿伤寒、伏暑伤寒、秋燥伤寒、冬温伤寒、大头伤寒、黄耳伤寒、赤隔伤寒、发斑伤寒、发狂伤寒、漏底伤寒、脱脚伤寒21证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_32e3ca35f4 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00439"@zh ;
+    sp:sourceSentence "第十章“伤寒坏证”，论述伤寒转痉、转厥、转闭、转脱四大重证的证治。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_352b788be8 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00437"@zh ;
+    sp:sourceSentence "第八章“伤寒兼证”。所谓兼证者，或寒邪兼他邪，或他邪兼寒邪，二邪兼发者也。有伤寒兼风、伤寒兼湿、伤寒兼痧、伤寒兼疟、伤寒兼疫、风温伤寒、风湿伤寒、湿温伤寒、春温伤寒、热证伤寒、暑湿伤寒、伏暑伤寒、秋燥伤寒、冬温伤寒、大头伤寒、黄耳伤寒、赤隔伤寒、发斑伤寒、发狂伤寒、漏底伤寒、脱脚伤寒21证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_39e4af7127 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 三、原文选释 / （六）六淫病用药法"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00628"@zh ;
+    sp:sourceSentence "风寒暑湿燥火，为六淫之正病，亦属四时之常病，选药制方，分际最宜清析。举其要而条列之。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_3c71719217 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00438"@zh ;
+    sp:sourceSentence "第九章“伤寒夹证”。俞氏谓伤寒最多夹证，其病内外夹发，较兼证尤为难治，分夹食伤寒、夹痰伤寒、夹饮伤寒、夹血伤寒、夹阴伤寒、夹哮伤寒、夹痞伤寒、夹痛伤寒、夹胀伤寒、夹泻伤寒、夹痢伤寒、夹疝伤寒、夹痨伤寒、临经伤寒、妊娠伤寒、产后伤寒16证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_3ce3cabc36 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 三、原文选释 / （六）六淫病用药法"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00628"@zh ;
+    sp:sourceSentence "风寒暑湿燥火，为六淫之正病，亦属四时之常病，选药制方，分际最宜清析。举其要而条列之。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_428b3fc2c2 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00437"@zh ;
+    sp:sourceSentence "第八章“伤寒兼证”。所谓兼证者，或寒邪兼他邪，或他邪兼寒邪，二邪兼发者也。有伤寒兼风、伤寒兼湿、伤寒兼痧、伤寒兼疟、伤寒兼疫、风温伤寒、风湿伤寒、湿温伤寒、春温伤寒、热证伤寒、暑湿伤寒、伏暑伤寒、秋燥伤寒、冬温伤寒、大头伤寒、黄耳伤寒、赤隔伤寒、发斑伤寒、发狂伤寒、漏底伤寒、脱脚伤寒21证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_465907e2b2 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00436"@zh ;
+    sp:sourceSentence "第七章“伤寒本证”。所谓本证者，谓受寒而致病者也。分小伤寒、大伤寒、两感伤寒、伏气伤寒、阴证伤寒5端。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_487ff3196e ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 三、原文选释 / （六）六淫病用药法"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00628"@zh ;
+    sp:sourceSentence "风寒暑湿燥火，为六淫之正病，亦属四时之常病，选药制方，分际最宜清析。举其要而条列之。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_4b66f12540 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00438"@zh ;
+    sp:sourceSentence "第九章“伤寒夹证”。俞氏谓伤寒最多夹证，其病内外夹发，较兼证尤为难治，分夹食伤寒、夹痰伤寒、夹饮伤寒、夹血伤寒、夹阴伤寒、夹哮伤寒、夹痞伤寒、夹痛伤寒、夹胀伤寒、夹泻伤寒、夹痢伤寒、夹疝伤寒、夹痨伤寒、临经伤寒、妊娠伤寒、产后伤寒16证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_5105cc3989 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00437"@zh ;
+    sp:sourceSentence "第八章“伤寒兼证”。所谓兼证者，或寒邪兼他邪，或他邪兼寒邪，二邪兼发者也。有伤寒兼风、伤寒兼湿、伤寒兼痧、伤寒兼疟、伤寒兼疫、风温伤寒、风湿伤寒、湿温伤寒、春温伤寒、热证伤寒、暑湿伤寒、伏暑伤寒、秋燥伤寒、冬温伤寒、大头伤寒、黄耳伤寒、赤隔伤寒、发斑伤寒、发狂伤寒、漏底伤寒、脱脚伤寒21证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_521a3916bc ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00437"@zh ;
+    sp:sourceSentence "第八章“伤寒兼证”。所谓兼证者，或寒邪兼他邪，或他邪兼寒邪，二邪兼发者也。有伤寒兼风、伤寒兼湿、伤寒兼痧、伤寒兼疟、伤寒兼疫、风温伤寒、风湿伤寒、湿温伤寒、春温伤寒、热证伤寒、暑湿伤寒、伏暑伤寒、秋燥伤寒、冬温伤寒、大头伤寒、黄耳伤寒、赤隔伤寒、发斑伤寒、发狂伤寒、漏底伤寒、脱脚伤寒21证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_5631943a77 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00438"@zh ;
+    sp:sourceSentence "第九章“伤寒夹证”。俞氏谓伤寒最多夹证，其病内外夹发，较兼证尤为难治，分夹食伤寒、夹痰伤寒、夹饮伤寒、夹血伤寒、夹阴伤寒、夹哮伤寒、夹痞伤寒、夹痛伤寒、夹胀伤寒、夹泻伤寒、夹痢伤寒、夹疝伤寒、夹痨伤寒、临经伤寒、妊娠伤寒、产后伤寒16证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_5c8f7f459d ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 三、原文选释 / （六）六淫病用药法"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00628"@zh ;
+    sp:sourceSentence "风寒暑湿燥火，为六淫之正病，亦属四时之常病，选药制方，分际最宜清析。举其要而条列之。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_5e04c3a8cf ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00437"@zh ;
+    sp:sourceSentence "第八章“伤寒兼证”。所谓兼证者，或寒邪兼他邪，或他邪兼寒邪，二邪兼发者也。有伤寒兼风、伤寒兼湿、伤寒兼痧、伤寒兼疟、伤寒兼疫、风温伤寒、风湿伤寒、湿温伤寒、春温伤寒、热证伤寒、暑湿伤寒、伏暑伤寒、秋燥伤寒、冬温伤寒、大头伤寒、黄耳伤寒、赤隔伤寒、发斑伤寒、发狂伤寒、漏底伤寒、脱脚伤寒21证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_5ecd1da421 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00438"@zh ;
+    sp:sourceSentence "第九章“伤寒夹证”。俞氏谓伤寒最多夹证，其病内外夹发，较兼证尤为难治，分夹食伤寒、夹痰伤寒、夹饮伤寒、夹血伤寒、夹阴伤寒、夹哮伤寒、夹痞伤寒、夹痛伤寒、夹胀伤寒、夹泻伤寒、夹痢伤寒、夹疝伤寒、夹痨伤寒、临经伤寒、妊娠伤寒、产后伤寒16证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_689d1706cf ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00440"@zh ;
+    sp:sourceSentence "第十一章“伤寒复证”，论述伤寒劳复、食复、房复、感复、怒复五大难证的证治。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_6981cead04 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00438"@zh ;
+    sp:sourceSentence "第九章“伤寒夹证”。俞氏谓伤寒最多夹证，其病内外夹发，较兼证尤为难治，分夹食伤寒、夹痰伤寒、夹饮伤寒、夹血伤寒、夹阴伤寒、夹哮伤寒、夹痞伤寒、夹痛伤寒、夹胀伤寒、夹泻伤寒、夹痢伤寒、夹疝伤寒、夹痨伤寒、临经伤寒、妊娠伤寒、产后伤寒16证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_6e32853b97 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00437"@zh ;
+    sp:sourceSentence "第八章“伤寒兼证”。所谓兼证者，或寒邪兼他邪，或他邪兼寒邪，二邪兼发者也。有伤寒兼风、伤寒兼湿、伤寒兼痧、伤寒兼疟、伤寒兼疫、风温伤寒、风湿伤寒、湿温伤寒、春温伤寒、热证伤寒、暑湿伤寒、伏暑伤寒、秋燥伤寒、冬温伤寒、大头伤寒、黄耳伤寒、赤隔伤寒、发斑伤寒、发狂伤寒、漏底伤寒、脱脚伤寒21证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_74a042ddfb ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 三、原文选释 / （六）六淫病用药法"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00634"@zh ;
+    sp:sourceSentence "炎风如箭，名曰暑风"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_789999a8f1 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00440"@zh ;
+    sp:sourceSentence "第十一章“伤寒复证”，论述伤寒劳复、食复、房复、感复、怒复五大难证的证治。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_7a4623e618 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00438"@zh ;
+    sp:sourceSentence "第九章“伤寒夹证”。俞氏谓伤寒最多夹证，其病内外夹发，较兼证尤为难治，分夹食伤寒、夹痰伤寒、夹饮伤寒、夹血伤寒、夹阴伤寒、夹哮伤寒、夹痞伤寒、夹痛伤寒、夹胀伤寒、夹泻伤寒、夹痢伤寒、夹疝伤寒、夹痨伤寒、临经伤寒、妊娠伤寒、产后伤寒16证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_7be9a90814 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00436"@zh ;
+    sp:sourceSentence "第七章“伤寒本证”。所谓本证者，谓受寒而致病者也。分小伤寒、大伤寒、两感伤寒、伏气伤寒、阴证伤寒5端。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_831831a3aa ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00437"@zh ;
+    sp:sourceSentence "第八章“伤寒兼证”。所谓兼证者，或寒邪兼他邪，或他邪兼寒邪，二邪兼发者也。有伤寒兼风、伤寒兼湿、伤寒兼痧、伤寒兼疟、伤寒兼疫、风温伤寒、风湿伤寒、湿温伤寒、春温伤寒、热证伤寒、暑湿伤寒、伏暑伤寒、秋燥伤寒、冬温伤寒、大头伤寒、黄耳伤寒、赤隔伤寒、发斑伤寒、发狂伤寒、漏底伤寒、脱脚伤寒21证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_8569394587 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00438"@zh ;
+    sp:sourceSentence "第九章“伤寒夹证”。俞氏谓伤寒最多夹证，其病内外夹发，较兼证尤为难治，分夹食伤寒、夹痰伤寒、夹饮伤寒、夹血伤寒、夹阴伤寒、夹哮伤寒、夹痞伤寒、夹痛伤寒、夹胀伤寒、夹泻伤寒、夹痢伤寒、夹疝伤寒、夹痨伤寒、临经伤寒、妊娠伤寒、产后伤寒16证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_8b52d449a3 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00438"@zh ;
+    sp:sourceSentence "第九章“伤寒夹证”。俞氏谓伤寒最多夹证，其病内外夹发，较兼证尤为难治，分夹食伤寒、夹痰伤寒、夹饮伤寒、夹血伤寒、夹阴伤寒、夹哮伤寒、夹痞伤寒、夹痛伤寒、夹胀伤寒、夹泻伤寒、夹痢伤寒、夹疝伤寒、夹痨伤寒、临经伤寒、妊娠伤寒、产后伤寒16证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_8d42501f8d ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00439"@zh ;
+    sp:sourceSentence "第十章“伤寒坏证”，论述伤寒转痉、转厥、转闭、转脱四大重证的证治。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_918e07a298 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00439"@zh ;
+    sp:sourceSentence "第十章“伤寒坏证”，论述伤寒转痉、转厥、转闭、转脱四大重证的证治。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_9563a11f8d ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00436"@zh ;
+    sp:sourceSentence "第七章“伤寒本证”。所谓本证者，谓受寒而致病者也。分小伤寒、大伤寒、两感伤寒、伏气伤寒、阴证伤寒5端。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_98dbadcba8 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00437"@zh ;
+    sp:sourceSentence "第八章“伤寒兼证”。所谓兼证者，或寒邪兼他邪，或他邪兼寒邪，二邪兼发者也。有伤寒兼风、伤寒兼湿、伤寒兼痧、伤寒兼疟、伤寒兼疫、风温伤寒、风湿伤寒、湿温伤寒、春温伤寒、热证伤寒、暑湿伤寒、伏暑伤寒、秋燥伤寒、冬温伤寒、大头伤寒、黄耳伤寒、赤隔伤寒、发斑伤寒、发狂伤寒、漏底伤寒、脱脚伤寒21证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_99bdd797d4 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00437"@zh ;
+    sp:sourceSentence "第八章“伤寒兼证”。所谓兼证者，或寒邪兼他邪，或他邪兼寒邪，二邪兼发者也。有伤寒兼风、伤寒兼湿、伤寒兼痧、伤寒兼疟、伤寒兼疫、风温伤寒、风湿伤寒、湿温伤寒、春温伤寒、热证伤寒、暑湿伤寒、伏暑伤寒、秋燥伤寒、冬温伤寒、大头伤寒、黄耳伤寒、赤隔伤寒、发斑伤寒、发狂伤寒、漏底伤寒、脱脚伤寒21证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_9ed8eedb22 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00438"@zh ;
+    sp:sourceSentence "第九章“伤寒夹证”。俞氏谓伤寒最多夹证，其病内外夹发，较兼证尤为难治，分夹食伤寒、夹痰伤寒、夹饮伤寒、夹血伤寒、夹阴伤寒、夹哮伤寒、夹痞伤寒、夹痛伤寒、夹胀伤寒、夹泻伤寒、夹痢伤寒、夹疝伤寒、夹痨伤寒、临经伤寒、妊娠伤寒、产后伤寒16证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_a0d6132854 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00436"@zh ;
+    sp:sourceSentence "第七章“伤寒本证”。所谓本证者，谓受寒而致病者也。分小伤寒、大伤寒、两感伤寒、伏气伤寒、阴证伤寒5端。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_a2cd729964 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 三、原文选释 / （六）六淫病用药法"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00634"@zh ;
+    sp:sourceSentence "病多晕厥，名曰暑厥"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_a6eba830d6 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 三、原文选释 / （六）六淫病用药法"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00628"@zh ;
+    sp:sourceSentence "风寒暑湿燥火，为六淫之正病，亦属四时之常病，选药制方，分际最宜清析。举其要而条列之。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_b12fc0ed14 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00438"@zh ;
+    sp:sourceSentence "第九章“伤寒夹证”。俞氏谓伤寒最多夹证，其病内外夹发，较兼证尤为难治，分夹食伤寒、夹痰伤寒、夹饮伤寒、夹血伤寒、夹阴伤寒、夹哮伤寒、夹痞伤寒、夹痛伤寒、夹胀伤寒、夹泻伤寒、夹痢伤寒、夹疝伤寒、夹痨伤寒、临经伤寒、妊娠伤寒、产后伤寒16证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_b6e4eae510 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00437"@zh ;
+    sp:sourceSentence "第八章“伤寒兼证”。所谓兼证者，或寒邪兼他邪，或他邪兼寒邪，二邪兼发者也。有伤寒兼风、伤寒兼湿、伤寒兼痧、伤寒兼疟、伤寒兼疫、风温伤寒、风湿伤寒、湿温伤寒、春温伤寒、热证伤寒、暑湿伤寒、伏暑伤寒、秋燥伤寒、冬温伤寒、大头伤寒、黄耳伤寒、赤隔伤寒、发斑伤寒、发狂伤寒、漏底伤寒、脱脚伤寒21证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_b789d9c57e ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00437"@zh ;
+    sp:sourceSentence "第八章“伤寒兼证”。所谓兼证者，或寒邪兼他邪，或他邪兼寒邪，二邪兼发者也。有伤寒兼风、伤寒兼湿、伤寒兼痧、伤寒兼疟、伤寒兼疫、风温伤寒、风湿伤寒、湿温伤寒、春温伤寒、热证伤寒、暑湿伤寒、伏暑伤寒、秋燥伤寒、冬温伤寒、大头伤寒、黄耳伤寒、赤隔伤寒、发斑伤寒、发狂伤寒、漏底伤寒、脱脚伤寒21证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_b7dd804c3e ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00436"@zh ;
+    sp:sourceSentence "第七章“伤寒本证”。所谓本证者，谓受寒而致病者也。分小伤寒、大伤寒、两感伤寒、伏气伤寒、阴证伤寒5端。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_b955ebe899 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00437"@zh ;
+    sp:sourceSentence "第八章“伤寒兼证”。所谓兼证者，或寒邪兼他邪，或他邪兼寒邪，二邪兼发者也。有伤寒兼风、伤寒兼湿、伤寒兼痧、伤寒兼疟、伤寒兼疫、风温伤寒、风湿伤寒、湿温伤寒、春温伤寒、热证伤寒、暑湿伤寒、伏暑伤寒、秋燥伤寒、冬温伤寒、大头伤寒、黄耳伤寒、赤隔伤寒、发斑伤寒、发狂伤寒、漏底伤寒、脱脚伤寒21证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_bc52c9e6c3 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 三、原文选释 / （六）六淫病用药法"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00628"@zh ;
+    sp:sourceSentence "风寒暑湿燥火，为六淫之正病，亦属四时之常病，选药制方，分际最宜清析。举其要而条列之。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_bd42463676 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00438"@zh ;
+    sp:sourceSentence "第九章“伤寒夹证”。俞氏谓伤寒最多夹证，其病内外夹发，较兼证尤为难治，分夹食伤寒、夹痰伤寒、夹饮伤寒、夹血伤寒、夹阴伤寒、夹哮伤寒、夹痞伤寒、夹痛伤寒、夹胀伤寒、夹泻伤寒、夹痢伤寒、夹疝伤寒、夹痨伤寒、临经伤寒、妊娠伤寒、产后伤寒16证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_bdb5748218 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00437"@zh ;
+    sp:sourceSentence "第八章“伤寒兼证”。所谓兼证者，或寒邪兼他邪，或他邪兼寒邪，二邪兼发者也。有伤寒兼风、伤寒兼湿、伤寒兼痧、伤寒兼疟、伤寒兼疫、风温伤寒、风湿伤寒、湿温伤寒、春温伤寒、热证伤寒、暑湿伤寒、伏暑伤寒、秋燥伤寒、冬温伤寒、大头伤寒、黄耳伤寒、赤隔伤寒、发斑伤寒、发狂伤寒、漏底伤寒、脱脚伤寒21证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_bf8ebec295 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00437"@zh ;
+    sp:sourceSentence "第八章“伤寒兼证”。所谓兼证者，或寒邪兼他邪，或他邪兼寒邪，二邪兼发者也。有伤寒兼风、伤寒兼湿、伤寒兼痧、伤寒兼疟、伤寒兼疫、风温伤寒、风湿伤寒、湿温伤寒、春温伤寒、热证伤寒、暑湿伤寒、伏暑伤寒、秋燥伤寒、冬温伤寒、大头伤寒、黄耳伤寒、赤隔伤寒、发斑伤寒、发狂伤寒、漏底伤寒、脱脚伤寒21证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_c0750dc6e1 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00437"@zh ;
+    sp:sourceSentence "第八章“伤寒兼证”。所谓兼证者，或寒邪兼他邪，或他邪兼寒邪，二邪兼发者也。有伤寒兼风、伤寒兼湿、伤寒兼痧、伤寒兼疟、伤寒兼疫、风温伤寒、风湿伤寒、湿温伤寒、春温伤寒、热证伤寒、暑湿伤寒、伏暑伤寒、秋燥伤寒、冬温伤寒、大头伤寒、黄耳伤寒、赤隔伤寒、发斑伤寒、发狂伤寒、漏底伤寒、脱脚伤寒21证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_c1141f6faf ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 三、原文选释 / （六）六淫病用药法"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00634"@zh ;
+    sp:sourceSentence "暑必夹湿，名曰暑湿"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_c15a8d834d ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00440"@zh ;
+    sp:sourceSentence "第十一章“伤寒复证”，论述伤寒劳复、食复、房复、感复、怒复五大难证的证治。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_c56ff7f0ac ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00438"@zh ;
+    sp:sourceSentence "第九章“伤寒夹证”。俞氏谓伤寒最多夹证，其病内外夹发，较兼证尤为难治，分夹食伤寒、夹痰伤寒、夹饮伤寒、夹血伤寒、夹阴伤寒、夹哮伤寒、夹痞伤寒、夹痛伤寒、夹胀伤寒、夹泻伤寒、夹痢伤寒、夹疝伤寒、夹痨伤寒、临经伤寒、妊娠伤寒、产后伤寒16证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_cd83033d3b ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00438"@zh ;
+    sp:sourceSentence "第九章“伤寒夹证”。俞氏谓伤寒最多夹证，其病内外夹发，较兼证尤为难治，分夹食伤寒、夹痰伤寒、夹饮伤寒、夹血伤寒、夹阴伤寒、夹哮伤寒、夹痞伤寒、夹痛伤寒、夹胀伤寒、夹泻伤寒、夹痢伤寒、夹疝伤寒、夹痨伤寒、临经伤寒、妊娠伤寒、产后伤寒16证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_de35ef0991 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00438"@zh ;
+    sp:sourceSentence "第九章“伤寒夹证”。俞氏谓伤寒最多夹证，其病内外夹发，较兼证尤为难治，分夹食伤寒、夹痰伤寒、夹饮伤寒、夹血伤寒、夹阴伤寒、夹哮伤寒、夹痞伤寒、夹痛伤寒、夹胀伤寒、夹泻伤寒、夹痢伤寒、夹疝伤寒、夹痨伤寒、临经伤寒、妊娠伤寒、产后伤寒16证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_e4b2d4cbe3 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00439"@zh ;
+    sp:sourceSentence "第十章“伤寒坏证”，论述伤寒转痉、转厥、转闭、转脱四大重证的证治。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_e9d344341c ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00440"@zh ;
+    sp:sourceSentence "第十一章“伤寒复证”，论述伤寒劳复、食复、房复、感复、怒复五大难证的证治。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_f0233b0051 ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00440"@zh ;
+    sp:sourceSentence "第十一章“伤寒复证”，论述伤寒劳复、食复、房复、感复、怒复五大难证的证治。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_f3ef7aba4c ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00438"@zh ;
+    sp:sourceSentence "第九章“伤寒夹证”。俞氏谓伤寒最多夹证，其病内外夹发，较兼证尤为难治，分夹食伤寒、夹痰伤寒、夹饮伤寒、夹血伤寒、夹阴伤寒、夹哮伤寒、夹痞伤寒、夹痛伤寒、夹胀伤寒、夹泻伤寒、夹痢伤寒、夹疝伤寒、夹痨伤寒、临经伤寒、妊娠伤寒、产后伤寒16证。"@zh .
+
+[] a rdf:Statement ;
+    rdf:object res:Physician_b5cb5b9c75 ;
+    rdf:predicate sp:describedBy ;
+    rdf:subject res:Disease_f583149e9a ;
+    sp:agreement "deterministic_parse"@zh ;
+    sp:chapterPath "第二部分 代表医家 / 俞根初 / 一、生平与代表著作简介"@zh ;
+    sp:engine "rule-parser-v1"@zh ;
+    sp:evidenceVerbatim true ;
+    sp:nSupport 1 ;
+    sp:passageId "b00437"@zh ;
+    sp:sourceSentence "第八章“伤寒兼证”。所谓兼证者，或寒邪兼他邪，或他邪兼寒邪，二邪兼发者也。有伤寒兼风、伤寒兼湿、伤寒兼痧、伤寒兼疟、伤寒兼疫、风温伤寒、风湿伤寒、湿温伤寒、春温伤寒、热证伤寒、暑湿伤寒、伏暑伤寒、秋燥伤寒、冬温伤寒、大头伤寒、黄耳伤寒、赤隔伤寒、发斑伤寒、发狂伤寒、漏底伤寒、脱脚伤寒21证。"@zh .
 
 [] a rdf:Statement ;
     rdf:object res:Work_58bf6a1210 ;
