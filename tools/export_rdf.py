@@ -86,5 +86,11 @@ for e in sorted(kg['edges'], key=lambda x: (x['type'], x['subject_id'], x['objec
 
 txt = '\n'.join(out)
 (ROOT / 'data/shaopai_instances.ttl').write_text(txt, encoding='utf-8')
-n_trip = txt.count(' ;') + txt.count(' .')
-print(f'shaopai_instances.ttl 重建完成：{len(kg["nodes"])} 节点块 + {len(kg["edges"])} 具体化陈述，约 {n_trip:,} 三元组')
+msg = f'shaopai_instances.ttl 重建完成：{len(kg["nodes"])} 节点块 + {len(kg["edges"])} 具体化陈述'
+try:                              # 有 rdflib 就报实测三元组数
+    import rdflib
+    g = rdflib.Graph(); g.parse(str(ROOT / 'data/shaopai_instances.ttl'), format='turtle')
+    msg += f'，{len(g):,} 三元组（rdflib 实测）'
+except ImportError:
+    pass
+print(msg)

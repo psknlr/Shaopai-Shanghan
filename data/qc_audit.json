@@ -35,18 +35,19 @@
   "consequence": "all edges carry agreement=\"single_engine\"; no inter-engine disagreement signal exists in this build"
  },
  "graph": {
-  "n_nodes": 4205,
-  "n_edges": 3034,
+  "n_nodes": 4317,
+  "n_edges": 3144,
   "nodes_by_class": {
    "Physician": 218,
    "Work": 356,
    "Doctrine": 1524,
    "DiagnosticSign": 1311,
-   "Pattern": 542,
+   "Pattern": 567,
    "Formula": 41,
    "Herb": 188,
-   "TreatmentPrinciple": 10,
-   "CaseRecord": 15
+   "TreatmentPrinciple": 29,
+   "CaseRecord": 15,
+   "Disease": 68
   },
   "edges_by_type": {
    "authored": 223,
@@ -65,11 +66,15 @@
    "derivesFrom": 27,
    "ingredientRole": 41,
    "principleRealizedBy": 10,
-   "formulaTreats": 5,
-   "caseByPhysician": 15
+   "formulaTreats": 7,
+   "caseByPhysician": 15,
+   "subDiseaseOf": 61,
+   "treatedByPrinciple": 27,
+   "patternOfDisease": 20
   },
-  "connectivity_pct": 70.2,
-  "largest_component": 2355
+  "connectivity_pct": 71.0,
+  "largest_component": 2391,
+  "disease_subtree": 57
  },
  "coverage": {
   "core_physicians": "11/11",
@@ -81,9 +86,9 @@
  "integrity": {
   "domain_range_violations": 0,
   "dangling_endpoints": 0,
-  "edges_with_provenance": 3034,
-  "evidence_verbatim": "2941/3034 (96.9%)",
-  "single_mention_edges": "2938/3034 (96.8%)"
+  "edges_with_provenance": 3144,
+  "evidence_verbatim": "3051/3144 (97.0%)",
+  "single_mention_edges": "3048/3144 (96.9%)"
  },
  "known_issues": [
   {
@@ -188,10 +193,10 @@
   "decision": "haiku-class model selected for all three clinical layers on the strength of its own verified pilot score, not on a comparison against the reasoning model."
  },
  "layers": {
-  "lineage": "complete",
-  "diagnostic": "complete",
+  "lineage": "complete (single-engine LLM)",
+  "diagnostic": "complete (single-engine LLM)",
   "materia": "complete (deterministic parser)",
-  "pattern": "not_run"
+  "pattern": "complete (deterministic parser)"
  },
  "materia_layer": {
   "engine": "rule-parser-v1 (deterministic, not an LLM)",
@@ -215,5 +220,37 @@
  },
  "resolved_issues": [
   "The lineage and diagnostic layers are no longer disconnected. derivesFrom (Formula→Work, 27), formulaTreats (Formula→Pattern, 5) and caseByPhysician (CaseRecord→Physician, 15) bridge them; the largest component grew from 1,444 to 2,355 nodes."
- ]
+ ],
+ "ontology": {
+  "version": "1.1.0",
+  "classes": 13,
+  "object_properties": 27,
+  "populated_classes": 10,
+  "empty_classes": {
+   "Symptom": "deliberate — 17/18 common symptom candidates are already DiagnosticSign nodes (672 carry modality 问诊/望诊). A parallel class would duplicate nodes and split the graph.",
+   "Dosage": "deliberate — dose, processing and 君臣佐使 ride on hasIngredient / ingredientRole instead of separate nodes.",
+   "HerbProperty": "not extracted — the book states herb properties in prose, not in a tabular form the parser can read without inference."
+  },
+  "extension": "1.0.0 → 1.1.0: added subDiseaseOf (Disease→Disease, 0..1). The book enumerates 伤寒本证/兼证/夹证/坏证/复证 and their members, but 1.0.0 had no Disease-to-Disease relation, so 51 diseases could only be isolated nodes. Nothing else was changed."
+ },
+ "pattern_layer": {
+  "engine": "rule-parser-v1 (deterministic, not an LLM)",
+  "reproducible": true,
+  "diseases": 68,
+  "patterns_added": 25,
+  "treatment_principles": 29,
+  "taxonomy_check": "Every taxonomy member was matched verbatim in its source passage and the count checked against the number the book itself states: 本证 5/5, 兼证 21/21, 夹证 16/16, 坏证 4/4, 复证 5/5.",
+  "edges": {
+   "subDiseaseOf": 61,
+   "treatedByPrinciple": 27,
+   "patternOfDisease": 20,
+   "formulaTreats": 7
+  },
+  "known_limits": [
+   "The 57-node 伤寒 disease subtree is a separate component. No ontology property links a disease to the physician who described it or to a formula that treats it, so it cannot join the giant component.",
+   "Treatment principles were harvested from a handful of passages that state them in an「X宜Y」form; principles discussed only in prose are not captured.",
+   "patternOfDisease edges for the 六淫 sub-patterns rest on the book grouping them under a 「X病药」 section heading, not on an explicit sentence asserting membership.",
+   "The formula names cited in 何廉臣 down-method classification (紫草承气汤, 局方凉膈散 …) print no composition, so no principleRealizedBy edges were created for them."
+  ]
+ }
 }

@@ -69,21 +69,29 @@ def layout_new(kg, pos, iters=320, seed=7):
         if s in idset and o in idset and s != o:
             adj[s].add(o); adj[o].add(s)
 
-    # 新节点初值：有已定位邻居的落在邻居质心附近，其余散布在空白区
-    occupied_x = [p[0] for p in pos.values()] or [0.0]
-    free_x = max(occupied_x) + 1.5          # 已有两瓣之外的空白带
+    # 新节点初值：有已定位邻居的落在邻居质心附近；
+    # 无锚点的成团放到既有内容**下方**，而不是一路向右延伸——
+    # 后者会让画布越拉越宽，全景视图里满是空白。
+    xs_ = [p[0] for p in pos.values()] or [0.0]
+    ys_ = [p[1] for p in pos.values()] or [0.0]
+    right = max(xs_)
+    cy0 = (min(ys_) + max(ys_)) / 2
     rnd = _Rand(seed)
     P = dict(pos)
-    for k, i in enumerate(new):
+    loose = [i for i in new if not any(j in pos for j in adj[i])]
+    rad = 0.35 + 0.55 * math.sqrt(max(len(loose), 1) / 60)
+    li = 0
+    for i in new:
         anchors = [P[j] for j in adj[i] if j in P]
         if anchors:
             ax = sum(a[0] for a in anchors) / len(anchors)
             ay = sum(a[1] for a in anchors) / len(anchors)
             P[i] = (ax + rnd.uni(-.06, .06), ay + rnd.uni(-.06, .06))
         else:
-            ang = k * 2.399963229728653      # 黄金角
-            r = .05 + .95 * math.sqrt((k + 1) / len(new))
-            P[i] = (free_x + r * math.cos(ang), r * math.sin(ang))
+            ang = li * 2.399963229728653     # 黄金角
+            r = rad * math.sqrt((li + 1) / max(len(loose), 1))
+            P[i] = (right + rad + 0.3 + r * math.cos(ang), cy0 + r * math.sin(ang))
+            li += 1
 
     newset = set(new)
     k_rep = 0.0016
