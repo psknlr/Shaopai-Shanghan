@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>绍派伤寒 · 学术知识图谱 | 沈钦荣名中医 × 医哲未来人工智能研究院</title>
-<meta name="description" content="绍派伤寒学术知识图谱：4317 个知识节点、3212 条学术关系，四层全备——医家谱系、诊法征象、本草方剂与病证治法，含 41 首方剂、188 味中药、68 个病证及君臣佐使配伍。由沈钦荣名中医联合医哲未来人工智能研究院联合研发。">
+<title>绍派伤寒 · 越医知识图谱 | 沈钦荣名中医 × 医哲未来人工智能研究院</title>
+<meta name="description" content="绍派伤寒 · 越医知识图谱：16,191 个知识节点、21,351 条学术关系，抽取自《浙派中医丛书·绍派伤寒》《何廉臣医案》《越医文化》《越中名医传》《越醫雜詠》《赵晴初医论》六种文献，六层全备——医家谱系、诊法征象、证候治法、本草方剂、医案与越医文化。由沈钦荣名中医联合医哲未来人工智能研究院联合研发。">
 <meta name="theme-color" content="#f3ede1" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#12141a" media="(prefers-color-scheme: dark)">
-<meta property="og:title" content="绍派伤寒 · 学术知识图谱">
+<meta property="og:title" content="绍派伤寒 · 越医知识图谱">
 <meta property="og:description" content="沈钦荣名中医 × 医哲未来人工智能研究院 联合研发">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23b4382c'/%3E%3Ctext x='16' y='23' font-size='20' text-anchor='middle' fill='%23fdf6e8' font-family='serif'%3E绍%3C/text%3E%3C/svg%3E">
@@ -38,6 +38,13 @@
   --formula:    #b0446a;   /* 胭脂 · 方剂 */
   --herb:       #5f8420;   /* 柳芽 · 中药 */
   --disease:    #8a5326;   /* 赭石 · 病证 */
+  --principle:  #45529b;   /* 石青 · 治法 */
+  --case:       #5c6b7a;   /* 月白 · 医案 */
+  --symptom:    #3e8a5a;   /* 竹青 · 症状 */
+  --herbprop:   #5f6f68;   /* 青灰 · 药性 */
+  --inst:       #8d4a9a;   /* 紫藤 · 机构团体 */
+  --place:      #2b8a97;   /* 青碧 · 地域 */
+  --family:     #7a6244;   /* 沉香 · 医学世家 */
   --sky-1:      #ece3d3;
   --sky-2:      #f6f0e4;
   --mount-far:  #c3c8c6;
@@ -74,6 +81,13 @@ html[data-theme="ink"]{
   --formula:    #e58fae;
   --herb:       #a9c95e;
   --disease:    #cf8f63;
+  --principle:  #7d8fd6;
+  --case:       #aab6c4;
+  --symptom:    #6cbf8a;
+  --herbprop:   #9fb0a8;
+  --inst:       #d38ad0;
+  --place:      #4fc3cf;
+  --family:     #c2a880;
   --sky-1:      #151a22;
   --sky-2:      #0d1015;
   --mount-far:  #212932;
@@ -334,38 +348,40 @@ h2{margin:0;font-size:clamp(1.75rem,4vw,2.65rem);font-weight:400;letter-spacing:
   color:var(--dim);font-size:12.8px;line-height:1.95}
 .pnote b{color:var(--ink-2)}
 
-/* ============ 本草方剂层 ============ */
-.fml{display:grid;gap:1.1rem;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
-.fcard{position:relative;border:1px solid var(--line);border-radius:14px;background:var(--paper-2);
-  padding:1.7rem 1.6rem;box-shadow:var(--shadow);opacity:0;transform:translateY(18px);
-  transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1),border-color .3s}
-.fcard.in{opacity:1;transform:none}
-.fcard:hover{border-color:var(--line-2)}
-.fcard .fh{display:flex;align-items:baseline;gap:.7rem;flex-wrap:wrap;margin-bottom:.2rem}
-.fcard h3{margin:0;font-size:1.3rem;font-weight:400;font-family:var(--kai);letter-spacing:.1em}
-.fcard .prin{font-family:var(--sans);font-size:11px;letter-spacing:.14em;color:var(--formula);
-  border:1px solid var(--formula);border-radius:999px;padding:.16rem .6rem}
-.fcard .src{font-size:12px;color:var(--dim);margin-bottom:1.05rem}
-.ing{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem}
-.ing span{display:inline-flex;align-items:baseline;gap:.3rem;font-size:13px;
-  border:1px solid var(--line);border-radius:8px;padding:.3rem .6rem;background:var(--paper)}
-.ing span em{font-style:normal;font-family:var(--sans);font-size:11px;color:var(--dim)}
-.ing span.j{border-color:var(--cinnabar);background:color-mix(in srgb,var(--cinnabar) 8%,transparent)}
-.ing span.c{border-color:var(--amber);background:color-mix(in srgb,var(--amber) 8%,transparent)}
-.ing span b{font-family:var(--sans);font-size:9.5px;letter-spacing:.1em;color:var(--cinnabar);
-  border-radius:3px}
-.ing span.c b{color:var(--amber)}
-.fcard .zhu{margin:0;color:var(--dim);font-size:13.2px;line-height:1.95;padding-left:.85rem;
-  border-left:2px solid var(--line-2)}
+/* ============ 医案层 ============ */
+.casetbl{width:100%;border-collapse:collapse;font-size:13.2px;line-height:1.75}
+.casetbl th{font-family:var(--sans);font-size:10.5px;letter-spacing:.16em;color:var(--dim);font-weight:500;
+  text-align:left;padding:.15rem .5rem .55rem 0;border-bottom:1px solid var(--line)}
+.casetbl td{padding:.5rem .5rem .5rem 0;vertical-align:top;border-bottom:1px dashed color-mix(in srgb,var(--line) 75%,transparent)}
+.casetbl tr:last-child td{border-bottom:0}
+.casetbl td.d{font-family:var(--kai);letter-spacing:.08em;white-space:nowrap;color:var(--disease);font-size:14px}
+.casetbl td.n{font-family:var(--sans);font-variant-numeric:tabular-nums;color:var(--ink-2);text-align:right;white-space:nowrap}
+.casetbl td.h{color:var(--dim);font-size:12.8px}
+.casetbl td.h b{color:var(--herb);font-weight:500}
+.tblwrap{overflow-x:auto}
+.crow{display:grid;grid-template-columns:5.2em 1fr 3.4em;gap:.75rem;align-items:center;font-size:13px;
+  opacity:0;transform:translateX(-8px);transition:opacity .5s ease,transform .5s ease}
+.crow.in{opacity:1;transform:none}
+.crow .bn{letter-spacing:.06em;color:var(--ink-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.crow .bt{height:8px;border-radius:8px;background:color-mix(in srgb,var(--line) 70%,transparent);overflow:hidden}
+.crow .bf{display:block;height:100%;width:0;border-radius:8px;transition:width 1s cubic-bezier(.2,.7,.2,1)}
+.crow.in .bf{width:var(--w)}
+.crow .bv{text-align:right;font-variant-numeric:tabular-nums;color:var(--dim);font-size:12px;font-family:var(--sans)}
+#covbars .crow{grid-template-columns:6.6em 1fr 3.6em}
+.twocol{display:grid;gap:1.4rem 2rem;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.twocol h4{margin:0 0 .8rem;font-family:var(--sans);font-size:10.5px;letter-spacing:.18em;color:var(--dim);font-weight:500}
+.bars.tight{gap:.55rem}
 
-/* ============ 证候层 ============ */
-.tree{font-size:13.6px;line-height:2.05}
-.tree .root{font-family:var(--kai);font-size:1.15rem;letter-spacing:.1em;color:var(--disease)}
-.tree ul{list-style:none;margin:.5rem 0 0;padding-left:1.05rem;border-left:1px dashed var(--line-2)}
-.tree li{padding:.18rem 0}
-.tree .cat{color:var(--ink);font-weight:600}
-.tree .n{font-family:var(--sans);font-size:11px;color:var(--dim);margin-left:.35rem}
-.tree .kids{color:var(--dim);font-size:12.6px;line-height:1.95;padding-left:.2rem}
+/* ============ 越医文化层 ============ */
+.fam{display:grid;gap:.6rem;grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+.fam div{border:1px solid var(--line);border-radius:10px;padding:.75rem .85rem;background:var(--paper)}
+.fam b{display:block;font-family:var(--kai);font-size:1.12rem;letter-spacing:.1em;color:var(--family)}
+.fam span{display:block;font-size:12px;color:var(--dim);line-height:1.75;margin-top:.15rem}
+.fam i{font-style:normal;font-family:var(--sans);font-size:11px;color:var(--ink-2)}
+.kinds{display:flex;flex-wrap:wrap;gap:.45rem}
+.kinds span{font-family:var(--sans);font-size:11.5px;letter-spacing:.06em;color:var(--ink-2);
+  border:1px solid var(--line);border-radius:999px;padding:.32rem .78rem;background:var(--paper)}
+.kinds span b{color:var(--inst);font-weight:600;margin-left:.3rem}
 .sixfa{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.6rem;margin-top:.4rem}
 .sixfa div{border:1px solid var(--line);border-radius:10px;padding:.7rem .5rem;text-align:center;
   background:var(--paper)}
@@ -473,8 +489,8 @@ footer a:hover{color:var(--cinnabar);border-color:var(--cinnabar)}
       <a href="#feature">学术特色</a>
       <a href="#doctors">代表医家</a>
       <a href="#diagnostics">诊法层</a>
-      <a href="#materia">方药层</a>
-      <a href="#pattern">证候层</a>
+      <a href="#cases">医案层</a>
+      <a href="#culture">越医文化</a>
       <a href="#graph">知识图谱</a>
       <a href="#about">联合研发</a>
     </nav>
@@ -608,16 +624,16 @@ footer a:hover{color:var(--cinnabar);border-color:var(--cinnabar)}
   <div class="wrap heroin">
     <div class="eyebrow">浙派中医 · 越中医家学术谱系
       <span style="border:1px solid var(--line-2);border-radius:999px;padding:.2rem .6rem;
-        letter-spacing:.12em;color:var(--cinnabar);font-size:10.5px">第四版 · 四层全备</span>
+        letter-spacing:.12em;color:var(--cinnabar);font-size:10.5px">第五版 · 六种文献 · 六层抽取</span>
     </div>
     <h1 class="title">绍派伤寒</h1>
-    <div class="subtitle">学术知识图谱<span class="sep">·</span>Knowledge&nbsp;Graph</div>
+    <div class="subtitle">越医知识图谱<span class="sep">·</span>Knowledge&nbsp;Graph</div>
     <p class="lede">
       发端于明代<em>张景岳</em>，形成于清代<em>俞根初</em>《通俗伤寒论》，光大于<em>何廉臣</em>。
       因浙绍卑湿之地气，寒温统一、六经三焦并参，重观目腹诊、擅开郁透达、用药轻灵——
       自成一格的越中外感病学派。今以图谱之形重现其人、其书、其说，
-      并将<em>舌、脉、腹、目</em>四诊征象、<em>方剂、药物、君臣佐使</em>
-      与<em>病证、治法</em>一并入图，每一味药、每一钱剂量，皆可回溯原书。
+      并将<em>舌、脉、腹、目</em>四诊征象、<em>证候与治法</em>、何廉臣 <em>657 则医案</em>的方药与见症，
+      以及越地<em>医学世家、医事机构与籍贯地域</em>一并入图，每一条关系皆可回溯原文。
     </p>
     <div class="cta">
       <a class="btn btn-solid" href="explorer.html">
@@ -641,22 +657,27 @@ footer a:hover{color:var(--cinnabar);border-color:var(--cinnabar)}
 <section id="stats">
   <div class="wrap">
     <div class="statgrid">
-      <div class="stat"><div class="num" data-to="4317">0</div><div class="lab">知识节点</div><div class="bar" style="background:var(--tile)"></div></div>
-      <div class="stat"><div class="num" data-to="3212">0</div><div class="lab">学术关系</div><div class="bar" style="background:var(--water)"></div></div>
-      <div class="stat"><div class="num" data-to="1586">0</div><div class="lab">原书段落</div><div class="bar" style="background:var(--amber)"></div></div>
-      <div class="stat"><div class="num" data-to="2453">0</div><div class="lab">最大连通分量</div><div class="bar" style="background:var(--celadon)"></div></div>
+      <div class="stat"><div class="num" data-to="16191">0</div><div class="lab">知识节点</div><div class="bar" style="background:var(--tile)"></div></div>
+      <div class="stat"><div class="num" data-to="21351">0</div><div class="lab">学术关系</div><div class="bar" style="background:var(--water)"></div></div>
+      <div class="stat"><div class="num" data-to="4146">0</div><div class="lab">抽取段落 · 六种文献</div><div class="bar" style="background:var(--amber)"></div></div>
+      <div class="stat"><div class="num" data-to="8488">0</div><div class="lab">最大连通分量</div><div class="bar" style="background:var(--celadon)"></div></div>
     </div>
     <div class="classbar">
-      <span class="cls"><i style="background:var(--cinnabar)"></i>医家<b>218</b></span>
-      <span class="cls"><i style="background:var(--water)"></i>著作<b>356</b></span>
-      <span class="cls"><i style="background:var(--celadon)"></i>学术观点<b>1,524</b></span>
-      <span class="cls"><i style="background:var(--amber)"></i>诊法征象<b>1,311</b></span>
-      <span class="cls"><i style="background:var(--pattern)"></i>证候<b>567</b></span>
-      <span class="cls"><i style="background:var(--formula)"></i>方剂<b>41</b></span>
-      <span class="cls"><i style="background:var(--herb)"></i>中药<b>188</b></span>
-      <span class="cls"><i style="background:var(--disease)"></i>病证<b>68</b></span>
-      <span class="cls"><i style="background:var(--tile)"></i>治法<b>29</b></span>
-      <span class="cls"><i style="background:var(--dim)"></i>医案<b>15</b></span>
+      <span class="cls"><i style="background:var(--cinnabar)"></i>医家<b>599</b></span>
+      <span class="cls"><i style="background:var(--water)"></i>著作<b>647</b></span>
+      <span class="cls"><i style="background:var(--celadon)"></i>学术观点<b>2,172</b></span>
+      <span class="cls"><i style="background:var(--amber)"></i>诊法征象<b>2,281</b></span>
+      <span class="cls"><i style="background:var(--pattern)"></i>证候<b>1,674</b></span>
+      <span class="cls"><i style="background:var(--symptom)"></i>症状<b>2,217</b></span>
+      <span class="cls"><i style="background:var(--disease)"></i>病证<b>1,458</b></span>
+      <span class="cls"><i style="background:var(--principle)"></i>治法<b>1,801</b></span>
+      <span class="cls"><i style="background:var(--formula)"></i>方剂<b>962</b></span>
+      <span class="cls"><i style="background:var(--herb)"></i>中药<b>1,254</b></span>
+      <span class="cls"><i style="background:var(--herbprop)"></i>药性<b>80</b></span>
+      <span class="cls"><i style="background:var(--case)"></i>医案<b>657</b></span>
+      <span class="cls"><i style="background:var(--place)"></i>地域<b>264</b></span>
+      <span class="cls"><i style="background:var(--inst)"></i>机构团体<b>90</b></span>
+      <span class="cls"><i style="background:var(--family)"></i>医学世家<b>35</b></span>
     </div>
   </div>
 </section>
@@ -716,9 +737,9 @@ footer a:hover{color:var(--cinnabar);border-color:var(--cinnabar)}
         <div class="era">当代 · 传承与智能化</div>
         <h3>沈钦荣名中医 × 医哲未来人工智能研究院<small>《浙派中医丛书·绍派伤寒》，2021</small></h3>
         <p>沈钦荣名中医主编专著，系统整理越中一脉的医家、著作与学说；
-           医哲未来人工智能研究院据此构建本体与知识图谱。在谱系层之外先后补入<b>诊法层</b>
-           与<b>本草方剂层</b>、<b>证候层</b>，四层全备，共 4,317 个节点、3,212 条关系，
-           皆可检索、可回溯、可视化。</p>
+           医哲未来人工智能研究院据此构建本体与知识图谱。第五版再并入《何廉臣医案》660 则与
+           《越医文化》《越中名医传》《越醫雜詠》《赵晴初医论》——<b>六种文献、六层抽取</b>，
+           共 16,191 个节点、21,351 条关系，皆可检索、可回溯、可视化。</p>
       </div>
     </div>
   </div>
@@ -760,7 +781,7 @@ footer a:hover{color:var(--cinnabar);border-color:var(--cinnabar)}
         <p class="quote">故观目为诊法之首要。</p>
         <div class="who">俞根初 ·《通俗伤寒论》</div>
         <p class="exp">观目法、按胸腹、分六经辨舌苔，于纷繁症候中提纲挈领，重危病人尤见其功。
-           图谱已录得<b>目诊 75</b>、<b>腹诊 110</b>、<b>舌诊 265</b> 项征象，条条系于原文。</p>
+           图谱已录得<b>目诊 83</b>、<b>腹诊 116</b>、<b>舌诊 617</b> 项征象，条条系于原文。</p>
       </article>
       <article class="card">
         <div class="idx">伍</div>
@@ -786,7 +807,7 @@ footer a:hover{color:var(--cinnabar);border-color:var(--cinnabar)}
     <div class="sect-head">
       <div class="sect-tag">Physicians · 代表医家</div>
       <h2>越中十二家</h2>
-      <p>下列数据由图谱统计得出：<b>观点</b>为该医家在书中提出的学术主张条目数，<b>关联</b>为其在图谱中的关系总度数。点击可直达图谱中的对应节点。</p>
+      <p>下列数据由图谱统计得出：<b>观点</b>为该医家在书中提出的学术主张条目数，<b>关联</b>为其在图谱中的关系总度数（含籍贯、世家、医案等新增层的关系）。点击可直达图谱中的对应节点。</p>
     </div>
     <div class="docs" id="docgrid"></div>
   </div>
@@ -796,180 +817,50 @@ footer a:hover{color:var(--cinnabar);border-color:var(--cinnabar)}
 <section id="diagnostics">
   <div class="wrap">
     <div class="sect-head">
-      <div class="sect-tag">Diagnostics · 诊法层</div>
+      <div class="sect-tag">Diagnostics · 诊法层 · 证候层</div>
       <h2>四诊征象：绍派的看家本领</h2>
-      <p>第二版在谱系层之外新增<b>诊法层</b>，自原书抽出 1,311 项诊法征象与 542 个证候，
-         并以「征象提示证候」「征象排除证候」「子证候」「属于六经」四类关系相连。
+      <p>诊法层自《绍派伤寒》抽出 <b>2,281 项诊法征象</b>与 <b>1,674 个证候</b>，
+         以「征象提示证候」「征象排除证候」「子证候」「属于六经」相连；证候层再以「治法对应」「表现为」「病之证候」
+         把证候系于 1,801 个治法、2,217 个症状与 1,458 个病证。
          俞根初 <q>重观目、擅腹诊、察舌分经</q> 的独到之处，至此有了可检索的数据形态。</p>
     </div>
 
     <div class="diag">
       <div class="panel">
         <h3>征象按诊法分布</h3>
-        <p class="cap">共 1,311 项。目诊与腹诊虽非数量最多，却是绍派区别于他派的标志性诊法。</p>
+        <p class="cap">共 2,281 项。目诊与腹诊虽非数量最多，却是绍派区别于他派的标志性诊法。</p>
         <div class="bars" id="modbars"></div>
         <p class="pnote">
-          <b>1,149 项征象仅出现一次</b>——古籍对体征的措辞本就多变（虚里跃动应衣、三脘痞硬、
+          <b>1,898 项征象仅出现一次</b>——古籍对体征的措辞本就多变（虚里跃动应衣、三脘痞硬、
           高低凹凸如畎亩状），这些是真实记载而非抽取噪声，但在本语料内无法互证。
-          另有 796 项征象未抽出「提示何种证候」的断言，在图谱中呈孤点。
+          另有 1,765 项征象未抽出「提示何种证候」的断言，其中 1,001 项在图谱中呈孤点，
+          余者经医案「见象」关系接入主体。
         </p>
       </div>
 
       <div class="panel">
         <h3>证候的六经与性质坐标</h3>
-        <p class="cap">542 个证候中，296 个可锚定到六经、三焦或证候性质的受控词表。</p>
+        <p class="cap">1,674 个证候中，1,311 个带六经、三焦或证候性质标注。</p>
         <div style="margin-bottom:1.35rem">
-          <div class="k" style="color:var(--dim);font-family:var(--sans);font-size:10px;letter-spacing:.18em;margin-bottom:.6rem">六经归属</div>
-          <div class="axis">
-            <span>阳明<b>26</b></span><span>太阴<b>9</b></span><span>少阳<b>7</b></span>
-            <span>太阳<b>5</b></span><span>厥阴<b>5</b></span><span>少阴<b>4</b></span>
-          </div>
+          <div class="k" style="color:var(--dim);font-family:var(--sans);font-size:10px;letter-spacing:.18em;margin-bottom:.6rem">六经归属（名称词表匹配）</div>
+          <div class="axis"><span>阳明<b>76</b></span><span>太阴<b>28</b></span><span>太阳<b>22</b></span><span>厥阴<b>21</b></span><span>少阳<b>20</b></span><span>少阴<b>17</b></span></div>
         </div>
         <div style="margin-bottom:1.35rem">
           <div class="k" style="color:var(--dim);font-family:var(--sans);font-size:10px;letter-spacing:.18em;margin-bottom:.6rem">证候性质（前八）</div>
-          <div class="axis">
-            <span>热<b>62</b></span><span>虚<b>35</b></span><span>湿热<b>25</b></span>
-            <span>湿<b>20</b></span><span>火<b>18</b></span><span>寒<b>13</b></span>
-            <span>风<b>10</b></span><span>暑<b>6</b></span>
-          </div>
+          <div class="axis"><span>热<b>189</b></span><span>虚<b>101</b></span><span>湿热<b>90</b></span><span>寒<b>51</b></span><span>湿<b>49</b></span><span>火<b>48</b></span><span>风<b>36</b></span><span>痰<b>27</b></span></div>
         </div>
         <div>
           <div class="k" style="color:var(--dim);font-family:var(--sans);font-size:10px;letter-spacing:.18em;margin-bottom:.6rem">三焦定位</div>
-          <div class="axis">
-            <span>下焦<b>5</b></span><span>上焦<b>4</b></span><span>中焦<b>3</b></span>
-          </div>
+          <div class="axis"><span>中焦<b>16</b></span><span>下焦<b>13</b></span><span>上焦<b>11</b></span><span>三焦<b>9</b></span></div>
         </div>
         <p class="pnote">
-          证候节点由诊法关系派生而来，其六经与性质由<b>名称</b>经词表匹配推得。
-          因此「某证候未标六经」只说明其名称未含六经字样，<b>不等于原文认为它不属某经</b>。
-          独立的证候层尚未抽取。
+          六经与性质由<b>名称</b>经词表匹配推得，「某证候未标六经」只说明其名称未含六经字样，<b>不等于原文认为它不属某经</b>。
+          原文明言的「属于六经」关系另有 161 条：阳明 44 · 太阴 22 · 厥阴 16 · 太阳 15 · 少阳 15 · 少阴 14。湿热一项合并了「湿|热」与「湿热」两种写法。
         </p>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 本草方剂层 ============ -->
-<section id="materia">
-  <div class="wrap">
-    <div class="sect-head">
-      <div class="sect-tag">Materia Medica · 本草方剂层</div>
-      <h2>方以载法：41 首方，188 味药</h2>
-      <p>第三版补齐本草方剂层，自原书「方剂选录」「医案选按」等章节抽出
-         <b>41 首方剂</b>、<b>188 味中药</b>、<b>262 条药物组成</b>（含钱、分原剂量与炮制），
-         并从何秀山按语中解出 <b>41 条君臣佐使</b>，从加减法中解出 <b>29 条随症加减</b>（加药 22、减药 7）。
-         本层由<b>确定性解析器</b>产出——同一原书输入必得同一图谱，不依赖模型采样。</p>
-    </div>
-
-    <div class="fml">
-      <article class="fcard">
-        <div class="fh"><h3>蒿芩清胆汤</h3><span class="prin">和解胆经法</span></div>
-        <div class="src">俞氏经验方 ·《通俗伤寒论·和解剂》</div>
-        <div class="ing">
-          <span class="j"><b>君</b>青蒿脑<em>钱半至二钱</em></span>
-          <span class="j"><b>君</b>青子芩<em>钱半至三钱</em></span>
-          <span class="j"><b>君</b>淡竹茹<em>三钱</em></span>
-          <span class="c"><b>臣</b>生枳壳<em>钱半</em></span>
-          <span>仙半夏<em>钱半</em></span>
-          <span>赤茯苓<em>三钱</em></span>
-          <span>陈广皮<em>钱半</em></span>
-          <span class="c"><b>佐</b>碧玉散<em>三钱·包</em></span>
-        </div>
-        <p class="zhu">故以蒿、芩、竹茹为君，以清泄胆火……此为和解胆经之良方，凡胸痞作呕、寒热如疟者，投无不效。
-          <br><span style="font-size:11.5px">——何秀山按</span></p>
-      </article>
-
-      <article class="fcard">
-        <div class="fh"><h3>苏羌达表汤</h3><span class="prin">辛温发汗法</span></div>
-        <div class="src">俞氏经验方 ·《通俗伤寒论·发汗剂》</div>
-        <div class="ing">
-          <span class="j"><b>君</b>苏叶<em>钱半至三钱</em></span>
-          <span class="c"><b>臣</b>羌活<em>一钱至钱半</em></span>
-          <span>防风<em>一钱至钱半</em></span>
-          <span>白芷<em>一钱至钱半</em></span>
-          <span class="c"><b>佐</b>光杏仁<em>二钱至三钱</em></span>
-          <span class="c"><b>佐</b>广橘红<em>八分至一钱</em></span>
-          <span class="c"><b>使</b>鲜生姜<em>八分至一钱</em></span>
-          <span class="c"><b>使</b>浙苓皮<em>二钱至三钱</em></span>
-        </div>
-        <p class="zhu">浙绍卑湿，凡伤寒恒多挟湿，故予于辛温中佐以淡渗者，防其停湿也……
-          治正伤寒证，每用以代麻桂二汤，辄效。
-          <br><span style="font-size:11.5px">——俞根初自注</span></p>
-      </article>
     </div>
 
     <div class="diag" style="margin-top:1.15rem">
-      <div class="panel">
-        <h3>剂量：绍派「轻灵」的实证</h3>
-        <p class="cap">图谱录得的 262 条药物组成中，剂量以钱、分为主，多在一至三钱之间——
-          「用药轻灵」不再只是评语，而是可核算的数据。</p>
-        <div class="axis">
-          <span>二钱<b>45</b></span><span>三钱<b>37</b></span><span>钱半<b>28</b></span>
-          <span>一钱<b>25</b></span><span>一钱半<b>10</b></span><span>五分<b>9</b></span>
-          <span>八分<b>8</b></span><span>六分<b>7</b></span>
-        </div>
-        <p class="pnote">
-          方剂来源分布：<b>张景岳 13 首</b>（《景岳全书·新方八阵》）、
-          <b>俞根初 11 首</b>（《通俗伤寒论》发汗、和解、攻下、清凉、温热、滋补各剂）、
-          <b>曹炳章 8 首</b>、<b>何廉臣 6 首</b>、胡宝书 2 首、赵晴初 1 首。
-        </p>
-      </div>
-      <div class="panel">
-        <h3>本草层接通了原先断开的两瓣</h3>
-        <p class="cap">质检报告曾记录一个结构性缺口：谱系层与诊法层互不相连。</p>
-        <div class="axis">
-          <span style="border-color:var(--dim)">最初 · 两个分量<b style="color:var(--dim)">1444 + 663</b></span>
-          <span style="border-color:var(--celadon)">现在 · 单一巨分量<b style="color:var(--celadon)">2453</b></span>
-        </div>
-        <p class="pnote">
-          方剂以<b>「源自」</b>连向著作（27 条）、以<b>「方剂主治」</b>连向证候（5 条）、
-          医案以<b>「医案医家」</b>连向医家（15 条）——三类关系架起桥梁；
-          证候层再以<b>「病证论者」</b>把 68 个病证系回论述它的医家。
-          至此医家、著作、学说、征象、证候、治法、方剂、药物、病证、医案<b>十类俱在同一张网中</b>，
-          全图有边节点占比由 68.3% 升至 <b>71.0%</b>。
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 证候层 ============ -->
-<section id="pattern">
-  <div class="wrap">
-    <div class="sect-head">
-      <div class="sect-tag">Patterns · 证候层</div>
-      <h2>四层全备：病证、证候与治法</h2>
-      <p>第四层补齐后，本体的十三类中已有十类落地。病证分类直接取自原书列举，
-         并以原书自报的条数逐一校验：<b>本证 5 端、兼证 21 证、夹证 16 证、坏证 4 证、复证 5 证</b>——
-         抽出条数与原文一字不差。</p>
-    </div>
-
-    <div class="diag">
-      <div class="panel">
-        <h3>《通俗伤寒论》病证分类</h3>
-        <p class="cap">俞根初手稿的病证骨架，何秀山加按、何廉臣勘订、曹炳章重编为十二卷。</p>
-        <div class="tree">
-          <div class="root">伤寒<span class="n">外感百病之总名</span></div>
-          <ul>
-            <li><span class="cat">伤寒本证</span><span class="n">5 端 · 受寒而致病者</span>
-              <div class="kids">小伤寒 · 大伤寒 · 两感伤寒 · 伏气伤寒 · 阴证伤寒</div></li>
-            <li><span class="cat">伤寒兼证</span><span class="n">21 证 · 二邪兼发者</span>
-              <div class="kids">伤寒兼风 · 兼湿 · 兼痧 · 兼疟 · 兼疫 · 风温伤寒 · 风湿伤寒 · 湿温伤寒 ·
-                春温伤寒 · 热证伤寒 · 暑湿伤寒 · 伏暑伤寒 · 秋燥伤寒 · 冬温伤寒 · 大头伤寒 ·
-                黄耳伤寒 · 赤隔伤寒 · 发斑伤寒 · 发狂伤寒 · 漏底伤寒 · 脱脚伤寒</div></li>
-            <li><span class="cat">伤寒夹证</span><span class="n">16 证 · 内外夹发，较兼证尤难治</span>
-              <div class="kids">夹食 · 夹痰 · 夹饮 · 夹血 · 夹阴 · 夹哮 · 夹痞 · 夹痛 · 夹胀 ·
-                夹泻 · 夹痢 · 夹疝 · 夹痨 · 临经 · 妊娠 · 产后（皆冠「伤寒」）</div></li>
-            <li><span class="cat">伤寒坏证</span><span class="n">4 大重证</span>
-              <div class="kids">转痉 · 转厥 · 转闭 · 转脱</div></li>
-            <li><span class="cat">伤寒复证</span><span class="n">5 大难证</span>
-              <div class="kids">劳复 · 食复 · 房复 · 感复 · 怒复</div></li>
-          </ul>
-        </div>
-        <p class="pnote">另收<b>六淫正病</b>六种（风、寒、暑、湿、燥、火病）及暑病诸变——
-          暑湿、暑秽（俗曰热痧）、暑风、暑厥、暑瘵，皆取自原文「名曰」句。</p>
-      </div>
-
       <div class="panel">
         <h3>六经统六法</h3>
         <p class="cap">《通俗伤寒论·六经用药法》以六法应六经，是绍派用药的总纲。</p>
@@ -985,14 +876,141 @@ footer a:hover{color:var(--cinnabar);border-color:var(--cinnabar)}
           俞氏另立治则总纲：<b>外风宜散、内风宜熄、表寒宜汗、里寒宜温、伤暑宜清、中暑宜开、
           伏暑宜下、郁火宜发、实火宜泻、阴火宜引</b>。何廉臣更将下法细分为七：
           毒火急下、风火疏下、燥火润下、痰火降下、食积化火清下、瘀血化火通下、水火互结导下。
-          全层共 <b>29 个治法</b>、<b>27 条治法对应</b>、<b>20 条病之证候</b>，
-          另有 <b>61 条子病证</b>与 <b>68 条病证论者</b>。
+          证候层共 <b>1,801 个治法</b>、<b>428 条治法对应</b>、
+          <b>370 条表现为</b>、<b>360 条病之证候</b>、<b>299 条子证候</b>。
         </p>
+      </div>
+      <div class="panel">
+        <h3>症状与病证：第五版首次落地</h3>
+        <p class="cap">前四版刻意留空的「症状」一类，随医案层进入图谱。</p>
+        <div class="axis">
+          <span>症状<b>2,217</b></span><span>医案见症<b>3,233</b></span>
+          <span>表现为<b>370</b></span><span>病证<b>1,458</b></span>
+          <span>医案诊断<b>702</b></span>
+        </div>
         <p class="pnote">
-          <b>症状（Symptom）一类刻意留空。</b>18 个常见症状候选中有 17 个已经是「诊法征象」节点
-          （modality 为问诊或望诊者共 672 个）。另立一类只会重复节点、割裂图谱，
-          故以诊法征象承载症状语义。
+          2,217 个症状节点主要来自医案层的「医案见症」与证候层的「表现为」。
+          其中 <b>430 个名称与诊法征象重合</b>——两类并存是两层抽取各自命名的结果，
+          检索一个体征时请同时查看症状与征象两类节点。
+          1,458 个病证中 416 个与医案相连，928 个带原书归类。
         </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 医案层 ============ -->
+<section id="cases">
+  <div class="wrap">
+    <div class="sect-head">
+      <div class="sect-tag">Case Records · 医案层</div>
+      <h2>六百六十案：何廉臣的临证实录</h2>
+      <p>《何廉臣医案》660 则中 <b>657 则入图</b>，每案连出所用药物、所见症状与征象、所辨证候、所施治法与所用成方，
+         共 <b>16,343 条关系</b>——占全图四分之三。医案标题多以证候而非病名命名（含规范病名者仅 255/660），
+         这是何廉臣的命题习惯，不是词表缺口；这类标题成为证候节点而非被硬归入病证。</p>
+    </div>
+
+    <div class="diag">
+      <div class="panel">
+        <h3>病证 × 用药</h3>
+        <p class="cap">按医案共现频次排出的标志药物，自文本复原而非依学说断言——疟配草果仁、肝风配明天麻与石决明、
+          湿温配滑石与山栀，皆落在读该派者所预期之处。完整 416 条见 <code>disease_profiles.csv</code>。</p>
+        <div class="tblwrap">
+          <table class="casetbl">
+            <thead><tr><th>病证</th><th style="text-align:right">案数</th><th>共现药物（前六）</th></tr></thead>
+            <tbody>
+            <tr><td class="d">咳嗽</td><td class="n">37</td>
+              <td class="h"><b>瓜蒌仁</b>、<b>光杏仁</b>、<b>冬桑叶</b>、新会皮、竹茹、前胡</td></tr>
+            <tr><td class="d">湿热</td><td class="n">25</td>
+              <td class="h"><b>滑石</b>、<b>竹叶</b>、<b>广郁金</b>、瓜蒌仁、枳实、佩兰叶</td></tr>
+            <tr><td class="d">湿温</td><td class="n">19</td>
+              <td class="h"><b>滑石</b>、<b>山栀</b>、<b>竹叶</b>、苏薄荷、苏叶梗、杜藿梗</td></tr>
+            <tr><td class="d">湿热兼风</td><td class="n">13</td>
+              <td class="h"><b>滑石</b>、<b>佩兰叶</b>、<b>广郁金</b>、竹叶、苏薄荷、西茵陈</td></tr>
+            <tr><td class="d">湿热夹食</td><td class="n">13</td>
+              <td class="h"><b>滑石</b>、<b>佛手片</b>、<b>竹叶</b>、莱菔子、打延胡、打鸡金</td></tr>
+            <tr><td class="d">暑湿夹食</td><td class="n">11</td>
+              <td class="h"><b>竹叶</b>、<b>山栀</b>、<b>桑枝</b>、佩兰叶、枳壳、滑石</td></tr>
+            <tr><td class="d">湿热阻中</td><td class="n">11</td>
+              <td class="h"><b>滑石</b>、<b>杜藿梗</b>、<b>佩兰叶</b>、佛手片、广郁金、竹叶</td></tr>
+            <tr><td class="d">疟</td><td class="n">11</td>
+              <td class="h"><b>滑石</b>、<b>山栀</b>、<b>竹叶</b>、桑枝、苏叶梗、草果仁</td></tr>
+            <tr><td class="d">暑湿兼风</td><td class="n">10</td>
+              <td class="h"><b>滑石</b>、<b>冬桑叶</b>、<b>广郁金</b>、桑枝、滁菊花、苏叶梗</td></tr>
+            <tr><td class="d">肝风</td><td class="n">8</td>
+              <td class="h"><b>明天麻</b>、<b>石决明</b>、<b>竹茹</b>、东白薇、佩兰叶、冬桑叶</td></tr>
+            <tr><td class="d">暑湿</td><td class="n">7</td>
+              <td class="h"><b>竹叶</b>、<b>冬桑叶</b>、<b>滑石</b>、苏薄荷、山栀、青蒿</td></tr>
+            <tr><td class="d">肝阳犯胃</td><td class="n">7</td>
+              <td class="h"><b>广郁金</b>、<b>竹茹</b>、<b>石决明</b>、香附、代赭石、佛手片</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>用药与见症</h3>
+        <p class="cap">每案平均用药 12.9 味（中位 10 味）。药名保留道地与品质前缀——广郁金与郁金、川贝与贝母在中药中并非同一味药。</p>
+        <div class="twocol">
+          <div><h4>最常用药物 · 案数</h4><div class="bars tight" id="herbbars"></div></div>
+          <div><h4>最常见症状 · 案数</h4><div class="bars tight" id="symbars"></div></div>
+        </div>
+        <p class="pnote">
+          治法以<b>芳淡清化</b>（36 案）、<b>苦辛通降</b>（35 案）、<b>柔肝熄风</b>（13 案）最多，
+          正是「芳淡」「苦辛」两路的绍派用药本色；成方以<b>保和丸</b> 49、<b>左金丸</b> 47、<b>磁朱丸</b> 46 案居前。
+          本草方剂层另有方剂 962 首、中药 1,254 味、药性 80 条；
+          286 首方剂已与主治证候、病证或医案相连，余者仅见方名，尚待配伍。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 越医文化层 ============ -->
+<section id="culture">
+  <div class="wrap">
+    <div class="sect-head">
+      <div class="sect-tag">Yue Medicine · 越医文化层</div>
+      <h2>越医千年：世家、机构与地域</h2>
+      <p>第五版首次并入《越医文化》《越中名医传》《越醫雜詠》与《赵晴初医论》，医家自 218 位扩至 <b>599 位</b>，
+         并新增<b>地域 264</b>、<b>机构团体 90</b>、<b>医学世家 35</b> 三类节点，
+         以「籍贯」「属于世家」「创办机构」「机构所在」相连。该层覆盖 <b>78.7%</b>（1,475/1,874 段），
+         停在逐帧 token 上限而非内容耗尽——本节所有计数都是<b>下界</b>，不可读作「文中没有」。</p>
+    </div>
+
+    <div class="diag">
+      <div class="panel">
+        <h3>籍贯地域</h3>
+        <p class="cap">152 条籍贯关系，会稽、山阴两县即古今绍兴城区，为越医渊薮。</p>
+        <div class="axis"><span>會稽<b>21</b></span><span>绍兴<b>19</b></span><span>山陰<b>19</b></span><span>上虞<b>12</b></span><span>紹興<b>7</b></span><span>諸暨<b>4</b></span><span>浙江绍兴<b>3</b></span><span>浙江<b>3</b></span></div>
+        <p class="pnote">《越中名医传》与《越醫雜詠》为繁体底本，<b>會稽 / 会稽、山陰 / 山阴、紹興 / 绍兴</b>各自成点，
+          图谱尚未归并异写；上表数字为对应节点的关系数。</p>
+        <h3 style="margin-top:1.6rem">医学世家</h3>
+        <p class="cap">35 个世家节点、55 条「属于世家」关系。</p>
+        <div class="fam">
+          <div><b>錢氏</b><span>上虞 · 女科 · 2代</span><i>8 位医家</i></div>
+          <div><b>熙氏</b><span>醫術 · 四</span><i>5 位医家</i></div>
+          <div><b>俞氏</b><span>山阴陶里村 · 傷寒 · 十数代</span><i>4 位医家</i></div>
+          <div><b>馬氏</b><span>會稽 · 醫 · 四代</span><i>4 位医家</i></div>
+          <div><b>張氏</b><span>醫 · 3代</span><i>3 位医家</i></div>
+          <div><b>徐氏</b><span>會稽 · 醫 · 三</span><i>3 位医家</i></div>
+          <div><b>周氏</b><span>醫 · 三</span><i>3 位医家</i></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>医事机构与团体</h3>
+        <p class="cap">90 个机构团体节点，自书院、医社到近代医报与研究所。</p>
+        <div class="kinds"><span>学校书院<b>25</b></span><span>医社学会<b>12</b></span><span>药铺药局<b>9</b></span><span>医院诊所<b>10</b></span><span>志书方志<b>5</b></span><span>报刊<b>3</b></span><span>研究机构<b>3</b></span><span>其他<b>23</b></span></div>
+        <p class="pnote">
+          何廉臣 1892 年在城内<b>宝珠桥</b>悬壶，1908 年创办<b>《绍兴医药学报》</b>，1909 年发起<b>绍兴医学会</b>，
+          1915 年成立<b>神州医药会绍兴分会</b>——绍派伤寒由一家之学走向近代医学团体，脉络尽在图中；
+          「创办机构」关系 16 条，「机构所在」17 条。
+        </p>
+        <h3 style="margin-top:1.6rem">六层覆盖</h3>
+        <p class="cap">覆盖 = 已抽取段落 / 路由到该层的段落。</p>
+        <div class="bars tight" id="covbars"></div>
+        <p class="pnote">谱系层 100.0% · 诊法层 98.9% · 证候层 97.9% · 本草方剂层 98.9% · 医案层 99.5% · 越医文化层 78.7%。每处缺口都是逐帧 LLM token 上限所致，而非语料耗尽。</p>
       </div>
     </div>
   </div>
@@ -1004,25 +1022,27 @@ footer a:hover{color:var(--cinnabar);border-color:var(--cinnabar)}
     <div class="sect-head">
       <div class="sect-tag">Knowledge Graph · 知识图谱</div>
       <h2>一图见其全</h2>
-      <p>图谱是一个<b>双星系统</b>：左瓣为谱系层（医家 · 著作 · 学术观点），
-         右瓣为诊法层（诊法征象 · 证候），环绕四周的是本草方剂层（方剂 · 中药 · 治法 · 医案）。
-         下方预览取真实布局坐标绘制；完整图谱含 4,317 个节点，
-         支持搜索、筛选、关系追溯与原文出处核验。</p>
+      <p>图谱以 <b>8,488 个节点的巨分量</b>为核心：谱系关系权重最高，几何由师承脉络而非观点数量决定；
+         周围 501 个卫星分量按黄金角排布，最外圈是 6,355 个尚无关系的孤点。
+         下方预览取真实布局坐标绘制高连通节点；完整图谱含 16,191 个节点，
+         支持搜索、按抽取层 / 关系类型 / 诊法模态筛选、关系追溯与原文出处核验。</p>
     </div>
     <div class="gwrap">
       <div class="ghead">
         <div>
           <h3>绍派伤寒知识图谱 · 全景浏览</h3>
-          <p>支持中文检索医家 / 著作 / 观点 / 征象 / 证候，可按关系类型与诊法模态（舌·脉·腹·目）筛选；
-             点选节点即见其全部关系与逐条原文出处。</p>
+          <p>支持中文检索医家 / 著作 / 观点 / 征象 / 证候 / 医案 / 方药 / 机构，可按抽取层、关系类型与诊法模态（舌·脉·腹·目）筛选；
+             点选节点即见其全部关系与原文出处。</p>
           <div class="glegend">
             <span class="lg"><i style="background:var(--cinnabar)"></i>医家</span>
             <span class="lg"><i style="background:var(--water)"></i>著作</span>
             <span class="lg"><i style="background:var(--celadon)"></i>学术观点</span>
             <span class="lg"><i style="background:var(--amber)"></i>诊法征象</span>
             <span class="lg"><i style="background:var(--pattern)"></i>证候</span>
-            <span class="lg"><i style="background:var(--formula)"></i>方剂</span>
+            <span class="lg"><i style="background:var(--symptom)"></i>症状</span>
             <span class="lg"><i style="background:var(--herb)"></i>中药</span>
+            <span class="lg"><i style="background:var(--formula)"></i>方剂</span>
+            <span class="lg"><i style="background:var(--case)"></i>医案</span>
           </div>
         </div>
         <a class="btn btn-solid" href="explorer.html" style="margin-bottom:.9rem">
@@ -1071,26 +1091,22 @@ footer a:hover{color:var(--cinnabar);border-color:var(--cinnabar)}
     </div>
 
     <div class="srcbox">
-      <b>学术底本</b>：《浙派中医丛书》专题系列·绍派伤寒，沈钦荣 主编，2021 年。
-      语料自原书复原：1,586 个段落、203,045 字（上游审计口径 205,712，差 1.3%）。<br>
-      <b>图谱构建</b>：医哲未来人工智能研究院（IMPFAI）· 本体 1.0.0（13 类 / 26 关系）·
-      RDF 59,670 三元组。<br>
-      <b>构建进度</b>：<b>四层全备</b>——谱系层（医家·著作·学术观点）、诊法层（舌·脉·腹·目诊）、
-      本草方剂层（方剂·中药·医案）、证候层（病证·证候·治法）。本体十三类中十类已有实例。<br>
-      <b>抽取方式</b>：谱系层与诊法层由单模型 LLM 抽取；本草方剂层与证候层由<b>确定性解析器</b>产出，
-      同一输入必得同一图谱。本草层经金标准抽样校验（蒿芩清胆汤 8/8 味全中）；
-      病证分类经原书自报条数校验（5/21/16/4/5 全对）。<br>
-      <b>本体扩展</b>：为承载原书明列的病证层级，自 1.0.0 增补 <code>subDiseaseOf</code>（病证→病证）；
-      为把病证接入图谱主体，再补 <code>describedBy</code>（病证→医家），现为 <b>1.2.0</b>，其余一字未动。<br>
-      <b>已知限制</b>：① 谱系层与诊法层的关系为单模型抽取，<b>尚未交叉验证</b>；
-      ② 97.0% 的关系有逐字原文证据，其余标注「非逐字」；③ 大多数关系仅有一处文献支撑；
-      ④ <b>药名未作归一</b>——生枳壳与枳壳、炙甘草与甘草各自成点（因剥离前缀会把陈皮/青皮/新会皮并成「皮」）；
-      ⑤ 方剂节点须原书印有配伍，或与其他实体有明确关系，仅被提及方名者不立；
-      ⑥ <b>症状类刻意留空</b>，症状语义由诊法征象承载；
-      ⑦ 796 项诊法征象未抽出所提示的证候，呈孤点；
-      ⑨ 356 部著作中有 11 条实为参考文献中的期刊论文题名。<br>
-      <b>本体校验</b>：定义域/值域违例 0 / 3,212，悬空端点 0，全部关系带出处。
+      <b>学术底本</b>：《浙派中医丛书》专题系列·绍派伤寒，沈钦荣 主编，2021 年（语料 1,586 段、203,045 字）；
+      及《何廉臣医案》660 则、《越医文化》十章、《越中名医传》下篇与补、《越醫雜詠》、《赵晴初医论》，共六种文献。<br>
+      <b>图谱构建</b>：医哲未来人工智能研究院（IMPFAI）· 本体 1.1.0（16 类 / 39 关系，
+      15 类 / 32 关系已有实例）· RDF A-Box 约 32 万三元组。<br>
+      <b>抽取方式</b>：六层单模型 LLM 抽取——谱系层 sonnet，诊法、证候、本草、医案、越医文化五层 haiku；
+      MiniMax 交叉验证未运行，全部关系 <code>agreement=single_engine</code>。
+      层覆盖：谱系层 100.0% · 诊法层 98.9% · 证候层 97.9% · 本草方剂层 98.9% · 医案层 99.5% · 越医文化层 78.7%——缺口皆为逐帧 token 上限所致，来自越医文化层的计数是下界。<br>
+      <b>已知限制</b>：① 单引擎、未交叉验证；② 97.9% 的关系有逐字原文证据，444 条标注「非逐字」；
+      ③ 98.8% 的关系仅有一处文献支撑；④ <b>药名不作归一</b>——道地与品质前缀（广、川、杭、陈、真）刻意保留，仅归并炮制前缀；
+      ⑤ 6,355 个节点尚无任何关系（多为单次出现的症状、治法短语），图中列于最外圈；
+      ⑥ 医案标题仅 255/660 含规范病名，其余以证候命名；⑦ 繁体底本中的會稽 / 会稽、山陰 / 山阴等异写各自成点；
+      ⑧ 症状与诊法征象两类有 430 个同名节点并存。<br>
+      <b>本体校验</b>：定义域/值域违例 0 / 21,351，悬空端点 0，全部关系带出处。
       详见 <a href="data/QC_AUDIT.md" style="color:var(--celadon)">QC_AUDIT.md</a>。<br>
+      <b>出处深度</b>：本站与 <code>data/</code> 中的导出源自上游浏览器内嵌副本——每条关系 1 条原文与章节路径、
+      每个节点最多 3 条章节路径，<b>无段落编号</b>；完整出处以上游 <code>shaopai_kg.json</code> 为准。<br>
       本站仅供学术研究与文献检索之用，<b>不作为临床诊疗依据</b>。
     </div>
 
@@ -1098,47 +1114,59 @@ footer a:hover{color:var(--cinnabar);border-color:var(--cinnabar)}
       <div class="sect-tag">Datasets · 数据下载</div>
       <h2 style="font-size:1.5rem;margin-bottom:.9rem">机器可读数据集</h2>
       <p style="color:var(--dim);font-size:14.5px;margin:0 0 1.4rem;line-height:2">
-        图谱以多种格式开放，可直接导入 Neo4j 或用 RDF 工具查询。所有关系均带出处字段
+        图谱以多种格式开放，可直接导入 Neo4j 或用 RDF 工具查询。所有关系均带出处与抽取层字段
         （<code>source_sentence</code> · <code>chapter_path</code> · <code>passage_id</code> ·
-        <code>evidence_verbatim</code> · <code>engine</code> · <code>agreement</code>）。
+        <code>evidence_verbatim</code> · <code>engine</code> · <code>agreement</code> · <code>layer</code>；本副本的 <code>passage_id</code> 为空）。
       </p>
       <div class="files">
         <a class="file" href="data/shaopai_kg.json" download>
           <span class="ext">JSON</span>
           <span><span class="fn">shaopai_kg.json</span>
-            <span class="fd">主数据集，含本体、受控词表、全部节点与关系及完整出处</span></span></a>
+            <span class="fd">主数据集：本体、受控词表、全部节点与关系及出处（18.1 MB）</span></span></a>
         <a class="file" href="data/corpus_shaopai.json" download>
           <span class="ext">JSON</span>
           <span><span class="fn">corpus_shaopai.json</span>
-            <span class="fd">自原书复原的分段语料，带章节路径，供复核与再抽取</span></span></a>
+            <span class="fd">《绍派伤寒》自原书复原的分段语料，带章节路径，供复核与再抽取</span></span></a>
         <a class="file" href="data/nodes.csv" download>
           <span class="ext">CSV</span>
           <span><span class="fn">nodes.csv</span>
-            <span class="fd">Neo4j 导入格式的节点表，含布局坐标与连通分量</span></span></a>
+            <span class="fd">Neo4j 导入格式的节点表，含属性、布局坐标与连通分量（2.0 MB）</span></span></a>
         <a class="file" href="data/edges.csv" download>
           <span class="ext">CSV</span>
           <span><span class="fn">edges.csv</span>
-            <span class="fd">关系表，出处字段随行</span></span></a>
+            <span class="fd">关系表，出处、抽取层与引擎随行（3.6 MB）</span></span></a>
+        <a class="file" href="data/disease_profiles.csv" download>
+          <span class="ext">CSV</span>
+          <span><span class="fn">disease_profiles.csv</span>
+            <span class="fd">416 个病证的医案数与共现药物 / 症状</span></span></a>
         <a class="file" href="data/shaopai_instances.ttl" download>
           <span class="ext">TTL</span>
           <span><span class="fn">shaopai_instances.ttl</span>
-            <span class="fd">RDF A-Box，以 rdf:Statement 具体化承载出处</span></span></a>
+            <span class="fd">RDF A-Box，以 rdf:Statement 具体化承载出处（11.7 MB）</span></span></a>
+        <a class="file" href="data/shaopai_ontology.ttl" download>
+          <span class="ext">TTL</span>
+          <span><span class="fn">shaopai_ontology.ttl</span>
+            <span class="fd">OWL T-Box：16 类、39 对象属性，中英双语标签</span></span></a>
         <a class="file" href="data/load_neo4j.cypher" download>
           <span class="ext">CQL</span>
           <span><span class="fn">load_neo4j.cypher</span>
-            <span class="fd">约束、索引与分批 LOAD CSV 导入脚本</span></span></a>
+            <span class="fd">约束、索引与分批 LOAD CSV 导入脚本（APOC 与无 APOC 两式）</span></span></a>
         <a class="file" href="data/example_queries.cypher" download>
           <span class="ext">CQL</span>
           <span><span class="fn">example_queries.cypher</span>
-            <span class="fd">六个可直接运行的图遍历示例</span></span></a>
+            <span class="fd">可直接运行的图遍历示例，附 SPARQL 对照</span></span></a>
         <a class="file" href="data/layout_positions.json" download>
           <span class="ext">JSON</span>
           <span><span class="fn">layout_positions.json</span>
-            <span class="fd">全部 4,317 个节点的布局坐标，保证渲染可复现</span></span></a>
+            <span class="fd">全部 16,191 个节点的布局坐标，保证渲染可复现</span></span></a>
         <a class="file" href="data/QC_AUDIT.md">
           <span class="ext">MD</span>
           <span><span class="fn">QC_AUDIT.md</span>
             <span class="fd">覆盖度、完整性与已知问题的质检报告</span></span></a>
+        <a class="file" href="data/qc_audit.json" download>
+          <span class="ext">JSON</span>
+          <span><span class="fn">qc_audit.json</span>
+            <span class="fd">质检数字的机器可读版，由导入脚本实测重算</span></span></a>
       </div>
     </div>
   </div>
@@ -1154,8 +1182,8 @@ footer a:hover{color:var(--cinnabar);border-color:var(--cinnabar)}
     <div class="fnote">
       <div><b style="color:var(--ink-2)">绍派伤寒 · 学术知识图谱</b></div>
       <div>沈钦荣名中医 × 医哲未来人工智能研究院 联合研发 ·
-        学术底本《浙派中医丛书·绍派伤寒》（2021）</div>
-      <div>第四版 · 4,317 节点 / 3,212 关系 · 四层全备 · 单一巨分量 2,453 节点</div>
+        学术底本《浙派中医丛书·绍派伤寒》（2021）等六种文献</div>
+      <div>第五版 · 16,191 节点 / 21,351 关系 · 六种文献 · 六层抽取 · 巨分量 8,488 节点</div>
       <div style="margin-top:.4rem">
         <a href="explorer.html">知识图谱</a> ·
         <a href="data/QC_AUDIT.md">质检报告</a> ·
@@ -1169,7 +1197,7 @@ footer a:hover{color:var(--cinnabar);border-color:var(--cinnabar)}
   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V6M6 12l6-6 6 6"/></svg>
 </button>
 
-<script id="preview" type="application/json">{"n":[["俞根初",0,-0.8064,0.2529,268],["何廉臣",0,-1.2329,0.3245,207],["章虚谷",0,-0.9901,-0.5498,140],["曹炳章",0,-1.3481,0.4895,123],["赵晴初",0,-1.4951,-0.195,100],["张景岳",0,-1.5809,0.1129,83],["徐荣斋",0,-1.1782,0.5373,81],["热证",4,0.6999,-0.0909,73],["张畹香",0,-1.1617,-0.466,70],["胡宝书",0,-0.8656,-0.1978,67],["周伯度",0,-1.7429,-0.6568,52],["湿证",4,1.2305,-0.5441,51],["虚证",4,1.6519,-0.01,47],["章氏",0,-0.8341,-0.3956,42],["寒证",4,0.935,0.5577,41],["叶天士",0,-0.9946,-0.1542,34],["俞氏",0,-1.2104,0.1432,30],["通俗伤寒论",1,-1.0356,0.3818,28],["邵兰荪",0,-1.1523,0.364,28],["阳明",4,0.9663,-0.2858,26],["风证",4,1.5966,0.1612,25],["伤寒兼证",9,2.7003,-0.3455,23],["何氏",0,-0.8867,0.0152,21],["仲景",0,-1.1407,-0.2337,20],["火证",4,1.0544,0.2454,20],["阿胶鸡子黄汤",5,-0.5302,-0.1646,20],["苏羌达表汤",5,-1.7248,-0.4784,19],["何秀山",0,-0.8855,0.4217,18],["伤寒夹证",9,3.5795,0.1449,18],["吴鞠通",0,-0.9333,0.151,16],["羚角钩藤汤",5,-0.5223,0.3524,16],["景岳全书",1,-1.6544,0.0967,15],["柴胡达原饮",5,-1.2805,0.0759,15],["蒿芩清胆汤",5,-1.2649,0.8208,15],["加减葳蕤汤",5,-0.4215,0.8276,15],["三甲散",5,-2.0036,0.9698,14],["陷胸承气汤",5,-1.1665,-0.5186,13],["神术汤",5,-0.8275,0.7984,13],["青木香散",5,-0.7969,-1.0641,13],["陈皮",6,-2.0355,0.2108,12],["吴又可",0,-1.0529,0.4574,11],["雷少逸",0,-0.733,-0.1766,11],["热霍乱初起方",5,0.1496,0.3432,11],["内经",1,-1.2912,-0.3659,10],["俞根初的葱豉桔梗汤、七味葱白汤及《温病条辨》中的桑菊饮等属此凉散法之类方",2,-0.8587,0.425,10],["叶氏",0,-0.9986,-0.3492,10],["一柴胡饮",5,-1.9046,-0.2768,10],["柴胡",6,-1.8834,0.1018,10],["五仁橘皮汤",5,-0.0549,-0.3804,10],["湿霍乱初起方",5,0.13,0.1353,10],["暑病",9,1.924,0.1471,10],["重订通俗伤寒论",1,-1.0731,0.4377,9],["伤寒论",1,-1.0978,-0.319,9],["景岳",0,-1.8551,0.0972,9],["实证",4,0.8731,-0.4475,9],["太阴",4,1.061,-0.1056,9],["大温中饮",5,-2.1211,0.1311,9],["五汁一枝煎",5,-0.7757,0.0775,9],["霍乱通治方",5,-0.6914,0.7738,9],["葱豉桔梗汤",5,0.3216,0.8557,9],["达郁宽中汤",5,5.0719,-0.4812,9],["七制金铃子丸",5,-1.6013,-0.142,9],["张仲景",0,-0.925,-0.1787,8],["俞东扶",0,-0.5533,0.8174,8],["徐灵胎",0,-1.6177,-0.2351,8],["存存斋医话续集",1,-1.609,-0.2707,8],["暑证",4,2.0223,0.2376,8],["柴陈煎",5,-2.2322,-0.0411,8],["寒霍乱初起方",5,-1.3859,0.9704,8],["重订广温热论",1,-1.0749,0.2369,7],["三订通俗伤寒论",1,-0.8759,0.3422,7],["东垣",0,-1.7056,0.1036,7],["石芾南",0,-1.4039,0.3853,7],["舌苔",3,1.2522,0.4314,7],["舌象",3,2.0273,0.7093,7],["阴证",4,1.2484,0.5215,7],["湿热",4,1.2415,-0.6472,7],["太阴经湿疟",4,1.2002,-0.3899,7],["热霍乱",4,0.5801,-0.1086,7],["少阳",4,1.5626,-0.2635,7],["炙甘草",6,-1.8195,0.2902,7],["正柴胡饮",5,-1.9735,-0.0046,7],["柴芩煎",5,-1.6313,0.0201,7],["柴胡白虎煎",5,-1.968,-0.1388,7],["六味回阳饮",5,-1.9838,0.3491,7],["青黛石膏汤",5,0.7694,0.6313,7],["则以吴氏清络饮",5,-2.0932,-1.1783,7],["疏风止嗽汤",5,-1.3197,0.6478,7],["妙香丸",5,1.0042,-0.3937,7],["伤寒本证",9,4.3313,0.3366,7],["伤寒复证",9,4.1815,1.0075,7],["六经总诀",1,-0.8051,0.3632,6],["王孟英",0,-0.9679,0.0677,6],["尤在泾",0,-1.3731,-0.0718,6],["周氏",0,-1.4551,-0.433,6],["徐氏",0,-2.1321,0.393,6],["发热",3,1.1605,0.3898,6],["阳证",4,1.8459,0.2969,6],["黄芩",6,-1.1653,0.0237,6],["芍药",6,-1.7394,-0.0541,6],["甘草",6,-2.2874,0.125,6],["二柴胡饮",5,-2.1113,-0.017,6],["五柴胡饮",5,-1.7223,0.1567,6],["金水六君煎",5,-1.8596,0.4433,6],["叶氏薷杏汤",5,-2.0718,-0.7321,6],["香砂平胃散",5,-2.3163,0.0667,6],["伤寒",9,3.6898,0.4938,6],["伤寒坏证",9,3.4118,1.0241,6],["燥病",9,0.0627,-0.4673,6],["景岳全书·杂证谟瘟疫篇",1,-1.6717,0.1268,5],["喻嘉言",0,-1.4061,0.3348,5],["医门棒喝",1,-0.9574,-0.6408,5],["《通俗伤寒论》中许多所谓何秀山按的文字，实系何氏所作",2,-1.1082,0.4719,5],["徐洄溪",0,-1.7907,-0.6972,5],["周学海",0,-0.7658,-0.2221,5],["王清任",0,-1.418,0.563,5],["曹炳章医学论文集",1,-1.3594,0.522,5],["虚里",3,0.9858,1.0878,5],["暑湿伤气",4,1.976,0.1889,5],["风寒外束",4,1.4301,0.3183,5],["太阳",4,0.9141,0.6838,5],["厥阴",4,0.7563,0.2018,5],["燥证",4,2.1737,-0.6363,5],["防风",6,-1.798,-0.2355,5],["三柴胡饮",5,-1.7226,0.3329,5],["当归",6,-1.8531,0.6662,5],["四柴胡饮",5,-1.8263,0.0465,5],["柴苓饮",5,-2.2434,0.5315,5],["淡竹茹",6,-0.8194,0.7328,5],["清湿热与散寒湿",5,1.3566,0.2664,5],["火病",9,2.3249,0.4214,5],["增订通俗伤寒论",1,-1.109,0.3926,4],["统论四时外感病的诊治，将《内经》、《伤寒论》及后世诸家伤寒病新知融会一起，颇有新义，为绍派伤寒之理论薮渊",2,-0.9673,0.4815,4],["景岳全书·传忠录神气存亡论",1,-1.6221,0.0745,4],["观两目法",1,-0.8381,0.3663,4],["伤寒",1,-0.9175,0.3863,4],["本草思辨录",1,-1.625,-0.5613,4],["邵兰荪医案",1,-1.2578,0.4393,4],["何廉臣先生谓即系“肺痈”",2,-0.9547,0.4057,4],["徐荣斋于绍派伤寒贡献颇多，一来探源析流，二来重订《通俗伤寒论》，三来开启研究绍派之风气",2,-1.2763,0.4875,4],["脉象",3,0.837,0.1947,4],["大便不通",3,0.5734,-0.163,4],["便闭",3,0.7492,0.0461,4],["目有精彩",3,1.5036,0.134,4],["大便",3,1.2666,-0.7115,4],["左脉弦数",3,0.659,-0.1968,4],["舌绛",3,1.5479,0.2438,4],["脉虚",3,1.8922,0.1353,4],["阴虚",4,1.6831,0.1638,4],["虚寒",4,1.0129,0.4738,4],["热入血室",4,0.7623,-0.0704,4],["湿伤脾阳",4,1.2631,-0.6139,4],["肝风射肺",4,1.7334,0.1853,4],["蓄血证",4,0.5225,-0.1914,4],["伤暑夹湿",4,2.0667,0.2556,4],["清肺胃化痰",4,1.8248,-0.2194,4],["伤暑",4,2.0425,0.2659,4],["热象",4,0.8167,-0.0112,4],["少阴",4,0.897,-0.4339,4],["下焦",4,1.4078,-0.2917,4],["知母",6,-2.2131,-1.0146,4],["生姜",6,-2.1114,-0.2347,4],["茯苓",6,-2.154,0.4027,4],["光杏仁",6,-1.8818,-0.4205,4],["仙半夏",6,-1.3667,-0.1009,4],["生枳壳",6,-1.4519,0.6361,4],["清炙草",6,-0.8506,0.611,4],["双钩藤",6,-0.5704,0.0563,4],["生白芍",6,-0.4593,0.1155,4],["淡豆豉",6,0.0101,0.4861,4],["寒病",9,0.9962,0.4838,4],["温热论",1,-0.9942,-0.2818,3],["湿温时疫治疗法",1,-1.3223,0.3195,3],["伤寒百证歌注",1,-1.3936,0.3536,3],["从此一切感证，通称伤寒，从古亦从俗，俞氏亦从俗，故是书名曰《通俗伤寒论》",2,-0.7472,0.5443,3],["六经治法",1,-0.8378,0.3479,3],["按胸腹",1,-0.5987,0.3071,3],["凡伤寒病，均以开郁为先",2,-0.8446,0.3356,3],["浙绍卑湿，凡伤寒恒多夹湿",2,-0.913,0.3661,3],["灵素节注类编",1,-0.8943,-0.4887,3],["初集",1,-0.7746,-0.4143,3],["明确提出“辨证论治”一词的第一人则是章虚谷",2,-0.973,-0.6414,3],["广温热论",1,-0.8472,-0.0198,3],["张氏温暑医旨",1,-1.1661,-0.4937,3],["存存斋医话稿",1,-1.5268,-0.1974,3],["医医病书",1,-1.1765,0.382,3],["医案选按",1,-1.1174,-0.2621,3],["周辑邵氏医案评议",1,-0.0788,-0.0912,3],["医原",1,-1.4388,0.4457,3],["脉弦",3,1.3367,-0.4109,3],["脉无力",3,1.7725,0.2394,3],["口渴",3,0.9207,-0.4141,3],["胸腹",3,1.8152,-0.0399,3],["冲任脉动",3,1.0658,0.2866,3],["脉大",3,0.8465,-0.301,3],["体丰肌厚",3,1.8651,-0.9607,3],["舌苔白腐",3,0.9782,0.473,3],["舌苔变化",3,1.0816,-0.3703,3],["冲任",3,0.9275,0.5936,3],["脉弦滞",3,1.2482,-0.5797,3],["舌黄",3,1.3823,-0.2149,3],["脉弦细",3,1.7235,-0.1543,3],["目睛",3,0.1851,0.2666,3],["六脉沉迟",3,0.9773,0.6744,3],["寒邪外袭皮毛卫分在足太阳经脉",4,0.9184,0.6333,3],["外感寒邪在太阳表层",4,0.9284,0.6368,3],["表证",4,1.1948,0.4784,3],["脾肾两虚",4,1.7316,-0.0149,3],["邪入阳明、里热内实",4,0.8176,-0.1993,3],["病之存亡",4,0.15,-0.0063,3],["阳明里实",4,0.9118,-0.3784,3],["阳明邪浅中虚",4,1.3929,-0.195,3],["太阴湿重兼寒",4,0.983,0.3541,3],["太阴脾阳大虚",4,1.4757,-0.0406,3],["厥阴火亢合阳明热结而成下证",4,0.9557,-0.0727,3],["厥阴郁火深伏于肝脏血络",4,0.8711,0.2325,3],["阳明病应下失下，邪盛正虚",4,1.394,-0.1846,3],["暑厥",4,2.0521,0.2709,3],["肺伏痰火",4,0.9792,-0.062,3],["阳旺阴虚之质",4,1.5809,0.064,3],["阴盛阳虚之质",4,1.6637,-0.0969,3],["已入血分",4,0.0052,-0.1054,3],["热伏湿中",4,1.3094,-0.5537,3],["中焦虚寒，浊阴聚胃",4,0.9614,0.5288,3],["中焦之真寒",4,0.9517,0.5248,3],["热入血室，血室厥阴所主",4,0.707,0.0739,3],["热邪陷入太阴",4,0.8426,-0.086,3],["邪伏少阴，热蕴少阴",4,0.7795,-0.2929,3],["湿重于热",4,1.2156,-0.6188,3],["湿邪伏于足少阴经",4,1.051,-0.5127,3]],"e":[[0,17],[112,17],[45,171],[27,17],[1,69],[1,17],[1,172],[1,173],[3,131],[6,51],[1,15],[5,43],[5,31],[62,52],[5,109],[23,52],[5,23],[5,133],[16,23],[6,51],[138,17],[1,17],[0,70],[0,62],[16,17],[0,175],[0,91],[0,23],[0,134],[138,134],[0,177],[177,175],[0,178],[44,175],[44,91],[0,40],[44,135],[112,135],[138,135],[27,0],[1,0],[0,135],[177,70],[2,111],[181,111],[13,179],[13,180],[13,23],[45,23],[2,15],[15,23],[2,43],[2,181],[5,71],[2,45],[2,179],[3,1],[6,1],[1,172],[22,182],[3,112],[6,112],[22,17],[1,5],[1,92],[1,23],[1,51],[22,45],[1,110],[1,29],[1,72],[22,182],[22,69],[1,93],[1,16],[8,62],[8,183],[8,23],[8,45],[94,136],[94,23],[10,136],[10,113],[93,52],[4,23],[4,184],[4,93],[4,64],[4,15],[29,185],[4,65],[4,186],[9,23],[9,15],[9,29],[9,92],[9,41],[29,15],[9,45],[9,114],[9,186],[9,186],[3,137],[3,18],[178,17],[18,137],[3,17],[3,5],[3,40],[15,171],[72,188],[3,188],[3,115],[3,116],[1,131],[6,3],[138,51],[0,15],[0,29],[139,51],[0,51],[27,17],[132,17],[6,17],[44,17],[1,69],[18,15],[3,185],[0,131],[1,131],[96,75],[190,148],[190,97],[143,219],[143,219],[196,223],[196,224],[73,149],[146,148],[141,153],[147,118],[201,155],[142,7],[96,119],[96,206],[204,120],[204,14],[205,120],[205,14],[207,12],[148,12],[208,19],[208,7],[76,11],[210,19],[210,54],[211,19],[211,12],[212,55],[212,14],[213,55],[213,12],[214,19],[214,24],[215,121],[215,24],[216,19],[216,12],[217,66],[12,12],[54,54],[218,24],[219,12],[220,12],[222,11],[223,14],[224,14],[149,14],[150,7],[225,121],[225,7],[226,55],[226,7],[227,158],[227,7],[228,11],[151,11],[229,158],[229,11],[77,55],[77,11],[152,20],[118,66],[154,66],[78,7],[7,7],[156,66],[119,20],[157,7],[46,98],[46,99],[46,39],[46,100],[46,123],[46,160],[46,31],[101,39],[101,161],[101,47],[101,100],[101,31],[124,99],[124,80],[124,39],[124,125],[124,31],[126,47],[126,80],[126,161],[126,39],[126,31],[102,47],[102,99],[102,80],[102,39],[102,99],[102,31],[81,47],[81,123],[81,39],[81,99],[81,100],[81,31],[127,162],[127,31],[67,39],[67,162],[67,100],[67,161],[67,31],[82,98],[82,99],[82,123],[82,31],[83,47],[83,98],[83,31],[56,80],[56,47],[56,123],[56,47],[56,39],[56,31],[84,80],[84,125],[84,162],[84,47],[84,39],[84,31],[103,125],[103,39],[103,162],[103,80],[103,125],[103,31],[26,123],[26,163],[26,163],[26,164],[26,161],[26,17],[32,47],[32,165],[32,98],[32,47],[32,98],[32,165],[32,17],[33,128],[33,164],[33,165],[33,128],[33,165],[33,17],[36,164],[36,164],[36,17],[48,17],[37,166],[37,17],[57,17],[30,167],[30,168],[30,128],[30,167],[30,168],[30,128],[30,17],[34,169],[34,169],[34,17],[25,168],[25,167],[25,166],[25,168],[25,166],[25,167],[25,17],[58,128],[58,116],[49,169],[49,116],[42,169],[42,116],[42,78],[68,116],[85,98],[104,163],[104,160],[86,160],[87,163],[87,166],[105,39],[105,100],[35,125],[35,100],[35,39],[88,150],[89,106],[21,106],[28,106],[107,106],[90,106],[156,50],[106,5],[89,0],[21,0],[28,0],[107,0],[90,0],[170,0],[50,0],[108,0],[130,0]]}</script>
+<script id="preview" type="application/json">{"n":[["滑石",6,0.1829,0.0739,276],["何廉臣",0,-0.938,-0.08,218],["竹茹",6,0.1231,0.0287,212],["俞根初",0,-0.9759,-0.0927,201],["胃钝",10,0.1868,0.0735,200],["瓜蒌仁",6,0.1124,0.0597,198],["竹叶",6,0.1764,0.0967,167],["广郁金",6,0.1593,0.0442,165],["冬桑叶",6,0.1145,0.0926,156],["章虚谷",0,-0.9538,-0.1746,142],["赵晴初",0,-0.9274,-0.1492,125],["曹炳章",0,-0.9655,-0.0536,124],["新会皮",6,0.1656,0.0659,124],["石决明",6,0.0453,0.015,121],["胸闷",10,0.1571,0.1112,120],["佩兰叶",6,0.1923,0.0779,113],["案278 肝热夹痰上冲心肺",8,-0.1523,0.0428,103],["米仁",6,0.1527,0.0529,102],["西茵陈",6,0.1987,0.0799,102],["佛手片",6,0.2063,0.0793,101],["海蛤壳",6,0.036,0.0158,101],["紫菀",6,0.0649,0.0654,100],["瓜蒌皮",6,0.143,0.0724,99],["山栀",6,0.2067,0.127,93],["络石藤",6,0.139,0.007,91],["白前",6,0.0707,0.0765,88],["光杏仁",6,0.1265,0.0644,87],["枳实",6,0.1968,0.0495,87],["白芍",6,0.0228,-0.0819,87],["案2 肝肾两亏湿流下焦足痿",8,0.0508,-0.1217,87],["青连翘",6,0.1443,0.135,86],["滁菊花",6,0.1022,0.0858,86],["桑枝",6,0.1739,0.0667,85],["张景岳",0,-0.9111,-0.0859,84],["肢懈",10,0.1958,0.0898,83],["伤寒",9,-0.2409,0.4608,82],["徐荣斋",0,-0.9572,-0.0381,81],["热证",4,0.077,0.5371,79],["苏叶梗",6,0.2136,0.0766,78],["辰砂",6,0.1447,0.083,78],["枳壳",6,0.1892,0.0778,78],["杜藿梗",6,0.2305,0.0875,76],["苔腻微黄",3,0.1652,0.0643,76],["案214 肝气腹痛心跳",8,0.1091,-0.1218,75],["明天麻",6,0.0399,0.0516,74],["案26 湿疟后脾虚化胀",8,0.2033,-0.0991,74],["口腻",10,0.2025,0.0981,73],["头晕",10,0.0222,0.0461,73],["甘松",6,0.1808,-0.0415,71],["赵晴初医论",1,-0.9626,-0.2229,71],["张畹香",0,-0.9794,-0.1494,70],["身热",10,0.1695,0.2645,70],["案34 发瘄",8,-0.0079,0.1895,70],["牛蒡子",6,0.0887,0.0796,69],["竹沥半夏",6,0.0748,0.0531,69],["青盐陈皮",6,0.0138,0.0217,66],["新会白",6,0.1157,-0.0011,66],["案201 停饮胃中漉漉有声",8,0.1424,-0.094,66],["胡宝书",0,-0.97,-0.1329,64],["脉左弦数",3,0.0986,0.0728,64],["香附",6,0.2075,-0.0157,63],["案275 肝热秋燥咳痰",8,-0.143,-0.1331,63],["阳明",4,0.0139,0.5225,62],["明乳香",6,0.2063,-0.0432,62],["前胡",6,0.1051,0.0998,62],["头痛",10,0.151,0.2376,60],["咳嗽",10,0.0757,0.1576,60],["旋覆花",6,0.1169,0.0344,60],["案145 肝风挟痰惊痫",8,-0.0434,0.2226,60],["脉弦滞",3,0.2269,0.1105,59],["安南子",6,0.0317,0.056,59],["案262 惊伤神志心悸胆怯",8,0.103,-0.1466,59],["苏薄荷",6,0.1832,0.1439,57],["川黄草",6,0.036,-0.0681,55],["案263 肝火夹湿干呕胃钝",8,0.2663,-0.0603,55],["保和丸",5,0.2149,0.0914,54],["案131 初期肺痨颈上生核",8,0.0352,0.0644,54],["案220 肝脾不和脘腹胀满",8,0.2958,-0.005,54],["案286 痰湿遏热",8,0.1304,-0.0303,54],["案290 肝热生风",8,0.1077,-0.0739,54],["舌苔白腻",3,0.2127,0.0872,53],["虚证",4,0.0818,0.5671,53],["浙茯苓",6,0.1388,0.0218,53],["左金丸",5,0.1437,0.0144,53],["周伯度",0,-1.0628,-0.0652,52],["丝瓜络",6,0.1623,0.0134,52],["心跳",10,0.0515,0.0091,52],["左牡蛎",6,-0.0436,-0.0603,52],["案4 湿热内阻耳聋腹满",8,0.3473,0.0344,52],["案156 胃肠湿热赤痢",8,0.2465,-0.0171,52],["案186 暑痧夹食变霍乱",8,0.2126,0.115,52],["案132 伤风动嗽",8,-0.0678,-0.0726,52],["案366 冲任伏热激动肝风",8,-0.11,-0.0745,52],["案37 瘄后伏热未清",8,-0.2154,-0.338,52],["湿证",4,0.2364,0.4296,51],["金橘脯",6,0.015,-0.0266,51],["案140 痧秽夹食",8,0.2457,0.095,51],["案221 肝胃气痛",8,0.1602,-0.1202,51],["案122 呕吐痰饮胃痛脘满",8,0.2053,-0.0536,50],["案223 喉痧初发",8,0.2246,0.0828,49],["案301 肝郁犯胃",8,-0.025,-0.0596,49],["案33 瘄后余毒未净",8,-0.0854,0.1396,49],["冬瓜皮",6,0.1826,0.0908,48],["案127 肝风上翔陡然头晕倾倒",8,-0.0002,-0.0508,48],["案133 风中脏腑",8,-0.158,0.0548,48],["案215 肝阳上冲神经错乱",8,0.0571,-0.0491,48],["东白薇",6,-0.0047,-0.0029,47],["案16 肺胃蕴热咳痰便泄",8,0.2665,0.0266,47],["磁朱丸",5,-0.0259,0.0055,46],["案167 湿热夹食",8,0.2226,0.1153,46],["案228 面浮少寐",8,0.2148,-0.0188,46],["杜兜铃",6,0.0353,0.041,45],["左金丸",6,0.1449,0.0573,45],["口淡",10,0.1895,0.0634,45],["延胡",6,0.1998,-0.0548,45],["案53 肝郁犯胃脘痛串背",8,0.2018,0.0228,45],["案361 水亏木旺少寐",8,-0.1411,-0.1673,45],["章氏",0,-0.9123,-0.1758,44],["青蒿",6,0.2419,0.1519,44],["案273 肝火上升呕血",8,0.0461,-0.0509,44],["案342 腑实痰瘀互阻",8,0.1885,-0.081,44],["案9 热剧生风",8,0.0445,0.267,44],["宽筋草",6,0.1421,-0.041,43],["便闭",10,0.1643,0.1149,43],["案224 心肝火盛头晕胸闷",8,-0.0114,0.0964,43],["湿热",4,0.2894,0.3541,42],["寒证",4,0.2881,0.4695,42],["案216 积癥干呕胃钝",8,0.1553,-0.1094,42],["案266 肝肾两亏足痿",8,0.1461,-0.0016,42],["舌苔黄腻",3,0.2115,0.2086,41],["腹皮",6,0.2615,0.0104,41],["案171 肝风兼湿温",8,0.1181,0.1848,41],["案287 肺中伏火",8,-0.0206,0.1122,41],["灯芯",6,0.1017,0.102,40],["桑皮",6,0.0896,0.0491,40],["青龙齿",6,-0.06,0.0179,40],["案126 下焦阴虚肝热湿阻",8,0.0894,-0.1053,40],["案213 肝郁乘脾水泄",8,0.0254,-0.0859,40],["案261 肝风上翔挟痰晕厥",8,-0.0376,-0.0425,40],["冬瓜子",6,0.1624,0.0668,39],["鸡金",6,0.1885,-0.0391,38],["咳嗽",9,0.0791,0.0884,38],["苦辛通降",7,0.2002,0.195,38],["莱菔子",6,0.2259,0.0714,38],["芳淡清化",7,0.2346,0.1067,37],["腹痛",10,0.1489,0.0862,37],["桑麻丸",5,-0.0457,0.0193,37],["远志",6,0.0043,0.0828,37],["马兜铃",6,0.0475,0.0714,37],["气逆",10,0.128,0.0623,37],["舌苔薄腻",3,0.2286,0.0859,36],["丝通草",6,0.1568,0.0727,36],["便不畅",10,0.1878,0.0328,36],["春砂仁",6,0.1978,0.0211,36],["代赭石",6,0.1411,-0.0124,36],["桔梗",6,0.1448,0.0627,35],["连芽桑枝",6,0.1775,0.1164,35],["叶天士",0,-0.9548,-0.1201,34],["俞氏",0,-0.8717,-0.0664,34],["太阴",4,0.1321,0.5022,34],["口苦",10,0.162,0.0791,34],["打延胡",6,0.231,0.0054,34],["川楝子",6,0.2152,-0.0618,34],["香豉",6,0.2438,0.1626,33],["赤苓",6,0.223,0.0062,33],["溺热",10,0.1764,-0.0025,33],["湿温",9,0.2365,0.3062,32],["夏枯草",6,0.1163,0.0756,32],["生地",6,0.029,-0.0527,32],["葱白",6,0.2622,0.1298,31],["仲景",0,-0.9333,-0.1172,30],["青蒿脑",6,0.1354,0.0378,30],["青泻叶",6,0.1756,0.0644,30],["苏子",6,0.1144,0.0772,30],["款冬花",6,-0.0413,0.0522,30],["肥知母",6,0.1696,0.1037,29],["谷芽",6,0.1258,0.0234,29],["湿热",9,0.1907,0.1255,29],["呕酸",10,0.2042,-0.01,28],["车前",6,0.2138,0.0381,28],["辰茯神",6,0.0231,-0.0179,28],["脉右滑数",3,0.0339,0.1097,28],["石斛",6,-0.0198,-0.0844,28],["舌红",3,0.1281,0.0892,27],["溺短热",10,0.1615,0.0,27],["青皮",6,0.2462,0.0398,27],["青子芩",6,0.2416,0.1035,27],["舌红润",3,0.0735,0.0416,26],["少阳",4,0.0296,0.5032,26],["厥阴",4,-0.0114,0.5599,26],["寒热",10,0.156,0.1834,26],["甜杏仁",6,-0.0159,0.0314,26],["风证",4,0.1599,0.4709,25],["磁朱丸",6,-0.0157,-0.0349,25],["脉右滞左弦数",3,0.2138,0.1145,24],["茯神木",6,0.0332,0.0247,24],["抱木茯神",6,-0.0388,-0.0418,24],["桑叶",6,0.0524,0.0549,24],["温热病",9,0.0376,0.5905,24],["陈士铎",0,1.0625,0.0031,24],["太阳",4,0.0154,0.4999,23],["保和丸",6,0.245,0.0842,23],["浙苓皮",6,0.2382,0.135,23],["代代花",6,0.1385,-0.0106,23],["炙草",6,0.0134,-0.0422,23],["气急",10,0.0904,0.1233,23],["京川贝",6,-0.0878,0.0226,23],["血见愁",6,-0.0172,0.0413,23],["款冬",6,0.023,0.0072,22],["越鞠丸",5,0.1666,-0.0436,22],["桑麻丸",6,-0.0266,0.0055,22],["何氏",0,-0.946,-0.1088,21],["苔腻",3,0.1737,0.0746,21],["温热",4,-0.0094,0.4987,21],["少阴",4,-0.052,0.5379,21],["春砂壳",6,0.1067,-0.1143,21],["耳鸣",10,-0.0401,0.1303,21],["舌红无苔",3,0.0868,-0.0122,21],["便溏",10,0.1078,0.0039,21],["會稽",13,-0.9159,-0.3396,21],["陳士鐸",0,-0.9456,-0.3725,21],["何秀山",0,-0.9548,-0.0788,20],["邵兰荪",0,-0.9727,-0.0797,20],["何书田",0,-0.9464,-0.0773,20],["火证",4,0.1864,0.5293,20],["苔黄腻",3,0.1629,0.1304,20],["木香槟榔丸",5,0.1993,0.0865,20],["川连",6,0.2382,-0.0087,20],["南芡实",6,-0.0173,-0.0999,20],["脉右滞左弦",3,0.265,0.1075,19],["姜半夏",6,0.0915,0.0561,19],["蔻末",6,0.2061,0.0594,19],["香连丸",6,0.2246,0.0634,19],["咳痰不爽",10,0.1204,0.0902,19],["脉右弦滞",3,0.2169,0.0024,19],["真柿霜",6,-0.0995,-0.0477,19],["青蛤散",6,-0.0102,0.047,19],["温毒",4,-0.0566,0.5383,19],["绍兴",13,-0.9655,-0.1081,19],["山陰",13,-0.9472,-0.337,19],["通俗伤寒论",1,-0.9315,-0.0723,18],["吴鞠通",0,-0.9587,-0.1164,18],["野百合",6,-0.0585,0.0409,18],["木香槟榔丸",6,0.2517,0.033,18],["川桂枝",6,0.1481,0.0473,18],["便不爽",10,0.1447,0.1349,18],["痰多",10,0.1044,0.0983,18],["口渴",10,0.0566,0.3666,18],["舌苔薄滑",3,0.0724,0.0186,18],["带壳春砂",6,0.0947,-0.054,18],["池菊花",6,0.0683,0.0465,18],["甘草",6,0.0194,-0.0702,17],["橘红",6,0.0116,0.0775,17],["肝风",4,-0.1266,0.4205,17],["十灰丸",5,0.0318,-0.0074,17],["白池菊",6,0.1203,0.0543,17],["三焦",4,0.2044,0.4589,17],["风温",4,-0.1013,0.4723,17],["湿热夹肝气",4,0.2568,0.306,16],["阳虚",4,0.0514,0.5084,16],["干呕",10,0.1268,0.0191,16],["溺黄热",10,0.2131,0.1255,16],["北沙参",6,-0.0807,-0.1397,16],["路路通",6,0.1934,-0.0144,16],["泽兰",6,0.2572,-0.0678,16],["淮山药",6,0.0332,-0.0153,16],["节斋化痰丸",5,0.0199,0.1125,16],["脘痛",10,0.1759,-0.0662,16],["于术",6,0.2066,-0.1219,16],["温病",9,-0.0088,0.5187,16],["寒邪",4,-0.1552,0.508,16],["结邪",4,0.1758,-0.4338,16],["内经",1,-0.9335,-0.1341,15],["表证",4,-0.0916,0.5257,15],["脉右浮滑",3,0.0496,0.1043,15],["左秦艽",6,0.1647,0.0989,15],["二便不利",10,0.2487,0.0204,15],["脉左弦滞",3,0.1388,0.0808,15],["青蒿子",6,0.0986,0.074,15],["腰痛",10,0.1192,0.03,15],["楂肉",6,0.2802,0.0241,15],["打鸡金",6,0.2336,0.0229,15],["便泄",10,0.252,0.0764,15],["肠鸣",10,0.1711,-0.1062,15],["咳痰",10,0.0746,0.0598,15],["猪苓",6,0.2589,0.0083,15],["当归",6,0.175,-0.1832,15],["柏子仁",6,-0.0736,-0.1023,15],["白薇",6,0.0183,-0.0455,15],["曹氏",0,-0.9883,-0.0404,15],["脉软滞",3,0.201,0.0226,14],["舌淡红",3,-0.0349,-0.0611,14],["实证",4,-0.1257,0.524,14],["肢懈无力",10,0.1715,0.0019,14],["疟",9,0.2395,0.2718,14],["薄川朴",6,0.2945,0.0123,14],["舌红苔薄",3,0.1005,0.0302,14],["郁李净仁",6,0.1566,-0.0256,14],["卷川朴",6,0.2402,0.0258,14],["自汗",10,0.0909,0.1245,14],["溺赤热",10,0.2293,0.135,14],["咳痰带血",10,0.0148,0.1021,14],["苏梗",6,0.1574,0.0777,14],["口燥",10,0.1817,0.1049,14],["脘满",10,0.2098,0.025,14],["双钩藤",6,0.0112,0.1365,14],["茅根",6,-0.0501,-0.1019,14],["银花",6,0.0867,0.0807,14],["舌红苔腻",3,0.2209,0.1737,13],["草果仁",6,0.289,0.1485,13],["脉右滞左浮弦",3,0.1633,0.0621,13],["广皮红",6,0.1115,0.0923,13],["舌红苔黄",3,0.1644,0.0619,13],["冬葵子",6,0.2373,-0.0734,13],["湿热兼风",9,0.2165,0.1485,13],["汉防己",6,0.2405,-0.01,13],["形寒",10,0.1639,0.1283,13],["香连丸",5,0.2201,0.0356,13],["湿热夹食",9,0.2656,0.1,13],["心泛",10,0.1552,0.0663,13],["面浮",10,0.119,0.0224,13],["溺短",10,0.1182,0.0978,13],["暑湿",4,0.0049,0.4366,13],["冬瓜皮子",6,0.2097,0.0528,13],["柔肝熄风",7,-0.0503,0.0687,13],["清肝保肺",7,-0.0571,0.0568,13],["毛西参",6,0.0279,-0.0059,13],["天冬",6,-0.0924,-0.0289,13],["阿胶",6,-0.1627,-0.048,13],["桑梗",6,0.1413,0.0577,13],["玫瑰瓣",6,0.1114,-0.0291,13],["阴虚火旺",4,-0.5124,0.2018,13],["建中汤",5,-0.0202,-0.163,13],["六经",4,-0.0691,0.5055,13],["温病",4,-0.1331,0.5218,13],["景岳",0,-0.9081,-0.1492,12],["叶氏",0,-0.95,-0.1419,12],["丹溪",0,-0.9279,-0.2118,12],["东垣",0,-0.9143,-0.1269,12],["舌苔白滑",3,0.1323,0.172,12],["脉弦数",3,0.1754,0.1811,12],["阴证",4,-0.2149,0.5198,12],["虚寒",4,0.3261,0.4624,12],["苦桔梗",6,0.146,0.0306,12],["滚痰丸",5,0.0812,0.0972,12],["十灰丸",6,0.0019,0.0819,12],["脉左浮弦",3,0.0913,0.0259,12],["益元散",6,0.1336,-0.0025,12],["小京枣",6,0.0325,-0.1528,12],["苔白腻",3,0.2517,0.0239,12],["月石",6,-0.0609,-0.0191,12],["干薤白",6,0.2059,0.0049,12],["咳血",10,0.0751,0.0839,12],["羚角片",6,-0.0631,0.1147,12],["海蛤粉",6,0.0986,-0.0585,12],["牡蛎",6,-0.0807,-0.0199,12],["瓦楞子",6,0.1809,0.0119,12],["大青",6,0.0837,0.1375,12],["热结血室",4,0.0018,0.4419,12],["脾肾两伤",4,0.3245,0.3623,12],["上虞",13,-0.8638,-0.3361,12],["吴又可",0,-0.9954,-0.0654,11],["雷少逸",0,-0.9849,-0.1569,11],["脉数",3,0.0684,0.3794,11],["阳证",4,-0.1872,0.5357,11],["阴虚伤寒",4,0.2683,0.431,11],["热霍乱",4,0.1405,0.438,11],["湿热阻中",9,0.2725,0.1095,11],["脉右滞",3,0.277,0.0537,11],["滚痰丸",6,0.1677,0.0049,11],["嗳气",10,0.1542,0.0393,11],["苏梗通",6,0.1457,0.0502,11],["苦辛淡法",7,0.2544,0.1333,11],["清化芳淡",7,0.2074,0.1261,11],["细木通",6,0.2321,0.0754,11],["苡仁",6,0.07,0.017,11],["脉右浮数",3,0.0576,0.0873,11],["吐苦",10,0.1959,-0.0029,11],["暑湿夹食",9,0.2136,0.1271,11],["夜少寐",10,0.0809,-0.02,11],["胸痛",10,-0.1103,0.0442,11],["安神丸",5,0.0219,0.0339,11],["石菖蒲",6,-0.0847,0.1966,11],["竹沥",6,0.0491,0.0798,11],["远志肉",6,0.0599,0.0624,11],["莱菔",6,-0.0151,0.1163,11],["青蛤散",5,0.0279,0.0867,11],["益元散",5,0.171,0.0664,11],["参三七",6,-0.0126,0.0484,11],["风寒",4,-0.0405,0.4753,11],["鸭梨皮",6,0.078,-0.0124,11],["丹皮",6,0.1358,-0.1165,11],["郁金",6,0.2175,-0.0541,11],["甘露饮",5,-0.1169,-0.1297,11],["感证",9,0.0427,0.5286,11],["俞根初的葱豉桔梗汤、七味葱白汤及《温病条辨》中的桑菊饮等属此凉散法之类方",2,-0.9619,-0.0711,10],["湿温",4,0.0435,0.4716,10],["下焦",4,0.1993,0.4933,10],["寒湿",4,0.163,0.4656,10],["喉痒",10,0.1085,0.0422,10],["天葵子",6,0.0434,0.0965,10],["海南子",6,0.251,0.0296,10],["舌苔退薄",3,0.2015,0.0576,10],["原麦冬",6,-0.1269,-0.1029,10],["白芥子",6,0.0668,0.0617,10],["暑湿兼风",9,0.1728,0.1569,10],["口干",10,0.1473,0.2483,10],["地骨皮",6,-0.0449,0.0421,10],["鳖甲",6,-0.0792,-0.1101,10],["牡蛎粉",6,0.0416,-0.0881,10],["苔白滑",3,0.0301,0.0152,10],["痰嗽",10,-0.037,0.0364,10],["真珠母",6,-0.0641,0.0444,10],["舌淡红无苔",3,-0.0896,-0.0972,10],["气分证",4,-0.1029,0.5114,10],["蒿芩清胆汤",5,0.1101,0.4675,10],["重订通俗伤寒论",1,-0.9611,-0.0639,9],["伤寒论",1,-0.9462,-0.1324,9],["湿伤脾阳",4,0.2495,0.4334,9],["湿重于温",4,0.2896,0.3962,9]],"e":[[3,240],[221,240],[1,240],[36,416],[1,157],[33,272],[170,417],[33,170],[158,170],[36,416],[1,240],[158,240],[3,170],[3,361],[221,3],[1,3],[117,170],[336,170],[9,157],[157,170],[9,272],[33,338],[9,337],[9,336],[11,1],[36,1],[211,240],[1,33],[1,170],[1,416],[211,336],[1,241],[1,158],[50,170],[50,336],[10,170],[10,157],[58,170],[58,157],[58,241],[58,362],[241,157],[58,336],[11,222],[11,240],[11,33],[11,361],[36,11],[3,157],[3,241],[3,416],[221,240],[36,240],[395,240],[222,157],[308,125],[69,258],[363,213],[340,366],[365,126],[125,94],[81,81],[292,292],[342,126],[418,94],[419,94],[396,94],[258,94],[259,81],[213,37],[366,37],[37,37],[75,201],[344,369],[75,0],[83,39],[75,143],[75,153],[83,227],[266,39],[96,14],[96,129],[96,363],[96,144],[96,41],[96,12],[96,23],[96,18],[96,15],[96,6],[96,75],[96,0],[96,102],[96,156],[96,34],[96,42],[96,69],[96,60],[96,38],[96,40],[96,7],[96,161],[96,63],[96,4],[96,5],[96,27],[96,143],[96,226],[96,402],[96,22],[96,130],[96,176],[96,293],[96,150],[96,180],[96,17],[96,268],[96,95],[96,39],[89,145],[89,245],[89,184],[89,4],[89,34],[89,69],[89,225],[89,17],[89,162],[89,18],[89,139],[89,114],[89,226],[89,347],[89,330],[89,85],[89,22],[89,27],[89,185],[89,63],[89,0],[89,102],[89,32],[89,143],[89,130],[89,176],[89,280],[89,19],[89,281],[89,317],[89,82],[89,15],[89,6],[89,140],[89,2],[89,56],[89,5],[29,123],[29,212],[29,234],[29,85],[29,24],[29,12],[29,153],[29,297],[29,54],[29,252],[29,329],[29,320],[29,410],[29,274],[29,2],[29,67],[29,5],[29,122],[29,21],[29,25],[29,287],[29,146],[29,350],[29,235],[29,248],[29,147],[29,384],[29,66],[29,80],[29,290],[29,26],[29,17],[29,196],[29,387],[29,73],[29,176],[29,195],[29,354],[29,409],[146,210],[98,233],[98,152],[98,290],[98,142],[98,83],[98,54],[98,82],[98,0],[98,161],[98,63],[98,13],[98,60],[98,249],[98,26],[98,12],[98,67],[98,7],[98,20],[98,64],[98,155],[98,5],[98,53],[98,27],[98,2],[98,148],[98,30],[83,112],[136,66],[136,4],[136,283],[136,209],[136,87],[136,13],[136,20],[136,106],[136,2],[136,12],[136,73],[136,140],[136,17],[136,21],[136,7],[136,111],[136,228],[136,25],[136,24],[136,56],[136,412],[136,85],[136,60],[136,354],[136,122],[136,5],[136,351],[136,203],[209,354],[91,248],[91,181],[91,197],[91,5],[91,206],[91,134],[91,407],[91,111],[91,21],[91,235],[91,168],[91,20],[91,175],[91,70],[91,182],[91,25],[91,13],[91,327],[91,287],[91,172],[91,326],[91,22],[91,106],[91,306],[91,412],[91,403],[91,28],[127,260],[127,4],[127,80],[127,114],[127,408],[127,63],[127,356],[127,154],[127,7],[127,226],[127,54],[127,12],[127,75],[127,42],[127,13],[127,20],[127,2],[127,28],[127,106],[127,67],[127,83],[77,152],[77,150],[77,370],[77,229],[77,113],[77,4],[77,69],[77,283],[77,349],[77,60],[77,40],[77,143],[77,153],[77,130],[77,298],[77,176],[77,7],[77,28],[77,249],[77,330],[77,140],[77,209],[77,0],[77,8],[77,5],[77,114],[77,185],[77,41],[77,82],[77,12],[124,47],[124,14],[124,370],[124,4],[124,34],[124,406],[124,2],[124,7],[124,182],[124,168],[124,8],[124,250],[124,56],[124,330],[124,236],[124,13],[124,28],[124,255],[124,95],[124,175],[124,19],[124,390],[124,112],[110,218],[110,165],[110,308],[110,8],[110,391],[110,196],[110,264],[110,330],[110,39],[110,0],[110,65],[110,113],[110,319],[110,134],[110,202],[110,102],[110,255],[110,73],[110,184],[110,290],[110,12],[110,268],[110,28],[110,130],[110,179],[110,249],[71,145],[71,4],[71,184],[71,135],[71,87],[71,2],[71,196],[71,73],[71,95],[71,330],[71,381],[71,108],[71,114],[71,27],[71,313],[71,63],[71,13],[71,172],[71,48],[71,83],[71,226],[71,162],[71,139],[71,7],[71,60],[71,22],[71,18],[71,19],[71,85],[71,39],[71,0],[128,86],[128,47],[128,260],[128,14],[128,113],[128,42],[128,69],[128,146],[128,108],[128,44],[128,195],[128,7],[128,227],[128,24],[128,315],[128,2],[128,27],[128,154],[128,162],[128,32],[128,39],[128,0],[128,40],[128,343],[128,17],[128,122],[128,329],[128,60],[128,38],[128,12],[128,28],[128,15],[128,6],[128,169],[128,163],[128,161],[120,14],[120,2],[120,27],[120,67],[120,0],[120,172],[120,154],[120,227],[120,243],[120,20],[120,5],[120,26],[120,369],[120,63],[120,24],[120,122],[120,153],[120,297],[120,56],[120,112],[120,39],[120,85],[120,281],[120,73],[120,302],[120,330],[120,32],[332,28],[332,204],[332,171],[332,408],[332,348],[332,56],[88,46],[88,4],[88,42],[88,80],[88,298],[88,130],[88,185],[88,313],[88,243],[88,0],[88,5],[88,143],[88,153],[88,264],[88,39],[88,173],[88,24],[88,122],[88,85],[88,63],[88,315],[88,22],[88,102],[88,32],[88,286],[88,323],[88,263],[107,141],[107,399],[107,165],[107,42],[107,317],[107,41],[107,12],[107,21],[107,17],[107,215],[107,25],[107,0],[107,371],[107,18],[107,19],[107,64],[107,26],[107,15],[107,155],[107,209],[107,8],[107,53],[107,30],[107,5],[107,2],[107,56],[107,80],[109,318],[109,51],[109,14],[109,34],[109,4],[109,245],[109,129],[109,229],[109,144],[109,15],[109,6],[109,22],[109,130],[109,23],[109,0],[109,102],[109,156],[109,233],[109,123],[109,142],[109,5],[109,27],[109,313],[109,143],[109,114],[109,63],[109,226],[109,323],[109,32],[109,46],[109,152],[109,155],[109,7],[109,172],[109,64],[109,139],[109,55],[90,366],[90,178],[90,299],[90,145],[90,129],[90,2],[90,12],[90,40],[90,118],[90,164],[90,285],[90,112],[90,39],[90,0],[90,179],[90,56],[90,7],[90,20],[90,374],[90,232],[90,326],[90,6],[90,19],[90,5],[90,26],[90,111],[90,17],[90,67],[90,21],[90,25],[90,343],[90,201],[90,23],[90,18],[90,323],[115,152],[115,184],[115,161],[115,356],[115,63],[115,2],[115,24],[115,13],[115,48],[115,27],[115,83],[115,186],[115,6],[115,5],[115,351],[115,67],[115,0],[115,154],[115,54],[115,60],[115,173],[115,226],[115,298],[115,404],[115,20],[115,230],[115,295],[115,244],[115,82],[115,153],[115,297],[115,40],[115,263],[103,266],[103,412],[103,20],[103,24],[103,122],[103,54],[103,32],[103,13],[103,2],[103,326],[103,195],[103,252],[103,180],[103,17],[103,73],[103,140],[103,95],[103,26],[103,173],[103,12],[103,82],[103,15],[103,151],[103,64],[76,66],[76,248],[76,325],[76,20],[76,87],[76,206],[76,400],[76,167],[76,106],[76,111],[76,73],[76,21],[76,55],[76,67],[76,266],[76,265],[76,53],[76,327],[76,5],[76,24],[76,148],[76,2],[76,134],[76,407],[76,204],[76,182],[76,288],[76,40],[76,343],[76,176],[76,254],[76,387],[76,385],[76,26],[76,140],[76,161],[76,218],[104,59],[104,66],[104,13],[104,412],[104,44],[104,305],[104,252],[104,24],[104,122],[104,54],[104,5],[104,154],[104,82],[104,21],[104,147],[104,382],[104,67],[68,42],[68,183],[68,51],[68,123],[68,146],[68,108],[68,344],[68,412],[68,135],[68,5],[68,44],[68,87],[68,353],[68,305],[68,255],[68,13],[68,382],[68,383],[68,39],[68,0],[68,22],[68,133],[131,47],[131,216],[131,379],[131,46],[131,4],[131,42],[131,69],[131,144],[131,75],[131,31],[131,44],[131,23],[131,18],[131,15],[131,56],[131,6],[131,133],[131,39],[131,0],[131,8],[131,22],[131,151],[131,17],[131,176],[131,102],[131,19],[131,396],[57,152],[57,184],[57,5],[57,351],[57,54],[57,24],[57,122],[57,164],[57,48],[57,0],[57,47],[57,299],[57,2],[57,56],[57,264],[57,55],[57,60],[57,7],[57,112],[57,354],[57,86],[57,160],[57,4],[57,194],[57,8],[57,23],[57,18],[57,15],[57,6],[57,19],[57,133],[57,39],[57,13],[57,106],[57,31],[57,44],[57,193],[57,319],[57,248],[57,85],[57,215],[137,145],[137,377],[137,413],[137,28],[137,204],[137,265],[137,228],[137,73],[137,2],[137,112],[137,26],[137,230],[137,82],[137,21],[137,208],[137,95],[137,12],[137,25],[137,355],[137,215],[137,167],[137,330],[137,232],[137,87],[137,17],[137,147],[105,225],[105,135],[105,13],[105,162],[105,7],[105,167],[105,55],[105,108],[105,5],[105,27],[105,172],[105,384],[105,381],[105,180],[105,54],[105,31],[105,44],[105,287],[105,266],[105,53],[105,30],[105,344],[105,6],[105,133],[97,178],[97,145],[97,47],[97,42],[97,349],[97,69],[97,2],[97,154],[97,114],[97,20],[97,13],[97,63],[97,12],[97,73],[97,28],[97,95],[97,195],[97,227],[97,5],[97,182],[97,390],[97,330],[97,231],[97,356],[97,255],[97,44],[99,14],[99,319],[99,178],[99,377],[99,312],[99,72],[99,53],[99,30],[99,38],[99,2],[99,169],[99,8],[99,123],[99,165],[99,5],[99,27],[99,175],[99,278],[99,18],[99,186],[99,6],[99,133],[99,0],[99,304],[99,4],[99,276],[99,379],[99,194],[99,7],[138,47],[138,86],[138,305],[138,250],[138,44],[138,135],[138,13],[138,106],[138,252],[138,147],[138,20],[138,21],[138,180],[138,2],[138,288],[138,5],[138,55],[138,108],[138,196],[138,73],[138,8],[138,255],[138,381],[138,17],[138,56],[138,133],[138,0],[74,260],[74,160],[74,276],[74,4],[74,149],[74,123],[74,14],[74,303],[74,13],[74,20],[74,2],[74,162],[74,24],[74,85],[74,203],[74,18],[74,112],[74,7],[74,161],[74,329],[74,383],[74,70],[74,390],[74,22],[74,151],[74,19],[74,139],[74,6],[74,197],[119,14],[119,8],[119,7],[119,330],[119,391],[119,2],[119,207],[119,83],[119,254],[119,386],[119,38],[119,22],[119,23],[119,206],[119,106],[119,203],[119,55],[119,114],[119,60],[119,5],[119,63],[119,20],[119,25],[119,21],[119,67],[119,13],[119,70],[119,134],[119,390],[119,381],[119,26],[61,379],[61,184],[61,187],[61,22],[61,206],[61,20],[61,2],[61,167],[61,70],[61,235],[61,390],[61,197],[61,28],[61,407],[61,87],[61,182],[61,203],[61,327],[61,262],[61,180],[61,326],[61,73],[61,215],[61,7],[61,306],[83,0],[132,66],[132,86],[132,217],[132,181],[132,146],[132,108],[132,8],[132,5],[132,148],[132,20],[132,174],[132,180],[132,70],[132,53],[132,327],[132,2],[132,67],[132,39],[132,0],[132,250],[132,55],[132,376],[132,346],[132,183],[100,187],[100,69],[100,4],[100,152],[100,86],[100,47],[100,59],[100,146],[100,108],[100,7],[100,140],[100,2],[100,56],[100,250],[100,73],[100,176],[100,22],[100,203],[100,13],[100,44],[100,180],[100,106],[100,82],[100,348],[100,95],[83,392],[121,51],[121,303],[121,14],[121,353],[121,305],[121,8],[121,23],[121,186],[121,2],[121,39],[121,0],[121,6],[121,133],[121,320],[121,149],[121,183],[121,44],[121,180],[121,135],[75,39],[43,216],[43,47],[43,108],[43,209],[43,60],[43,180],[43,164],[43,28],[43,44],[43,195],[43,48],[43,54],[43,298],[43,24],[43,122],[43,147],[43,305],[43,196],[43,135],[43,87],[43,25],[43,249],[43,41],[43,63],[43,82],[43,7],[43,0],[43,230],[43,215],[43,409],[43,154],[43,370],[43,80],[43,310],[43,283],[43,304],[43,69],[43,229],[16,321],[16,13],[16,20],[16,180],[16,384],[16,287],[16,255],[16,44],[16,133],[16,196],[16,8],[16,95],[16,381],[16,387],[16,135],[16,87],[16,106],[16,146],[16,108],[16,248],[16,320],[16,216],[16,182],[16,39],[16,73],[16,262],[16,403],[16,330],[16,12],[16,176],[16,348],[16,413],[16,165],[16,306],[16,2],[16,230],[16,153],[78,65],[78,66],[78,14],[78,4],[78,123],[78,46],[78,72],[78,250],[78,344],[78,0],[78,27],[78,5],[78,7],[78,6],[78,143],[78,26],[78,404],[78,231],[78,75],[78,24],[78,2],[78,12],[78,19],[78,95],[78,13],[78,20],[78,326],[78,182],[78,206],[78,21],[78,25],[78,87],[78,106],[78,228],[78,8],[78,83],[78,85],[78,209],[78,111],[78,55],[79,86],[79,113],[79,4],[79,165],[79,42],[79,69],[79,324],[79,250],[79,44],[79,83],[79,39],[79,0],[79,13],[79,106],[79,24],[79,122],[79,32],[79,203],[79,108],[79,85],[79,180],[79,375],[79,330],[79,135],[79,87],[79,209],[79,28],[79,63],[79,286],[79,347],[79,114],[79,196],[79,17],[79,18],[79,48],[79,197],[79,140],[116,260],[116,379],[116,218],[116,146],[116,13],[116,20],[116,28],[116,182],[116,195],[116,228],[116,403],[116,2],[116,306],[92,47],[92,86],[92,353],[92,13],[92,28],[92,8],[92,5],[92,391],[92,7],[92,168],[92,39],[92,0],[92,133],[92,87],[92,2],[92,106],[92,196],[92,182],[92,328],[92,135],[45,247],[45,218],[45,321],[45,165],[45,42],[45,290],[45,130],[45,140],[45,317],[45,209],[45,179],[45,285],[45,0],[45,164],[45,18],[45,176],[45,281],[45,48],[45,268],[45,82],[45,56],[45,215],[45,17],[45,249],[45,204],[45,73],[45,348],[45,190],[45,300],[45,349],[45,291],[45,283],[101,284],[101,123],[101,225],[101,8],[101,22],[101,30],[101,2],[101,6],[101,133],[101,191],[101,206],[101,56],[101,21],[101,25],[101,95],[101,5],[101,20],[101,70],[101,111],[101,252],[101,174],[52,51],[52,205],[52,282],[52,406],[52,183],[52,312],[52,72],[52,30],[52,53],[52,151],[52,22],[52,206],[52,64],[52,353],[52,357],[52,31],[52,133],[52,8],[52,255],[52,2],[52,155],[52,56],[52,95],[52,385],[52,179],[52,6],[52,13],[52,191],[52,167],[52,73],[52,21],[93,13],[93,20],[93,206],[93,393],[393,327],[393,251],[393,95],[389,35],[334,35],[270,35],[259,35],[259,65],[365,51],[62,35],[62,51],[257,35],[396,35],[37,35],[322,35],[333,35],[256,269],[257,213],[396,213],[159,166],[322,142],[333,394],[256,394],[200,394],[188,394],[62,394],[159,394],[214,394],[189,394],[358,269],[358,123],[358,321],[257,66],[200,65],[188,35],[189,35],[270,214],[159,35],[214,35],[213,35],[200,35],[397,256],[341,35],[364,35],[81,35],[292,35],[253,216],[414,269],[414,334],[125,256],[322,51],[334,269],[188,294],[237,198],[419,166],[125,177],[396,166],[258,245],[258,144],[258,145],[258,46],[258,4],[415,333],[415,125],[415,256],[1,221],[1,238],[10,49],[10,337],[10,338],[10,170],[220,239],[221,238],[10,336],[10,338],[10,335],[33,238],[393,177],[158,33],[58,238],[241,238],[9,238],[9,241]]}</script>
 <script>
 (function(){
 'use strict';
@@ -1249,17 +1277,17 @@ function countUp(el){
 /* ---------- 代表医家 ---------- */
 const DOCS = [
   {n:'俞根初', era:'清代', role:'学派奠基', w:'《通俗伤寒论》', p:180, d:201},
-  {n:'何廉臣', era:'清末民初', role:'集成光大', w:'《重订通俗伤寒论》《重订广温热论》《感证宝筏》', p:125, d:206},
-  {n:'章虚谷', era:'清代', role:'寒温辨析', w:'《医门棒喝》《伤寒论本旨》', p:122, d:140},
-  {n:'曹炳章', era:'民国', role:'续编考镜', w:'《瘟痧证治要略》《暑病证治要略》', p:85, d:123},
-  {n:'赵晴初', era:'清代', role:'医话精微', w:'《存存斋医话稿》《存存斋医案留底》', p:70, d:100},
-  {n:'张景岳', era:'明代', role:'学派发端', w:'《景岳全书·伤寒典》《类经》', p:62, d:81},
+  {n:'何廉臣', era:'清末民初', role:'集成光大', w:'《重订通俗伤寒论》《重订广温热论》《感证宝筏》', p:125, d:218, c:657},
+  {n:'章虚谷', era:'清代', role:'寒温辨析', w:'《医门棒喝》《伤寒论本旨》', p:122, d:142},
+  {n:'曹炳章', era:'民国', role:'续编考镜', w:'《瘟痧证治要略》《暑病证治要略》', p:85, d:124},
+  {n:'赵晴初', era:'清代', role:'医话精微', w:'《存存斋医话稿》《存存斋医案留底》', p:83, d:125},
+  {n:'张景岳', era:'明代', role:'学派发端', w:'《景岳全书·伤寒典》《类经》', p:63, d:84},
   {n:'徐荣斋', era:'现代', role:'探源析流', w:'《重订通俗伤寒论》《读书教学与临证》', p:67, d:81},
   {n:'张畹香', era:'清代', role:'温暑证治', w:'《张氏温暑医旨》《张畹香医案》', p:59, d:70},
   {n:'周伯度', era:'清代', role:'六气感证', w:'《六气感证要义》《本草思辨录》', p:48, d:52},
-  {n:'胡宝书', era:'民国', role:'家学三世', w:'《伤寒十八方》《绍兴同善局医方汇选》', p:43, d:62},
-  {n:'何秀山', era:'清代', role:'按语发明', w:'《通俗伤寒论》按语', p:13, d:0},
-  {n:'邵兰荪', era:'清代', role:'临证医案', w:'《邵兰荪医案》《重订邵兰荪医案》', p:14, d:0}
+  {n:'胡宝书', era:'民国', role:'家学三世', w:'《伤寒十八方》《绍兴同善局医方汇选》', p:43, d:64},
+  {n:'何秀山', era:'清代', role:'按语发明', w:'《通俗伤寒论》按语', p:13, d:20},
+  {n:'邵兰荪', era:'清代', role:'临证医案', w:'《邵兰荪医案》《重订邵兰荪医案》', p:14, d:20}
 ];
 document.getElementById('docgrid').innerHTML = DOCS.map(d=>`
   <a class="doc" href="explorer.html?q=${encodeURIComponent(d.n)}">
@@ -1267,13 +1295,12 @@ document.getElementById('docgrid').innerHTML = DOCS.map(d=>`
     <div class="nm">${d.n}</div>
     <div class="rl">${d.role}</div>
     <div class="wk">${d.w}</div>
-    <div class="mt"><span>观点 <b>${d.p}</b></span>${d.d ? `<span>关联 <b>${d.d}</b></span>` : ''}</div>
+    <div class="mt"><span>观点 <b>${d.p}</b></span>${d.d ? `<span>关联 <b>${d.d}</b></span>` : ''}${d.c ? `<span>医案 <b>${d.c}</b></span>` : ''}</div>
   </a>`).join('');
 
 /* ---------- 诊法分布 ---------- */
 const MODS = [
-  {n:'问诊', v:412}, {n:'舌诊', v:265, hi:1}, {n:'望诊', v:260},
-  {n:'脉诊', v:168, hi:1}, {n:'腹诊', v:110, hi:1}, {n:'目诊', v:75, hi:1}, {n:'闻诊', v:21}
+  {n:'脉诊', v:747, hi:1}, {n:'舌诊', v:617, hi:1}, {n:'问诊', v:418}, {n:'望诊', v:279}, {n:'腹诊', v:116, hi:1}, {n:'目诊', v:83, hi:1}, {n:'闻诊', v:21}
 ];
 const MAXV = Math.max(...MODS.map(m => m.v));
 document.getElementById('modbars').innerHTML = MODS.map(m => {
@@ -1285,6 +1312,19 @@ document.getElementById('modbars').innerHTML = MODS.map(m => {
     '<span class="bt"><i class="bf" style="background:' + fill + '"></i></span>' +
     '<span class="bv">' + m.v + '</span></div>';
 }).join('');
+
+/* ---------- 医案层 / 覆盖 横条 ---------- */
+function bars(id, rows, color, max, unit){
+  const el = document.getElementById(id); if(!el) return;
+  const mx = max || Math.max(...rows.map(r => r[1]));
+  el.innerHTML = rows.map(r => '<div class="crow" style="--w:' + (r[1] / mx * 100).toFixed(1) + '%">' +
+    '<span class="bn" title="' + r[0] + '">' + r[0] + '</span>' +
+    '<span class="bt"><i class="bf" style="background:' + color + '"></i></span>' +
+    '<span class="bv">' + r[1] + (unit || '') + '</span></div>').join('');
+}
+bars('herbbars', [['滑石', 273], ['竹茹', 211], ['瓜蒌仁', 198], ['竹叶', 165], ['广郁金', 165], ['冬桑叶', 156], ['新会皮', 124], ['石决明', 121]], 'linear-gradient(90deg,var(--herb),var(--celadon))');
+bars('symbars',  [['胃钝', 199], ['胸闷', 118], ['肢懈', 82], ['头晕', 72], ['口腻', 71], ['身热', 67], ['头痛', 56], ['咳嗽', 56]], 'linear-gradient(90deg,var(--symptom),var(--celadon))');
+bars('covbars',  [['谱系层', 100.0], ['诊法层', 98.9], ['证候层', 97.9], ['本草方剂层', 98.9], ['医案层', 99.5], ['越医文化层', 78.7]], 'linear-gradient(90deg,var(--water),var(--celadon))', 100, '%');
 
 /* ---------- 图谱预览 ---------- */
 const mini = document.getElementById('mini');
@@ -1304,8 +1344,10 @@ function sizeMini(){
 
 function drawMini(){
   if(!MW) return;
+  /* 下标与 tools/build_payload.py 的 CLS_IDX 一致 */
   const COL = [css('--cinnabar'), css('--water'), css('--celadon'), css('--amber'), css('--pattern'),
-               css('--formula'), css('--herb'), css('--tile'), css('--dim')];
+               css('--formula'), css('--herb'), css('--principle'), css('--case'), css('--disease'),
+               css('--symptom'), css('--herbprop'), css('--inst'), css('--place'), css('--family'), css('--dim')];
   const lineC = css('--line-2'), dark = root.dataset.theme === 'ink';
   ctx.setTransform(1,0,0,1,0,0);
   ctx.clearRect(0,0,MW,MH);
@@ -1313,13 +1355,13 @@ function drawMini(){
   /* 依包围盒适配：底部为说明文字留白 */
   const narrow = MW / DPR < 720;
   const box = narrow
-    ? {l: MW*.07, r: MW*.93, t: MH*.10, b: MH*.90}
-    : {l: MW*.06, r: MW*.94, t: MH*.09, b: MH*.91};
+    ? {l: MW*.07, r: MW*.93, t: MH*.09, b: MH*.86}
+    : {l: MW*.06, r: MW*.94, t: MH*.08, b: MH*.87};
   const pct = (a,p) => { const v = a.slice().sort((m,n)=>m-n);
                          return v[Math.min(v.length-1, Math.round((v.length-1)*p))]; };
   const xs = PV.n.map(n=>n[2]), ys = PV.n.map(n=>n[3]);
-  const x0 = pct(xs,.04), x1 = pct(xs,.96);
-  const y0 = pct(ys,.04), y1 = pct(ys,.96);
+  const x0 = pct(xs,.02), x1 = pct(xs,.98);
+  const y0 = pct(ys,.02), y1 = pct(ys,.98);
   const s  = Math.min((box.r-box.l)/(x1-x0), (box.b-box.t)/(y1-y0));
   const ox = (box.l+box.r)/2 - (x0+x1)/2*s;
   const oy = (box.t+box.b)/2 - (y0+y1)/2*s;
@@ -1344,7 +1386,7 @@ function drawMini(){
   P.forEach(n=>{
     if(!inFrame(n)) return;
     const r = (2.4 + Math.sqrt(n.deg) * 0.85) * DPR;
-    const col = COL[n.c];
+    const col = COL[n.c] || COL[COL.length - 1];
     if(n.deg > 20){
       const g = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, r * 4);
       g.addColorStop(0, col + (dark ? '55' : '33'));
@@ -1362,8 +1404,8 @@ function drawMini(){
   ctx.font = `${fs}px "Kaiti SC","STKaiti","Songti SC",serif`;
   const placed = [];
   P.slice().sort((a,b)=>b.deg-a.deg).forEach(n=>{
-    const worth = (n.c === 0 && n.deg >= 40) || (n.c === 4 && n.deg >= 20) ||
-                  (n.c === 5 && n.deg >= 8);
+    const worth = (n.c === 0 && n.deg >= 40) || (n.c === 1 && n.deg >= 15) || (n.c === 4 && n.deg >= 20) ||
+                  (n.c === 5 && n.deg >= 30) || (n.c === 6 && n.deg >= 150) || (n.c === 10 && n.deg >= 110);
     if(!worth) return;
     const r = (2.4 + Math.sqrt(n.deg) * 0.85) * DPR;
     const w = ctx.measureText(n.name).width, pad = 4*DPR;
@@ -1390,8 +1432,8 @@ stagger('.tl', 70);
 stagger('.card', 55);
 stagger('.doc', 40);
 stagger('.brow', 80);
-stagger('.fcard', 90);
-stagger('.tree li', 70);
+stagger('.crow', 45);
+stagger('.casetbl tbody tr', 40);
 document.querySelectorAll('.stat').forEach(el=>io.observe(el));
 sizeMini();
 if(document.fonts && document.fonts.ready) document.fonts.ready.then(drawMini);

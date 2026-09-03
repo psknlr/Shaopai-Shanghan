@@ -1,258 +1,345 @@
 {
  "generated_from": {
-  "book": "《浙派中医丛书》专题系列·绍派伤寒",
-  "editor": "沈钦荣",
-  "year": 2021,
-  "chars": 205712,
-  "passages": 1243,
-  "char_count_note": "205712 chars = retained extractable passages (audited figure). 213357 = all non-empty paragraphs incl. TOC/front matter; 209201 = body after hard-wrap repair, before heading/fragment removal."
+  "corpora": [
+   "《浙派中医丛书》专题系列·绍派伤寒, 沈钦荣主编 (2021)",
+   "《越医文化》十章 + 目录 + 后记",
+   "《何廉臣医案》660 则",
+   "《越中名医传》下篇 + 越中名医传补",
+   "《越醫雜詠》",
+   "《赵晴初医论》"
+  ],
+  "delivery": "explorer_payload",
+  "imported_at": "2026-09-03"
  },
- "scope": {
-  "layers_completed": [
-   "lineage",
-   "diagnostic"
+ "ontology": {
+  "version": "1.1.0",
+  "classes_defined": 16,
+  "classes_populated": 15,
+  "unpopulated_classes": [
+   "Dosage"
   ],
-  "layers_not_run": [
-   "pattern",
-   "materia"
-  ],
-  "reason_not_run": "frame LLM token ceiling (2.0M) reached again after the diagnostic layer; MiniMax cross-validation still unavailable because the control-plane kernel cannot start (/usr/bin/python3 is a broken Xcode CLT stub), so no credential access.",
-  "passages_pending": {
-   "pattern": 786,
-   "materia": 555
-  }
- },
- "cross_validation": {
-  "status": "not_run",
-  "planned_engines": [
-   "builtin-sonnet",
-   "MiniMax-M3"
-  ],
-  "engines_used": [
-   "builtin-sonnet"
-  ],
-  "reason": "MiniMax credential could not be read: control-plane kernel down. Key supplied in chat was deliberately not used and should be rotated.",
-  "consequence": "all edges carry agreement=\"single_engine\"; no inter-engine disagreement signal exists in this build"
+  "properties_defined": 39,
+  "properties_used": 32,
+  "unused_properties": [
+   "addHerbIf",
+   "caseByPhysician",
+   "diseaseSubtypeOf",
+   "hasDosage",
+   "ingredientRole",
+   "modifiedBy",
+   "removeHerbIf"
+  ]
  },
  "graph": {
-  "n_nodes": 4317,
-  "n_edges": 3212,
+  "n_nodes": 16191,
+  "n_edges": 21351,
   "nodes_by_class": {
-   "Physician": 218,
-   "Work": 356,
-   "Doctrine": 1524,
-   "DiagnosticSign": 1311,
-   "Pattern": 567,
-   "Formula": 41,
-   "Herb": 188,
-   "TreatmentPrinciple": 29,
-   "CaseRecord": 15,
-   "Disease": 68
+   "DiagnosticSign": 2281,
+   "Symptom": 2217,
+   "Doctrine": 2172,
+   "TreatmentPrinciple": 1801,
+   "Pattern": 1674,
+   "Disease": 1458,
+   "Herb": 1254,
+   "Formula": 962,
+   "CaseRecord": 657,
+   "Work": 647,
+   "Physician": 599,
+   "Place": 264,
+   "Institution": 90,
+   "HerbProperty": 80,
+   "MedicalFamily": 35
   },
   "edges_by_type": {
-   "authored": 223,
-   "statedIn": 135,
-   "editedRevised": 75,
-   "proposes": 1142,
-   "influencedBy": 81,
-   "studiedUnder": 18,
-   "signIndicates": 605,
+   "caseUsesHerb": 8486,
+   "caseShowsSymptom": 3233,
+   "caseShowsSign": 1875,
+   "proposes": 1182,
+   "caseAppliesPrinciple": 1109,
+   "caseDiagnosedAs": 702,
+   "signIndicates": 607,
+   "caseShowsPattern": 434,
+   "caseUsesFormula": 429,
+   "treatedByPrinciple": 428,
+   "authored": 403,
+   "manifestsAs": 370,
+   "patternOfDisease": 360,
+   "subPatternOf": 299,
+   "formulaTreats": 242,
+   "statedIn": 222,
+   "belongsToChannel": 161,
+   "physicianOfPlace": 152,
+   "herbHasProperty": 125,
+   "editedRevised": 111,
+   "influencedBy": 109,
+   "studiedUnder": 62,
+   "physicianInFamily": 55,
+   "principleRealizedBy": 46,
+   "hasIngredient": 41,
    "signExcludes": 35,
-   "belongsToChannel": 59,
-   "subPatternOf": 272,
-   "hasIngredient": 262,
-   "addHerbIf": 22,
-   "removeHerbIf": 7,
-   "derivesFrom": 27,
-   "ingredientRole": 41,
-   "principleRealizedBy": 10,
-   "formulaTreats": 7,
-   "caseByPhysician": 15,
-   "subDiseaseOf": 61,
-   "treatedByPrinciple": 27,
-   "patternOfDisease": 20,
-   "describedBy": 68
+   "diseaseTreatedByFormula": 28,
+   "institutionAtPlace": 17,
+   "physicianFounded": 16,
+   "diseaseManifestsAs": 9,
+   "familySpecializesIn": 2,
+   "derivesFrom": 1
   },
-  "connectivity_pct": 71.0,
-  "largest_component": 2453
+  "edges_by_layer": {
+   "case": 16343,
+   "lineage": 1674,
+   "pattern": 1445,
+   "diagnostic": 1100,
+   "culture": 663,
+   "materia": 126
+  },
+  "nodes_with_relations": 9836,
+  "isolated_nodes": 6355,
+  "isolates_by_class": {
+   "DiagnosticSign": 1001,
+   "Disease": 909,
+   "Doctrine": 838,
+   "Symptom": 748,
+   "TreatmentPrinciple": 740,
+   "Formula": 676,
+   "Herb": 449,
+   "Pattern": 355,
+   "Work": 202,
+   "Place": 191,
+   "Physician": 173,
+   "Institution": 59,
+   "MedicalFamily": 7,
+   "HerbProperty": 7
+  },
+  "connectivity_pct": 60.7,
+  "n_components": 6857,
+  "largest_component": 8488,
+  "satellite_components": 501
  },
  "coverage": {
-  "core_physicians": "11/11",
-  "key_works": "15/15",
-  "book_title_inventory": "304/426 (71.4%)",
-  "passages_processed": "407/1243",
-  "note": "passage coverage is 32.7% because cue-routing sent only lineage-relevant passages to this layer; the remaining passages carry pattern/diagnostic/materia content that the un-run layers would consume"
+  "layer_coverage": {
+   "lineage": {
+    "extracted": 407,
+    "routed": 407,
+    "pct": 100.0
+   },
+   "diagnostic": {
+    "extracted": 281,
+    "routed": 284,
+    "pct": 98.9
+   },
+   "pattern": {
+    "extracted": 776,
+    "routed": 793,
+    "pct": 97.9
+   },
+   "materia": {
+    "extracted": 550,
+    "routed": 556,
+    "pct": 98.9
+   },
+   "case": {
+    "extracted": 657,
+    "routed": 660,
+    "pct": 99.5
+   },
+   "culture": {
+    "extracted": 1475,
+    "routed": 1874,
+    "pct": 78.7
+   }
+  },
+  "note": "Figures are passages EXTRACTED / passages ROUTED to that layer. Shortfalls are per-frame LLM token-ceiling stops, not absence of content: any count derived from a partial layer is a lower bound and must never be reported as \"none found\"."
+ },
+ "engines": {
+  "by_layer": {
+   "lineage": "builtin-sonnet",
+   "diagnostic": "builtin-haiku",
+   "pattern": "builtin-haiku",
+   "materia": "builtin-haiku",
+   "case": "builtin-haiku",
+   "culture": "builtin-haiku"
+  },
+  "cross_validation": "not_run",
+  "agreement": "single_engine"
  },
  "integrity": {
   "domain_range_violations": 0,
+  "domain_range_examples": [],
   "dangling_endpoints": 0,
-  "edges_with_provenance": 3212,
-  "evidence_verbatim": "3119/3212 (97.1%)",
-  "single_mention_edges": "3116/3212 (97.0%)"
+  "self_loops": 3,
+  "duplicate_triples": 10,
+  "max_cardinality_exceptions": 0,
+  "max_cardinality_note": "基数校验只检查上限为 1 的关系（caseByPhysician · derivesFrom · diseaseSubtypeOf · institutionAtPlace）。",
+  "edges_with_provenance": 21351,
+  "edges_without_source_sentence": 20,
+  "evidence_verbatim": "20907/21351 (97.9%)",
+  "single_mention_edges": "21092/21351 (98.8%)"
  },
- "known_issues": [
-  {
-   "issue": "Journal article titles from 参考文献 sections extracted as Work nodes",
-   "count": 11,
-   "severity": "medium",
-   "examples": [
-    "二集（一名《伤寒论本旨》或《活人新书",
-    "章虚谷遗著《灵素节注类编》钩沉",
-    "何廉臣《重订广温热论》伏气温病学说探讨",
-    "伤寒论》：从经典转向通俗",
-    "通俗伤寒论》承气汤衍化方探释"
-   ],
-   "fix": "filter passages whose chapter_path ends in 参考文献 before Work extraction"
-  },
-  {
-   "issue": "Native-place values recorded at differing granularity for the same physician",
-   "count": 7,
-   "severity": "low",
-   "detail": "mostly 山阴/绍兴 modern-vs-historical naming; 张畹香 \"江南\" is an outlier that needs review",
-   "examples": [
-    "邵兰荪",
-    "胡宝书",
-    "俞根初",
-    "何廉臣",
-    "张畹香",
-    "赵晴初",
-    "曹炳章"
-   ]
-  },
-  {
-   "issue": "38 edges whose evidence span is not verbatim in the source passage",
-   "count": 38,
-   "severity": "medium",
-   "fix": "these are flagged evidence_verbatim=false in every export; review before clinical use"
-  },
-  {
-   "issue": "94.3% of edges rest on a single mention with no second-engine confirmation",
-   "count": 1578,
-   "severity": "high",
-   "fix": "run the MiniMax pass and populate the agreement column"
-  }
- ],
- "requires_expert_review": [
-  "张畹香 native place recorded as 江南 in one passage — verify against the source",
-  "11 Work nodes that are article titles rather than books",
-  "Doctrine statements are free text and were deduplicated by exact string; near-duplicate phrasings of the same doctrine may remain as separate nodes",
-  "All 1,674 edges are single-engine; treat as provisional until cross-validated"
- ],
- "built_by": {
-  "organization": "医哲未来人工智能研究院 (IMPFAI)",
-  "url": "https://impfai.github.io/"
+ "diagnostic_modalities": {
+  "脉诊": 747,
+  "舌诊": 617,
+  "问诊": 418,
+  "望诊": 279,
+  "腹诊": 116,
+  "目诊": 83,
+  "闻诊": 21
  },
- "diagnostic_layer": {
-  "passages_processed": "281/284",
-  "signs": 1311,
-  "patterns": 542,
-  "signs_by_modality": {
-   "目诊": 75,
-   "舌诊": 265,
-   "腹诊": 110,
-   "脉诊": 168,
-   "望诊": 260,
-   "问诊": 412,
-   "闻诊": 21
-  },
-  "vocabulary_axis_nodes": 18,
-  "patterns_on_canonical_axis": "296/542",
-  "signs_with_no_relation": 796,
-  "single_mention_signs": 1149
- },
- "rdf": {
-  "ontology_triples": 314,
-  "instance_triples": 49966,
-  "combined": 50277
- },
- "pilot_validation": {
-  "passage": "p02121",
-  "gold_ingredients": [
-   "青蒿脑",
-   "淡竹茹",
-   "仙半夏",
-   "赤茯苓",
-   "青子芩",
-   "生枳壳",
-   "陈广皮",
-   "碧玉散"
-  ],
-  "verified": {
-   "model": "claude-haiku-4-5-20251001",
-   "ingredient_recall": "8/8",
-   "attribution": "俞根初 / 《通俗伤寒论》",
-   "non_verbatim_evidence": 0,
-   "output_tokens": 2047,
-   "stop_reason": "end_turn"
-  },
-  "not_measured": {
-   "model": "claude-sonnet-5",
-   "outcome": "response truncated at the 3000-token cap and did not parse; no valid recall score",
-   "note": "the 0/8 printed for this arm is a truncation artifact, not a measured recall. A re-run at a larger cap was attempted but the frame token ceiling was exhausted, so no reasoning-model score exists for this session."
-  },
-  "decision": "haiku-class model selected for all three clinical layers on the strength of its own verified pilot score, not on a comparison against the reasoning model."
- },
- "layers": {
-  "lineage": "complete (single-engine LLM)",
-  "diagnostic": "complete (single-engine LLM)",
-  "materia": "complete (deterministic parser)",
-  "pattern": "complete (deterministic parser)"
- },
- "materia_layer": {
-  "engine": "rule-parser-v1 (deterministic, not an LLM)",
-  "reproducible": true,
-  "formulas": 41,
-  "herbs": 188,
-  "treatment_principles": 10,
-  "case_records": 15,
-  "ingredient_edges": 262,
-  "role_edges": 41,
-  "modification_edges": 29,
-  "pilot_check": "蒿芩清胆汤 8/8 ingredient recall vs pilot_validation.json gold set",
-  "known_limits": [
-   "Herb surface forms are NOT unified: 生枳壳 / 枳壳, 炙甘草 / 甘草 are separate nodes. Prefix stripping was rejected because it collapses 陈皮 / 青皮 / 新会皮 into 皮.",
-   "Only formulas whose composition is printed in the book are minted as Formula nodes; formulas merely cited by name (麻黄汤, 白虎汤 …) are not, to avoid isolated nodes.",
-   "Dosage class stays at 0 instances by design: dose, processing and 君臣佐使 are carried on the hasIngredient / ingredientRole relations instead of as separate nodes.",
-   "formulaTreats links rest on string containment between a formula indication and an existing Pattern name; only 5 matched.",
-   "Disease and Symptom classes remain empty; the pattern layer has not run.",
-   "Passage ids for this layer use a b##### scheme from a fresh segmentation of the source .doc and do NOT align with the p##### ids of the lineage / diagnostic layers."
+ "disease_layer": {
+  "n_disease": 1458,
+  "diseases_with_cases": 416,
+  "cases_with_diagnosis": 625,
+  "n_cases": 657,
+  "top": [
+   {
+    "disease": "咳嗽",
+    "cases": 37,
+    "herbs": [
+     "瓜蒌仁",
+     "光杏仁",
+     "冬桑叶",
+     "新会皮",
+     "竹茹",
+     "前胡"
+    ]
+   },
+   {
+    "disease": "湿热",
+    "cases": 25,
+    "herbs": [
+     "滑石",
+     "竹叶",
+     "广郁金",
+     "瓜蒌仁",
+     "枳实",
+     "佩兰叶"
+    ]
+   },
+   {
+    "disease": "湿温",
+    "cases": 19,
+    "herbs": [
+     "滑石",
+     "山栀",
+     "竹叶",
+     "苏薄荷",
+     "苏叶梗",
+     "杜藿梗"
+    ]
+   },
+   {
+    "disease": "湿热兼风",
+    "cases": 13,
+    "herbs": [
+     "滑石",
+     "佩兰叶",
+     "广郁金",
+     "竹叶",
+     "苏薄荷",
+     "西茵陈"
+    ]
+   },
+   {
+    "disease": "湿热夹食",
+    "cases": 13,
+    "herbs": [
+     "滑石",
+     "佛手片",
+     "竹叶",
+     "莱菔子",
+     "打延胡",
+     "打鸡金"
+    ]
+   },
+   {
+    "disease": "暑湿夹食",
+    "cases": 11,
+    "herbs": [
+     "竹叶",
+     "山栀",
+     "桑枝",
+     "佩兰叶",
+     "枳壳",
+     "滑石"
+    ]
+   },
+   {
+    "disease": "湿热阻中",
+    "cases": 11,
+    "herbs": [
+     "滑石",
+     "杜藿梗",
+     "佩兰叶",
+     "佛手片",
+     "广郁金",
+     "竹叶"
+    ]
+   },
+   {
+    "disease": "疟",
+    "cases": 11,
+    "herbs": [
+     "滑石",
+     "山栀",
+     "竹叶",
+     "桑枝",
+     "苏叶梗",
+     "草果仁"
+    ]
+   },
+   {
+    "disease": "暑湿兼风",
+    "cases": 10,
+    "herbs": [
+     "滑石",
+     "冬桑叶",
+     "广郁金",
+     "桑枝",
+     "滁菊花",
+     "苏叶梗"
+    ]
+   },
+   {
+    "disease": "肝风",
+    "cases": 8,
+    "herbs": [
+     "明天麻",
+     "石决明",
+     "竹茹",
+     "东白薇",
+     "佩兰叶",
+     "冬桑叶"
+    ]
+   },
+   {
+    "disease": "暑湿",
+    "cases": 7,
+    "herbs": [
+     "竹叶",
+     "冬桑叶",
+     "滑石",
+     "苏薄荷",
+     "山栀",
+     "青蒿"
+    ]
+   },
+   {
+    "disease": "肝阳犯胃",
+    "cases": 7,
+    "herbs": [
+     "广郁金",
+     "竹茹",
+     "石决明",
+     "香附",
+     "代赭石",
+     "佛手片"
+    ]
+   }
   ]
  },
- "resolved_issues": [
-  "The lineage and diagnostic layers are no longer disconnected — the materia layer bridges them (derivesFrom → Work, formulaTreats → Pattern, caseByPhysician → Physician).",
-  "The 伤寒 disease tree is no longer a separate component — describedBy (Disease→Physician) folds all 68 diseases into the giant component, which now holds 2,453 nodes across all ten populated classes."
- ],
- "ontology": {
-  "version": "1.2.0",
-  "classes": 13,
-  "object_properties": 28,
-  "populated_classes": 10,
-  "empty_classes": {
-   "Symptom": "deliberate — 17/18 common symptom candidates are already DiagnosticSign nodes (672 carry modality 问诊/望诊). A parallel class would duplicate nodes and split the graph.",
-   "Dosage": "deliberate — dose, processing and 君臣佐使 ride on hasIngredient / ingredientRole instead of separate nodes.",
-   "HerbProperty": "not extracted — the book states herb properties in prose, not in a tabular form the parser can read without inference."
-  },
-  "extension": "1.0.0 → 1.1.0: added subDiseaseOf (Disease→Disease, 0..1) — the book enumerates 伤寒本证/兼证/夹证/坏证/复证 and their members, but 1.0.0 had no Disease-to-Disease relation, so 51 diseases could only be isolated nodes. 1.1.0 → 1.2.0: added describedBy (Disease→Physician, 0..*) — with subDiseaseOf alone the 57-node 伤寒 tree was still a separate component; every taxonomy passage sits inside a physician chapter, so each disease is now tied back to the physician who described it (俞根初 67, 张景岳 1). Nothing else in the ontology was changed."
- },
- "pattern_layer": {
-  "engine": "rule-parser-v1 (deterministic, not an LLM)",
-  "reproducible": true,
-  "diseases": 68,
-  "patterns_added": 25,
-  "treatment_principles": 29,
-  "taxonomy_check": "Every taxonomy member was matched verbatim in its source passage and the count checked against the number the book itself states: 本证 5/5, 兼证 21/21, 夹证 16/16, 坏证 4/4, 复证 5/5.",
-  "edges": {
-   "subDiseaseOf": 61,
-   "describedBy": 68,
-   "treatedByPrinciple": 27,
-   "patternOfDisease": 20,
-   "formulaTreats": 7
-  },
-  "known_limits": [
-   "describedBy attributes a disease to the physician in whose chapter the enumeration appears. For the 《通俗伤寒论》 taxonomy that is 俞根初 throughout — accurate, but it means the layer hangs off a single hub rather than being distributed.",
-   "Treatment principles were harvested from a handful of passages that state them in an「X宜Y」form; principles discussed only in prose are not captured.",
-   "patternOfDisease edges for the 六淫 sub-patterns rest on the book grouping them under a 「X病药」 section heading, not on an explicit sentence asserting membership.",
-   "The formula names cited in 何廉臣 down-method classification (紫草承气汤, 局方凉膈散 …) print no composition, so no principleRealizedBy edges were created for them."
-  ]
+ "derived_copy": {
+  "kind": "explorer_payload",
+  "note": "本文件由上游自包含浏览器（shaopai_explorer.html）内嵌的精简载荷还原：每条关系 1 条原文与章节路径，每个节点最多 3 条章节路径与 1 条原文，不含段落编号。完整出处以上游 shaopai_kg.json 为准。",
+  "engine_reused_from_previous_release": 21351,
+  "layer_and_engine_rule": "按关系类型与章节根推定（tools/import_upstream.py: layer_of）"
  }
 }
