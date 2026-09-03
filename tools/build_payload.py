@@ -4,14 +4,14 @@
 
   python3 tools/build_payload.py
 
-读取 data/shaopai_kg.json、data/layout_positions.json、data/nodes.csv，
+读取 data/shaopai_kg.json、data/layout_positions.json，
 生成 explorer.html 的内嵌图谱与 index.html 的预览子集。
 
 新增节点若无坐标，用「固定已有节点、只松弛新节点」的力导向布局求解：
 既让新节点贴近其已有邻居，又保证既有坐标一字不动——
 上游承诺「每次渲染可复现」，重排全图会毁掉这个性质。
 """
-import json, csv, math, re, sys, collections
+import json, math, re, sys, collections
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -52,7 +52,7 @@ def components(kg):
                 continue
             cur.add(x); stack.extend(adj[x] - cur)
         seen |= cur; comps.append(cur)
-    comps.sort(key=len, reverse=True)
+    comps.sort(key=lambda c: (-len(c), min(c)))
     return {i: k for k, c in enumerate(comps) for i in c}
 
 
@@ -137,7 +137,15 @@ class _Rand:
 
 
 def compact(kg, pos, comp):
+    """页面内嵌格式。字段名极短以控制体积；空字段一律省略。
+
+    节点  i id · n 名称 · c 类 · m 提及次数 · x y 坐标 · k 连通分量 · a 别名 · at 属性
+          pvn 出处总数 · pv [{s 原文, c 章节路径, p 段落编号, v 逐字}]
+    关系  s o t · n 支撑次数 · l 层 · ev 原文 · ch 章节路径 · pid 段落编号 · v 逐字
+          en 引擎（仅当与 meta.engine_by_layer 推定值不同时给出）· d dn r cd 剂量/角色/条件
+    """
     onto = kg['ontology']
+    eng_by_layer = kg['meta'].get('engine_by_layer', {})
     nodes = []
     for n in kg['nodes']:
         xy = pos.get(n['id'])
@@ -149,15 +157,27 @@ def compact(kg, pos, comp):
              'k': comp.get(n['id'], -1)}
         if n.get('aliases'):
             o['a'] = n['aliases']
-        at = {k: v for k, v in (n.get('attrs') or {}).items() if v}
+        at = {k: v for k, v in (n.get('attrs') or {}).items() if v not in (None, '', [])}
         if at:
             o['at'] = at
         pv = n.get('provenance') or []
-        o['pvn'] = len(pv)
+        o['pvn'] = n.get('n_provenance', len(pv))
         if pv:
-            o['pv'] = [{'s': p.get('source_sentence', ''), 'c': p.get('chapter_path', ''),
-                        'p': p.get('passage_id', ''), 'v': bool(p.get('evidence_verbatim'))}
-                       for p in pv[:PV_CAP]]
+            lst = []
+            for p in pv[:PV_CAP]:
+                item = {}
+                if p.get('source_sentence'):
+                    item['s'] = p['source_sentence']
+                if p.get('chapter_path'):
+                    item['c'] = p['chapter_path']
+                if p.get('passage_id'):
+                    item['p'] = p['passage_id']
+                if 'evidence_verbatim' in p:
+                    item['v'] = bool(p['evidence_verbatim'])
+                if item:
+                    lst.append(item)
+            if lst:
+                o['pv'] = lst
         nodes.append(o)
     ids = {n['i'] for n in nodes}
     edges = []
@@ -165,34 +185,48 @@ def compact(kg, pos, comp):
         if e['subject_id'] not in ids or e['object_id'] not in ids:
             continue
         p = (e.get('provenance') or [{}])[0]
-        edges.append({'s': e['subject_id'], 'o': e['object_id'], 't': e['type'],
-                      'n': e.get('n_support', 1),
-                      'ev': p.get('source_sentence', ''), 'ch': p.get('chapter_path', ''),
-                      'pid': p.get('passage_id', ''), 'v': bool(p.get('evidence_verbatim')),
-                      'en': e.get('engine') or p.get('engine', ''),
-                      'ag': e.get('agreement') or p.get('agreement', '')})
+        layer = e.get('layer', '')
+        o = {'s': e['subject_id'], 'o': e['object_id'], 't': e['type'],
+             'n': e.get('n_support', 1), 'l': layer,
+             'ev': e.get('source_sentence') or p.get('source_sentence', ''),
+             'ch': e.get('chapter_path') or p.get('chapter_path', ''),
+             'v': bool(e.get('evidence_verbatim', p.get('evidence_verbatim')))}
+        pid = e.get('passage_id') or p.get('passage_id')
+        if pid:
+            o['pid'] = pid
+        en = e.get('engine') or p.get('engine')
+        if en and en != eng_by_layer.get(layer):
+            o['en'] = en
         for k, short in (('dose', 'd'), ('dose_note', 'dn'), ('role', 'r'), ('condition', 'cd')):
             if e.get(k):
-                edges[-1][short] = e[k]
-    meta = dict(kg['meta']); meta.pop('layout', None)
+                o[short] = e[k]
+        edges.append(o)
+    meta = dict(kg['meta'])
+    for k in ('derived_from',):
+        meta.pop(k, None)
     return {'meta': meta,
             'onto': {'classes': {k: v['zh'] for k, v in onto['classes'].items()},
                      'props': {k: v['zh'] for k, v in onto['object_properties'].items()}},
             'nodes': nodes, 'edges': edges}
 
 
-# 顺序即页面预览的配色下标，勿随意调整
+# 顺序即页面预览的配色下标（index.html 的 COL 数组），勿随意调整
 CLS_IDX = ['Physician', 'Work', 'Doctrine', 'DiagnosticSign', 'Pattern',
            'Formula', 'Herb', 'TreatmentPrinciple', 'CaseRecord',
-           'Disease', 'Symptom', 'HerbProperty', 'Dosage']
+           'Disease', 'Symptom', 'HerbProperty', 'Institution', 'Place',
+           'MedicalFamily', 'Dosage']
 
 
-def preview(payload, cap=230):
+def preview(payload, cap=420):
+    """主页预览子集：按度数取前 cap 个节点及其间的关系。医案标题冗长且数量多，
+    只保留度数很高者，避免预览被 657 则医案淹没。"""
     deg = collections.Counter()
     for e in payload['edges']:
         deg[e['s']] += 1; deg[e['o']] += 1
     thr = {'Physician': 5, 'Work': 3, 'Doctrine': 2, 'DiagnosticSign': 2, 'Pattern': 2,
-           'Formula': 1, 'Herb': 1}
+           'Formula': 3, 'Herb': 4, 'TreatmentPrinciple': 3, 'CaseRecord': 40,
+           'Disease': 3, 'Symptom': 6, 'HerbProperty': 2, 'Institution': 2, 'Place': 3,
+           'MedicalFamily': 2}
     keep = [n for n in payload['nodes'] if deg[n['i']] >= thr.get(n['c'], 2)]
     keep.sort(key=lambda n: -deg[n['i']])
     keep = keep[:cap]
@@ -223,14 +257,15 @@ def main():
     payload = compact(kg, pos, comp)
     body = json.dumps(payload, ensure_ascii=False, separators=(',', ':'))
     inject('explorer.html', 'data', body)
-    inject('index.html', 'preview',
-           json.dumps(preview(payload), ensure_ascii=False, separators=(',', ':')))
+    pv = preview(payload)
+    inject('index.html', 'preview', json.dumps(pv, ensure_ascii=False, separators=(',', ':')))
 
     cc = collections.Counter(n['c'] for n in payload['nodes'])
-    print(f'节点 {len(payload["nodes"])}  关系 {len(payload["edges"])}'
-          f'  新布局 {n_new}  内嵌 {len(body.encode())/1024/1024:.2f} MB')
+    print(f'节点 {len(payload["nodes"]):,}  关系 {len(payload["edges"]):,}'
+          f'  新布局 {n_new}  内嵌 {len(body.encode())/1024/1024:.2f} MB'
+          f'  预览 {len(pv["n"])} 节点 / {len(pv["e"])} 关系')
     for k, v in cc.most_common():
-        print(f'  {k:16s} {v:5d}')
+        print(f'  {k:18s} {v:6,d}')
 
 
 if __name__ == '__main__':
