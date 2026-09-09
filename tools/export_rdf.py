@@ -94,6 +94,8 @@ for e in sorted(kg['edges'], key=lambda x: (x['type'], x['subject_id'], x['objec
     ]
     if e.get('layer'):
         fields.append(('sp:layer', lit(e['layer'])))
+    if e.get('corpus'):
+        fields.append(('sp:corpus', lit(e['corpus'])))
     pid = e.get('passage_id') or p.get('passage_id')
     if pid:
         fields.append(('sp:passageId', lit(pid)))

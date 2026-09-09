@@ -6,10 +6,12 @@
    "《何廉臣医案》660 则",
    "《越中名医传》下篇 + 越中名医传补",
    "《越醫雜詠》",
-   "《赵晴初医论》"
+   "《赵晴初医论》",
+   "《俞根初临证经验集要》沈钦荣编著（学派奠基人专著，十章）",
+   "《绍派伤寒史料图片研究》陶建华总审／沈钦荣、林怡冰编著（图片史料图录，204 幅）"
   ],
   "delivery": "explorer_payload",
-  "imported_at": "2026-09-03"
+  "imported_at": "2026-09-09"
  },
  "ontology": {
   "version": "1.1.0",
@@ -31,101 +33,111 @@
   ]
  },
  "graph": {
-  "n_nodes": 16191,
-  "n_edges": 21351,
+  "n_nodes": 18151,
+  "n_edges": 22700,
   "nodes_by_class": {
-   "DiagnosticSign": 2281,
-   "Symptom": 2217,
-   "Doctrine": 2172,
-   "TreatmentPrinciple": 1801,
-   "Pattern": 1674,
-   "Disease": 1458,
-   "Herb": 1254,
-   "Formula": 962,
+   "DiagnosticSign": 2597,
+   "Doctrine": 2522,
+   "Symptom": 2216,
+   "Pattern": 2044,
+   "TreatmentPrinciple": 1940,
+   "Disease": 1524,
+   "Herb": 1379,
+   "Formula": 1280,
+   "Work": 758,
+   "Physician": 671,
    "CaseRecord": 657,
-   "Work": 647,
-   "Physician": 599,
-   "Place": 264,
-   "Institution": 90,
+   "Place": 309,
+   "Institution": 137,
    "HerbProperty": 80,
-   "MedicalFamily": 35
+   "MedicalFamily": 37
   },
   "edges_by_type": {
    "caseUsesHerb": 8486,
    "caseShowsSymptom": 3233,
    "caseShowsSign": 1875,
-   "proposes": 1182,
+   "proposes": 1278,
    "caseAppliesPrinciple": 1109,
+   "signIndicates": 859,
+   "formulaTreats": 767,
    "caseDiagnosedAs": 702,
-   "signIndicates": 607,
    "caseShowsPattern": 434,
+   "authored": 430,
    "caseUsesFormula": 429,
    "treatedByPrinciple": 428,
-   "authored": 403,
    "manifestsAs": 370,
    "patternOfDisease": 360,
-   "subPatternOf": 299,
-   "formulaTreats": 242,
-   "statedIn": 222,
+   "subPatternOf": 296,
+   "statedIn": 275,
+   "principleRealizedBy": 227,
+   "physicianOfPlace": 203,
    "belongsToChannel": 161,
-   "physicianOfPlace": 152,
-   "herbHasProperty": 125,
-   "editedRevised": 111,
-   "influencedBy": 109,
-   "studiedUnder": 62,
-   "physicianInFamily": 55,
-   "principleRealizedBy": 46,
+   "herbHasProperty": 128,
+   "editedRevised": 126,
+   "influencedBy": 120,
+   "studiedUnder": 78,
+   "physicianInFamily": 66,
+   "derivesFrom": 50,
+   "signExcludes": 48,
+   "diseaseTreatedByFormula": 42,
    "hasIngredient": 41,
-   "signExcludes": 35,
-   "diseaseTreatedByFormula": 28,
-   "institutionAtPlace": 17,
-   "physicianFounded": 16,
+   "institutionAtPlace": 41,
+   "physicianFounded": 23,
    "diseaseManifestsAs": 9,
-   "familySpecializesIn": 2,
-   "derivesFrom": 1
+   "familySpecializesIn": 6
   },
   "edges_by_layer": {
-   "case": 16343,
-   "lineage": 1674,
-   "pattern": 1445,
-   "diagnostic": 1100,
-   "culture": 663,
-   "materia": 126
+   "case": 16268,
+   "lineage": 2307,
+   "pattern": 2203,
+   "diagnostic": 1364,
+   "culture": 339,
+   "materia": 219
   },
-  "nodes_with_relations": 9836,
-  "isolated_nodes": 6355,
+  "edges_by_corpus": {
+   "hlc_yian": 16342,
+   "shaopai": 4332,
+   "ygc_jingyao": 1156,
+   "yz_mingyi": 310,
+   "sp_shiliao": 227,
+   "zqc_yilun": 162,
+   "yue_wenhua": 87,
+   "yy_zayong": 84
+  },
+  "nodes_with_relations": 11064,
+  "isolated_nodes": 7087,
   "isolates_by_class": {
-   "DiagnosticSign": 1001,
-   "Disease": 909,
-   "Doctrine": 838,
+   "DiagnosticSign": 1096,
+   "Doctrine": 1045,
+   "Disease": 962,
+   "TreatmentPrinciple": 803,
+   "Formula": 763,
    "Symptom": 748,
-   "TreatmentPrinciple": 740,
-   "Formula": 676,
-   "Herb": 449,
-   "Pattern": 355,
-   "Work": 202,
-   "Place": 191,
-   "Physician": 173,
-   "Institution": 59,
-   "MedicalFamily": 7,
-   "HerbProperty": 7
+   "Herb": 572,
+   "Pattern": 349,
+   "Work": 249,
+   "Place": 222,
+   "Physician": 185,
+   "Institution": 80,
+   "HerbProperty": 7,
+   "MedicalFamily": 6
   },
-  "connectivity_pct": 60.7,
-  "n_components": 6857,
-  "largest_component": 8488,
-  "satellite_components": 501
+  "connectivity_pct": 61.0,
+  "n_components": 7725,
+  "largest_component": 9471,
+  "satellite_components": 637
  },
  "coverage": {
   "layer_coverage": {
    "lineage": {
-    "extracted": 407,
-    "routed": 407,
+    "extracted": 544,
+    "routed": 544,
     "pct": 100.0
    },
    "diagnostic": {
-    "extracted": 281,
-    "routed": 284,
-    "pct": 98.9
+    "extracted": 330,
+    "routed": 333,
+    "pct": 99.1
    },
    "pattern": {
     "extracted": 776,
@@ -133,9 +145,9 @@
     "pct": 97.9
    },
    "materia": {
-    "extracted": 550,
-    "routed": 556,
-    "pct": 98.9
+    "extracted": 1215,
+    "routed": 1464,
+    "pct": 83.0
    },
    "case": {
     "extracted": 657,
@@ -143,9 +155,9 @@
     "pct": 99.5
    },
    "culture": {
-    "extracted": 1475,
-    "routed": 1874,
-    "pct": 78.7
+    "extracted": 1802,
+    "routed": 2407,
+    "pct": 74.9
    }
   },
   "note": "Figures are passages EXTRACTED / passages ROUTED to that layer. Shortfalls are per-frame LLM token-ceiling stops, not absence of content: any count derived from a partial layer is a lower bound and must never be reported as \"none found\"."
@@ -166,26 +178,26 @@
   "domain_range_violations": 0,
   "domain_range_examples": [],
   "dangling_endpoints": 0,
-  "self_loops": 3,
-  "duplicate_triples": 10,
+  "self_loops": 0,
+  "duplicate_triples": 0,
   "max_cardinality_exceptions": 0,
   "max_cardinality_note": "基数校验只检查上限为 1 的关系（caseByPhysician · derivesFrom · diseaseSubtypeOf · institutionAtPlace）。",
-  "edges_with_provenance": 21351,
+  "edges_with_provenance": 22700,
   "edges_without_source_sentence": 20,
-  "evidence_verbatim": "20907/21351 (97.9%)",
-  "single_mention_edges": "21092/21351 (98.8%)"
+  "evidence_verbatim": "22199/22700 (97.8%)",
+  "single_mention_edges": "22370/22700 (98.5%)"
  },
  "diagnostic_modalities": {
-  "脉诊": 747,
-  "舌诊": 617,
-  "问诊": 418,
-  "望诊": 279,
-  "腹诊": 116,
-  "目诊": 83,
+  "脉诊": 876,
+  "舌诊": 760,
+  "问诊": 420,
+  "望诊": 283,
+  "腹诊": 148,
+  "目诊": 89,
   "闻诊": 21
  },
  "disease_layer": {
-  "n_disease": 1458,
+  "n_disease": 1524,
   "diseases_with_cases": 416,
   "cases_with_diagnosis": 625,
   "n_cases": 657,
@@ -339,7 +351,8 @@
  "derived_copy": {
   "kind": "explorer_payload",
   "note": "本文件由上游自包含浏览器（shaopai_explorer.html）内嵌的精简载荷还原：每条关系 1 条原文与章节路径，每个节点最多 3 条章节路径与 1 条原文，不含段落编号。完整出处以上游 shaopai_kg.json 为准。",
-  "engine_reused_from_previous_release": 21351,
-  "layer_and_engine_rule": "按关系类型与章节根推定（tools/import_upstream.py: layer_of）"
+  "engine_reused_from_previous_release": 21243,
+  "layer_rule": "按关系类型的语义归层（tools/import_upstream.py: layer_of）",
+  "corpus_rule": "按章节根映射到八种文献（tools/import_upstream.py: corpus_of）"
  }
 }

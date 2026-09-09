@@ -259,11 +259,10 @@ sp:caseByPhysician a owl:ObjectProperty ;
     rdfs:isDefinedBy <https://w3id.org/shaopai/ontology> .
 
 sp:derivesFrom a owl:ObjectProperty ;
-    a owl:FunctionalProperty ;
     rdfs:label "derivesFrom"@en, "源自"@zh ;
     rdfs:domain sp:Formula ;
     rdfs:range sp:Work ;
-    sp:cardinality "0..1" ;
+    sp:cardinality "0..*" ;
     rdfs:isDefinedBy <https://w3id.org/shaopai/ontology> .
 
 sp:caseDiagnosedAs a owl:ObjectProperty ;
@@ -345,11 +344,10 @@ sp:familySpecializesIn a owl:ObjectProperty ;
     rdfs:isDefinedBy <https://w3id.org/shaopai/ontology> .
 
 sp:institutionAtPlace a owl:ObjectProperty ;
-    a owl:FunctionalProperty ;
     rdfs:label "institutionAtPlace"@en, "机构所在"@zh ;
     rdfs:domain sp:Institution ;
     rdfs:range sp:Place ;
-    sp:cardinality "0..1" ;
+    sp:cardinality "0..*" ;
     rdfs:isDefinedBy <https://w3id.org/shaopai/ontology> .
 
 sp:caseShowsSymptom a owl:ObjectProperty ;
@@ -666,6 +664,10 @@ sp:nSupport a owl:AnnotationProperty ;
 sp:layer a owl:AnnotationProperty ;
     rdfs:label "layer"@en, "抽取层"@zh ;
     rdfs:comment "extraction layer"@en .
+
+sp:corpus a owl:AnnotationProperty ;
+    rdfs:label "corpus"@en, "来源文献"@zh ;
+    rdfs:comment "source work the passage comes from"@en .
 
 sp:n_mentions a owl:AnnotationProperty ;
     rdfs:label "n_mentions"@en, "提及次数"@zh ;

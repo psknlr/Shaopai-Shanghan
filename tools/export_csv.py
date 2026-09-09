@@ -45,7 +45,7 @@ with (ROOT / 'data/nodes.csv').open('w', encoding='utf-8', newline='') as f:
                     comp.get(n['id'], -1)] + [at.get(a, '') for a in NATTR])
 
 EATTR = ['dose', 'dose_note', 'role', 'condition']
-ehead = [':START_ID', ':END_ID', ':TYPE', 'n_support:int', 'layer:string', 'source_sentence:string',
+ehead = [':START_ID', ':END_ID', ':TYPE', 'n_support:int', 'layer:string', 'corpus:string', 'source_sentence:string',
          'chapter_path:string', 'passage_id:string', 'evidence_verbatim:boolean',
          'engine:string', 'agreement:string'] + [f'{a}:string' for a in EATTR]
 with (ROOT / 'data/edges.csv').open('w', encoding='utf-8', newline='') as f:
@@ -53,6 +53,7 @@ with (ROOT / 'data/edges.csv').open('w', encoding='utf-8', newline='') as f:
     for e in kg['edges']:
         p = (e.get('provenance') or [{}])[0]
         w.writerow([e['subject_id'], e['object_id'], e['type'], e.get('n_support', 1), e.get('layer', ''),
+                    e.get('corpus', ''),
                     e.get('source_sentence') or p.get('source_sentence', ''),
                     e.get('chapter_path') or p.get('chapter_path', ''),
                     e.get('passage_id') or p.get('passage_id', ''),
@@ -96,6 +97,7 @@ L += ['// ---------- 关系（APOC）----------',
       "  CALL apoc.merge.relationship(s, row[':TYPE'], {}, {",
       "    n_support: toInteger(row['n_support:int']),",
       "    layer: row['layer:string'],",
+      "    corpus: row['corpus:string'],",
       "    source_sentence: row['source_sentence:string'],",
       "    chapter_path: row['chapter_path:string'],",
       "    passage_id: row['passage_id:string'],",
@@ -109,6 +111,7 @@ for t in used_types:
     L += [f"// LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row[':TYPE'] = '{t}'",
           f"// MATCH (s:{d} {{id: row[':START_ID']}}), (o:{r} {{id: row[':END_ID']}}) MERGE (s)-[rel:{t}]->(o)",
           "// SET rel.n_support = toInteger(row['n_support:int']), rel.layer = row['layer:string'], "
+          "rel.corpus = row['corpus:string'], "
           "rel.source_sentence = row['source_sentence:string'], rel.chapter_path = row['chapter_path:string'], "
           "rel.passage_id = row['passage_id:string'], rel.evidence_verbatim = row['evidence_verbatim:boolean'] = 'true', "
           "rel.engine = row['engine:string'], rel.agreement = row['agreement:string'];"]
