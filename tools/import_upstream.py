@@ -17,11 +17,15 @@
   qc_audit.json          由图谱实测重算的质检数字
   disease_profiles.csv   病证 × 医案：病例数与共现药物 / 症状
 
-层归属（layer）与抽取引擎（engine）在浏览器载荷中不逐条给出，这里按上游 meta 的层定义
-从「关系类型 + 章节根」推定，规则见 LAYER_OF_REL / layer_of()；对上一版已收录的关系，
-沿用其记录在案的引擎——上游 V2 给六经归属与子证候两类关系标的是 builtin-haiku+vocab
-（词表辅助），共 331 条，其余 2,314 条与推定规则逐条一致。重复运行时 --prev 指向当前
-data/shaopai_kg.json，引擎标注保持不变。
+层归属（layer）、来源文献（corpus）与抽取引擎（engine）在浏览器载荷中不逐条给出，这里补出：
+
+  layer   按关系类型的语义归层，见 LAYER_OF_REL——每条关系的层由本体唯一决定，
+          与它出自哪部书无关。（V5 曾以「章节根优先」推定，导致《赵晴初医论》的
+          学术观点被归入越医文化层；自 V6 起改为纯语义归层。）
+  corpus  按章节根映射到八种文献之一，见 CORPUS_OF_ROOT——「出自哪部书」由它承载。
+  engine  按上游 meta 声明取层默认值；对上一版已收录的关系，沿用其记录在案的引擎
+          （上游 V2 给六经归属与子证候标的是 builtin-haiku+vocab）。重复运行时
+          --prev 指向当前 data/shaopai_kg.json，引擎标注保持不变。
 """
 import json, re, csv, sys, argparse, collections, datetime
 from pathlib import Path
@@ -55,9 +59,9 @@ MODALITIES = ['舌诊', '脉诊', '腹诊', '目诊', '望诊', '闻诊', '问�
 
 # 定义域 / 值域 / 基数。前 26 条沿用上游 1.0.0 声明；后 13 条为本次交付新增，
 # 定义域与值域取自数据中唯一出现的类对（导入时逐条校验，见 validate()）。
-# statedIn / belongsToChannel / subPatternOf 在 1.0.0 声明为 0..1，本次交付中分别有
-# 10 / 3 / 2 个主语带多条出边（一条观点载于多部著作等），而上游自报全部关系通过校验，
-# 故按交付数据放宽为 0..*。
+# statedIn / belongsToChannel / subPatternOf / derivesFrom / institutionAtPlace 在 1.0.0
+# 声明为 0..1，交付数据中分别有 11 / 3 / 2 / 14 / 2 个主语带多条出边（一条观点载于多部著作、
+# 一首方剂同出数书等），而上游自报全部关系通过校验，故按交付数据放宽为 0..*。
 PROP_SPEC = {
     'studiedUnder': ('Physician', 'Physician', '0..*'),
     'influencedBy': ('Physician', 'Physician', '0..*'),
@@ -84,7 +88,7 @@ PROP_SPEC = {
     'caseUsesFormula': ('CaseRecord', 'Formula', '0..*'),
     'caseShowsPattern': ('CaseRecord', 'Pattern', '0..*'),
     'caseByPhysician': ('CaseRecord', 'Physician', '0..1'),
-    'derivesFrom': ('Formula', 'Work', '0..1'),
+    'derivesFrom': ('Formula', 'Work', '0..*'),
     # ---- 1.1.0 新增 ----
     'caseDiagnosedAs': ('CaseRecord', 'Disease', '0..*'),
     'caseShowsSign': ('CaseRecord', 'DiagnosticSign', '0..*'),
@@ -98,7 +102,7 @@ PROP_SPEC = {
     'physicianOfPlace': ('Physician', 'Place', '0..*'),
     'physicianInFamily': ('Physician', 'MedicalFamily', '0..*'),
     'familySpecializesIn': ('MedicalFamily', 'Disease', '0..*'),
-    'institutionAtPlace': ('Institution', 'Place', '0..1'),
+    'institutionAtPlace': ('Institution', 'Place', '0..*'),
 }
 PROVENANCE_FIELDS = ['source_sentence', 'chapter_path', 'passage_id', 'evidence_verbatim',
                      'engine', 'agreement']
@@ -119,31 +123,62 @@ LAYER_OF_REL = {
 REL_LAYER = {r: l for l, rs in LAYER_OF_REL.items() for r in rs}
 LAYER_ZH = {'lineage': '谱系层', 'diagnostic': '诊法层', 'pattern': '证候层', 'materia': '本草方剂层',
             'case': '医案层', 'culture': '越医文化层'}
-BOOK_ROOTS = {'概述', '代表医家'}      # 《绍派伤寒》专著的章节根：谱系 / 诊法 / 证候 / 本草四层的语料
-CASE_ROOTS = {'何廉臣医案'}
 DEFAULT_ENGINE = {'lineage': 'builtin-sonnet', 'diagnostic': 'builtin-haiku', 'pattern': 'builtin-haiku',
                   'materia': 'builtin-haiku', 'case': 'builtin-haiku', 'culture': 'builtin-haiku'}
 
+# 章节根 → 来源文献。第 N 章 / 后记 属《越医文化》；受控词表随专著。
+CORPUS_OF_ROOT = {
+    '概述': 'shaopai', '代表医家': 'shaopai', 'controlled vocabulary': 'shaopai',
+    '何廉臣医案': 'hlc_yian',
+    '俞根初临证经验集要': 'ygc_jingyao',
+    '赵晴初医论': 'zqc_yilun',
+    '下篇越中名醫傳': 'yz_mingyi',
+    '越醫雜詠': 'yy_zayong',
+    '绍派伤寒史料图片研究': 'sp_shiliao',
+    '后记': 'yue_wenhua',
+}
+CORPUS_ZH = {
+    'shaopai': '《浙派中医丛书·绍派伤寒》',
+    'hlc_yian': '《何廉臣医案》',
+    'ygc_jingyao': '《俞根初临证经验集要》',
+    'zqc_yilun': '《赵晴初医论》',
+    'yz_mingyi': '《越中名医传》',
+    'yy_zayong': '《越醫雜詠》',
+    'sp_shiliao': '《绍派伤寒史料图片研究》',
+    'yue_wenhua': '《越医文化》',
+}
 
-def layer_of(rel, chapter_path):
-    """章节根优先：医案语料一律归医案层，非专著语料归越医文化层；专著语料按关系类型归层。"""
-    root = (chapter_path or '').split(' / ')[0].strip()
-    if root in CASE_ROOTS:
-        return 'case'
-    if root and root not in BOOK_ROOTS and root != 'controlled vocabulary':
-        return 'culture'
+
+def layer_of(rel, chapter_path=None):
+    """按关系类型的语义归层——每条关系的层由本体唯一决定，与出自哪部书无关。
+
+    chapter_path 仅为向后兼容保留，不参与判定；「出自哪部书」由 corpus_of() 承载。
+    """
     return REL_LAYER.get(rel, 'lineage')
 
 
+def corpus_of(chapter_path):
+    """章节根 → 来源文献键；「第N章…」归《越医文化》，未知根返回 ''。"""
+    root = (chapter_path or '').split(' / ')[0].strip()
+    if not root:
+        return ''
+    if root in CORPUS_OF_ROOT:
+        return CORPUS_OF_ROOT[root]
+    if re.match(r'^第[一二三四五六七八九十]+章', root):
+        return 'yue_wenhua'
+    return ''
+
+
 def engines_from_meta(meta):
-    """解析上游 meta.engines 里的 'builtin-haiku (diagnostic/pattern/…)' 写法。"""
+    """解析上游 meta.engines 里的 'builtin-haiku (diagnostic/pattern/…)' 写法；
+    括号内只取确实是层名的词（'first pass'、'all other layers' 之类描述性文字跳过）。"""
     out = dict(DEFAULT_ENGINE)
     for s in meta.get('engines') or []:
         m = re.match(r'^(\S+)\s*\((.+)\)$', s.strip())
         if not m:
             continue
         for layer in re.split(r'[/,、\s]+', m.group(2)):
-            if layer:
+            if layer.strip() in LAYER_OF_REL:
                 out[layer.strip()] = m.group(1)
     return out
 
@@ -231,24 +266,31 @@ def from_explorer(payload, prev_engines):
         })
     name_of = {n['id']: n['name'] for n in nodes}
 
-    edges, reused = [], 0
+    edges, reused, no_corpus = [], 0, 0
     for e in payload['edges']:
-        layer = layer_of(e['t'], e.get('ch'))
+        layer = layer_of(e['t'])
+        corpus = corpus_of(e.get('ch'))
+        if not corpus:
+            no_corpus += 1
         key = (e['s'], e['o'], e['t'])
         if key in prev_engines:
             engine = prev_engines[key]; reused += 1
         else:
             engine = eng_of_layer.get(layer, DEFAULT_ENGINE[layer])
-        prov = {'chapter_path': e.get('ch', ''), 'source_sentence': e.get('e', ''),
+        # 原文句在不同交付里键名不同：V6 用 ev，V5 用 e
+        sentence = e.get('ev') if e.get('ev') is not None else e.get('e', '')
+        prov = {'chapter_path': e.get('ch', ''), 'source_sentence': sentence,
                 'evidence_verbatim': bool(e.get('v')), 'engine': engine, 'agreement': AGREEMENT}
         edges.append({
             'type': e['t'], 'subject_id': e['s'], 'object_id': e['o'],
             'subject_name': name_of[e['s']], 'object_name': name_of[e['o']],
             'chapter_path': prov['chapter_path'], 'source_sentence': prov['source_sentence'],
             'evidence_verbatim': prov['evidence_verbatim'],
-            'engine': engine, 'agreement': AGREEMENT, 'layer': layer,
+            'engine': engine, 'agreement': AGREEMENT, 'layer': layer, 'corpus': corpus,
             'n_support': e.get('n', 1), 'provenance': [prov],
         })
+    if no_corpus:
+        print(f'警告：{no_corpus} 条关系的章节根未能映射到来源文献（corpus 为空）', file=sys.stderr)
 
     meta = {
         'title': meta_in.get('title', '绍派伤寒·越医知识图谱'),
@@ -260,10 +302,13 @@ def from_explorer(payload, prev_engines):
         'layers_zh': LAYER_ZH,
         'layer_coverage': meta_in.get('layer_coverage', {}),
         'coverage_note': meta_in.get('coverage_note', ''),
+        'corpora_zh': CORPUS_ZH,
         'engines': meta_in.get('engines', []),
         'engine_by_layer': eng_of_layer,
         'agreement': AGREEMENT,
         'cross_validation': meta_in.get('cross_validation', 'not_run'),
+        'cross_validation_note': meta_in.get('cross_validation_note', ''),
+        'identity_merge': meta_in.get('identity_merge', {}),
         'n_nodes': len(nodes), 'n_edges': len(edges),
         'publisher': meta_in.get('publisher', '医哲未来人工智能研究院 (IMPFAI)'),
         'publisher_url': meta_in.get('publisher_url', 'https://impfai.github.io/'),
@@ -274,7 +319,8 @@ def from_explorer(payload, prev_engines):
                     '每条关系 1 条原文与章节路径，每个节点最多 3 条章节路径与 1 条原文，不含段落编号。'
                     '完整出处以上游 shaopai_kg.json 为准。',
             'engine_reused_from_previous_release': reused,
-            'layer_and_engine_rule': '按关系类型与章节根推定（tools/import_upstream.py: layer_of）',
+            'layer_rule': '按关系类型的语义归层（tools/import_upstream.py: layer_of）',
+            'corpus_rule': '按章节根映射到八种文献（tools/import_upstream.py: corpus_of）',
         },
         'imported_at': datetime.date.today().isoformat(),
     }
@@ -288,9 +334,11 @@ def from_full_kg(kg):
         if k not in kg:
             sys.exit(f'--kg 文件缺少顶层字段 {k}')
     for e in kg['edges']:
-        e.setdefault('layer', layer_of(e['type'], e.get('chapter_path')
-                                       or (e.get('provenance') or [{}])[0].get('chapter_path')))
+        e.setdefault('layer', layer_of(e['type']))
+        e.setdefault('corpus', corpus_of(e.get('chapter_path')
+                                         or (e.get('provenance') or [{}])[0].get('chapter_path')))
     kg['meta'].setdefault('layers_zh', LAYER_ZH)
+    kg['meta'].setdefault('corpora_zh', CORPUS_ZH)
     kg['meta'].setdefault('derived_from', {'kind': 'full_kg'})
     kg['meta']['imported_at'] = datetime.date.today().isoformat()
     return kg
@@ -393,6 +441,7 @@ def audit(kg, profiles, n_cases_dx):
                                if n['cls'] == 'DiagnosticSign')
     mods.pop(None, None)
     layers = collections.Counter(e.get('layer') for e in edges)
+    corpora = collections.Counter(e.get('corpus') or '(未映射)' for e in edges)
     return {
         'generated_from': {
             'corpora': kg['meta'].get('corpora', []),
@@ -411,6 +460,7 @@ def audit(kg, profiles, n_cases_dx):
             'nodes_by_class': dict(by_cls.most_common()),
             'edges_by_type': dict(by_type.most_common()),
             'edges_by_layer': dict(layers.most_common()),
+            'edges_by_corpus': dict(corpora.most_common()),
             'nodes_with_relations': len(nodes) - len(isolates),
             'isolated_nodes': len(isolates),
             'isolates_by_class': dict(collections.Counter(n['cls'] for n in isolates).most_common()),

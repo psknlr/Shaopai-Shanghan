@@ -30,6 +30,7 @@ PROV_PROPS = {  # A-Box 具体化陈述里用到的注记属性
     'agreement': ('引擎一致性', 'cross-engine agreement status'),
     'nSupport': ('支撑次数', 'number of independent supporting passages'),
     'layer': ('抽取层', 'extraction layer'),
+    'corpus': ('来源文献', 'source work the passage comes from'),
     'n_mentions': ('提及次数', 'number of mentions of the entity in the corpora'),
     'aliases': ('别名', 'alias'),
 }

@@ -141,7 +141,7 @@ def compact(kg, pos, comp):
 
     节点  i id · n 名称 · c 类 · m 提及次数 · x y 坐标 · k 连通分量 · a 别名 · at 属性
           pvn 出处总数 · pv [{s 原文, c 章节路径, p 段落编号, v 逐字}]
-    关系  s o t · n 支撑次数 · l 层 · ev 原文 · ch 章节路径 · pid 段落编号 · v 逐字
+    关系  s o t · n 支撑次数 · l 层 · cp 来源文献 · ev 原文 · ch 章节路径 · pid 段落编号 · v 逐字
           en 引擎（仅当与 meta.engine_by_layer 推定值不同时给出）· d dn r cd 剂量/角色/条件
     """
     onto = kg['ontology']
@@ -187,7 +187,7 @@ def compact(kg, pos, comp):
         p = (e.get('provenance') or [{}])[0]
         layer = e.get('layer', '')
         o = {'s': e['subject_id'], 'o': e['object_id'], 't': e['type'],
-             'n': e.get('n_support', 1), 'l': layer,
+             'n': e.get('n_support', 1), 'l': layer, 'cp': e.get('corpus', ''),
              'ev': e.get('source_sentence') or p.get('source_sentence', ''),
              'ch': e.get('chapter_path') or p.get('chapter_path', ''),
              'v': bool(e.get('evidence_verbatim', p.get('evidence_verbatim')))}
