@@ -124,7 +124,7 @@ button,input,select{font-family:inherit}
   box-shadow:0 3px 10px -3px color-mix(in srgb,var(--c-phy) 70%,transparent)}
 .brand .tt{display:flex;flex-direction:column;line-height:1.25}
 .brand .tt b{font-size:14.5px;font-weight:600;letter-spacing:.07em}
-.brand .tt span{font-family:var(--sans);font-size:9.5px;letter-spacing:.1em;color:var(--dim)}
+.brand .tt > span{font-family:var(--sans);font-size:9.5px;letter-spacing:.1em;color:var(--dim)}
 
 .field{position:relative}
 input,select,.ctl{background:var(--surface);color:var(--ink);border:1px solid var(--line);
@@ -153,13 +153,19 @@ select{cursor:pointer;max-width:190px}
 .chip.off{opacity:.36}
 .chip .n{font-family:var(--sans);font-size:10.5px;color:var(--dim)}
 
-button.b{background:var(--surface);color:var(--ink-2);border:1px solid var(--line);border-radius:8px;
+button.b,a.b{background:var(--surface);color:var(--ink-2);border:1px solid var(--line);border-radius:8px;
   padding:7px 11px;font-size:12px;cursor:pointer;transition:.2s;white-space:nowrap;
   backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:inline-flex;align-items:center;gap:6px}
-button.b:hover{border-color:var(--accent);color:var(--accent)}
+button.b:hover,a.b:hover{border-color:var(--accent);color:var(--accent)}
 button.ic{padding:7px 8px}
 a.b{text-decoration:none}
 .spacer{flex:1 1 auto}
+/* 版本徽记：V1 两书版 */
+.ver{font-family:var(--sans);font-size:9.5px;font-weight:700;letter-spacing:.06em;line-height:1;
+  padding:3px 5px 2px;border-radius:4px;color:var(--c-phy);
+  border:1px solid color-mix(in srgb,var(--c-phy) 55%,transparent);
+  background:color-mix(in srgb,var(--c-phy) 12%,transparent)}
+.brand .tt b .ver{margin-left:6px;vertical-align:2px}
 
 /* ============ 缩放控件 ============ */
 #zoom{position:fixed;right:14px;bottom:16px;z-index:11;display:flex;flex-direction:column;gap:6px}
@@ -270,7 +276,7 @@ button.only-sm{display:none}
   .filters.show{display:flex}
   .spacer{display:none}
   #bar{padding:8px 10px;gap:7px}
-  .brand .tt span{display:none}
+  .brand .tt > span{display:none}
   input{width:100%}
   .field{flex:1 1 100%;order:5}
   #sug{width:100%}
@@ -282,7 +288,8 @@ button.only-sm{display:none}
   .brand{margin-right:0}
   .brand .sq{width:26px;height:26px;font-size:15px;border-radius:4px}
   .brand .tt b{font-size:13px;letter-spacing:.03em}
-  button.b{padding:6px 9px;font-size:11.5px}
+  .brand .tt b .kg{display:none}   /* 窄屏只留「绍派伤寒」，让顶栏按钮排在一行 */
+  button.b,a.b{padding:6px 9px;font-size:11.5px}
   button.ic{padding:6px 7px}
 }
 @media(max-width:640px){
@@ -309,7 +316,7 @@ button.only-sm{display:none}
 <div id="bar">
   <a class="brand" href="index.html" title="返回首页" style="text-decoration:none;color:inherit">
     <span class="sq">绍</span>
-    <span class="tt"><b>绍派伤寒 知识图谱</b><span>沈钦荣名中医 × 医哲未来人工智能研究院</span></span>
+    <span class="tt"><b id="brandt">绍派伤寒<span class="kg"> 知识图谱</span></b><span id="brands">沈钦荣名中医 × 医哲未来人工智能研究院</span></span>
   </a>
 
   <span class="field">
@@ -332,6 +339,9 @@ button.only-sm{display:none}
 
   <span class="spacer"></span>
 
+  <a class="b" id="edsw" href="v1.html" title="V1 两书版：只看《三订通俗伤寒论》与《何廉臣医案》">
+    <span class="ver">V1</span><span class="hide-sm">两书版</span>
+  </a>
   <button class="b" id="fit" title="适应视图（F）">
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V5a1 1 0 0 1 1-1h4M20 9V5a1 1 0 0 0-1-1h-4M4 15v4a1 1 0 0 0 1 1h4M20 15v4a1 1 0 0 1-1 1h-4"/></svg>
     <span class="hide-sm">全景</span>
@@ -376,7 +386,7 @@ button.only-sm{display:none}
       <kbd>T</kbd><span class="d">切换 宣纸 / 墨夜 主题</span>
       <kbd>Esc</kbd><span class="d">关闭面板</span>
     </div>
-    <div class="hsec">
+    <div class="hsec" id="about">
       <b>关于数据</b><br>
       图谱共 <b id="hn"></b> 个节点、<b id="he"></b> 条关系，抽取自八种文献：《浙派中医丛书》专题系列·绍派伤寒（沈钦荣 主编，2021）、
       《俞根初临证经验集要》（沈钦荣 编著）、《何廉臣医案》660 则、《越医文化》、《越中名医传》、《越醫雜詠》、
@@ -475,10 +485,11 @@ setTheme(THEME);
 const loadEl = document.getElementById('load');
 requestAnimationFrame(()=> setTimeout(boot, 30));
 
-let D, N, ZH, hits = [];
+let D, N, ZH, ED, hits = [];
 
 function boot(){
   D = JSON.parse(document.getElementById('data').textContent);
+  ED = D.meta.edition || null;
   ZH = D.onto.classes;
   N = new Map(D.nodes.map(n => [n.i, n]));
   D.nodes.forEach(n => { n.deg = 0; n.out = []; n.inn = []; });
@@ -490,6 +501,7 @@ function boot(){
   /* 标签绘制优先级：度数高者优先 */
   ORDER = D.nodes.slice().sort((a,b) => b.deg - a.deg);
 
+  applyEdition();
   buildUI();
   READY = true;
   resize(); fit(false);
@@ -502,6 +514,21 @@ function boot(){
              || D.nodes.filter(n => n.n.includes(qs)).sort((a,b) => b.deg - a.deg)[0];
     if(hit){ q.value = hit.n; setTimeout(()=>{ openNode(hit); centerOn(hit, true); }, 420); }
   }
+}
+
+/* ================= 版本 =================
+   同一份页面代码服务两个版本：explorer.html（完整图谱）与 v1.html（两书版，
+   由 tools/build_payload.py 注入子图与 meta.edition 生成）。 */
+function applyEdition(){
+  const sw = document.getElementById('edsw');
+  if(!ED) return;
+  document.getElementById('brandt').innerHTML = `绍派伤寒<span class="kg"> 知识图谱</span><span class="ver">${esc(ED.label)}</span>`;
+  document.getElementById('brands').textContent = ED.subtitle;
+  sw.href = 'explorer.html';
+  sw.title = '返回完整图谱（全部文献）';
+  sw.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H6M11 6l-6 6 6 6"/></svg><span class="hide-sm">完整图谱</span>`;
+  document.querySelector('#cor option[value=""]').textContent = ED.all_books;
+  document.getElementById('about').innerHTML = ED.about_html;
 }
 
 /* ================= UI 构建 ================= */
@@ -545,7 +572,8 @@ function buildUI(){
   const corSel = document.getElementById('cor');
   [...corCnt].sort((a, b) => b[1] - a[1]).forEach(([c, k]) => {
     const o = document.createElement('option');
-    o.value = c; o.textContent = `${(CZH[c] || c).replace(/[《》]/g, '')} · ${k.toLocaleString()}`;
+    const short = (D.meta.corpora_short || {})[c] || (CZH[c] || c).replace(/[《》]/g, '');
+    o.value = c; o.textContent = `${short} · ${k.toLocaleString()}`;
     corSel.appendChild(o);
   });
   corSel.onchange = e => { corF = e.target.value; draw(); };
@@ -591,16 +619,16 @@ function buildUI(){
   document.getElementById('legend').innerHTML =
     `<b>${D.nodes.length.toLocaleString()}</b> 节点 · <b>${D.edges.length.toLocaleString()}</b> 关系
      <span class="hide-sm">· ${nCorp} 种文献 · ${nLay} 层抽取 · 本体 ${D.meta.ontology_version || ''}</span>
-     <div class="cred">底本《浙派中医丛书·绍派伤寒》（沈钦荣 主编，${D.meta.year || 2021}）及
-     《俞根初临证经验集要》《何廉臣医案》《越医文化》《越中名医传》《越醫雜詠》《赵晴初医论》《绍派伤寒史料图片研究》<br>
+     <div class="cred">${ED ? ED.credit_html : `底本《浙派中医丛书·绍派伤寒》（沈钦荣 主编，${D.meta.year || 2021}）及
+     《俞根初临证经验集要》《何廉臣医案》《越医文化》《越中名医传》《越醫雜詠》《赵晴初医论》《绍派伤寒史料图片研究》`}<br>
      <i>沈钦荣名中医</i> × <i>医哲未来人工智能研究院</i> 联合研发</div>`;
 
-  document.getElementById('hn').textContent = D.nodes.length.toLocaleString();
-  document.getElementById('he').textContent = D.edges.length.toLocaleString();
-  document.getElementById('hgc').textContent = D.nodes.filter(n => n.k === 0).length.toLocaleString();
-  document.getElementById('hsat').textContent =
-    new Set(D.nodes.filter(n => n.deg > 0 && n.k > 0).map(n => n.k)).size.toLocaleString();
-  document.getElementById('hiso').textContent = isoN.toLocaleString();
+  const put = (id, v) => { const el = document.getElementById(id); if(el) el.textContent = v.toLocaleString(); };
+  put('hn', D.nodes.length);
+  put('he', D.edges.length);
+  put('hgc', D.nodes.filter(n => n.k === 0).length);
+  put('hsat', new Set(D.nodes.filter(n => n.deg > 0 && n.k > 0).map(n => n.k)).size);
+  put('hiso', isoN);
 }
 
 /* ================= 视图状态 ================= */
@@ -850,7 +878,7 @@ addEventListener('mousemove', e => {
     const w = 300, x = Math.min(e.clientX + 15, innerWidth - w - 10);
     tip.style.left = x + 'px';
     tip.style.top = Math.min(e.clientY + 15, innerHeight - 90) + 'px';
-    tip.innerHTML = `<b>${esc(n.n)}</b><span class="m">${ZH[n.c] || n.c} · 关联 ${n.deg} · 提及 ${n.m}</span>`;
+    tip.innerHTML = `<b>${esc(n.n)}</b><span class="m">${ZH[n.c] || n.c} · 关联 ${n.deg}${n.m != null ? ' · 提及 ' + n.m : ''}</span>`;
   } else tip.style.display = 'none';
 });
 addEventListener('mouseup', e => {
@@ -959,7 +987,7 @@ function openNode(n){
     ${n.at && n.at.statement_zh ? `<div class="ev" style="margin-top:10px">${esc(n.at.statement_zh)}</div>` : ''}
     <table style="margin-top:10px">
       ${attrRows}
-      <tr><td class="p">提及次数</td><td>${n.m}</td></tr>
+      ${n.m != null ? `<tr><td class="p">提及次数</td><td>${n.m}</td></tr>` : ''}
       <tr><td class="p">关联关系</td><td>${n.deg}</td></tr>
       <tr><td class="p">所属星团</td><td>${n.deg === 0 ? '孤点 · 尚无已抽取关系' : n.k === 0 ? '核心星系（巨分量）' : '卫星 #' + n.k}</td></tr>
       <tr><td class="p">节点 ID</td><td style="font-family:var(--mono);font-size:11px">${esc(n.i)}</td></tr>
@@ -993,8 +1021,7 @@ function openNode(n){
             <div class="ch">${line(p)}</div></div>`
         : `<div class="ch" style="margin:5px 0 5px 2px">${line(p)}</div>`).join('') +
       (total > n.pv.length
-        ? `<div class="ch" style="margin-top:8px">共 ${total} 处，此处列出前 ${n.pv.length} 条章节路径；完整出处见
-           <a href="data/shaopai_kg.json" style="color:var(--accent)">shaopai_kg.json</a></div>`
+        ? `<div class="ch" style="margin-top:8px">共 ${total} 处，此处列出前 ${n.pv.length} 条章节路径。</div>`
         : '') + `</div>`;
   }
   body.innerHTML = h;
