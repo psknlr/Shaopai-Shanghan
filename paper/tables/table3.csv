@@ -1,0 +1,58 @@
+﻿Relation,Chinese label,Domain → range,Declared cardinality,Exceptions*,Relations
+Lineage layer,,,,,
+proposes,主张,Physician → Doctrine,0..*,–,"1,278"
+authored,撰写,Physician → Work,0..*,–,430
+statedIn,载于,Doctrine → Work,0..1,11,275
+editedRevised,校勘增订,Physician → Work,0..*,–,126
+influencedBy,私淑,Physician → Physician,0..*,–,120
+studiedUnder,师承,Physician → Physician,0..*,–,78
+Diagnosis layer,,,,,
+signIndicates,征象提示,Diagnostic sign → Pattern,0..*,–,859
+subPatternOf,子证候,Pattern → Pattern,0..1,2,296
+belongsToChannel,属于六经,Pattern → Pattern,0..1,3,159
+signExcludes,征象排除,Diagnostic sign → Pattern,0..*,–,48
+Pattern layer,,,,,
+formulaTreats,方剂主治,Formula → Pattern,0..*,–,767
+treatedByPrinciple,治法对应,Pattern → Treatment principle,0..*,–,428
+manifestsAs,表现为,Pattern → Symptom,0..*,–,370
+patternOfDisease,病之证候,Pattern → Disease,0..*,–,360
+principleRealizedBy,治法用方,Treatment principle → Formula,0..*,–,227
+diseaseTreatedByFormula,病之主方,Formula → Disease,0..*,–,42
+diseaseManifestsAs,病之症状,Disease → Symptom,0..*,–,9
+diseaseSubtypeOf †,病之子类,Disease → Disease,0..*,–,0
+Materia medica layer,,,,,
+herbHasProperty,药性归经,Herb → Herb property,0..*,–,128
+derivesFrom,源自,Formula → Work,0..1,14,50
+hasIngredient,药物组成,Formula → Herb,1..*,–,41
+addHerbIf †,随症加药,Formula → Herb,0..*,–,0
+hasDosage †,用量,Formula → Dosage,0..*,–,0
+ingredientRole †,君臣佐使,Formula → Herb,0..*,–,0
+modifiedBy †,加减变化,Formula → Formula,0..*,–,0
+removeHerbIf †,随症减药,Formula → Herb,0..*,–,0
+Case records layer,,,,,
+caseUsesHerb,医案用药,Case record → Herb,0..*,–,"8,486"
+caseShowsSymptom,医案见症,Case record → Symptom,0..*,–,"3,233"
+caseShowsSign,医案见象,Case record → Diagnostic sign,0..*,–,"1,875"
+caseAppliesPrinciple,医案治法,Case record → Treatment principle,0..*,–,"1,109"
+caseDiagnosedAs,医案诊断,Case record → Disease,0..*,–,702
+caseShowsPattern,医案辨证,Case record → Pattern,0..*,–,434
+caseUsesFormula,医案用方,Case record → Formula,0..*,–,429
+caseByPhysician †,医案医家,Case record → Physician,0..1,0,0
+Culture layer,,,,,
+physicianOfPlace,籍贯,Physician → Place,0..1,20,203
+physicianInFamily,属于世家,Physician → Medical family,0..1,3,66
+institutionAtPlace,机构所在,Institution → Place,0..1,2,41
+physicianFounded,创办机构,Physician → Institution,0..*,–,23
+familySpecializesIn,世家专科,Medical family → Disease,0..*,–,6
+Modern outpatient records (withheld) ‡,,,,,
+caseComorbidity,医案既往史,Case record → Disease,0..*,–,0
+caseHasExamination,医案辅助检查,Case record → Examination,0..*,–,0
+caseUsesProcedure,医案外治操作,Case record → Procedure,0..*,–,0
+caseUsesWesternDrug,医案西药,Case record → Western drug,0..*,–,0
+caseWesternDiagnosis,医案西医诊断,Case record → Western diagnosis,0..*,–,0
+examSupportsDiagnosis,检查支持诊断,Examination → Western diagnosis,0..*,–,0
+wdCorrespondsToTcm,西医病名对应中医病名,Western diagnosis → Disease,0..*,–,0
+Total,,32 of 46 relation types populated,,55,"22,698"
+"* Subjects with more than one distinct object for a relation declared 0..1; reported, not corrected. –, relation declared 0..* or 1..*."
+† Defined in the ontology but not populated by any released source.
+‡ Populated only by the withheld modern outpatient records.

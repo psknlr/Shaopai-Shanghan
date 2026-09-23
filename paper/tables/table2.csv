@@ -1,0 +1,25 @@
+﻿Class,Chinese label,Declared attributes*,Entities,With relations,Without relations
+Diagnostic sign,诊法征象,"name_zh, modality, descriptor","2,597","1,501","1,096"
+Doctrine,学术观点,"statement_zh, topic, novelty","2,522","1,477","1,045"
+Symptom,症状,"name_zh, body_region, severity, timing","2,216","1,468",748
+Pattern,证候,"name_zh, channel, triple_burner, nature, aliases","2,042","1,693",349
+Treatment principle,治法,"name_zh, action_type","1,940","1,137",803
+Disease,病证,"name_zh, category, aliases","1,524",562,962
+Herb,中药,"name_zh, aliases, part_used, is_fresh","1,379",807,572
+Formula,方剂,"name_zh, source_work, attributed_to, preparation, aliases","1,280",517,763
+Work,著作,"title_zh, author, year, edition, is_extant",758,509,249
+Physician,医家,"name_zh, courtesy_name, birth_year, death_year, native_place, dynasty, role_in_school",671,486,185
+Case record,医案,"patient_desc, presentation, outcome, physician",657,657,0
+Place,地域,"name_zh, modern_name, region",309,87,222
+Institution,机构团体,"name_zh, kind, founded_year, place, founder",137,57,80
+Herb property,药性,"flavor, temperature, channel_tropism",80,73,7
+Medical family,医学世家,"name_zh, specialty, place, generations",37,31,6
+Examination †,辅助检查,"name_zh, modality, finding",0,0,0
+Procedure †,外治操作,"name_zh, kind, site",0,0,0
+Western diagnosis †,西医诊断,"name_zh, icd_hint, system",0,0,0
+Western drug †,西药,"name_zh, dose, route, frequency",0,0,0
+Dosage ‡,剂量炮制,"amount, unit, processing, admin_note",0,0,0
+Total,,15 of 20 classes populated,"18,149","11,062","7,087"
+"* Attribute names as declared in the ontology specification; values are extracted text, not normalized codes."
+† Populated only by the withheld modern outpatient records.
+‡ Defined in the ontology but not populated by any released source.
