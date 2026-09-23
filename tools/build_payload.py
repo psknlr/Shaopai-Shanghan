@@ -5,7 +5,8 @@
   python3 tools/build_payload.py
 
 读取 data/shaopai_kg.json、data/layout_positions.json，
-生成 explorer.html 的内嵌图谱与 index.html 的预览子集。
+生成 explorer.html 的内嵌图谱与 index.html 的预览子集；
+再以 explorer.html 为模板生成特殊版本页面（EDITIONS，目前为 v1.html「V1 两书版」）。
 
 新增节点若无坐标，用「固定已有节点、只松弛新节点」的力导向布局求解：
 既让新节点贴近其已有邻居，又保证既有坐标一字不动——
@@ -17,6 +18,22 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / 'data'
 PV_CAP = 8          # 内嵌副本每节点保留的出处条数；完整出处在 data/shaopai_kg.json
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from import_upstream import corpus_of  # noqa: E402  章节根 → 来源文献键，与导入口径一致
+
+# 特殊版本：同一份 explorer.html 代码，只注入指定几部书的子图，另存为独立页面。
+# books 为 corpus 键，顺序即页面下拉框的顺序。
+EDITIONS = [{
+    'id': 'v1', 'file': 'v1.html', 'label': 'V1', 'name': '两书版',
+    'books': ['ygc_jingyao', 'hlc_yian'],
+    # 本图谱没有《三订通俗伤寒论》原书语料；以引其为出处、辑述俞根初学说与六经方药的
+    # 《俞根初临证经验集要》代之，书名如实注明，关系出处仍标该书章节与段落。
+    'book_zh': {'ygc_jingyao': '《三订通俗伤寒论》（据《俞根初临证经验集要》）',
+                'hlc_yian': '《何廉臣医案》'},
+    'book_short': {'ygc_jingyao': '三订通俗伤寒论', 'hlc_yian': '何廉臣医案'},
+    'subtitle': '三订通俗伤寒论 × 何廉臣医案',
+    'all_books': '两书合览',
+}]
 
 
 def load():
@@ -35,10 +52,13 @@ def load():
 
 def components(kg):
     """连通分量：按大小降序编号，0 为巨分量。"""
-    ids = {n['id'] for n in kg['nodes']}
+    return components_of({n['id'] for n in kg['nodes']},
+                         ((e['subject_id'], e['object_id']) for e in kg['edges']))
+
+
+def components_of(ids, pairs):
     adj = collections.defaultdict(set)
-    for e in kg['edges']:
-        s, o = e['subject_id'], e['object_id']
+    for s, o in pairs:
         if s in ids and o in ids and s != o:
             adj[s].add(o); adj[o].add(s)
     seen, comps = set(), []
@@ -239,6 +259,121 @@ def preview(payload, cap=420):
                   if e['s'] in idx and e['o'] in idx]}
 
 
+def edition_payload(payload, ed):
+    """特殊版本的子图：只留 ed['books'] 的关系，及这些关系的端点、在这些书中有出处的节点。
+
+    - 节点出处只留这几部书的条目；「提及次数」是全库统计、无法分书，故不带。
+    - 连通分量按子图重算。有关系的节点沿用完整图谱坐标；子图中无关系的节点
+      （孤点）按向日葵排布重铺成紧贴主体的一圈，密度与完整图谱的孤点圈相同。
+    """
+    books = set(ed['books'])
+    edges = [e for e in payload['edges'] if e['cp'] in books]
+    ends = {x for e in edges for x in (e['s'], e['o'])}
+    nodes = []
+    for n in payload['nodes']:
+        pv = [p for p in n.get('pv', []) if corpus_of(p.get('c')) in books]
+        if n['i'] not in ends and not pv:
+            continue
+        o = {k: v for k, v in n.items() if k not in ('m', 'pv', 'pvn')}
+        if pv:
+            o['pv'] = pv
+        o['pvn'] = len(pv)
+        nodes.append(o)
+    comp = components_of({n['i'] for n in nodes}, ((e['s'], e['o']) for e in edges))
+    for n in nodes:
+        n['k'] = comp.get(n['i'], -1)
+
+    # 孤点圈：以完整图谱孤点圈的面密度为准
+    deg_full = collections.Counter()
+    for e in payload['edges']:
+        deg_full[e['s']] += 1; deg_full[e['o']] += 1
+    core_full = [n for n in payload['nodes'] if deg_full[n['i']]]
+    iso_full = [n for n in payload['nodes'] if not deg_full[n['i']]]
+    cx0, cy0 = _center(core_full)
+    r_iso = [math.hypot(n['x'] - cx0, n['y'] - cy0) for n in iso_full] or [1.0]
+    rmax_core = max(math.hypot(n['x'] - cx0, n['y'] - cy0) for n in core_full)
+    gap = max(min(r_iso) - rmax_core, 0.02)
+    density = len(iso_full) / max(math.pi * (max(r_iso) ** 2 - min(r_iso) ** 2), 1e-9)
+
+    core = [n for n in nodes if n['i'] in ends]
+    iso = sorted((n for n in nodes if n['i'] not in ends),
+                 key=lambda n: (CLS_IDX.index(n['c']) if n['c'] in CLS_IDX else 99, n['n'], n['i']))
+    cx, cy = _center(core)
+    r0 = max(math.hypot(n['x'] - cx, n['y'] - cy) for n in core) + gap
+    r1 = math.sqrt(r0 ** 2 + len(iso) / density / math.pi)
+    for k, n in enumerate(iso):
+        r = math.sqrt(r0 ** 2 + (r1 ** 2 - r0 ** 2) * (k + 0.5) / len(iso))
+        a = k * 2.399963229728653                  # 黄金角
+        n['x'], n['y'] = round(cx + r * math.cos(a), 4), round(cy + r * math.sin(a), 4)
+
+    src = payload['meta']
+    meta = {k: src[k] for k in ('title', 'ontology_version', 'year', 'layers', 'layers_zh',
+                                'engine_by_layer', 'agreement', 'publisher', 'publisher_url') if k in src}
+    meta['corpora_zh'] = dict(src.get('corpora_zh', {}), **ed['book_zh'])
+    meta['corpora_short'] = ed['book_short']
+    meta['n_nodes'], meta['n_edges'] = len(nodes), len(edges)
+    by_book = collections.Counter(e['cp'] for e in edges)
+    meta['edition'] = {
+        'id': ed['id'], 'label': ed['label'], 'name': ed['name'], 'books': ed['books'],
+        'subtitle': ed['subtitle'], 'all_books': ed['all_books'],
+        'edges_by_book': {b: by_book[b] for b in ed['books']},
+        'credit_html': '底本' + '与'.join(ed['book_zh'][b] for b in ed['books']),
+        'about_html': about_v1(ed, by_book, payload['onto']['props'], edges),
+    }
+    return {'meta': meta, 'onto': payload['onto'], 'nodes': nodes, 'edges': edges}
+
+
+def _center(nodes):
+    xs = [n['x'] for n in nodes]; ys = [n['y'] for n in nodes]
+    return (min(xs) + max(xs)) / 2, (min(ys) + max(ys)) / 2
+
+
+def about_v1(ed, by_book, props, edges):
+    """V1 两书版「使用说明 · 关于本版」。计数占位（hn / he / hgc / hiso）由页面脚本填入。"""
+    def top(book, k=6):
+        c = collections.Counter(e['t'] for e in edges if e['cp'] == book)
+        return '、'.join(props.get(t, t) for t, _ in c.most_common(k))
+    return (
+        '<b>关于本版</b><br>'
+        f'<b>{ed["label"]} {ed["name"]}</b>只收两部书的关系：<b>《三订通俗伤寒论》</b>与<b>《何廉臣医案》</b>，'
+        '共 <b id="hn"></b> 个节点、<b id="he"></b> 条关系。顶栏「来源文献」可在两书之间切换，'
+        '也可再按抽取层、关系类型与诊法模态筛选；点顶栏「完整图谱」返回全部八种文献。<br><br>'
+        '<b>《三订通俗伤寒论》一侧</b>：本图谱尚未收入该书原文。本版取沈钦荣编著《俞根初临证经验集要》代之——'
+        '该书以《三订通俗伤寒论》为引文出处，辑述俞根初生平、学术观点、诊法特色、用药心法，'
+        '以及发汗、和解、攻下、温热、滋补、清凉六类方剂。'
+        f'共 {by_book["ygc_jingyao"]:,} 条关系（{top("ygc_jingyao")}等），'
+        '每条关系的出处仍如实标注《俞根初临证经验集要》的章节与段落编号。<br><br>'
+        f'<b>《何廉臣医案》</b>：{by_book["hlc_yian"]:,} 条关系（{top("hlc_yian")}等）。<br><br>'
+        '节点坐标沿用完整图谱：<b id="hgc"></b> 个节点的巨分量居中；在两书中有出处而尚无关系的 '
+        '<b id="hiso"></b> 个节点铺在最外一圈，可点「孤点」隐藏。「提及次数」是全库统计、无法分书，本版不显示。<br><br>'
+        '全部关系为单模型抽取，尚未交叉验证。本站仅供学术研究与文献检索之用，不作为临床诊疗依据。')
+
+
+def render_edition(template, ed, payload):
+    """以 explorer.html 为模板生成特殊版本页面：替换内嵌数据、标题、描述与加载页字样。"""
+    body = json.dumps(payload, ensure_ascii=False, separators=(',', ':'))
+    pat = re.compile(r'(<script id="data" type="application/json">)(.*?)(</script>)', re.S)
+    m = pat.search(template)
+    html = template[:m.start(2)] + body + template[m.end(2):]
+    meta = payload['meta']
+    books = '与'.join(ed['book_zh'][b] for b in ed['books'])
+    subs = [
+        (re.compile(r'<title>.*?</title>', re.S),
+         f'<title>绍派伤寒知识图谱 {ed["label"]} {ed["name"]} · {ed["subtitle"]} | 沈钦荣名中医 × 医哲未来人工智能研究院</title>'),
+        (re.compile(r'<meta name="description" content="[^"]*">'),
+         f'<meta name="description" content="绍派伤寒知识图谱 {ed["label"]} {ed["name"]}：只收{books}两书的 '
+         f'{meta["n_nodes"]:,} 个节点、{meta["n_edges"]:,} 条关系，每条关系附段落编号与原文，'
+         '可按书、抽取层、关系类型与诊法模态检索，逐条核验原文出处。">'),
+        (re.compile(r'<div class="s">KNOWLEDGE GRAPH</div>'),
+         f'<div class="s">KNOWLEDGE GRAPH · {ed["label"]}</div>'),
+    ]
+    for rx, new in subs:
+        html, k = rx.subn(lambda _m, new=new: new, html, count=1)
+        if k != 1:
+            sys.exit(f'模板缺少 {rx.pattern}，无法生成 {ed["file"]}')
+    return html, len(body.encode())
+
+
 def inject(path, script_id, text):
     p = ROOT / path
     s = p.read_text(encoding='utf-8')
@@ -261,6 +396,13 @@ def main():
     inject('explorer.html', 'data', body)
     pv = preview(payload)
     inject('index.html', 'preview', json.dumps(pv, ensure_ascii=False, separators=(',', ':')))
+    template = (ROOT / 'explorer.html').read_text(encoding='utf-8')
+    for ed in EDITIONS:
+        ep = edition_payload(payload, ed)
+        html, size = render_edition(template, ed, ep)
+        (ROOT / ed['file']).write_text(html, encoding='utf-8')
+        print(f'{ed["file"]}（{ed["label"]} {ed["name"]}）：节点 {len(ep["nodes"]):,}  关系 {len(ep["edges"]):,}'
+              f'  内嵌 {size/1024/1024:.2f} MB  {ep["meta"]["edition"]["edges_by_book"]}')
 
     cc = collections.Counter(n['c'] for n in payload['nodes'])
     print(f'节点 {len(payload["nodes"]):,}  关系 {len(payload["edges"]):,}'
