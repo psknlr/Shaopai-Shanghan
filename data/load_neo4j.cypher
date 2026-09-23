@@ -1,6 +1,6 @@
 // 绍派伤寒 · 越医知识图谱 — Neo4j loader（由 tools/export_csv.py 生成）
 // 用法：把 nodes.csv 与 edges.csv 放入 DBMS 的 import/ 目录，然后运行本文件。
-// 节点 18,151 · 关系 22,700 · 本体 1.1.0
+// 节点 18,149 · 关系 22,698 · 本体 1.2.0
 
 // ---------- 约束与索引 ----------
 CREATE CONSTRAINT physician_id IF NOT EXISTS FOR (n:Physician) REQUIRE n.id IS UNIQUE;
@@ -19,6 +19,10 @@ CREATE CONSTRAINT caserecord_id IF NOT EXISTS FOR (n:CaseRecord) REQUIRE n.id IS
 CREATE CONSTRAINT institution_id IF NOT EXISTS FOR (n:Institution) REQUIRE n.id IS UNIQUE;
 CREATE CONSTRAINT place_id IF NOT EXISTS FOR (n:Place) REQUIRE n.id IS UNIQUE;
 CREATE CONSTRAINT medicalfamily_id IF NOT EXISTS FOR (n:MedicalFamily) REQUIRE n.id IS UNIQUE;
+CREATE CONSTRAINT westerndiagnosis_id IF NOT EXISTS FOR (n:WesternDiagnosis) REQUIRE n.id IS UNIQUE;
+CREATE CONSTRAINT procedure_id IF NOT EXISTS FOR (n:Procedure) REQUIRE n.id IS UNIQUE;
+CREATE CONSTRAINT westerndrug_id IF NOT EXISTS FOR (n:WesternDrug) REQUIRE n.id IS UNIQUE;
+CREATE CONSTRAINT examination_id IF NOT EXISTS FOR (n:Examination) REQUIRE n.id IS UNIQUE;
 CREATE INDEX physician_name IF NOT EXISTS FOR (n:Physician) ON (n.name);
 CREATE INDEX work_name IF NOT EXISTS FOR (n:Work) ON (n.name);
 CREATE INDEX doctrine_name IF NOT EXISTS FOR (n:Doctrine) ON (n.name);
@@ -171,8 +175,8 @@ CALL {
       n.x = toFloat(row['x:float']),
       n.y = toFloat(row['y:float']),
       n.dose = CASE WHEN row['dose:string'] = '' THEN null ELSE row['dose:string'] END,
-      n.unit = CASE WHEN row['unit:string'] = '' THEN null ELSE row['unit:string'] END,
-      n.processing = CASE WHEN row['processing:string'] = '' THEN null ELSE row['processing:string'] END
+      n.processing = CASE WHEN row['processing:string'] = '' THEN null ELSE row['processing:string'] END,
+      n.unit = CASE WHEN row['unit:string'] = '' THEN null ELSE row['unit:string'] END
 } IN TRANSACTIONS OF 1000 ROWS;
 
 LOAD CSV WITH HEADERS FROM 'file:///nodes.csv' AS row
@@ -216,9 +220,9 @@ CALL {
       n.x = toFloat(row['x:float']),
       n.y = toFloat(row['y:float']),
       n.kind = CASE WHEN row['kind:string'] = '' THEN null ELSE row['kind:string'] END,
+      n.founded_year = CASE WHEN row['founded_year:string'] = '' THEN null ELSE row['founded_year:string'] END,
       n.place = CASE WHEN row['place:string'] = '' THEN null ELSE row['place:string'] END,
-      n.founder = CASE WHEN row['founder:string'] = '' THEN null ELSE row['founder:string'] END,
-      n.founded_year = CASE WHEN row['founded_year:string'] = '' THEN null ELSE row['founded_year:string'] END
+      n.founder = CASE WHEN row['founder:string'] = '' THEN null ELSE row['founder:string'] END
 } IN TRANSACTIONS OF 1000 ROWS;
 
 LOAD CSV WITH HEADERS FROM 'file:///nodes.csv' AS row
@@ -277,6 +281,7 @@ CALL {
     chapter_path: row['chapter_path:string'],
     passage_id: row['passage_id:string'],
     evidence_verbatim: row['evidence_verbatim:boolean'] = 'true',
+    evidence_in_passage: CASE row['evidence_in_passage:boolean'] WHEN 'true' THEN true WHEN 'false' THEN false ELSE null END,
     engine: row['engine:string'],
     agreement: row['agreement:string']
   }, o) YIELD rel

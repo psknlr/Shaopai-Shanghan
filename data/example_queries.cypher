@@ -1,6 +1,8 @@
 // ---- 绍派伤寒 · 越医知识图谱 — Example queries ----
-// 载入方式见 load_neo4j.cypher。关系属性：n_support · layer · source_sentence · chapter_path ·
-// evidence_verbatim · engine · agreement（本副本的 passage_id 为空，核验以原文与章节路径为准）。
+// 载入方式见 load_neo4j.cypher。关系属性：n_support · layer · corpus · source_sentence · chapter_path ·
+// passage_id · evidence_verbatim · evidence_in_passage · engine · agreement。
+// V7 起每条关系都有 passage_id；evidence_in_passage 为本站独立核验（原文句是否见于所引段落，
+// 段落无法解析时为 null），见 QC_AUDIT.md「原文独立核验」。
 
 // ---------- 谱系层 (lineage) ----------
 
@@ -167,3 +169,24 @@ ORDER BY n DESC;
 //         sp:sourceSentence ?sentence }
 //
 // Verified output for the first query includes 虚里跃动应衣 → 宗气外泄 and 三脘痞硬 → 胃家实.
+
+// ---------- 出处核验（V7 起每条关系都有段落编号）----------
+
+// 26. Evidence the independent check could not find in the cited passage, by relation type
+MATCH ()-[r]->() WHERE r.evidence_in_passage = false
+RETURN type(r) AS rel, count(*) AS n, collect(r.source_sentence)[..3] AS examples
+ORDER BY n DESC;
+
+// 27. Everything asserted from one passage (look the passage up in corpus_yueyi.json by its pid)
+MATCH (s)-[r {passage_id: 'hlc0508c278'}]->(o)
+RETURN s.name AS subject, type(r) AS rel, o.name AS object, r.source_sentence AS evidence;
+
+// 28. Relations per source work and extraction layer
+MATCH ()-[r]->()
+RETURN r.corpus AS corpus, r.layer AS layer, count(*) AS n
+ORDER BY corpus, n DESC;
+
+// 29. Subjects that break a declared 0..1 cardinality (e.g. several native places for one physician)
+MATCH (p:Physician)-[:physicianOfPlace]->(pl:Place)
+WITH p, collect(pl.name) AS places WHERE size(places) > 1
+RETURN p.name AS physician, places ORDER BY size(places) DESC;

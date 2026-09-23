@@ -7,7 +7,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 <https://w3id.org/shaopai/ontology> a owl:Ontology ;
-    owl:versionInfo "1.1.0" ;
+    owl:versionInfo "1.2.0" ;
     rdfs:label "绍派伤寒 · 越医知识图谱本体"@zh, "Shaoxing Cold-Damage & Yue-Medicine KG Ontology"@en ;
     dcterms:creator <https://impfai.github.io/> ;
     dcterms:publisher <https://impfai.github.io/> .
@@ -81,6 +81,22 @@ sp:MedicalFamily a owl:Class ;
     rdfs:label "MedicalFamily"@en, "医学世家"@zh ;
     rdfs:isDefinedBy <https://w3id.org/shaopai/ontology> .
 
+sp:WesternDiagnosis a owl:Class ;
+    rdfs:label "WesternDiagnosis"@en, "西医诊断"@zh ;
+    rdfs:isDefinedBy <https://w3id.org/shaopai/ontology> .
+
+sp:Procedure a owl:Class ;
+    rdfs:label "Procedure"@en, "外治操作"@zh ;
+    rdfs:isDefinedBy <https://w3id.org/shaopai/ontology> .
+
+sp:WesternDrug a owl:Class ;
+    rdfs:label "WesternDrug"@en, "西药"@zh ;
+    rdfs:isDefinedBy <https://w3id.org/shaopai/ontology> .
+
+sp:Examination a owl:Class ;
+    rdfs:label "Examination"@en, "辅助检查"@zh ;
+    rdfs:isDefinedBy <https://w3id.org/shaopai/ontology> .
+
 # ---------- Object properties ----------
 sp:studiedUnder a owl:ObjectProperty ;
     rdfs:label "studiedUnder"@en, "师承"@zh ;
@@ -121,21 +137,24 @@ sp:statedIn a owl:ObjectProperty ;
     rdfs:label "statedIn"@en, "载于"@zh ;
     rdfs:domain sp:Doctrine ;
     rdfs:range sp:Work ;
-    sp:cardinality "0..*" ;
+    sp:cardinality "0..1" ;
+    rdfs:comment "声明基数 0..1，但数据中有 11 个主语带多条出边，故不声明为 owl:FunctionalProperty"@zh ;
     rdfs:isDefinedBy <https://w3id.org/shaopai/ontology> .
 
 sp:belongsToChannel a owl:ObjectProperty ;
     rdfs:label "belongsToChannel"@en, "属于六经"@zh ;
     rdfs:domain sp:Pattern ;
     rdfs:range sp:Pattern ;
-    sp:cardinality "0..*" ;
+    sp:cardinality "0..1" ;
+    rdfs:comment "声明基数 0..1，但数据中有 3 个主语带多条出边，故不声明为 owl:FunctionalProperty"@zh ;
     rdfs:isDefinedBy <https://w3id.org/shaopai/ontology> .
 
 sp:subPatternOf a owl:ObjectProperty ;
     rdfs:label "subPatternOf"@en, "子证候"@zh ;
     rdfs:domain sp:Pattern ;
     rdfs:range sp:Pattern ;
-    sp:cardinality "0..*" ;
+    sp:cardinality "0..1" ;
+    rdfs:comment "声明基数 0..1，但数据中有 2 个主语带多条出边，故不声明为 owl:FunctionalProperty"@zh ;
     rdfs:isDefinedBy <https://w3id.org/shaopai/ontology> .
 
 sp:patternOfDisease a owl:ObjectProperty ;
@@ -199,6 +218,7 @@ sp:ingredientRole a owl:ObjectProperty ;
     rdfs:domain sp:Formula ;
     rdfs:range sp:Herb ;
     sp:cardinality "0..*" ;
+    sp:qualifier "君 / 臣 / 佐 / 使"@zh ;
     rdfs:isDefinedBy <https://w3id.org/shaopai/ontology> .
 
 sp:hasDosage a owl:ObjectProperty ;
@@ -220,6 +240,7 @@ sp:addHerbIf a owl:ObjectProperty ;
     rdfs:domain sp:Formula ;
     rdfs:range sp:Herb ;
     sp:cardinality "0..*" ;
+    sp:qualifier "condition"@zh ;
     rdfs:isDefinedBy <https://w3id.org/shaopai/ontology> .
 
 sp:removeHerbIf a owl:ObjectProperty ;
@@ -227,6 +248,7 @@ sp:removeHerbIf a owl:ObjectProperty ;
     rdfs:domain sp:Formula ;
     rdfs:range sp:Herb ;
     sp:cardinality "0..*" ;
+    sp:qualifier "condition"@zh ;
     rdfs:isDefinedBy <https://w3id.org/shaopai/ontology> .
 
 sp:herbHasProperty a owl:ObjectProperty ;
@@ -262,7 +284,8 @@ sp:derivesFrom a owl:ObjectProperty ;
     rdfs:label "derivesFrom"@en, "源自"@zh ;
     rdfs:domain sp:Formula ;
     rdfs:range sp:Work ;
-    sp:cardinality "0..*" ;
+    sp:cardinality "0..1" ;
+    rdfs:comment "声明基数 0..1，但数据中有 14 个主语带多条出边，故不声明为 owl:FunctionalProperty"@zh ;
     rdfs:isDefinedBy <https://w3id.org/shaopai/ontology> .
 
 sp:caseDiagnosedAs a owl:ObjectProperty ;
@@ -301,11 +324,10 @@ sp:diseaseManifestsAs a owl:ObjectProperty ;
     rdfs:isDefinedBy <https://w3id.org/shaopai/ontology> .
 
 sp:diseaseSubtypeOf a owl:ObjectProperty ;
-    a owl:FunctionalProperty ;
     rdfs:label "diseaseSubtypeOf"@en, "病之子类"@zh ;
     rdfs:domain sp:Disease ;
     rdfs:range sp:Disease ;
-    sp:cardinality "0..1" ;
+    sp:cardinality "0..*" ;
     rdfs:isDefinedBy <https://w3id.org/shaopai/ontology> .
 
 sp:diseaseTreatedByFormula a owl:ObjectProperty ;
@@ -326,14 +348,16 @@ sp:physicianOfPlace a owl:ObjectProperty ;
     rdfs:label "physicianOfPlace"@en, "籍贯"@zh ;
     rdfs:domain sp:Physician ;
     rdfs:range sp:Place ;
-    sp:cardinality "0..*" ;
+    sp:cardinality "0..1" ;
+    rdfs:comment "声明基数 0..1，但数据中有 20 个主语带多条出边，故不声明为 owl:FunctionalProperty"@zh ;
     rdfs:isDefinedBy <https://w3id.org/shaopai/ontology> .
 
 sp:physicianInFamily a owl:ObjectProperty ;
     rdfs:label "physicianInFamily"@en, "属于世家"@zh ;
     rdfs:domain sp:Physician ;
     rdfs:range sp:MedicalFamily ;
-    sp:cardinality "0..*" ;
+    sp:cardinality "0..1" ;
+    rdfs:comment "声明基数 0..1，但数据中有 3 个主语带多条出边，故不声明为 owl:FunctionalProperty"@zh ;
     rdfs:isDefinedBy <https://w3id.org/shaopai/ontology> .
 
 sp:familySpecializesIn a owl:ObjectProperty ;
@@ -347,7 +371,8 @@ sp:institutionAtPlace a owl:ObjectProperty ;
     rdfs:label "institutionAtPlace"@en, "机构所在"@zh ;
     rdfs:domain sp:Institution ;
     rdfs:range sp:Place ;
-    sp:cardinality "0..*" ;
+    sp:cardinality "0..1" ;
+    rdfs:comment "声明基数 0..1，但数据中有 2 个主语带多条出边，故不声明为 owl:FunctionalProperty"@zh ;
     rdfs:isDefinedBy <https://w3id.org/shaopai/ontology> .
 
 sp:caseShowsSymptom a owl:ObjectProperty ;
@@ -357,10 +382,59 @@ sp:caseShowsSymptom a owl:ObjectProperty ;
     sp:cardinality "0..*" ;
     rdfs:isDefinedBy <https://w3id.org/shaopai/ontology> .
 
+sp:caseWesternDiagnosis a owl:ObjectProperty ;
+    rdfs:label "caseWesternDiagnosis"@en, "医案西医诊断"@zh ;
+    rdfs:domain sp:CaseRecord ;
+    rdfs:range sp:WesternDiagnosis ;
+    sp:cardinality "0..*" ;
+    rdfs:isDefinedBy <https://w3id.org/shaopai/ontology> .
+
+sp:caseUsesProcedure a owl:ObjectProperty ;
+    rdfs:label "caseUsesProcedure"@en, "医案外治操作"@zh ;
+    rdfs:domain sp:CaseRecord ;
+    rdfs:range sp:Procedure ;
+    sp:cardinality "0..*" ;
+    rdfs:isDefinedBy <https://w3id.org/shaopai/ontology> .
+
+sp:caseUsesWesternDrug a owl:ObjectProperty ;
+    rdfs:label "caseUsesWesternDrug"@en, "医案西药"@zh ;
+    rdfs:domain sp:CaseRecord ;
+    rdfs:range sp:WesternDrug ;
+    sp:cardinality "0..*" ;
+    rdfs:isDefinedBy <https://w3id.org/shaopai/ontology> .
+
+sp:caseHasExamination a owl:ObjectProperty ;
+    rdfs:label "caseHasExamination"@en, "医案辅助检查"@zh ;
+    rdfs:domain sp:CaseRecord ;
+    rdfs:range sp:Examination ;
+    sp:cardinality "0..*" ;
+    rdfs:isDefinedBy <https://w3id.org/shaopai/ontology> .
+
+sp:caseComorbidity a owl:ObjectProperty ;
+    rdfs:label "caseComorbidity"@en, "医案既往史"@zh ;
+    rdfs:domain sp:CaseRecord ;
+    rdfs:range sp:Disease ;
+    sp:cardinality "0..*" ;
+    rdfs:isDefinedBy <https://w3id.org/shaopai/ontology> .
+
+sp:wdCorrespondsToTcm a owl:ObjectProperty ;
+    rdfs:label "wdCorrespondsToTcm"@en, "西医病名对应中医病名"@zh ;
+    rdfs:domain sp:WesternDiagnosis ;
+    rdfs:range sp:Disease ;
+    sp:cardinality "0..*" ;
+    rdfs:isDefinedBy <https://w3id.org/shaopai/ontology> .
+
+sp:examSupportsDiagnosis a owl:ObjectProperty ;
+    rdfs:label "examSupportsDiagnosis"@en, "检查支持诊断"@zh ;
+    rdfs:domain sp:Examination ;
+    rdfs:range sp:WesternDiagnosis ;
+    sp:cardinality "0..*" ;
+    rdfs:isDefinedBy <https://w3id.org/shaopai/ontology> .
+
 # ---------- Datatype properties (entity attributes) ----------
 sp:name_zh a owl:DatatypeProperty ;
     rdfs:label "name_zh"@en ;
-    rdfs:domain [ a owl:Class ; owl:unionOf ( sp:Physician sp:Disease sp:Pattern sp:Symptom sp:DiagnosticSign sp:TreatmentPrinciple sp:Formula sp:Herb sp:Institution sp:Place sp:MedicalFamily ) ] ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( sp:Physician sp:Disease sp:Pattern sp:Symptom sp:DiagnosticSign sp:TreatmentPrinciple sp:Formula sp:Herb sp:Institution sp:Place sp:MedicalFamily sp:WesternDiagnosis sp:Procedure sp:WesternDrug sp:Examination ) ] ;
     rdfs:range xsd:string .
 
 sp:courtesy_name a owl:DatatypeProperty ;
@@ -405,7 +479,7 @@ sp:author a owl:DatatypeProperty ;
 
 sp:year a owl:DatatypeProperty ;
     rdfs:label "year"@en ;
-    rdfs:domain sp:Work ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( sp:Work sp:CaseRecord ) ] ;
     rdfs:range xsd:string .
 
 sp:edition a owl:DatatypeProperty ;
@@ -428,14 +502,15 @@ sp:topic a owl:DatatypeProperty ;
     rdfs:domain sp:Doctrine ;
     rdfs:range xsd:string .
 
-sp:proposed_by a owl:DatatypeProperty ;
-    rdfs:label "proposed_by"@en ;
-    rdfs:domain sp:Doctrine ;
-    rdfs:range xsd:string .
-
 sp:novelty a owl:DatatypeProperty ;
     rdfs:label "novelty"@en ;
     rdfs:domain sp:Doctrine ;
+    rdfs:range xsd:string .
+
+sp:proposed_by a owl:DatatypeProperty ;
+    rdfs:label "proposed_by"@en ;
+    rdfs:domain sp:Doctrine ;
+    rdfs:comment "数据中出现但未在上游本体规格中声明的属性"@zh ;
     rdfs:range xsd:string .
 
 sp:category a owl:DatatypeProperty ;
@@ -465,7 +540,8 @@ sp:nature a owl:DatatypeProperty ;
 
 sp:note a owl:DatatypeProperty ;
     rdfs:label "note"@en ;
-    rdfs:domain sp:Pattern ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( sp:Pattern sp:CaseRecord ) ] ;
+    rdfs:comment "数据中出现但未在上游本体规格中声明的属性"@zh ;
     rdfs:range xsd:string .
 
 sp:body_region a owl:DatatypeProperty ;
@@ -485,7 +561,7 @@ sp:timing a owl:DatatypeProperty ;
 
 sp:modality a owl:DatatypeProperty ;
     rdfs:label "modality"@en ;
-    rdfs:domain sp:DiagnosticSign ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( sp:DiagnosticSign sp:Examination ) ] ;
     rdfs:range xsd:string .
 
 sp:descriptor a owl:DatatypeProperty ;
@@ -513,9 +589,10 @@ sp:preparation a owl:DatatypeProperty ;
     rdfs:domain sp:Formula ;
     rdfs:range xsd:string .
 
-sp:indication a owl:DatatypeProperty ;
-    rdfs:label "indication"@en ;
+sp:base_formula a owl:DatatypeProperty ;
+    rdfs:label "base_formula"@en ;
     rdfs:domain sp:Formula ;
+    rdfs:comment "数据中出现但未在上游本体规格中声明的属性"@zh ;
     rdfs:range xsd:string .
 
 sp:part_used a owl:DatatypeProperty ;
@@ -530,16 +607,16 @@ sp:is_fresh a owl:DatatypeProperty ;
 
 sp:dose a owl:DatatypeProperty ;
     rdfs:label "dose"@en ;
-    rdfs:domain sp:Herb ;
-    rdfs:range xsd:string .
-
-sp:unit a owl:DatatypeProperty ;
-    rdfs:label "unit"@en ;
-    rdfs:domain [ a owl:Class ; owl:unionOf ( sp:Herb sp:Dosage ) ] ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( sp:Herb sp:WesternDrug ) ] ;
     rdfs:range xsd:string .
 
 sp:processing a owl:DatatypeProperty ;
     rdfs:label "processing"@en ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( sp:Herb sp:Dosage ) ] ;
+    rdfs:range xsd:string .
+
+sp:unit a owl:DatatypeProperty ;
+    rdfs:label "unit"@en ;
     rdfs:domain [ a owl:Class ; owl:unionOf ( sp:Herb sp:Dosage ) ] ;
     rdfs:range xsd:string .
 
@@ -588,13 +665,19 @@ sp:physician a owl:DatatypeProperty ;
     rdfs:domain sp:CaseRecord ;
     rdfs:range xsd:string .
 
-sp:prescription a owl:DatatypeProperty ;
-    rdfs:label "prescription"@en ;
+sp:case_no a owl:DatatypeProperty ;
+    rdfs:label "case_no"@en ;
     rdfs:domain sp:CaseRecord ;
+    rdfs:comment "数据中出现但未在上游本体规格中声明的属性"@zh ;
     rdfs:range xsd:string .
 
 sp:kind a owl:DatatypeProperty ;
     rdfs:label "kind"@en ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( sp:Institution sp:Procedure ) ] ;
+    rdfs:range xsd:string .
+
+sp:founded_year a owl:DatatypeProperty ;
+    rdfs:label "founded_year"@en ;
     rdfs:domain sp:Institution ;
     rdfs:range xsd:string .
 
@@ -608,13 +691,13 @@ sp:founder a owl:DatatypeProperty ;
     rdfs:domain sp:Institution ;
     rdfs:range xsd:string .
 
-sp:founded_year a owl:DatatypeProperty ;
-    rdfs:label "founded_year"@en ;
-    rdfs:domain sp:Institution ;
-    rdfs:range xsd:string .
-
 sp:modern_name a owl:DatatypeProperty ;
     rdfs:label "modern_name"@en ;
+    rdfs:domain sp:Place ;
+    rdfs:range xsd:string .
+
+sp:region a owl:DatatypeProperty ;
+    rdfs:label "region"@en ;
     rdfs:domain sp:Place ;
     rdfs:range xsd:string .
 
@@ -626,6 +709,36 @@ sp:specialty a owl:DatatypeProperty ;
 sp:generations a owl:DatatypeProperty ;
     rdfs:label "generations"@en ;
     rdfs:domain sp:MedicalFamily ;
+    rdfs:range xsd:string .
+
+sp:icd_hint a owl:DatatypeProperty ;
+    rdfs:label "icd_hint"@en ;
+    rdfs:domain sp:WesternDiagnosis ;
+    rdfs:range xsd:string .
+
+sp:system a owl:DatatypeProperty ;
+    rdfs:label "system"@en ;
+    rdfs:domain sp:WesternDiagnosis ;
+    rdfs:range xsd:string .
+
+sp:site a owl:DatatypeProperty ;
+    rdfs:label "site"@en ;
+    rdfs:domain sp:Procedure ;
+    rdfs:range xsd:string .
+
+sp:route a owl:DatatypeProperty ;
+    rdfs:label "route"@en ;
+    rdfs:domain sp:WesternDrug ;
+    rdfs:range xsd:string .
+
+sp:frequency a owl:DatatypeProperty ;
+    rdfs:label "frequency"@en ;
+    rdfs:domain sp:WesternDrug ;
+    rdfs:range xsd:string .
+
+sp:finding a owl:DatatypeProperty ;
+    rdfs:label "finding"@en ;
+    rdfs:domain sp:Examination ;
     rdfs:range xsd:string .
 
 sp:modality rdfs:comment "受控值：舌诊 / 脉诊 / 腹诊 / 目诊 / 望诊 / 闻诊 / 问诊"@zh .
@@ -660,6 +773,10 @@ sp:agreement a owl:AnnotationProperty ;
 sp:nSupport a owl:AnnotationProperty ;
     rdfs:label "nSupport"@en, "支撑次数"@zh ;
     rdfs:comment "number of independent supporting passages"@en .
+
+sp:evidenceInPassage a owl:AnnotationProperty ;
+    rdfs:label "evidenceInPassage"@en, "原文见于所引段落"@zh ;
+    rdfs:comment "independent check: evidence text found in the cited passage"@en .
 
 sp:layer a owl:AnnotationProperty ;
     rdfs:label "layer"@en, "抽取层"@zh ;

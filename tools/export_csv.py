@@ -47,7 +47,7 @@ with (ROOT / 'data/nodes.csv').open('w', encoding='utf-8', newline='') as f:
 EATTR = ['dose', 'dose_note', 'role', 'condition']
 ehead = [':START_ID', ':END_ID', ':TYPE', 'n_support:int', 'layer:string', 'corpus:string', 'source_sentence:string',
          'chapter_path:string', 'passage_id:string', 'evidence_verbatim:boolean',
-         'engine:string', 'agreement:string'] + [f'{a}:string' for a in EATTR]
+         'evidence_in_passage:boolean', 'engine:string', 'agreement:string'] + [f'{a}:string' for a in EATTR]
 with (ROOT / 'data/edges.csv').open('w', encoding='utf-8', newline='') as f:
     w = csv.writer(f); w.writerow(ehead)
     for e in kg['edges']:
@@ -58,6 +58,7 @@ with (ROOT / 'data/edges.csv').open('w', encoding='utf-8', newline='') as f:
                     e.get('chapter_path') or p.get('chapter_path', ''),
                     e.get('passage_id') or p.get('passage_id', ''),
                     'true' if e.get('evidence_verbatim', p.get('evidence_verbatim')) else 'false',
+                    {True: 'true', False: 'false'}.get(e.get('evidence_in_passage'), ''),
                     e.get('engine') or p.get('engine', ''),
                     e.get('agreement') or p.get('agreement', '')] +
                    [e.get(a, '') for a in EATTR])
@@ -102,6 +103,8 @@ L += ['// ---------- 关系（APOC）----------',
       "    chapter_path: row['chapter_path:string'],",
       "    passage_id: row['passage_id:string'],",
       "    evidence_verbatim: row['evidence_verbatim:boolean'] = 'true',",
+      "    evidence_in_passage: CASE row['evidence_in_passage:boolean'] WHEN 'true' THEN true "
+      "WHEN 'false' THEN false ELSE null END,",
       "    engine: row['engine:string'],",
       "    agreement: row['agreement:string']",
       '  }, o) YIELD rel', '  RETURN rel', '} IN TRANSACTIONS OF 1000 ROWS;', '',

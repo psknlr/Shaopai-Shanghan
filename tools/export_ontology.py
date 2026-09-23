@@ -15,6 +15,12 @@ ROOT = Path(__file__).resolve().parent.parent
 kg = json.loads((ROOT / 'data/shaopai_kg.json').read_text(encoding='utf-8'))
 onto, meta = kg['ontology'], kg['meta']
 
+# 声明为 0..1 却在数据中有多条出边的属性：不声明 owl:FunctionalProperty，
+# 否则推理机会把同一主语的不同宾语推断为 owl:sameAs（例如把两部不同的著作合并）。
+import collections
+_out = collections.Counter((e['subject_id'], e['type']) for e in kg['edges'])
+CARD_EXC = collections.Counter(t for (s, t), c in _out.items() if c > 1)
+
 
 def lit(v, lang='zh'):
     s = str(v).replace('\\', '\\\\').replace('"', '\\"')
@@ -29,6 +35,7 @@ PROV_PROPS = {  # A-Box 具体化陈述里用到的注记属性
     'engine': ('抽取引擎', 'extraction engine'),
     'agreement': ('引擎一致性', 'cross-engine agreement status'),
     'nSupport': ('支撑次数', 'number of independent supporting passages'),
+    'evidenceInPassage': ('原文见于所引段落', 'independent check: evidence text found in the cited passage'),
     'layer': ('抽取层', 'extraction layer'),
     'corpus': ('来源文献', 'source work the passage comes from'),
     'n_mentions': ('提及次数', 'number of mentions of the entity in the corpora'),
@@ -67,15 +74,22 @@ for p, spec in onto['object_properties'].items():
              f'    rdfs:domain sp:{spec["domain"]} ;', f'    rdfs:range sp:{spec["range"]} ;',
              f'    sp:cardinality {lit(spec["card"], None)} ;',
              '    rdfs:isDefinedBy <https://w3id.org/shaopai/ontology> .']
-    if spec['card'].endswith('..1'):
+    if spec['card'].endswith('..1') and not CARD_EXC.get(p):
         lines.insert(1, '    a owl:FunctionalProperty ;'); n += 1
+    elif spec['card'].endswith('..1'):
+        note = '声明基数 %s，但数据中有 %d 个主语带多条出边，故不声明为 owl:FunctionalProperty' % (spec['card'], CARD_EXC[p])
+        lines.insert(-1, f'    rdfs:comment {lit(note)} ;'); n += 1
+    if spec.get('qualifier'):
+        lines.insert(-1, f'    sp:qualifier {lit(" / ".join(spec["qualifier"]))} ;'); n += 1
     out.append('\n'.join(lines) + '\n'); n += 7
 
 out.append('# ---------- Datatype properties (entity attributes) ----------')
 dom = {}
+undeclared = set()
 for c, spec in onto['classes'].items():
-    for a in spec.get('attrs', []):
+    for a in spec.get('attrs', []) + spec.get('undeclared_attrs', []):
         dom.setdefault(a, []).append(c)
+    undeclared.update(spec.get('undeclared_attrs', []))
 for a, cs in dom.items():
     lines = [f'sp:{a} a owl:DatatypeProperty ;', f'    rdfs:label {lit(a, "en")} ;']
     if len(cs) == 1:
@@ -83,6 +97,8 @@ for a, cs in dom.items():
     else:
         lines.append('    rdfs:domain [ a owl:Class ; owl:unionOf ( ' + ' '.join(f'sp:{c}' for c in cs) + ' ) ] ;')
         n += 3 + len(cs) * 2
+    if a in undeclared and not any(a in s.get('attrs', []) for s in onto['classes'].values()):
+        lines.append(f'    rdfs:comment {lit("数据中出现但未在上游本体规格中声明的属性")} ;'); n += 1
     lines.append('    rdfs:range xsd:string .')
     out.append('\n'.join(lines) + '\n'); n += 3
 mod = onto['classes'].get('DiagnosticSign', {}).get('modalities')
@@ -95,6 +111,7 @@ for p, (zh, en) in PROV_PROPS.items():
     out.append(f'sp:{p} a owl:AnnotationProperty ;\n    rdfs:label {lit(p, "en")}, {lit(zh)} ;\n'
                f'    rdfs:comment {lit(en, "en")} .\n'); n += 4
 
+n_nonfunc = sum(1 for p, sp_ in onto['object_properties'].items() if sp_['card'].endswith('..1') and CARD_EXC.get(p))
 (ROOT / 'data/shaopai_ontology.ttl').write_text('\n'.join(out), encoding='utf-8')
 print(f'shaopai_ontology.ttl：{len(onto["classes"])} 类 · {len(onto["object_properties"])} 对象属性 · '
-      f'{len(dom)} 数据属性 · 约 {n:,} 三元组')
+      f'{len(dom)} 数据属性 · 约 {n:,} 三元组 · 因基数例外而未声明 Functional 的属性 {n_nonfunc} 个')
