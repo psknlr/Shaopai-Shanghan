@@ -8,38 +8,72 @@
    "《越醫雜詠》",
    "《赵晴初医论》",
    "《俞根初临证经验集要》沈钦荣编著（学派奠基人专著，十章）",
-   "《绍派伤寒史料图片研究》陶建华总审／沈钦荣、林怡冰编著（图片史料图录，204 幅）"
+   "《绍派伤寒史料图片研究》陶建华总审／沈钦荣、林怡冰编著（图片史料图录，204 幅）",
+   "沈钦荣 2022—2026 年当代骨伤科门诊病案 131 则（已去标识化）"
   ],
-  "delivery": "explorer_payload",
-  "imported_at": "2026-09-09"
+  "delivery": "explorer_payload+csv",
+  "imported_at": "2026-09-23"
  },
  "ontology": {
-  "version": "1.1.0",
-  "classes_defined": 16,
+  "version": "1.2.0",
+  "source": "upstream ontology_spec.json",
+  "classes_defined": 20,
   "classes_populated": 15,
   "unpopulated_classes": [
-   "Dosage"
+   "Dosage",
+   "Examination",
+   "Procedure",
+   "WesternDiagnosis",
+   "WesternDrug"
   ],
-  "properties_defined": 39,
+  "properties_defined": 46,
   "properties_used": 32,
   "unused_properties": [
    "addHerbIf",
    "caseByPhysician",
+   "caseComorbidity",
+   "caseHasExamination",
+   "caseUsesProcedure",
+   "caseUsesWesternDrug",
+   "caseWesternDiagnosis",
    "diseaseSubtypeOf",
+   "examSupportsDiagnosis",
    "hasDosage",
    "ingredientRole",
    "modifiedBy",
-   "removeHerbIf"
-  ]
+   "removeHerbIf",
+   "wdCorrespondsToTcm"
+  ],
+  "undeclared_attrs": {
+   "Doctrine": [
+    "proposed_by"
+   ],
+   "Pattern": [
+    "note"
+   ],
+   "Formula": [
+    "base_formula"
+   ],
+   "Herb": [
+    "dose",
+    "processing",
+    "unit"
+   ],
+   "CaseRecord": [
+    "case_no",
+    "note",
+    "year"
+   ]
+  }
  },
  "graph": {
-  "n_nodes": 18151,
-  "n_edges": 22700,
+  "n_nodes": 18149,
+  "n_edges": 22698,
   "nodes_by_class": {
    "DiagnosticSign": 2597,
    "Doctrine": 2522,
    "Symptom": 2216,
-   "Pattern": 2044,
+   "Pattern": 2042,
    "TreatmentPrinciple": 1940,
    "Disease": 1524,
    "Herb": 1379,
@@ -71,7 +105,7 @@
    "statedIn": 275,
    "principleRealizedBy": 227,
    "physicianOfPlace": 203,
-   "belongsToChannel": 161,
+   "belongsToChannel": 159,
    "herbHasProperty": 128,
    "editedRevised": 126,
    "influencedBy": 120,
@@ -90,13 +124,13 @@
    "case": 16268,
    "lineage": 2307,
    "pattern": 2203,
-   "diagnostic": 1364,
+   "diagnostic": 1362,
    "culture": 339,
    "materia": 219
   },
   "edges_by_corpus": {
    "hlc_yian": 16342,
-   "shaopai": 4332,
+   "shaopai": 4330,
    "ygc_jingyao": 1156,
    "yz_mingyi": 310,
    "sp_shiliao": 227,
@@ -104,7 +138,7 @@
    "yue_wenhua": 87,
    "yy_zayong": 84
   },
-  "nodes_with_relations": 11064,
+  "nodes_with_relations": 11062,
   "isolated_nodes": 7087,
   "isolates_by_class": {
    "DiagnosticSign": 1096,
@@ -124,7 +158,7 @@
   },
   "connectivity_pct": 61.0,
   "n_components": 7725,
-  "largest_component": 9471,
+  "largest_component": 9469,
   "satellite_components": 637
  },
  "coverage": {
@@ -158,21 +192,37 @@
     "extracted": 1802,
     "routed": 2407,
     "pct": 74.9
+   },
+   "modern_case": {
+    "extracted": 131,
+    "routed": 131,
+    "pct": 100.0
    }
   },
   "note": "Figures are passages EXTRACTED / passages ROUTED to that layer. Shortfalls are per-frame LLM token-ceiling stops, not absence of content: any count derived from a partial layer is a lower bound and must never be reported as \"none found\"."
  },
  "engines": {
-  "by_layer": {
-   "lineage": "builtin-sonnet",
-   "diagnostic": "builtin-haiku",
-   "pattern": "builtin-haiku",
-   "materia": "builtin-haiku",
-   "case": "builtin-haiku",
-   "culture": "builtin-haiku"
+  "edges_by_engine": {
+   "builtin-haiku": 20698,
+   "builtin-sonnet": 1674,
+   "builtin-haiku+vocab": 326
   },
   "cross_validation": "not_run",
-  "agreement": "single_engine"
+  "agreement": {
+   "single_engine": 22372,
+   "vocabulary_bridge": 326
+  }
+ },
+ "provenance": {
+  "passage_id_filled": "22698/22698",
+  "evidence_check": {
+   "passage_unresolved": 4330,
+   "found": 17779,
+   "not_found": 312,
+   "not_found_flagged_nonverbatim": 268,
+   "found_flagged_nonverbatim": 9
+  },
+  "evidence_check_note": "独立核验：规范化空白与全半角后，原文句（或以「 / 」分隔的各段）是否出现在所引段落正文中。段落无法解析者（《绍派伤寒》专著沿用上游 p##### 编号，本仓库语料为 b##### 重切分）不计入。"
  },
  "integrity": {
   "domain_range_violations": 0,
@@ -180,12 +230,21 @@
   "dangling_endpoints": 0,
   "self_loops": 0,
   "duplicate_triples": 0,
-  "max_cardinality_exceptions": 0,
-  "max_cardinality_note": "基数校验只检查上限为 1 的关系（caseByPhysician · derivesFrom · diseaseSubtypeOf · institutionAtPlace）。",
-  "edges_with_provenance": 22700,
+  "max_cardinality_exceptions": 55,
+  "max_cardinality_exceptions_by_property": {
+   "physicianOfPlace": 20,
+   "derivesFrom": 14,
+   "statedIn": 11,
+   "belongsToChannel": 3,
+   "physicianInFamily": 3,
+   "subPatternOf": 2,
+   "institutionAtPlace": 2
+  },
+  "max_cardinality_note": "按本体声明的 0..1 逐一检查：列出带多条出边的主语数。本仓库如实报告而不改动上游声明；这些属性在 OWL 导出中不声明为 FunctionalProperty，以免推理机据此把不同宾语合并为同一实体。",
+  "edges_with_provenance": 22698,
   "edges_without_source_sentence": 20,
-  "evidence_verbatim": "22199/22700 (97.8%)",
-  "single_mention_edges": "22370/22700 (98.5%)"
+  "evidence_verbatim_upstream_flag": "22197/22698 (97.8%)",
+  "single_mention_edges": "22368/22698 (98.5%)"
  },
  "diagnostic_modalities": {
   "脉诊": 876,
@@ -348,11 +407,42 @@
    }
   ]
  },
+ "modern_case_release": {
+  "status": "withheld",
+  "edges_withheld": 5682,
+  "nodes_withheld": 1234,
+  "nodes_withheld_by_class": {
+   "Symptom": 359,
+   "TreatmentPrinciple": 160,
+   "DiagnosticSign": 143,
+   "CaseRecord": 131,
+   "Formula": 96,
+   "Herb": 75,
+   "WesternDiagnosis": 72,
+   "Disease": 58,
+   "Pattern": 41,
+   "Procedure": 38,
+   "Examination": 37,
+   "WesternDrug": 24
+  },
+  "nodes_restored_from_previous_release": 290,
+  "nodes_modern_provenance_stripped": 0,
+  "reason": "当代门诊病案涉及在世患者；逐案记录须经去标识化复核并由数据方确认发布授权。聚合统计（modern_case_profiles.csv）只发布至少 3 例的行。",
+  "names_checked": 24,
+  "redactions": {},
+  "profiles": {
+   "rows": 61,
+   "rows_published": 9,
+   "min_cases": 3
+  }
+ },
  "derived_copy": {
-  "kind": "explorer_payload",
-  "note": "本文件由上游自包含浏览器（shaopai_explorer.html）内嵌的精简载荷还原：每条关系 1 条原文与章节路径，每个节点最多 3 条章节路径与 1 条原文，不含段落编号。完整出处以上游 shaopai_kg.json 为准。",
-  "engine_reused_from_previous_release": 21243,
-  "layer_rule": "按关系类型的语义归层（tools/import_upstream.py: layer_of）",
-  "corpus_rule": "按章节根映射到八种文献（tools/import_upstream.py: corpus_of）"
+  "kind": "explorer_payload+csv",
+  "sources": {
+   "engine_from_csv": 28380,
+   "passage_id_from_csv": 28380
+  },
+  "layer_rule": "当代门诊病案归当代病案层；其余按关系类型的语义归层（tools/import_upstream.py: layer_of）",
+  "corpus_rule": "按章节根映射到来源文献（tools/import_upstream.py: corpus_of）"
  }
 }

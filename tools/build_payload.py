@@ -194,6 +194,8 @@ def compact(kg, pos, comp):
         pid = e.get('passage_id') or p.get('passage_id')
         if pid:
             o['pid'] = pid
+        if e.get('evidence_in_passage') is False:      # 独立核验未在所引段落中找到原文
+            o['ip'] = 0
         en = e.get('engine') or p.get('engine')
         if en and en != eng_by_layer.get(layer):
             o['en'] = en
@@ -214,7 +216,7 @@ def compact(kg, pos, comp):
 CLS_IDX = ['Physician', 'Work', 'Doctrine', 'DiagnosticSign', 'Pattern',
            'Formula', 'Herb', 'TreatmentPrinciple', 'CaseRecord',
            'Disease', 'Symptom', 'HerbProperty', 'Institution', 'Place',
-           'MedicalFamily', 'Dosage']
+           'MedicalFamily', 'Dosage', 'WesternDiagnosis', 'Procedure', 'WesternDrug', 'Examination']
 
 
 def preview(payload, cap=420):

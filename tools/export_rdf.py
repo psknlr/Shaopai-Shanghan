@@ -92,6 +92,8 @@ for e in sorted(kg['edges'], key=lambda x: (x['type'], x['subject_id'], x['objec
         ('sp:nSupport', str(e.get('n_support', 1))),
         ('sp:sourceSentence', lit(e.get('source_sentence') or p.get('source_sentence', ''))),
     ]
+    if e.get('evidence_in_passage') is not None:
+        fields.append(('sp:evidenceInPassage', 'true' if e['evidence_in_passage'] else 'false'))
     if e.get('layer'):
         fields.append(('sp:layer', lit(e['layer'])))
     if e.get('corpus'):
