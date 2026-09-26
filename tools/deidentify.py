@@ -12,6 +12,8 @@
      不在逐行抬头的位置上，按行首匹配的规则会漏掉它。关系词（姐姐 / 妹妹…）一并删除。
   2. 残留的 7–8 位数字（住院号、病历号）→「〔编号已删〕」。
   3. 日历日期只保留年份：2022年7月1日 / 2023.5.12 / 2022-04-11 / 20221017 → 2022年；
+     漏写「日」字的「2025年3月17：」「2025年3月17二诊」同样处理（其后若是卷 / 期 / 版 / 册 / 页则不算日期）；
+     诊次（初诊 / 复诊 / 二诊…）前的残缺写法兜底：「20233.3.17二诊」→「2023年二诊」，「3.17复诊」→「某日复诊」；
      无年份的「4月20日」→「某日」；「去年8月」→「去年」。时长（「3个月」「半年」）不动。
   4. 就诊跨度「4 visits 2022-07-01..2022-07-22」→「4 visits over 21 days (2022)」，保留病程长短；
      结构化的逐次就诊日期（visit_dates）由导入脚本换成跨度天数（span_days）。
@@ -36,9 +38,12 @@ HEADER = re.compile(
 _Y = r'((?:19|20)\d{2})'
 _M = r'(?:0?[1-9]|1[0-2])'
 _D = r'(?:0?[1-9]|[12]\d|3[01])'
+_NOT_DAY = r'(?!\s*[\d日号卷期版册页])'   # 「2025年3月17」后面不是日 / 号，也不是出版物的卷期页
 DATE_RULES = [
     # 2022年7月01日 · 2025年9年15日（原文笔误）· 2022年7月1号
     (re.compile(rf'{_Y}\s*年\s*{_M}\s*[月年]\s*{_D}\s*[日号]'), r'\1年'),
+    # 2025年3月17：… · 2025年3月17二诊（漏写「日」字）
+    (re.compile(rf'{_Y}\s*年\s*{_M}\s*月\s*{_D}{_NOT_DAY}'), r'\1年'),
     # 2022-04-11 · 2023.5.12 · 2023/5/12
     (re.compile(rf'(?<!\d){_Y}[-/.]{_M}[-/.]{_D}(?!\d)'), r'\1年'),
     # 20221017
@@ -50,6 +55,10 @@ DATE_RULES = [
     # 去年8月 → 去年
     (re.compile(r'(去年|今年|前年|上年)\s*\d{1,2}\s*月'), r'\1'),
 ]
+# 诊次前的日期，任何残缺写法（年份多打一位、缺年份、缺「日」字）：兜底，放在 DATE_RULES 之后
+VISIT_DATE = re.compile(
+    rf'(?<!\d)(?:(?P<y>\d{{2,5}})\s*[.．/年-]\s*)?{_M}\s*[.．/月-]\s*{_D}\s*[日号]?'
+    rf'(?=\s*[：:]?\s*[初复一二三四五六七八九十]+诊)')
 VISIT_SPAN = re.compile(
     r'(\d+)\s*visits?\s*((?:19|20)\d{2})-(\d{1,2})-(\d{1,2})\s*\.\.\s*((?:19|20)\d{2})-(\d{1,2})-(\d{1,2})')
 VISIT_EMPTY = re.compile(r'(\d+)\s*visits?\s*\.\.')
@@ -60,9 +69,11 @@ AGE_90 = re.compile(r'(?<!\d)(9\d|1\d\d)\s*岁')
 RESIDUAL = {
     'patient_header': HEADER,
     'full_date': re.compile(
-        rf'{_Y}\s*年\s*{_M}\s*[月年]\s*{_D}\s*[日号]|(?<!\d){_Y}[-/.]{_M}[-/.]{_D}(?!\d)'
+        rf'{_Y}\s*年\s*{_M}\s*[月年]\s*{_D}\s*[日号]|{_Y}\s*年\s*{_M}\s*月\s*{_D}{_NOT_DAY}'
+        rf'|(?<!\d){_Y}[-/.]{_M}[-/.]{_D}(?!\d)'
         rf'|(?<!\d){_Y}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])(?!\d)'),
     'month_day': re.compile(rf'(?<![年\d]){_M}\s*月\s*{_D}\s*[日号]'),
+    'visit_date': VISIT_DATE,
     'record_number': LONG_NUM,
     'national_id': re.compile(r'(?<!\d)\d{17}[\dXx](?!\d)'),
     'phone': re.compile(r'(?<!\d)1[3-9]\d{9}(?!\d)'),
@@ -90,6 +101,11 @@ def _visit_span(m):
         return f'{n} visits over {days} days ({m.group(2)})'
     except ValueError:
         return f'{n} visits ({m.group(2)})'
+
+
+def _visit_date(m):
+    y = re.match(r'(?:19|20)\d{2}', m.group('y') or '')
+    return f'{y.group()}年' if y else '某日'
 
 
 def span_days(dates):
@@ -124,6 +140,7 @@ def redact(text):
     text, n = VISIT_EMPTY.subn(lambda m: f'{m.group(1)} visits', text); count('visit_span', n)
     for i, (pat, rep) in enumerate(DATE_RULES):
         text, n = pat.subn(rep, text); count('date', n)
+    text, n = VISIT_DATE.subn(_visit_date, text); count('date', n)
     text, n = LONG_NUM.subn('〔编号已删〕', text); count('record_number', n)
     text, n = AGE_90.subn('90岁以上', text); count('age_90_plus', n)
     return text, hits
@@ -148,12 +165,17 @@ if __name__ == '__main__':
     # 自检：只用虚构的示例
     demo = ('复投前方7剂。 / 甲乙丙 女55岁12345678 / 2023.5.5初诊 / 右膝疼痛半个月，'
             '4月20日跌倒。DR（20221017本院）。姐姐丁某戊女14岁8765432 / 2026年5月4日来诊。'
-            ' note: 4 visits 2022-07-01..2022-07-22')
+            ' note: 4 visits 2022-07-01..2022-07-22 / 2025年3月17：汗出减少 / 2025年10月27三诊'
+            ' / 20233.3.17二诊 / 3.17复诊')
     out, hits = redact(demo)
     print(out)
     print(hits)
     names = names_from_headers([demo])
     print('residual:', residuals(out, names))
     assert residuals(out, names) == {}, '自检失败'
+    assert '2025年：汗出减少' in out and '2025年三诊' in out, '漏写「日」字的日期未处理'
+    assert '2023年二诊' in out and '某日复诊' in out, '诊次前的残缺日期未处理'
+    cite = '《绍兴医药学报》1920年2月12卷第2期'                      # 出版物卷期不是日期
+    assert redact(cite)[0] == cite and residuals(cite) == {}, '误伤卷期'
     assert span_days(['2022-07-01', '2022-07-22', 'bad']) == 21 and span_days([]) is None
     print('deidentify 自检通过')

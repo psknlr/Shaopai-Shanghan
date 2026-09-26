@@ -388,6 +388,8 @@ h2{margin:0;font-size:clamp(1.75rem,4vw,2.65rem);font-weight:400;letter-spacing:
 .held{margin-top:1.15rem;padding:.9rem 1.15rem;border:1px dashed var(--line-2);border-radius:11px;
   font-size:12.8px;color:var(--dim);line-height:1.95;background:color-mix(in srgb,var(--paper) 70%,transparent)}
 .held b{color:var(--ink-2)}
+.held a{color:var(--ink-2);border-bottom:1px solid var(--line-2);transition:.2s}
+.held a:hover{color:var(--cinnabar);border-color:var(--cinnabar)}
 
 /* ============ 越医文化层 ============ */
 .fam{display:grid;gap:.6rem;grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
@@ -1067,6 +1069,7 @@ footer a:hover{color:var(--cinnabar);border-color:var(--cinnabar)}
     <div class="held">
       <b>逐案记录暂不公开。</b>本节只展示聚合统计，且只列至少 3 例的条目；
       131 则病案的逐案节点与关系在去标识化复核完成、并确认发布授权之前，不进入本站图谱。
+      持有数据文件的研究者可在图谱中<a href="explorer.html?cases">本地查阅逐案记录</a>——文件只在本机浏览器中读取，不上传。
     </div>
   </div>
 </section>

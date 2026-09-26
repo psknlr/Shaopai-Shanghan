@@ -1,2 +1,5 @@
 __pycache__/
 *.pyc
+
+# 不公开的本地数据（如 tools/export_modern_cases.py 的输出）
+*.local.json
