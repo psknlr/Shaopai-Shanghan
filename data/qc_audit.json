@@ -12,37 +12,25 @@
    "沈钦荣 2022—2026 年当代骨伤科门诊病案 131 则（已去标识化）"
   ],
   "delivery": "explorer_payload+csv",
-  "imported_at": "2026-09-23"
+  "imported_at": "2026-09-26"
  },
  "ontology": {
   "version": "1.2.0",
   "source": "upstream ontology_spec.json",
   "classes_defined": 20,
-  "classes_populated": 15,
+  "classes_populated": 19,
   "unpopulated_classes": [
-   "Dosage",
-   "Examination",
-   "Procedure",
-   "WesternDiagnosis",
-   "WesternDrug"
+   "Dosage"
   ],
   "properties_defined": 46,
-  "properties_used": 32,
+  "properties_used": 40,
   "unused_properties": [
    "addHerbIf",
    "caseByPhysician",
-   "caseComorbidity",
-   "caseHasExamination",
-   "caseUsesProcedure",
-   "caseUsesWesternDrug",
-   "caseWesternDiagnosis",
    "diseaseSubtypeOf",
-   "examSupportsDiagnosis",
    "hasDosage",
    "ingredientRole",
-   "modifiedBy",
-   "removeHerbIf",
-   "wdCorrespondsToTcm"
+   "removeHerbIf"
   ],
   "undeclared_attrs": {
    "Doctrine": [
@@ -67,37 +55,42 @@
   }
  },
  "graph": {
-  "n_nodes": 18149,
-  "n_edges": 22698,
+  "n_nodes": 19383,
+  "n_edges": 28380,
   "nodes_by_class": {
-   "DiagnosticSign": 2597,
+   "DiagnosticSign": 2740,
+   "Symptom": 2575,
    "Doctrine": 2522,
-   "Symptom": 2216,
-   "Pattern": 2042,
-   "TreatmentPrinciple": 1940,
-   "Disease": 1524,
-   "Herb": 1379,
-   "Formula": 1280,
+   "TreatmentPrinciple": 2100,
+   "Pattern": 2083,
+   "Disease": 1582,
+   "Herb": 1454,
+   "Formula": 1376,
+   "CaseRecord": 788,
    "Work": 758,
    "Physician": 671,
-   "CaseRecord": 657,
    "Place": 309,
    "Institution": 137,
    "HerbProperty": 80,
-   "MedicalFamily": 37
+   "WesternDiagnosis": 72,
+   "Procedure": 38,
+   "MedicalFamily": 37,
+   "Examination": 37,
+   "WesternDrug": 24
   },
   "edges_by_type": {
-   "caseUsesHerb": 8486,
-   "caseShowsSymptom": 3233,
-   "caseShowsSign": 1875,
+   "caseUsesHerb": 10294,
+   "caseShowsSymptom": 3792,
+   "caseShowsSign": 2394,
+   "hasIngredient": 1453,
+   "caseAppliesPrinciple": 1372,
    "proposes": 1278,
-   "caseAppliesPrinciple": 1109,
    "signIndicates": 859,
+   "caseDiagnosedAs": 843,
    "formulaTreats": 767,
-   "caseDiagnosedAs": 702,
-   "caseShowsPattern": 434,
+   "caseUsesFormula": 594,
+   "caseShowsPattern": 579,
    "authored": 430,
-   "caseUsesFormula": 429,
    "treatedByPrinciple": 428,
    "manifestsAs": 370,
    "patternOfDisease": 360,
@@ -105,23 +98,31 @@
    "statedIn": 275,
    "principleRealizedBy": 227,
    "physicianOfPlace": 203,
+   "caseWesternDiagnosis": 168,
    "belongsToChannel": 159,
    "herbHasProperty": 128,
    "editedRevised": 126,
    "influencedBy": 120,
+   "caseUsesWesternDrug": 117,
+   "caseUsesProcedure": 116,
    "studiedUnder": 78,
+   "caseComorbidity": 73,
+   "caseHasExamination": 71,
    "physicianInFamily": 66,
+   "modifiedBy": 59,
    "derivesFrom": 50,
    "signExcludes": 48,
    "diseaseTreatedByFormula": 42,
-   "hasIngredient": 41,
    "institutionAtPlace": 41,
+   "wdCorrespondsToTcm": 34,
+   "examSupportsDiagnosis": 32,
    "physicianFounded": 23,
    "diseaseManifestsAs": 9,
    "familySpecializesIn": 6
   },
   "edges_by_layer": {
    "case": 16268,
+   "modern_case": 5682,
    "lineage": 2307,
    "pattern": 2203,
    "diagnostic": 1362,
@@ -130,6 +131,7 @@
   },
   "edges_by_corpus": {
    "hlc_yian": 16342,
+   "modern_clinic": 5682,
    "shaopai": 4330,
    "ygc_jingyao": 1156,
    "yz_mingyi": 310,
@@ -138,28 +140,31 @@
    "yue_wenhua": 87,
    "yy_zayong": 84
   },
-  "nodes_with_relations": 11062,
-  "isolated_nodes": 7087,
+  "nodes_with_relations": 12197,
+  "isolated_nodes": 7186,
   "isolates_by_class": {
-   "DiagnosticSign": 1096,
+   "DiagnosticSign": 1115,
    "Doctrine": 1045,
-   "Disease": 962,
-   "TreatmentPrinciple": 803,
-   "Formula": 763,
-   "Symptom": 748,
-   "Herb": 572,
-   "Pattern": 349,
+   "Disease": 958,
+   "TreatmentPrinciple": 851,
+   "Symptom": 817,
+   "Formula": 756,
+   "Herb": 525,
+   "Pattern": 355,
    "Work": 249,
    "Place": 222,
    "Physician": 185,
    "Institution": 80,
+   "WesternDiagnosis": 11,
    "HerbProperty": 7,
-   "MedicalFamily": 6
+   "MedicalFamily": 6,
+   "Examination": 3,
+   "WesternDrug": 1
   },
-  "connectivity_pct": 61.0,
-  "n_components": 7725,
-  "largest_component": 9469,
-  "satellite_components": 637
+  "connectivity_pct": 62.9,
+  "n_components": 7815,
+  "largest_component": 10631,
+  "satellite_components": 628
  },
  "coverage": {
   "layer_coverage": {
@@ -203,24 +208,24 @@
  },
  "engines": {
   "edges_by_engine": {
-   "builtin-haiku": 20698,
+   "builtin-haiku": 26380,
    "builtin-sonnet": 1674,
    "builtin-haiku+vocab": 326
   },
   "cross_validation": "not_run",
   "agreement": {
-   "single_engine": 22372,
+   "single_engine": 28054,
    "vocabulary_bridge": 326
   }
  },
  "provenance": {
-  "passage_id_filled": "22698/22698",
+  "passage_id_filled": "28380/28380",
   "evidence_check": {
    "passage_unresolved": 4330,
-   "found": 17779,
-   "not_found": 312,
-   "not_found_flagged_nonverbatim": 268,
-   "found_flagged_nonverbatim": 9
+   "found": 23195,
+   "not_found": 445,
+   "not_found_flagged_nonverbatim": 341,
+   "found_flagged_nonverbatim": 69
   },
   "evidence_check_note": "独立核验：规范化空白与全半角后，原文句（或以「 / 」分隔的各段）是否出现在所引段落正文中。段落无法解析者（《绍派伤寒》专著沿用上游 p##### 编号，本仓库语料为 b##### 重切分）不计入。"
  },
@@ -241,25 +246,25 @@
    "institutionAtPlace": 2
   },
   "max_cardinality_note": "按本体声明的 0..1 逐一检查：列出带多条出边的主语数。本仓库如实报告而不改动上游声明；这些属性在 OWL 导出中不声明为 FunctionalProperty，以免推理机据此把不同宾语合并为同一实体。",
-  "edges_with_provenance": 22698,
+  "edges_with_provenance": 28380,
   "edges_without_source_sentence": 20,
-  "evidence_verbatim_upstream_flag": "22197/22698 (97.8%)",
-  "single_mention_edges": "22368/22698 (98.5%)"
+  "evidence_verbatim_upstream_flag": "27746/28380 (97.8%)",
+  "single_mention_edges": "27733/28380 (97.7%)"
  },
  "diagnostic_modalities": {
-  "脉诊": 876,
-  "舌诊": 760,
-  "问诊": 420,
-  "望诊": 283,
+  "脉诊": 889,
+  "舌诊": 840,
+  "问诊": 421,
+  "望诊": 329,
   "腹诊": 148,
-  "目诊": 89,
+  "目诊": 91,
   "闻诊": 21
  },
  "disease_layer": {
-  "n_disease": 1524,
+  "n_disease": 1582,
   "diseases_with_cases": 416,
   "cases_with_diagnosis": 625,
-  "n_cases": 657,
+  "n_cases": 788,
   "top": [
    {
     "disease": "咳嗽",
@@ -408,32 +413,20 @@
   ]
  },
  "modern_case_release": {
-  "status": "withheld",
-  "edges_withheld": 5682,
-  "nodes_withheld": 1234,
-  "nodes_withheld_by_class": {
-   "Symptom": 359,
-   "TreatmentPrinciple": 160,
-   "DiagnosticSign": 143,
-   "CaseRecord": 131,
-   "Formula": 96,
-   "Herb": 75,
-   "WesternDiagnosis": 72,
-   "Disease": 58,
-   "Pattern": 41,
-   "Procedure": 38,
-   "Examination": 37,
-   "WesternDrug": 24
-  },
-  "nodes_restored_from_previous_release": 290,
-  "nodes_modern_provenance_stripped": 0,
-  "reason": "当代门诊病案涉及在世患者；逐案记录须经去标识化复核并由数据方确认发布授权。聚合统计（modern_case_profiles.csv）只发布至少 3 例的行。",
+  "status": "included_deidentified",
+  "edges": 5682,
+  "reason": "数据方已确认发布授权；逐案记录经去标识化并通过隐私闸门后发布。",
   "names_checked": 24,
-  "redactions": {},
+  "redactions": {
+   "date": 772,
+   "visit_span": 131,
+   "patient_header": 44,
+   "visit_dates": 283
+  },
   "profiles": {
    "rows": 61,
-   "rows_published": 9,
-   "min_cases": 3
+   "rows_published": 61,
+   "min_cases": null
   }
  },
  "derived_copy": {
