@@ -1,0 +1,62 @@
+[
+ {
+  "file": "fig01_research_framework",
+  "title": "基于 V1 两书版知识图谱的绍派伤寒咳嗽用药规律研究技术路线",
+  "title_en": "Research framework for mining the cough medication patterns of the Shaopai Shanghan school from the V1 two-book knowledge graph",
+  "note": "左列为医案筛选与规范化流程，右列为《俞根初临证经验集要》中的肺系咳喘方证（判读规则与逐条结果见附表 S6）；①–⑥为分析模块，结果分别见图 2–图 9 与表 2–表 6，理法互证见表 7。"
+ },
+ {
+  "file": "fig02_herb_frequency_efficacy",
+  "title": "125 例咳嗽医案高频药物的使用频次与功效分类",
+  "title_en": "Frequency of the most-used herbs and distribution of efficacy categories in 125 cough cases",
+  "note": "A. 使用频次前 30 位药物，柱长为使用频率，柱端数字为医案数，蓝色为化痰止咳平喘药；B. 各功效类别所占药次比例（共 1,519 药次），功效分类依《中药学》教材，未归类者为基原或功效待考药物。"
+ },
+ {
+  "file": "fig03_nature_flavor_meridian",
+  "title": "咳嗽医案用药的四气、五味与归经分布",
+  "title_en": "Four natures, five flavours and meridian tropism of the herbs used in the cough cases",
+  "note": "以药次计，共 1,437 药次（占单味药药次的 94.6%，性味待考者未计）；A. 四气（微寒、大寒并入寒，微温并入温）；B. 五味；C. 归经。一药多味、多经者分别计入，故五味、归经合计超过 100%。"
+ },
+ {
+  "file": "fig04_dose_and_features",
+  "title": "高频药物单次处方剂量分布与用药特色",
+  "title_en": "Single-prescription doses of high-frequency herbs and characteristic medication practices",
+  "note": "A. 每点为一条剂量记录（钱，以 2 为底的对数坐标），灰色粗线为四分位间距，黑色竖线为中位数，竖直参考线为 3 钱；B. 五项用药特色的医案占比。1 钱 ≈ 3 g。逐药统计见表 3。"
+ },
+ {
+  "file": "fig05_cooccurrence_network",
+  "title": "高频药物共现网络",
+  "title_en": "Co-occurrence network of high-frequency herbs",
+  "note": "33 味高频药物按层次聚类树叶序环形排列，仅显示共现 ≥ 13 案的药对（100 条）；节点大小示使用频次，连线粗细示共现医案数；Louvain 社区划分模块度仅 0.138，故以层次聚类分组（C1–C8，见表 5）着色。"
+ },
+ {
+  "file": "fig06_hierarchical_clustering",
+  "title": "高频药物层次聚类",
+  "title_en": "Hierarchical clustering of high-frequency herbs",
+  "note": "A. 聚类树状图（Jaccard 距离，类平均法）；B. 两两 Jaccard 相似系数热图，按树状图叶序排列，方框示按平均轮廓系数确定的 8 个药物组合；共表型相关系数 0.813。"
+ },
+ {
+  "file": "fig07_pathogenesis_principle_herb",
+  "title": "不同病机类别咳嗽医案的治法与用药",
+  "title_en": "Treatment principles and herbs across pathogenesis categories of the cough cases",
+  "note": "A. 按病机关键词归类的医案数（规则见附表 S4）；B. 各类医案中含该治法要素的比例；C. 各类医案中药物使用率。* 单侧 Fisher 精确检验 P < 0.05；** 经 Benjamini–Hochberg 校正 q < 0.05；仅比较 n ≥ 10 的 5 类。"
+ },
+ {
+  "file": "fig08_four_diagnostics",
+  "title": "咳嗽医案的伴随症状、痰象、舌象与脉象",
+  "title_en": "Accompanying symptoms, sputum, tongue and pulse features of the cough cases",
+  "note": "A. 伴随症状（前 12 项）；B. 痰象；C. 舌象（有舌诊记录 117 例）；D. 左、右脉象，分别以该侧有记录的医案为分母（右 108 例，左 99 例）。"
+ },
+ {
+  "file": "fig09_feature_herb_lift",
+  "title": "四诊特征与高频药物的关联（提升度）",
+  "title_en": "Associations between diagnostic features and high-frequency herbs (lift)",
+  "note": "提升度 = P（用药 | 具该特征）/ P（用药），色阶取对数，红示正关联、蓝示负关联；共现 < 3 案者留白；格内数字为提升度 ≥ 1.5 且共现 ≥ 5 案者；药物为使用频率前 20 位。"
+ },
+ {
+  "file": "fig10_evidence_chain_example",
+  "title": "典型医案的证据链：从原文到图谱关系与分析要素（案35 肝火冲脑肺干咳）",
+  "title_en": "Evidence chain of a representative case: from source text to graph relations and analytical elements",
+  "note": "① 原文段落（hlc0265c035）；② 图谱中该案的 18 条关系，均保留原文句、段落编号与段内核验结果；③ 规范化后的分析要素。"
+ }
+]
