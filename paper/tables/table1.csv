@@ -1,0 +1,14 @@
+﻿Source work,English title,Genre,Responsibility*,Script,Passages,Characters†,Relations
+何廉臣医案,Case records of He Lianchen,Case records,He Lianchen,Simplified,"1,324","215,750","16,342"
+浙派中医丛书·绍派伤寒 ‡,Shaopai Shanghan (Zhejiang School of Chinese Medicine series),School monograph,"Shen Qinrong (ed.), 2021",Simplified,"1,586","205,452","4,330"
+俞根初临证经验集要,Essentials of Yu Genchu's clinical experience,Monograph on the founder,Shen Qinrong (comp.),Simplified,"1,094","163,641","1,156"
+越医文化,"Medical culture of Yue (10 chapters, contents and postscript)",Regional medical history,–,Simplified,554,"77,495",87
+赵晴初医论,Medical essays of Zhao Qingchu,Medical essays,Zhao Qingchu,Simplified,396,"74,914",162
+越中名医传,Biographies of eminent physicians of Yuezhong (part 2 and supplement),Biographies,–,Traditional,356,"74,775",310
+绍派伤寒史料图片研究,Pictorial historical sources of the Shaopai school,Illustrated catalogue,"Tao Jianhua (chief reviewer); Shen Qinrong, Lin Yibing (eds.)",Simplified,533,"36,526",227
+越醫雜詠,Miscellaneous verses on Yue medicine,Verse,–,Traditional,138,"7,462",84
+Total §,8 works,,,,"5,981","856,015","22,698"
+"* As recorded in the delivered sources; –, not recorded."
+"† Unicode code points of passage text, including punctuation."
+"‡ 浙派中医丛书·绍派伤寒 (Shaopai Shanghan): passages follow this release's re-segmentation of the original book (b-numbered); its relations cite the upstream p-numbered segmentation, which could not be aligned (Technical Validation)."
+"§ A ninth source, 131 outpatient case records (2022–2026), was delivered but is withheld from release pending consent review; its 5,682 relations and 1,234 dependent entities are excluded from all counts."

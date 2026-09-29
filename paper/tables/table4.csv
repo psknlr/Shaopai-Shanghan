@@ -1,0 +1,17 @@
+﻿File*,Format,Size (MB)†,Records,Content
+shaopai_kg.json,JSON,23.04,"18,149 entities; 22,698 relations","Complete graph: ontology, controlled vocabularies, entities with attributes and provenance, relations with evidence fields"
+nodes.csv,CSV,2.28,"18,149 rows","Entities in Neo4j import format, with attributes, layout coordinates and component index"
+edges.csv,CSV,4.62,"22,698 rows","Relations with passage identifier, evidence sentence, chapter path, layer, source work, verification flags"
+load_neo4j.cypher,Cypher,0.04,–,"Constraints, indexes and batched import script"
+example_queries.cypher,Cypher,0.01,29 queries,Worked graph queries with SPARQL equivalents
+shaopai_instances.ttl,RDF/Turtle,15.36,"410,261 triples",Instance data; each relation reified as rdf:Statement carrying its provenance
+shaopai_ontology.ttl,OWL/Turtle,0.03,20 classes; 46 relation types; 810 triples,"Ontology with bilingual labels, domains, ranges and cardinality annotations"
+corpus_yueyi.json,JSON,2.75,"4,395 passages",Segmented text of seven source works with passage identifiers and chapter paths
+corpus_shaopai.json,JSON,0.86,"1,586 passages",Segmented text of Shaopai Shanghan (b-numbered re-segmentation)
+layout_positions.json,JSON,0.76,"18,149 coordinates",Fixed two-dimensional layout used by the web explorer
+disease_profiles.csv,CSV,0.06,416 rows,Per-disease case counts with co-occurring herbs and symptoms (He Lianchen case records)
+modern_case_profiles.csv,CSV,<0.01,9 rows,Aggregate profile of the withheld outpatient records; cells with fewer than 3 cases suppressed
+qc_audit.json,JSON,0.01,–,Machine-readable quality-control figures
+QC_AUDIT.md,Markdown,0.01,–,Quality-control report
+* In the data/ directory of the repository; the web explorer (explorer.html) and the two-book edition (v1.html) embed the same graph.
+"† 1 MB = 1,000,000 bytes."

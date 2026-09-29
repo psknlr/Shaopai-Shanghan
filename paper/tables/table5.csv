@@ -1,0 +1,20 @@
+﻿Check,Scope,Result
+Schema conformance (domain and range),"All relations (22,698)",0 violations
+Referential integrity,"All relations (22,698)",0 dangling endpoints
+Self-loops,"All relations (22,698)",0
+"Duplicate (subject, relation, object) triples","All relations (22,698)",0
+Passage identifier present,"All relations (22,698)","22,698 (100.0%)"
+Evidence sentence present,"All relations (22,698)","22,678 (99.9%)"
+Evidence sentence located in cited passage*,"Relations with resolvable passage (18,368)","17,788 (96.8%)"
+Upstream verbatim flag not confirmed*,"Flagged verbatim, passage resolvable (18,091)",312 (1.7%)
+Cited passage not resolvable†,"All relations (22,698)","4,330 (19.1%)"
+Declared 0..1 cardinality,7 relation types,55 subjects with >1 object
+Identity resolution,Entities,93 merged (89 script-variant groups; 5 name-variant pairs)
+Extraction coverage‡,Routed passages per layer,74.9–100.0% (lowest: Culture)
+Evidence redundancy,"All relations (22,698)","22,368 (98.5%) supported by one mention"
+Privacy screening§,All released files,0 matches; modern outpatient layer withheld
+Cross-model agreement,"All relations (22,698)",Not assessed (single extraction model)
+* After Unicode NFKC normalization and removal of white space; multi-part evidence joined by “ / ” counts as located when every part is found.
+† Relations from Shaopai Shanghan cite an upstream passage segmentation that could not be aligned with the released text.
+"‡ Share of passages routed to a layer from which relations were extracted; shortfalls arise from per-frame output limits, so counts from those layers are lower bounds."
+"§ Patient-header patterns (name, sex, age and record number), national identity and telephone numbers, and patient names derived at run time from the withheld records."
