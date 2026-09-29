@@ -1,6 +1,6 @@
 // 绍派伤寒 · 越医知识图谱 — Neo4j loader（由 tools/export_csv.py 生成）
 // 用法：把 nodes.csv 与 edges.csv 放入 DBMS 的 import/ 目录，然后运行本文件。
-// 节点 18,149 · 关系 22,698 · 本体 1.2.0
+// 节点 19,383 · 关系 28,380 · 本体 1.2.0
 
 // ---------- 约束与索引 ----------
 CREATE CONSTRAINT physician_id IF NOT EXISTS FOR (n:Physician) REQUIRE n.id IS UNIQUE;
@@ -38,6 +38,10 @@ CREATE INDEX institution_name IF NOT EXISTS FOR (n:Institution) ON (n.name);
 CREATE INDEX place_name IF NOT EXISTS FOR (n:Place) ON (n.name);
 CREATE INDEX caserecord_name IF NOT EXISTS FOR (n:CaseRecord) ON (n.name);
 CREATE INDEX herbproperty_name IF NOT EXISTS FOR (n:HerbProperty) ON (n.name);
+CREATE INDEX westerndiagnosis_name IF NOT EXISTS FOR (n:WesternDiagnosis) ON (n.name);
+CREATE INDEX procedure_name IF NOT EXISTS FOR (n:Procedure) ON (n.name);
+CREATE INDEX westerndrug_name IF NOT EXISTS FOR (n:WesternDrug) ON (n.name);
+CREATE INDEX examination_name IF NOT EXISTS FOR (n:Examination) ON (n.name);
 CREATE INDEX diagnosticsign_modality IF NOT EXISTS FOR (n:DiagnosticSign) ON (n.modality);
 CREATE INDEX doctrine_topic IF NOT EXISTS FOR (n:Doctrine) ON (n.topic);
 CREATE INDEX caserecord_physician IF NOT EXISTS FOR (n:CaseRecord) ON (n.physician);
@@ -189,7 +193,8 @@ CALL {
       n.n_mentions = toInteger(row['n_mentions:int']),
       n.component = toInteger(row['component:int']),
       n.x = toFloat(row['x:float']),
-      n.y = toFloat(row['y:float'])
+      n.y = toFloat(row['y:float']),
+      n.base_formula = CASE WHEN row['base_formula:string'] = '' THEN null ELSE row['base_formula:string'] END
 } IN TRANSACTIONS OF 1000 ROWS;
 
 LOAD CSV WITH HEADERS FROM 'file:///nodes.csv' AS row
@@ -252,7 +257,10 @@ CALL {
       n.y = toFloat(row['y:float']),
       n.patient_desc = CASE WHEN row['patient_desc:string'] = '' THEN null ELSE row['patient_desc:string'] END,
       n.presentation = CASE WHEN row['presentation:string'] = '' THEN null ELSE row['presentation:string'] END,
-      n.physician = CASE WHEN row['physician:string'] = '' THEN null ELSE row['physician:string'] END
+      n.physician = CASE WHEN row['physician:string'] = '' THEN null ELSE row['physician:string'] END,
+      n.case_no = CASE WHEN row['case_no:string'] = '' THEN null ELSE row['case_no:string'] END,
+      n.note = CASE WHEN row['note:string'] = '' THEN null ELSE row['note:string'] END,
+      n.year = CASE WHEN row['year:string'] = '' THEN null ELSE row['year:string'] END
 } IN TRANSACTIONS OF 1000 ROWS;
 
 LOAD CSV WITH HEADERS FROM 'file:///nodes.csv' AS row
@@ -266,6 +274,65 @@ CALL {
       n.component = toInteger(row['component:int']),
       n.x = toFloat(row['x:float']),
       n.y = toFloat(row['y:float'])
+} IN TRANSACTIONS OF 1000 ROWS;
+
+LOAD CSV WITH HEADERS FROM 'file:///nodes.csv' AS row
+CALL {
+  WITH row
+  WITH row WHERE row[':LABEL'] = 'WesternDiagnosis'
+  MERGE (n:WesternDiagnosis {id: row[':ID']})
+  SET n.name = row['name:string'],
+      n.aliases = CASE WHEN row['aliases:string[]'] = '' THEN [] ELSE split(row['aliases:string[]'], ';') END,
+      n.n_mentions = toInteger(row['n_mentions:int']),
+      n.component = toInteger(row['component:int']),
+      n.x = toFloat(row['x:float']),
+      n.y = toFloat(row['y:float']),
+      n.system = CASE WHEN row['system:string'] = '' THEN null ELSE row['system:string'] END
+} IN TRANSACTIONS OF 1000 ROWS;
+
+LOAD CSV WITH HEADERS FROM 'file:///nodes.csv' AS row
+CALL {
+  WITH row
+  WITH row WHERE row[':LABEL'] = 'Procedure'
+  MERGE (n:Procedure {id: row[':ID']})
+  SET n.name = row['name:string'],
+      n.aliases = CASE WHEN row['aliases:string[]'] = '' THEN [] ELSE split(row['aliases:string[]'], ';') END,
+      n.n_mentions = toInteger(row['n_mentions:int']),
+      n.component = toInteger(row['component:int']),
+      n.x = toFloat(row['x:float']),
+      n.y = toFloat(row['y:float']),
+      n.kind = CASE WHEN row['kind:string'] = '' THEN null ELSE row['kind:string'] END
+} IN TRANSACTIONS OF 1000 ROWS;
+
+LOAD CSV WITH HEADERS FROM 'file:///nodes.csv' AS row
+CALL {
+  WITH row
+  WITH row WHERE row[':LABEL'] = 'WesternDrug'
+  MERGE (n:WesternDrug {id: row[':ID']})
+  SET n.name = row['name:string'],
+      n.aliases = CASE WHEN row['aliases:string[]'] = '' THEN [] ELSE split(row['aliases:string[]'], ';') END,
+      n.n_mentions = toInteger(row['n_mentions:int']),
+      n.component = toInteger(row['component:int']),
+      n.x = toFloat(row['x:float']),
+      n.y = toFloat(row['y:float']),
+      n.dose = CASE WHEN row['dose:string'] = '' THEN null ELSE row['dose:string'] END,
+      n.route = CASE WHEN row['route:string'] = '' THEN null ELSE row['route:string'] END,
+      n.frequency = CASE WHEN row['frequency:string'] = '' THEN null ELSE row['frequency:string'] END
+} IN TRANSACTIONS OF 1000 ROWS;
+
+LOAD CSV WITH HEADERS FROM 'file:///nodes.csv' AS row
+CALL {
+  WITH row
+  WITH row WHERE row[':LABEL'] = 'Examination'
+  MERGE (n:Examination {id: row[':ID']})
+  SET n.name = row['name:string'],
+      n.aliases = CASE WHEN row['aliases:string[]'] = '' THEN [] ELSE split(row['aliases:string[]'], ';') END,
+      n.n_mentions = toInteger(row['n_mentions:int']),
+      n.component = toInteger(row['component:int']),
+      n.x = toFloat(row['x:float']),
+      n.y = toFloat(row['y:float']),
+      n.modality = CASE WHEN row['modality:string'] = '' THEN null ELSE row['modality:string'] END,
+      n.finding = CASE WHEN row['finding:string'] = '' THEN null ELSE row['finding:string'] END
 } IN TRANSACTIONS OF 1000 ROWS;
 
 // ---------- 关系（APOC）----------
@@ -298,29 +365,32 @@ CALL {
 // LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row[':TYPE'] = 'caseShowsSign'
 // MATCH (s:CaseRecord {id: row[':START_ID']}), (o:DiagnosticSign {id: row[':END_ID']}) MERGE (s)-[rel:caseShowsSign]->(o)
 // SET rel.n_support = toInteger(row['n_support:int']), rel.layer = row['layer:string'], rel.corpus = row['corpus:string'], rel.source_sentence = row['source_sentence:string'], rel.chapter_path = row['chapter_path:string'], rel.passage_id = row['passage_id:string'], rel.evidence_verbatim = row['evidence_verbatim:boolean'] = 'true', rel.engine = row['engine:string'], rel.agreement = row['agreement:string'];
-// LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row[':TYPE'] = 'proposes'
-// MATCH (s:Physician {id: row[':START_ID']}), (o:Doctrine {id: row[':END_ID']}) MERGE (s)-[rel:proposes]->(o)
+// LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row[':TYPE'] = 'hasIngredient'
+// MATCH (s:Formula {id: row[':START_ID']}), (o:Herb {id: row[':END_ID']}) MERGE (s)-[rel:hasIngredient]->(o)
 // SET rel.n_support = toInteger(row['n_support:int']), rel.layer = row['layer:string'], rel.corpus = row['corpus:string'], rel.source_sentence = row['source_sentence:string'], rel.chapter_path = row['chapter_path:string'], rel.passage_id = row['passage_id:string'], rel.evidence_verbatim = row['evidence_verbatim:boolean'] = 'true', rel.engine = row['engine:string'], rel.agreement = row['agreement:string'];
 // LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row[':TYPE'] = 'caseAppliesPrinciple'
 // MATCH (s:CaseRecord {id: row[':START_ID']}), (o:TreatmentPrinciple {id: row[':END_ID']}) MERGE (s)-[rel:caseAppliesPrinciple]->(o)
 // SET rel.n_support = toInteger(row['n_support:int']), rel.layer = row['layer:string'], rel.corpus = row['corpus:string'], rel.source_sentence = row['source_sentence:string'], rel.chapter_path = row['chapter_path:string'], rel.passage_id = row['passage_id:string'], rel.evidence_verbatim = row['evidence_verbatim:boolean'] = 'true', rel.engine = row['engine:string'], rel.agreement = row['agreement:string'];
+// LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row[':TYPE'] = 'proposes'
+// MATCH (s:Physician {id: row[':START_ID']}), (o:Doctrine {id: row[':END_ID']}) MERGE (s)-[rel:proposes]->(o)
+// SET rel.n_support = toInteger(row['n_support:int']), rel.layer = row['layer:string'], rel.corpus = row['corpus:string'], rel.source_sentence = row['source_sentence:string'], rel.chapter_path = row['chapter_path:string'], rel.passage_id = row['passage_id:string'], rel.evidence_verbatim = row['evidence_verbatim:boolean'] = 'true', rel.engine = row['engine:string'], rel.agreement = row['agreement:string'];
 // LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row[':TYPE'] = 'signIndicates'
 // MATCH (s:DiagnosticSign {id: row[':START_ID']}), (o:Pattern {id: row[':END_ID']}) MERGE (s)-[rel:signIndicates]->(o)
+// SET rel.n_support = toInteger(row['n_support:int']), rel.layer = row['layer:string'], rel.corpus = row['corpus:string'], rel.source_sentence = row['source_sentence:string'], rel.chapter_path = row['chapter_path:string'], rel.passage_id = row['passage_id:string'], rel.evidence_verbatim = row['evidence_verbatim:boolean'] = 'true', rel.engine = row['engine:string'], rel.agreement = row['agreement:string'];
+// LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row[':TYPE'] = 'caseDiagnosedAs'
+// MATCH (s:CaseRecord {id: row[':START_ID']}), (o:Disease {id: row[':END_ID']}) MERGE (s)-[rel:caseDiagnosedAs]->(o)
 // SET rel.n_support = toInteger(row['n_support:int']), rel.layer = row['layer:string'], rel.corpus = row['corpus:string'], rel.source_sentence = row['source_sentence:string'], rel.chapter_path = row['chapter_path:string'], rel.passage_id = row['passage_id:string'], rel.evidence_verbatim = row['evidence_verbatim:boolean'] = 'true', rel.engine = row['engine:string'], rel.agreement = row['agreement:string'];
 // LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row[':TYPE'] = 'formulaTreats'
 // MATCH (s:Formula {id: row[':START_ID']}), (o:Pattern {id: row[':END_ID']}) MERGE (s)-[rel:formulaTreats]->(o)
 // SET rel.n_support = toInteger(row['n_support:int']), rel.layer = row['layer:string'], rel.corpus = row['corpus:string'], rel.source_sentence = row['source_sentence:string'], rel.chapter_path = row['chapter_path:string'], rel.passage_id = row['passage_id:string'], rel.evidence_verbatim = row['evidence_verbatim:boolean'] = 'true', rel.engine = row['engine:string'], rel.agreement = row['agreement:string'];
-// LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row[':TYPE'] = 'caseDiagnosedAs'
-// MATCH (s:CaseRecord {id: row[':START_ID']}), (o:Disease {id: row[':END_ID']}) MERGE (s)-[rel:caseDiagnosedAs]->(o)
+// LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row[':TYPE'] = 'caseUsesFormula'
+// MATCH (s:CaseRecord {id: row[':START_ID']}), (o:Formula {id: row[':END_ID']}) MERGE (s)-[rel:caseUsesFormula]->(o)
 // SET rel.n_support = toInteger(row['n_support:int']), rel.layer = row['layer:string'], rel.corpus = row['corpus:string'], rel.source_sentence = row['source_sentence:string'], rel.chapter_path = row['chapter_path:string'], rel.passage_id = row['passage_id:string'], rel.evidence_verbatim = row['evidence_verbatim:boolean'] = 'true', rel.engine = row['engine:string'], rel.agreement = row['agreement:string'];
 // LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row[':TYPE'] = 'caseShowsPattern'
 // MATCH (s:CaseRecord {id: row[':START_ID']}), (o:Pattern {id: row[':END_ID']}) MERGE (s)-[rel:caseShowsPattern]->(o)
 // SET rel.n_support = toInteger(row['n_support:int']), rel.layer = row['layer:string'], rel.corpus = row['corpus:string'], rel.source_sentence = row['source_sentence:string'], rel.chapter_path = row['chapter_path:string'], rel.passage_id = row['passage_id:string'], rel.evidence_verbatim = row['evidence_verbatim:boolean'] = 'true', rel.engine = row['engine:string'], rel.agreement = row['agreement:string'];
 // LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row[':TYPE'] = 'authored'
 // MATCH (s:Physician {id: row[':START_ID']}), (o:Work {id: row[':END_ID']}) MERGE (s)-[rel:authored]->(o)
-// SET rel.n_support = toInteger(row['n_support:int']), rel.layer = row['layer:string'], rel.corpus = row['corpus:string'], rel.source_sentence = row['source_sentence:string'], rel.chapter_path = row['chapter_path:string'], rel.passage_id = row['passage_id:string'], rel.evidence_verbatim = row['evidence_verbatim:boolean'] = 'true', rel.engine = row['engine:string'], rel.agreement = row['agreement:string'];
-// LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row[':TYPE'] = 'caseUsesFormula'
-// MATCH (s:CaseRecord {id: row[':START_ID']}), (o:Formula {id: row[':END_ID']}) MERGE (s)-[rel:caseUsesFormula]->(o)
 // SET rel.n_support = toInteger(row['n_support:int']), rel.layer = row['layer:string'], rel.corpus = row['corpus:string'], rel.source_sentence = row['source_sentence:string'], rel.chapter_path = row['chapter_path:string'], rel.passage_id = row['passage_id:string'], rel.evidence_verbatim = row['evidence_verbatim:boolean'] = 'true', rel.engine = row['engine:string'], rel.agreement = row['agreement:string'];
 // LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row[':TYPE'] = 'treatedByPrinciple'
 // MATCH (s:Pattern {id: row[':START_ID']}), (o:TreatmentPrinciple {id: row[':END_ID']}) MERGE (s)-[rel:treatedByPrinciple]->(o)
@@ -343,6 +413,9 @@ CALL {
 // LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row[':TYPE'] = 'physicianOfPlace'
 // MATCH (s:Physician {id: row[':START_ID']}), (o:Place {id: row[':END_ID']}) MERGE (s)-[rel:physicianOfPlace]->(o)
 // SET rel.n_support = toInteger(row['n_support:int']), rel.layer = row['layer:string'], rel.corpus = row['corpus:string'], rel.source_sentence = row['source_sentence:string'], rel.chapter_path = row['chapter_path:string'], rel.passage_id = row['passage_id:string'], rel.evidence_verbatim = row['evidence_verbatim:boolean'] = 'true', rel.engine = row['engine:string'], rel.agreement = row['agreement:string'];
+// LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row[':TYPE'] = 'caseWesternDiagnosis'
+// MATCH (s:CaseRecord {id: row[':START_ID']}), (o:WesternDiagnosis {id: row[':END_ID']}) MERGE (s)-[rel:caseWesternDiagnosis]->(o)
+// SET rel.n_support = toInteger(row['n_support:int']), rel.layer = row['layer:string'], rel.corpus = row['corpus:string'], rel.source_sentence = row['source_sentence:string'], rel.chapter_path = row['chapter_path:string'], rel.passage_id = row['passage_id:string'], rel.evidence_verbatim = row['evidence_verbatim:boolean'] = 'true', rel.engine = row['engine:string'], rel.agreement = row['agreement:string'];
 // LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row[':TYPE'] = 'belongsToChannel'
 // MATCH (s:Pattern {id: row[':START_ID']}), (o:Pattern {id: row[':END_ID']}) MERGE (s)-[rel:belongsToChannel]->(o)
 // SET rel.n_support = toInteger(row['n_support:int']), rel.layer = row['layer:string'], rel.corpus = row['corpus:string'], rel.source_sentence = row['source_sentence:string'], rel.chapter_path = row['chapter_path:string'], rel.passage_id = row['passage_id:string'], rel.evidence_verbatim = row['evidence_verbatim:boolean'] = 'true', rel.engine = row['engine:string'], rel.agreement = row['agreement:string'];
@@ -355,11 +428,26 @@ CALL {
 // LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row[':TYPE'] = 'influencedBy'
 // MATCH (s:Physician {id: row[':START_ID']}), (o:Physician {id: row[':END_ID']}) MERGE (s)-[rel:influencedBy]->(o)
 // SET rel.n_support = toInteger(row['n_support:int']), rel.layer = row['layer:string'], rel.corpus = row['corpus:string'], rel.source_sentence = row['source_sentence:string'], rel.chapter_path = row['chapter_path:string'], rel.passage_id = row['passage_id:string'], rel.evidence_verbatim = row['evidence_verbatim:boolean'] = 'true', rel.engine = row['engine:string'], rel.agreement = row['agreement:string'];
+// LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row[':TYPE'] = 'caseUsesWesternDrug'
+// MATCH (s:CaseRecord {id: row[':START_ID']}), (o:WesternDrug {id: row[':END_ID']}) MERGE (s)-[rel:caseUsesWesternDrug]->(o)
+// SET rel.n_support = toInteger(row['n_support:int']), rel.layer = row['layer:string'], rel.corpus = row['corpus:string'], rel.source_sentence = row['source_sentence:string'], rel.chapter_path = row['chapter_path:string'], rel.passage_id = row['passage_id:string'], rel.evidence_verbatim = row['evidence_verbatim:boolean'] = 'true', rel.engine = row['engine:string'], rel.agreement = row['agreement:string'];
+// LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row[':TYPE'] = 'caseUsesProcedure'
+// MATCH (s:CaseRecord {id: row[':START_ID']}), (o:Procedure {id: row[':END_ID']}) MERGE (s)-[rel:caseUsesProcedure]->(o)
+// SET rel.n_support = toInteger(row['n_support:int']), rel.layer = row['layer:string'], rel.corpus = row['corpus:string'], rel.source_sentence = row['source_sentence:string'], rel.chapter_path = row['chapter_path:string'], rel.passage_id = row['passage_id:string'], rel.evidence_verbatim = row['evidence_verbatim:boolean'] = 'true', rel.engine = row['engine:string'], rel.agreement = row['agreement:string'];
 // LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row[':TYPE'] = 'studiedUnder'
 // MATCH (s:Physician {id: row[':START_ID']}), (o:Physician {id: row[':END_ID']}) MERGE (s)-[rel:studiedUnder]->(o)
 // SET rel.n_support = toInteger(row['n_support:int']), rel.layer = row['layer:string'], rel.corpus = row['corpus:string'], rel.source_sentence = row['source_sentence:string'], rel.chapter_path = row['chapter_path:string'], rel.passage_id = row['passage_id:string'], rel.evidence_verbatim = row['evidence_verbatim:boolean'] = 'true', rel.engine = row['engine:string'], rel.agreement = row['agreement:string'];
+// LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row[':TYPE'] = 'caseComorbidity'
+// MATCH (s:CaseRecord {id: row[':START_ID']}), (o:Disease {id: row[':END_ID']}) MERGE (s)-[rel:caseComorbidity]->(o)
+// SET rel.n_support = toInteger(row['n_support:int']), rel.layer = row['layer:string'], rel.corpus = row['corpus:string'], rel.source_sentence = row['source_sentence:string'], rel.chapter_path = row['chapter_path:string'], rel.passage_id = row['passage_id:string'], rel.evidence_verbatim = row['evidence_verbatim:boolean'] = 'true', rel.engine = row['engine:string'], rel.agreement = row['agreement:string'];
+// LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row[':TYPE'] = 'caseHasExamination'
+// MATCH (s:CaseRecord {id: row[':START_ID']}), (o:Examination {id: row[':END_ID']}) MERGE (s)-[rel:caseHasExamination]->(o)
+// SET rel.n_support = toInteger(row['n_support:int']), rel.layer = row['layer:string'], rel.corpus = row['corpus:string'], rel.source_sentence = row['source_sentence:string'], rel.chapter_path = row['chapter_path:string'], rel.passage_id = row['passage_id:string'], rel.evidence_verbatim = row['evidence_verbatim:boolean'] = 'true', rel.engine = row['engine:string'], rel.agreement = row['agreement:string'];
 // LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row[':TYPE'] = 'physicianInFamily'
 // MATCH (s:Physician {id: row[':START_ID']}), (o:MedicalFamily {id: row[':END_ID']}) MERGE (s)-[rel:physicianInFamily]->(o)
+// SET rel.n_support = toInteger(row['n_support:int']), rel.layer = row['layer:string'], rel.corpus = row['corpus:string'], rel.source_sentence = row['source_sentence:string'], rel.chapter_path = row['chapter_path:string'], rel.passage_id = row['passage_id:string'], rel.evidence_verbatim = row['evidence_verbatim:boolean'] = 'true', rel.engine = row['engine:string'], rel.agreement = row['agreement:string'];
+// LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row[':TYPE'] = 'modifiedBy'
+// MATCH (s:Formula {id: row[':START_ID']}), (o:Formula {id: row[':END_ID']}) MERGE (s)-[rel:modifiedBy]->(o)
 // SET rel.n_support = toInteger(row['n_support:int']), rel.layer = row['layer:string'], rel.corpus = row['corpus:string'], rel.source_sentence = row['source_sentence:string'], rel.chapter_path = row['chapter_path:string'], rel.passage_id = row['passage_id:string'], rel.evidence_verbatim = row['evidence_verbatim:boolean'] = 'true', rel.engine = row['engine:string'], rel.agreement = row['agreement:string'];
 // LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row[':TYPE'] = 'derivesFrom'
 // MATCH (s:Formula {id: row[':START_ID']}), (o:Work {id: row[':END_ID']}) MERGE (s)-[rel:derivesFrom]->(o)
@@ -370,11 +458,14 @@ CALL {
 // LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row[':TYPE'] = 'diseaseTreatedByFormula'
 // MATCH (s:Formula {id: row[':START_ID']}), (o:Disease {id: row[':END_ID']}) MERGE (s)-[rel:diseaseTreatedByFormula]->(o)
 // SET rel.n_support = toInteger(row['n_support:int']), rel.layer = row['layer:string'], rel.corpus = row['corpus:string'], rel.source_sentence = row['source_sentence:string'], rel.chapter_path = row['chapter_path:string'], rel.passage_id = row['passage_id:string'], rel.evidence_verbatim = row['evidence_verbatim:boolean'] = 'true', rel.engine = row['engine:string'], rel.agreement = row['agreement:string'];
-// LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row[':TYPE'] = 'hasIngredient'
-// MATCH (s:Formula {id: row[':START_ID']}), (o:Herb {id: row[':END_ID']}) MERGE (s)-[rel:hasIngredient]->(o)
-// SET rel.n_support = toInteger(row['n_support:int']), rel.layer = row['layer:string'], rel.corpus = row['corpus:string'], rel.source_sentence = row['source_sentence:string'], rel.chapter_path = row['chapter_path:string'], rel.passage_id = row['passage_id:string'], rel.evidence_verbatim = row['evidence_verbatim:boolean'] = 'true', rel.engine = row['engine:string'], rel.agreement = row['agreement:string'];
 // LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row[':TYPE'] = 'institutionAtPlace'
 // MATCH (s:Institution {id: row[':START_ID']}), (o:Place {id: row[':END_ID']}) MERGE (s)-[rel:institutionAtPlace]->(o)
+// SET rel.n_support = toInteger(row['n_support:int']), rel.layer = row['layer:string'], rel.corpus = row['corpus:string'], rel.source_sentence = row['source_sentence:string'], rel.chapter_path = row['chapter_path:string'], rel.passage_id = row['passage_id:string'], rel.evidence_verbatim = row['evidence_verbatim:boolean'] = 'true', rel.engine = row['engine:string'], rel.agreement = row['agreement:string'];
+// LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row[':TYPE'] = 'wdCorrespondsToTcm'
+// MATCH (s:WesternDiagnosis {id: row[':START_ID']}), (o:Disease {id: row[':END_ID']}) MERGE (s)-[rel:wdCorrespondsToTcm]->(o)
+// SET rel.n_support = toInteger(row['n_support:int']), rel.layer = row['layer:string'], rel.corpus = row['corpus:string'], rel.source_sentence = row['source_sentence:string'], rel.chapter_path = row['chapter_path:string'], rel.passage_id = row['passage_id:string'], rel.evidence_verbatim = row['evidence_verbatim:boolean'] = 'true', rel.engine = row['engine:string'], rel.agreement = row['agreement:string'];
+// LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row[':TYPE'] = 'examSupportsDiagnosis'
+// MATCH (s:Examination {id: row[':START_ID']}), (o:WesternDiagnosis {id: row[':END_ID']}) MERGE (s)-[rel:examSupportsDiagnosis]->(o)
 // SET rel.n_support = toInteger(row['n_support:int']), rel.layer = row['layer:string'], rel.corpus = row['corpus:string'], rel.source_sentence = row['source_sentence:string'], rel.chapter_path = row['chapter_path:string'], rel.passage_id = row['passage_id:string'], rel.evidence_verbatim = row['evidence_verbatim:boolean'] = 'true', rel.engine = row['engine:string'], rel.agreement = row['agreement:string'];
 // LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS row WITH row WHERE row[':TYPE'] = 'physicianFounded'
 // MATCH (s:Physician {id: row[':START_ID']}), (o:Institution {id: row[':END_ID']}) MERGE (s)-[rel:physicianFounded]->(o)
