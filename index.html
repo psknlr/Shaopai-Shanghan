@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>绍派伤寒 · 越医知识图谱 | 沈钦荣名中医 × 医哲未来人工智能研究院</title>
-<meta name="description" content="绍派伤寒 · 越医知识图谱：18,149 个知识节点、22,698 条学术关系，每条关系附段落编号与原文，抽取自《浙派中医丛书·绍派伤寒》《俞根初临证经验集要》《何廉臣医案》《越医文化》《越中名医传》《越醫雜詠》《赵晴初医论》《绍派伤寒史料图片研究》八种文献，并附沈钦荣当代骨伤科门诊 131 则病案的聚合统计。由沈钦荣名中医联合医哲未来人工智能研究院联合研发。">
+<meta name="description" content="绍派伤寒 · 越医知识图谱：19,383 个知识节点、28,380 条学术关系，每条关系附段落编号与原文，抽取自《浙派中医丛书·绍派伤寒》《俞根初临证经验集要》《何廉臣医案》《越医文化》《越中名医传》《越醫雜詠》《赵晴初医论》《绍派伤寒史料图片研究》八种文献，以及沈钦荣 2022—2026 年 131 则去标识化医案，共九种文献。由沈钦荣名中医联合医哲未来人工智能研究院联合研发。">
 <meta name="theme-color" content="#f3ede1" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#12141a" media="(prefers-color-scheme: dark)">
 <meta property="og:title" content="绍派伤寒 · 越医知识图谱">
@@ -45,6 +45,10 @@
   --inst:       #8d4a9a;   /* 紫藤 · 机构团体 */
   --place:      #2b8a97;   /* 青碧 · 地域 */
   --family:     #7a6244;   /* 沉香 · 医学世家 */
+  --wd:         #b8543f;   /* 珊瑚 · 西医诊断 */
+  --proc:       #9a7a16;   /* 艾绒 · 外治操作 */
+  --drug:       #4d5f9e;   /* 瓷蓝 · 西药 */
+  --exam:       #3f7e76;   /* 青瓷灰 · 辅助检查 */
   --sky-1:      #ece3d3;
   --sky-2:      #f6f0e4;
   --mount-far:  #c3c8c6;
@@ -88,6 +92,10 @@ html[data-theme="ink"]{
   --inst:       #d38ad0;
   --place:      #4fc3cf;
   --family:     #c2a880;
+  --wd:         #ef8f7a;
+  --proc:       #e3c26b;
+  --drug:       #9aa9d6;
+  --exam:       #8fc7c0;
   --sky-1:      #151a22;
   --sky-2:      #0d1015;
   --mount-far:  #212932;
@@ -462,8 +470,8 @@ h2{margin:0;font-size:clamp(1.75rem,4vw,2.65rem);font-weight:400;letter-spacing:
 footer{padding:3.4rem 0 4rem;color:var(--dim);font-size:13px}
 .finn{display:flex;flex-wrap:wrap;gap:1.6rem;align-items:center;justify-content:space-between}
 .fseals{display:flex;gap:.6rem}
-.fs{width:42px;height:42px;border-radius:5px;display:grid;grid-template-columns:1fr 1fr;place-items:center;
-  font-family:var(--kai);font-size:13px;color:var(--cinnabar);border:1.5px solid var(--cinnabar);
+.fs{width:42px;height:42px;border-radius:5px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;place-items:center;
+  font-family:var(--kai);font-size:13px;line-height:1;letter-spacing:0;color:var(--cinnabar);border:1.5px solid var(--cinnabar);
   padding:3px;opacity:.82;transform:rotate(-3deg)}
 .fs span:nth-child(1){grid-area:1/2}.fs span:nth-child(2){grid-area:2/2}
 .fs span:nth-child(3){grid-area:1/1}.fs span:nth-child(4){grid-area:2/1}
@@ -668,27 +676,31 @@ footer a:hover{color:var(--cinnabar);border-color:var(--cinnabar)}
 <section id="stats">
   <div class="wrap">
     <div class="statgrid">
-      <div class="stat"><div class="num" data-to="18149">0</div><div class="lab">知识节点</div><div class="bar" style="background:var(--tile)"></div></div>
-      <div class="stat"><div class="num" data-to="22698">0</div><div class="lab">学术关系 · 均带段落编号</div><div class="bar" style="background:var(--water)"></div></div>
-      <div class="stat"><div class="num" data-to="5324">0</div><div class="lab">抽取段落 · 八种文献</div><div class="bar" style="background:var(--amber)"></div></div>
-      <div class="stat"><div class="num" data-to="9469">0</div><div class="lab">最大连通分量</div><div class="bar" style="background:var(--celadon)"></div></div>
+      <div class="stat"><div class="num" data-to="19383">0</div><div class="lab">知识节点</div><div class="bar" style="background:var(--tile)"></div></div>
+      <div class="stat"><div class="num" data-to="28380">0</div><div class="lab">学术关系 · 均带段落编号</div><div class="bar" style="background:var(--water)"></div></div>
+      <div class="stat"><div class="num" data-to="5455">0</div><div class="lab">抽取段落 · 九种文献</div><div class="bar" style="background:var(--amber)"></div></div>
+      <div class="stat"><div class="num" data-to="10631">0</div><div class="lab">最大连通分量</div><div class="bar" style="background:var(--celadon)"></div></div>
     </div>
     <div class="classbar">
       <span class="cls"><i style="background:var(--cinnabar)"></i>医家<b>671</b></span>
       <span class="cls"><i style="background:var(--water)"></i>著作<b>758</b></span>
       <span class="cls"><i style="background:var(--celadon)"></i>学术观点<b>2,522</b></span>
-      <span class="cls"><i style="background:var(--amber)"></i>诊法征象<b>2,597</b></span>
-      <span class="cls"><i style="background:var(--pattern)"></i>证候<b>2,042</b></span>
-      <span class="cls"><i style="background:var(--symptom)"></i>症状<b>2,216</b></span>
-      <span class="cls"><i style="background:var(--disease)"></i>病证<b>1,524</b></span>
-      <span class="cls"><i style="background:var(--principle)"></i>治法<b>1,940</b></span>
-      <span class="cls"><i style="background:var(--formula)"></i>方剂<b>1,280</b></span>
-      <span class="cls"><i style="background:var(--herb)"></i>中药<b>1,379</b></span>
+      <span class="cls"><i style="background:var(--amber)"></i>诊法征象<b>2,740</b></span>
+      <span class="cls"><i style="background:var(--pattern)"></i>证候<b>2,083</b></span>
+      <span class="cls"><i style="background:var(--symptom)"></i>症状<b>2,575</b></span>
+      <span class="cls"><i style="background:var(--disease)"></i>病证<b>1,582</b></span>
+      <span class="cls"><i style="background:var(--principle)"></i>治法<b>2,100</b></span>
+      <span class="cls"><i style="background:var(--formula)"></i>方剂<b>1,376</b></span>
+      <span class="cls"><i style="background:var(--herb)"></i>中药<b>1,454</b></span>
       <span class="cls"><i style="background:var(--herbprop)"></i>药性<b>80</b></span>
-      <span class="cls"><i style="background:var(--case)"></i>医案<b>657</b></span>
+      <span class="cls"><i style="background:var(--case)"></i>医案<b>788</b></span>
       <span class="cls"><i style="background:var(--place)"></i>地域<b>309</b></span>
       <span class="cls"><i style="background:var(--inst)"></i>机构团体<b>137</b></span>
       <span class="cls"><i style="background:var(--family)"></i>医学世家<b>37</b></span>
+      <span class="cls"><i style="background:var(--wd)"></i>西医诊断<b>72</b></span>
+      <span class="cls"><i style="background:var(--proc)"></i>外治操作<b>38</b></span>
+      <span class="cls"><i style="background:var(--drug)"></i>西药<b>24</b></span>
+      <span class="cls"><i style="background:var(--exam)"></i>辅助检查<b>37</b></span>
     </div>
   </div>
 </section>
@@ -748,8 +760,8 @@ footer a:hover{color:var(--cinnabar);border-color:var(--cinnabar)}
         <div class="era">当代 · 传承与智能化</div>
         <h3>沈钦荣名中医 × 医哲未来人工智能研究院<small>《浙派中医丛书·绍派伤寒》，2021</small></h3>
         <p>沈钦荣名中医主编专著，系统整理越中一脉的医家、著作与学说；
-           医哲未来人工智能研究院据此构建本体与知识图谱：八种文献、18,149 个节点、22,698 条关系，
-           每一条都带段落编号与原文，皆可检索、可回溯、可视化。第七版起，沈钦荣 2022—2026 年的
+           医哲未来人工智能研究院据此构建本体与知识图谱：九种文献、19,383 个节点、28,380 条关系，
+           每一条都带段落编号与原文，皆可检索、可回溯、可视化。第八版起，沈钦荣 2022—2026 年的
            131 则医案也进入图谱——绍派伤寒的方法，从何氏医案一路延续到当代医家的。</p>
       </div>
     </div>
@@ -792,7 +804,7 @@ footer a:hover{color:var(--cinnabar);border-color:var(--cinnabar)}
         <p class="quote">故观目为诊法之首要。</p>
         <div class="who">俞根初 ·《通俗伤寒论》</div>
         <p class="exp">观目法、按胸腹、分六经辨舌苔，于纷繁症候中提纲挈领，重危病人尤见其功。
-           图谱已录得<b>目诊 89</b>、<b>腹诊 148</b>、<b>舌诊 760</b> 项征象，条条系于原文。</p>
+           图谱已录得<b>目诊 91</b>、<b>腹诊 148</b>、<b>舌诊 840</b> 项征象，条条系于原文。</p>
       </article>
       <article class="card">
         <div class="idx">伍</div>
@@ -830,40 +842,41 @@ footer a:hover{color:var(--cinnabar);border-color:var(--cinnabar)}
     <div class="sect-head">
       <div class="sect-tag">Diagnostics · 诊法层 · 证候层</div>
       <h2>四诊征象：绍派的看家本领</h2>
-      <p>诊法层自《绍派伤寒》与《俞根初临证经验集要》抽出 <b>2,597 项诊法征象</b>与 <b>2,042 个证候</b>，
+      <p>诊法层自《绍派伤寒》与《俞根初临证经验集要》抽出诊法征象与证候；连同医案层与当代病案层引入的，
+         图谱现有 <b>2,740 项诊法征象</b>与 <b>2,083 个证候</b>，
          以「征象提示证候」「征象排除证候」「子证候」「属于六经」相连；证候层再以「治法对应」「表现为」「病之证候」
-         把证候系于 1,940 个治法、2,216 个症状与 1,524 个病证。
+         把证候系于治法、症状与病证——全图共 2,100 个治法、2,575 个症状与 1,582 个病证。
          俞根初 <q>重观目、擅腹诊、察舌分经</q> 的独到之处，至此有了可检索的数据形态。</p>
     </div>
 
     <div class="diag">
       <div class="panel">
         <h3>征象按诊法分布</h3>
-        <p class="cap">共 2,597 项。目诊与腹诊虽非数量最多，却是绍派区别于他派的标志性诊法；
+        <p class="cap">共 2,740 项。目诊与腹诊虽非数量最多，却是绍派区别于他派的标志性诊法；
           《俞根初临证经验集要》的辨舌、切脉两节新增 262 条「征象提示证候」。</p>
         <div class="bars" id="modbars"></div>
         <p class="pnote">
-          <b>2,131 项征象仅出现一次</b>——古籍对体征的措辞本就多变（虚里跃动应衣、三脘痞硬、
+          <b>2,217 项征象仅出现一次</b>——古籍对体征的措辞本就多变（虚里跃动应衣、三脘痞硬、
           高低凹凸如畎亩状），这些是真实记载而非抽取噪声，但在本语料内无法互证。
-          另有 1,860 项征象未抽出「提示何种证候」的断言，其中 1,096 项在图谱中呈孤点，
+          另有 2,003 项征象未抽出「提示何种证候」的断言，其中 1,115 项在图谱中呈孤点，
           余者经医案「见象」关系接入主体。
         </p>
       </div>
 
       <div class="panel">
         <h3>证候的六经与性质坐标</h3>
-        <p class="cap">2,042 个证候中，1,308 个带六经、三焦或证候性质标注。</p>
+        <p class="cap">2,083 个证候中，1,346 个带六经、三焦或证候性质标注。</p>
         <div style="margin-bottom:1.35rem">
           <div class="k" style="color:var(--dim);font-family:var(--sans);font-size:10px;letter-spacing:.18em;margin-bottom:.6rem">六经归属（名称词表匹配）</div>
-          <div class="axis"><span>阳明<b>76</b></span><span>太阴<b>28</b></span><span>太阳<b>22</b></span><span>厥阴<b>21</b></span><span>少阳<b>20</b></span><span>少阴<b>17</b></span></div>
+          <div class="axis"><span>阳明<b>75</b></span><span>太阴<b>28</b></span><span>少阳<b>25</b></span><span>太阳<b>22</b></span><span>厥阴<b>21</b></span><span>少阴<b>17</b></span></div>
         </div>
         <div style="margin-bottom:1.35rem">
           <div class="k" style="color:var(--dim);font-family:var(--sans);font-size:10px;letter-spacing:.18em;margin-bottom:.6rem">证候性质（前八）</div>
-          <div class="axis"><span>热<b>189</b></span><span>虚<b>101</b></span><span>湿热<b>90</b></span><span>寒<b>51</b></span><span>湿<b>49</b></span><span>火<b>48</b></span><span>风<b>36</b></span><span>痰<b>27</b></span></div>
+          <div class="axis"><span>热<b>189</b></span><span>虚<b>102</b></span><span>湿热<b>90</b></span><span>寒<b>51</b></span><span>湿<b>49</b></span><span>火<b>48</b></span><span>风<b>36</b></span><span>痰<b>27</b></span></div>
         </div>
         <div>
           <div class="k" style="color:var(--dim);font-family:var(--sans);font-size:10px;letter-spacing:.18em;margin-bottom:.6rem">三焦定位</div>
-          <div class="axis"><span>中焦<b>16</b></span><span>下焦<b>13</b></span><span>上焦<b>11</b></span><span>三焦<b>9</b></span></div>
+          <div class="axis"><span>中焦<b>16</b></span><span>下焦<b>13</b></span><span>上焦<b>10</b></span><span>三焦<b>9</b></span></div>
         </div>
         <p class="pnote">
           六经与性质由<b>名称</b>经词表匹配推得，「某证候未标六经」只说明其名称未含六经字样，<b>不等于原文认为它不属某经</b>。
@@ -888,7 +901,7 @@ footer a:hover{color:var(--cinnabar);border-color:var(--cinnabar)}
           俞氏另立治则总纲：<b>外风宜散、内风宜熄、表寒宜汗、里寒宜温、伤暑宜清、中暑宜开、
           伏暑宜下、郁火宜发、实火宜泻、阴火宜引</b>。何廉臣更将下法细分为七：
           毒火急下、风火疏下、燥火润下、痰火降下、食积化火清下、瘀血化火通下、水火互结导下。
-          证候层共 <b>1,940 个治法</b>、<b>428 条治法对应</b>、
+          全图共 <b>2,100 个治法</b>；证候层有 <b>428 条治法对应</b>、
           <b>370 条表现为</b>、<b>360 条病之证候</b>、<b>296 条子证候</b>。
         </p>
       </div>
@@ -896,15 +909,15 @@ footer a:hover{color:var(--cinnabar);border-color:var(--cinnabar)}
         <h3>症状与病证</h3>
         <p class="cap">前四版刻意留空的「症状」一类，自第五版随医案层进入图谱。</p>
         <div class="axis">
-          <span>症状<b>2,216</b></span><span>医案见症<b>3,233</b></span>
-          <span>表现为<b>370</b></span><span>病证<b>1,524</b></span>
-          <span>医案诊断<b>702</b></span>
+          <span>症状<b>2,575</b></span><span>医案见症<b>3,792</b></span>
+          <span>表现为<b>370</b></span><span>病证<b>1,582</b></span>
+          <span>医案诊断<b>843</b></span>
         </div>
         <p class="pnote">
-          2,216 个症状节点主要来自医案层的「医案见症」与证候层的「表现为」。
-          其中 <b>439 个名称与诊法征象重合</b>——两类并存是两层抽取各自命名的结果，
+          2,575 个症状节点主要来自医案层与当代病案层的「医案见症」及证候层的「表现为」。
+          其中 <b>442 个名称与诊法征象重合</b>——两类并存是两层抽取各自命名的结果，
           检索一个体征时请同时查看症状与征象两类节点。
-          1,524 个病证中 416 个与医案相连，956 个带原书归类。
+          1,582 个病证中 438 个与医案相连，976 个带原书归类。
         </p>
       </div>
     </div>
@@ -916,7 +929,7 @@ footer a:hover{color:var(--cinnabar);border-color:var(--cinnabar)}
   <div class="wrap">
     <div class="sect-head">
       <div class="sect-tag">Formulas · 方治层</div>
-      <h2>方以载法：1,280 首方剂</h2>
+      <h2>方以载法：1,376 首方剂</h2>
       <p>第六版并入沈钦荣编著《俞根初临证经验集要》十章，为图谱补上学派奠基人的方治骨架：
          该书贡献 <b>1,156 条关系</b>，其中「方剂主治」525 条、
          「征象提示证候」262 条、「治法用方」181 条、「源自」49 条。
@@ -941,10 +954,10 @@ footer a:hover{color:var(--cinnabar);border-color:var(--cinnabar)}
         <div class="axis"><span>和解少阳<b>7</b></span><span>清热<b>6</b></span><span>淡渗<b>6</b></span><span>开郁<b>6</b></span><span>清泄肝阳<b>5</b></span><span>温中<b>4</b></span><span>散寒<b>4</b></span><span>滋阴<b>4</b></span><span>清宣心包<b>4</b></span><span>给邪以出路<b>3</b></span></div>
         <p class="pnote">
           和解少阳、清热、淡渗、开郁——正是绍派「开郁透达、以通为补」的治则谱系。
-          全图 1,280 首方剂中 <b>517 首</b>已与主治证候、病证或医案相连，
-          余者仅见方名，尚待配伍；中药 1,379 味、药性 80 条。
-          方剂节点的<b>逐味配伍</b>（君臣佐使与原剂量）尚未随本次交付提供，
-          「药物组成」仍为 41 条。
+          全图 1,376 首方剂中 <b>620 首</b>已与主治证候、病证或医案相连，
+          余者仅见方名，尚待配伍；中药 1,454 味、药性 80 条。
+          古籍方剂的<b>逐味配伍</b>（君臣佐使与原剂量）尚未随交付提供，
+          「药物组成」共 1,453 条，其中 1,412 条来自当代门诊 83 首自拟方与加减方。
         </p>
       </div>
     </div>
@@ -958,7 +971,7 @@ footer a:hover{color:var(--cinnabar);border-color:var(--cinnabar)}
       <div class="sect-tag">Case Records · 医案层</div>
       <h2>六百六十案：何廉臣的临证实录</h2>
       <p>《何廉臣医案》660 则中 <b>657 则入图</b>，每案连出所用药物、所见症状与征象、所辨证候、所施治法与所用成方，
-         共 <b>16,342 条关系</b>——占全图约七成。医案标题多以证候而非病名命名（含规范病名者仅 255/660），
+         共 <b>16,342 条关系</b>——占全图近六成。医案标题多以证候而非病名命名（含规范病名者仅 255/660），
          这是何廉臣的命题习惯，不是词表缺口；这类标题成为证候节点而非被硬归入病证。</p>
     </div>
 
@@ -1010,7 +1023,7 @@ footer a:hover{color:var(--cinnabar);border-color:var(--cinnabar)}
         <p class="pnote">
           治法以<b>芳淡清化</b>（36 案）、<b>苦辛通降</b>（35 案）、<b>柔肝熄风</b>（13 案）最多，
           正是「芳淡」「苦辛」两路的绍派用药本色；成方以<b>保和丸</b> 49、<b>左金丸</b> 47、<b>磁朱丸</b> 46 案居前。
-          何廉臣本人在图谱中的关联度达 236，为全图医家之最。
+          何廉臣本人在图谱中的关联度达 236，在全图医家中仅次于俞根初（293）。
         </p>
       </div>
     </div>
@@ -1023,7 +1036,7 @@ footer a:hover{color:var(--cinnabar);border-color:var(--cinnabar)}
     <div class="sect-head">
       <div class="sect-tag">Contemporary Clinic · 当代门诊</div>
       <h2>百年之后：从外感医案到骨伤门诊</h2>
-      <p>第七版收入沈钦荣 2022—2026 年骨伤科门诊病案 <b>131 则</b>（2022 年 28 · 2023 年 19 · 2024 年 26 · 2025 年 23 · 2026 年 35）。
+      <p>第八版收入沈钦荣 2022—2026 年骨伤科门诊病案 <b>131 则</b>（2022 年 28 · 2023 年 19 · 2024 年 26 · 2025 年 23 · 2026 年 35）。
          何廉臣医案以外感湿热为主，沈钦荣门诊以颈腰肩膝的痹痛为主——病种变了，
          绍派伤寒的方法却一脉相承：<b>桂枝</b>是当代门诊用得最多的药（76 案），
          「<b>和解少阳</b>」出现在 12 案中，柴胡桂枝汤、桂柴方、陈亦人方皆属伤寒家法。</p>
@@ -1130,11 +1143,11 @@ footer a:hover{color:var(--cinnabar);border-color:var(--cinnabar)}
     <div class="sect-head">
       <div class="sect-tag">Knowledge Graph · 知识图谱</div>
       <h2>一图见其全</h2>
-      <p>图谱以 <b>9,469 个节点的巨分量</b>为核心：谱系关系权重最高，几何由师承脉络而非观点数量决定；
-         周围 637 个卫星分量按黄金角排布，最外圈是 7,087 个尚无关系的孤点。
-         下方预览取真实布局坐标绘制高连通节点；完整图谱含 18,149 个节点，
+      <p>图谱以 <b>10,631 个节点的巨分量</b>为核心：谱系关系权重最高，几何由师承脉络而非观点数量决定；
+         周围 628 个卫星分量按黄金角排布，最外圈是 7,186 个尚无关系的孤点。
+         下方预览取真实布局坐标绘制高连通节点；完整图谱含 19,383 个节点，
          支持搜索、按<b>来源文献</b> / 抽取层 / 关系类型 / 诊法模态筛选，以及逐条回溯到原文段落。
-         另有 <b>V1 两书版</b>：只看《三订通俗伤寒论》与《何廉臣医案》两书的 8,238 个节点、17,498 条关系
+         另有 <b>V1 两书版</b>：只看《三订通俗伤寒论》与《何廉臣医案》两书的 8,226 个节点、17,498 条关系
          （本图谱尚无《三订通俗伤寒论》原文，该书一侧取自引其为出处的《俞根初临证经验集要》）。</p>
     </div>
     <div class="gwrap">
@@ -1208,23 +1221,23 @@ footer a:hover{color:var(--cinnabar);border-color:var(--cinnabar)}
     <div class="srcbox">
       <b>学术底本</b>：《浙派中医丛书》专题系列·绍派伤寒，沈钦荣 主编，2021 年；《俞根初临证经验集要》，沈钦荣 编著；
       《何廉臣医案》660 则；《越医文化》十章；《越中名医传》下篇与补；《越醫雜詠》；《赵晴初医论》；
-      《绍派伤寒史料图片研究》，陶建华 总审／沈钦荣、林怡冰 编著——共<b>八种文献</b>入图。
-      另有沈钦荣 2022—2026 年骨伤科门诊病案 131 则，本站只发布其聚合统计。<br>
+      《绍派伤寒史料图片研究》，陶建华 总审／沈钦荣、林怡冰 编著；
+      以及沈钦荣 2022—2026 年骨伤科门诊病案 131 则（已去标识化，经数据方确认发布授权）——共<b>九种文献</b>入图。<br>
       <b>图谱构建</b>：医哲未来人工智能研究院（IMPFAI）· 本体 1.2.0（20 类 / 46 关系，
-      本站 15 类 / 32 关系已有实例）· RDF A-Box 约 41 万三元组。<br>
-      <b>出处</b>：<b>全部 22,698 条关系都带上游段落编号与实际抽取引擎</b>。本站据此独立核验：
-      可解析段落的 18,368 条关系中，17,788 条（96.8%）原文确在所引段落内，
-      580 条未找到（其中 312 条上游标为「逐字」）；
+      本站 19 类 / 40 关系已有实例）· RDF A-Box 约 50 万三元组。<br>
+      <b>出处</b>：<b>全部 28,380 条关系都带上游段落编号与实际抽取引擎</b>。本站据此独立核验：
+      可解析段落的 24,050 条关系中，23,264 条（96.7%）原文确在所引段落内，
+      786 条未找到（其中 445 条上游标为「逐字」）；
       《绍派伤寒》专著的 4,330 条关系沿用上游旧段落编号，本站语料无法对应。<br>
-      <b>抽取方式</b>：六层单模型 LLM 抽取——谱系层首轮 sonnet，其余各层 haiku；
+      <b>抽取方式</b>：七层单模型 LLM 抽取——谱系层首轮 sonnet，其余各层 haiku；
       MiniMax 交叉验证未运行，全部关系 <code>agreement=single_engine</code>。
-      层覆盖：谱系层 100.0% · 诊法层 99.1% · 证候层 97.9% · 本草方剂层 83.0% · 医案层 99.5% · 越医文化层 74.9%——缺口皆为逐帧 token 上限所致，来自越医文化层与本草方剂层的计数是下界。<br>
-      <b>已知限制</b>：① 单引擎、未交叉验证；② 97.8% 的关系上游标为逐字，501 条标注「非逐字」；
-      ③ 98.5% 的关系仅有一处文献支撑；④ <b>药名不作归一</b>——道地与品质前缀刻意保留；
-      ⑤ 7,087 个节点尚无任何关系，图中列于最外圈；⑥ 医案标题仅 255/660 含规范病名；
-      ⑦ 机构类型等<b>属性值</b>的繁简异写尚未归并；⑧ 症状与诊法征象两类有 439 个同名节点并存；
-      ⑨ 方剂的逐味配伍未随交付提供；⑩ 按本体 1.2.0 声明的 0..1 基数，有 55 个主语带多条出边（physicianOfPlace 20、derivesFrom 14、statedIn 11、belongsToChannel 3、physicianInFamily 3、subPatternOf 2、institutionAtPlace 2）。<br>
-      <b>本体校验</b>：定义域/值域违例 0 / 22,698，悬空端点 0，自环 0，重复关系 0，全部关系带出处。
+      层覆盖：谱系层 100.0% · 诊法层 99.1% · 证候层 97.9% · 本草方剂层 83.0% · 医案层 99.5% · 越医文化层 74.9% · 当代病案层 100.0%——缺口皆为逐帧 token 上限所致，来自越医文化层与本草方剂层的计数是下界。<br>
+      <b>已知限制</b>：① 单引擎、未交叉验证；② 97.8% 的关系上游标为逐字，634 条标注「非逐字」；
+      ③ 97.7% 的关系仅有一处文献支撑；④ <b>药名不作归一</b>——道地与品质前缀刻意保留；
+      ⑤ 7,186 个节点尚无任何关系，图中列于最外圈；⑥ 医案标题仅 255/660 含规范病名；
+      ⑦ 机构类型等<b>属性值</b>的繁简异写尚未归并；⑧ 症状与诊法征象两类有 442 个同名节点并存；
+      ⑨ 古籍方剂的逐味配伍未随交付提供，仅当代门诊方剂带组成；⑩ 按本体 1.2.0 声明的 0..1 基数，有 55 个主语带多条出边（physicianOfPlace 20、derivesFrom 14、statedIn 11、belongsToChannel 3、physicianInFamily 3、subPatternOf 2、institutionAtPlace 2）。<br>
+      <b>本体校验</b>：定义域/值域违例 0 / 28,380，悬空端点 0，自环 0，重复关系 0，全部关系带出处。
       详见 <a href="data/QC_AUDIT.md" style="color:var(--celadon)">QC_AUDIT.md</a>。<br>
       本站仅供学术研究与文献检索之用，<b>不作为临床诊疗依据</b>。
     </div>
@@ -1241,8 +1254,8 @@ footer a:hover{color:var(--cinnabar);border-color:var(--cinnabar)}
     <div class="fnote">
       <div><b style="color:var(--ink-2)">绍派伤寒 · 学术知识图谱</b></div>
       <div>沈钦荣名中医 × 医哲未来人工智能研究院 联合研发 ·
-        学术底本《浙派中医丛书·绍派伤寒》（2021）等八种文献</div>
-      <div>第七版 · 18,149 节点 / 22,698 关系 · 八种文献 · 逐条可溯至段落 · 巨分量 9,469 节点</div>
+        学术底本《浙派中医丛书·绍派伤寒》（2021）等九种文献</div>
+      <div>第八版 · 19,383 节点 / 28,380 关系 · 九种文献 · 逐条可溯至段落 · 巨分量 10,631 节点</div>
       <div style="margin-top:.4rem">
         <a href="explorer.html">知识图谱</a> ·
         <a href="v1.html">V1 两书版</a> ·
@@ -1360,7 +1373,7 @@ document.getElementById('docgrid').innerHTML = DOCS.map(d=>`
 
 /* ---------- 诊法分布 ---------- */
 const MODS = [
-  {n:'脉诊', v:876, hi:1}, {n:'舌诊', v:760, hi:1}, {n:'问诊', v:420}, {n:'望诊', v:283}, {n:'腹诊', v:148, hi:1}, {n:'目诊', v:89, hi:1}, {n:'闻诊', v:21}
+  {n:'脉诊', v:889, hi:1}, {n:'舌诊', v:840, hi:1}, {n:'问诊', v:421}, {n:'望诊', v:329}, {n:'腹诊', v:148, hi:1}, {n:'目诊', v:91, hi:1}, {n:'闻诊', v:21}
 ];
 const MAXV = Math.max(...MODS.map(m => m.v));
 document.getElementById('modbars').innerHTML = MODS.map(m => {
